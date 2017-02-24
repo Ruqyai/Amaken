@@ -1,34 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_sign_up_as_user"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center"
-    android:orientation="vertical"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.afaf.amakenapp.SignUpUser">
     >
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#15AFD8"
-        android:theme="?attr/actionBarTheme"
-        android:minHeight="?attr/actionBarSize"
-        android:id="@+id/toolbar" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="?android:attr/homeAsUpIndicator"
-        android:id="@+id/signUpUser_Back"
-        android:background="#00ffffff"
-        android:paddingLeft="6dp"
-        android:paddingRight="80dp"
-        android:paddingBottom="15dp"
-        android:paddingTop="5dp"
-        android:layout_alignBottom="@+id/toolbar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -36,7 +17,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentLeft="true">
 
         <EditText
             android:layout_width="match_parent"
@@ -51,7 +33,8 @@
             android:textColorHint="#9B9B9B"
             android:textColorLink="#9B9B9B"
             android:layout_marginTop="22dp"
-            android:paddingStart="15dp"/>
+            android:paddingStart="15dp"
+            android:paddingLeft="15dp" />
 
 
         <EditText
@@ -63,7 +46,8 @@
             android:hint="Password"
             android:textColorHint="#9B9B9B"
             android:layout_marginTop="12dp"
-            android:paddingStart="15dp"/>
+            android:paddingStart="15dp"
+            android:paddingLeft="15dp" />
 
 
         <EditText
@@ -75,7 +59,8 @@
             android:text="User Name"
             android:textColorHint="#9B9B9B"
             android:textColor="#9B9B9B"
-            android:paddingStart="15dp" />
+            android:paddingStart="15dp"
+            android:paddingLeft="15dp" />
 
 
         <TextView
@@ -85,13 +70,15 @@
             android:text="Gender"
             android:textSize="18sp"
             android:layout_marginTop="8dp"
-            android:paddingStart="15dp" />
+            android:paddingStart="15dp"
+            android:paddingLeft="15dp" />
 
 
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="15dp">
+            android:paddingStart="15dp"
+            android:paddingLeft="15dp">
 
             <RadioButton
                 android:text="Male"
@@ -108,6 +95,15 @@
                 android:layout_weight="1" />
 
         </RadioGroup>
+
+
+
+        <Spinner
+            android:id="@+id/spinner_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="58dp"
+            android:spinnerMode="dialog" />
 
         <Button
             android:text="SIGN UP"

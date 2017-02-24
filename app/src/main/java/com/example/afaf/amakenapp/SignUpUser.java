@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -22,18 +25,10 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.afaf.amakenapp.R.id.editTextPassword;
 
 public class SignUpUser extends AppCompatActivity implements View.OnClickListener{
 
-    //==================
-
-    /*
-    * ====id in xml===
-    * UserEmail
-    * UserPassword
-    * UserName
-    * Gender// male//female>> RadioGroup
+   /*
     * ====param which send on php file==
     * email','password','name','gender','country','city', 'profile_pic_id'
     *
@@ -41,20 +36,22 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
     private EditText editTextUsername, editTextEmail, editTextPassword;
     private Button buttonRegister;
     private ProgressDialog progressDialog;
+    Spinner spinnerDialog;
     //===============================================
 
-    private ImageButton signUpUser_Back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_user);
-        //=========================
-        if(SharedPrefManager.getInstance(this).isLoggedIn()){
-            finish();
-         //   startActivity(new Intent(this, SignUpChooser.class));// // TODO: 2/22/2017 need fix 
-            return;
-        }
+
+          spinnerDialog = (Spinner) findViewById(R.id.spinner_dialog);
+
+
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.spinner_options, android.R.layout.simple_spinner_item);
+         spinnerDialog.setAdapter(adapter);
+          spinnerDialog.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) SignUpUser.this);
+
 
         editTextEmail = (EditText) findViewById(R.id.UserEmail);
         editTextUsername = (EditText) findViewById(R.id.UserName);
@@ -62,18 +59,8 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
         // // TODO: 2/22/2017 need to complete 
 
         progressDialog = new ProgressDialog(this);
-
-
         buttonRegister = (Button) findViewById(R.id.button_Register);
         buttonRegister.setOnClickListener(this);
-
-
-
-        //===================================
-
-        signUpUser_Back = (ImageButton) findViewById(R.id.signUpUser_Back);
-        signUpUser_Back.setOnClickListener(this);
-
     }
     //==============================================
     private void registerRegularUser() {
@@ -123,11 +110,7 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
                 return params;
             }
         };
-
-
        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
-
-
     }
     //========================================
 
@@ -135,14 +118,6 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v == buttonRegister)
-
         registerRegularUser();
-
-        if (v == signUpUser_Back) {
-            finish();
-            startActivity(new Intent(this, SignUpChooser.class));// need // TODO: 2/22/2017 change activity 
-        }
-
-
     }
 }

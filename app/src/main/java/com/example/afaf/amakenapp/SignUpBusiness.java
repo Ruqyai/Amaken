@@ -9,16 +9,13 @@ import android.widget.ImageButton;
 
 public class SignUpBusiness extends AppCompatActivity implements View.OnClickListener{
 
-    private ImageButton signUpBusiness_Back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_business);
 
-        signUpBusiness_Back = (ImageButton) findViewById(R.id.signUpBusiness_Back);
-
-        signUpBusiness_Back.setOnClickListener(this);
 
     }
 
@@ -26,10 +23,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
-        if (v == signUpBusiness_Back) {
-            finish();
-            startActivity(new Intent(this, SignUpChooser.class));
-        }
+
 
 
     }

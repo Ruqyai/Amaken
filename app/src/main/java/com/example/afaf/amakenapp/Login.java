@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -26,23 +25,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     /*
     * =====param send in php file
     * 'userEmail','password'
-    * ======param response in php file
-    * $response['error'] = false;
-        $response['id'] = $business_user['id'];
-        $response['business_email'] = $business_user['business_email'];
-        $response['business_password'] = $business_user['business_password'];
-        $response['business_name'] = $business_user['business_name'];
-        $response['business_web_url'] = $business_user['business_web_url'];
-        $response['business_phone_number'] = $business_user['phone_number'];
-        $response['business_country_id'] = $business_user['business_country_id'];
-        $response['country_name'] = $db->getCountryByID($business_user['business_country_id']);
-        $response['business_city_id'] = $business_user['business_city_id'];
-        $response['city_name'] = $db->getCityByID($business_user['business_city_id']);
-        $response['profile_pic_id'] = $business_user['profile_pic_id'];
-        $response['profile_pic_url'] = $db->getPhotoURLByID($business_user['profile_pic_id']);
     * */
     private EditText editEmail, editPassword;
-    private ImageButton login_Back;
+
     private Button login_SignIn;
     private ProgressDialog progressDialog;
 
@@ -51,17 +36,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-        login_Back = (ImageButton) findViewById(R.id.login_Back);
         login_SignIn = (Button) findViewById(R.id.login_SingIn);
-
         editEmail = (EditText) findViewById(R.id.login_Email);
         editPassword = (EditText) findViewById(R.id.login_Password);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
-
-        login_Back.setOnClickListener(this);
         login_SignIn.setOnClickListener(this);
 
     }
@@ -69,10 +49,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
 
-        if (v == login_Back) {
-            finish();
-            startActivity(new Intent(this, MainActivity.class));
-        }
         if (v == login_SignIn) {
             singIn();
             finish();
@@ -80,27 +56,21 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
     }
 
-    // add by Ruqi
-
-    //==================================
     public void singIn(){
         final String userEmail = editEmail.getText().toString().trim();
         final String password = editPassword.getText().toString().trim();
+        progressDialog.show();
 
-//        progressDialog.show();
         StringRequest send = new  StringRequest(Request.Method.POST,
                                                 Constants.URL_LOGIN,
                                                 new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-//                progressDialog.dismiss();
-
-                //if the request is successfull
-                // you will get the whole server response as string in this response object
-                //now convert the response to json
+               progressDialog.dismiss();
                 try {
                     JSONObject obj = new JSONObject(response);
                     if (!obj.getBoolean("error")) {
+                        /*
                        SharedPrefManager.getInstance(getApplicationContext())
                                .userLogin(
                                        obj.getInt("id"),
@@ -117,7 +87,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
 
                                 );
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                **/
+                        startActivity(new Intent(getApplicationContext(), SignUpBusiness.class));
                           finish();
                     } else {
                         Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
@@ -125,9 +96,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -145,27 +113,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                // return super.getParams();
-
                 Map<String, String> params = new HashMap<>();
-                // put all the parameters for the request in map object with key value pairs
-
-                params.put("userEmail", userEmail); //get the value of userEmail from edittExt
-                params.put("password",password); //get it from edittext
-
-                //finally return the parameters
+                params.put("userEmail", userEmail);
+                params.put("password",password);
                 return params;
             }
         };
 
-        //now we will add it to the request queue
         MySingleton.getInstance(this).addToRequestQueue(send);
 
     }
-    //===============================================================
-
-
-
 }
 
 
