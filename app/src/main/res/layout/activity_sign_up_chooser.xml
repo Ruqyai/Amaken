@@ -61,7 +61,7 @@
                 android:elevation="2dp"
                 android:background="#DDDDDD"
                 android:id="@+id/imageView"
-                app:srcCompat="@drawable/business_icon" />
+                app:srcCompat="@drawable/business1_icon" />
 
             <TextView
                 android:id="@+id/textViewDesc"

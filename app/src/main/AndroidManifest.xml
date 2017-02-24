@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.afaf.amakenapp">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -9,40 +10,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".Login" />
+        <activity android:name=".SignUpChooser" />
+        <activity android:name=".SignUpUser" />
+        <activity android:name=".SignUpBusiness" />
+        <activity android:name=".Reviews">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity android:name=".Login"
-        android:parentActivityName=".MainActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
-         </activity>
-
-        <activity android:name=".SignUpChooser"
-        android:parentActivityName=".MainActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
-    </activity>
-        <activity android:name=".SignUpUser"
-        android:parentActivityName=".SignUpChooser">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".SignUpChooser" />
-    </activity>
-
-        <activity android:name=".SignUpBusiness"
-        android:parentActivityName=".SignUpChooser">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".SignUpChooser" />
         </activity>
     </application>
 
