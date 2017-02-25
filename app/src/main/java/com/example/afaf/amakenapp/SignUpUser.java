@@ -26,19 +26,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class SignUpUser extends AppCompatActivity implements View.OnClickListener{
+public class SignUpUser extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-   /*
-    * ====param which send on php file==
-    * email','password','name','gender','country','city', 'profile_pic_id'
-    *
-    * */
     private EditText editTextUsername, editTextEmail, editTextPassword;
     private Button buttonRegister;
     private ProgressDialog progressDialog;
+    private ImageButton signUpUser_Back;
     Spinner spinnerDialog;
-    //===============================================
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,20 +43,22 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
 
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.spinner_options, android.R.layout.simple_spinner_item);
-         spinnerDialog.setAdapter(adapter);
-          spinnerDialog.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) SignUpUser.this);
+        spinnerDialog.setAdapter(adapter);
+        spinnerDialog.setOnItemSelectedListener(this);
 
 
         editTextEmail = (EditText) findViewById(R.id.UserEmail);
         editTextUsername = (EditText) findViewById(R.id.UserName);
         editTextPassword = (EditText) findViewById(R.id.UserPassword);
-        // // TODO: 2/22/2017 need to complete 
+        // TODO: 2/22/2017 need to complete
 
         progressDialog = new ProgressDialog(this);
         buttonRegister = (Button) findViewById(R.id.button_Register);
         buttonRegister.setOnClickListener(this);
+        signUpUser_Back = (ImageButton) findViewById(R.id.signUpUser_Back);
+        signUpUser_Back.setOnClickListener(this);
+
     }
-    //==============================================
     private void registerRegularUser() {
         final String email = editTextEmail.getText().toString().trim();
         final String username = editTextUsername.getText().toString().trim();
@@ -104,20 +100,34 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
                 params.put("name", username);
 
                 // ... need to complete//// TODO: 2/22/2017 need to complete 
-                //...
-                //...
+
 
                 return params;
             }
         };
        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
-    //========================================
-
 
     @Override
     public void onClick(View v) {
         if (v == buttonRegister)
         registerRegularUser();
+        if (v == signUpUser_Back) {
+            finish();
+            startActivity(new Intent(this, SignUpChooser.class));
+        }
+
+
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

@@ -1,82 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.afaf.amakenapp.SignUpBusiness">
+    android:layout_height="wrap_content">
 
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
-
-        <EditText
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/businessEmail"
-            android:hint="  Email Address"
-            android:selectAllOnFocus="false"
-            android:allowUndo="true"
-            android:textColor="#009688"
-            android:textColorHint="#9B9B9B"
-            android:textColorLink="#9B9B9B"
-            android:layout_marginTop="22dp" />
+            android:background="#15AFD8"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize"
+            android:id="@+id/toolbar" />
 
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/businessPassword"
-            android:hint=" Password"
-            android:textColorHint="#9B9B9B"
-            android:layout_marginTop="12dp" />
-
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/businessName"
-            android:text="Business Name"
-            android:textColorHint="#9B9B9B"
-            android:textColor="#9B9B9B"
-            android:paddingStart="15dp" />
-
-
-        <EditText
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/businessWebUrl"
-            android:hint="Business Web URL (optional)"
-            android:textSize="18sp"
-            android:layout_marginTop="8dp"
-            android:paddingStart="15dp"
-             />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/businessPhoneNumber"
-            android:hint="Business Phone Number"
-            android:textSize="18sp"
-            android:layout_marginTop="8dp"
-            android:paddingStart="15dp"
-            />
+            app:srcCompat="?android:attr/homeAsUpIndicator"
+            android:id="@+id/signUpBusiness_back"
+            android:background="#00ffffff"
+            android:paddingLeft="6dp"
+            android:paddingRight="80dp"
+            android:paddingBottom="15dp"
+            android:paddingTop="5dp"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
 
-    </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="48dp">
 
-</RelativeLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/businessEmail"
+                android:hint="  Email Address"
+                android:selectAllOnFocus="false"
+                android:allowUndo="true"
+                android:textColor="#009688"
+                android:textColorHint="#9B9B9B"
+                android:textColorLink="#9B9B9B"
+                android:layout_marginTop="22dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/businessPassword"
+                android:hint=" Password"
+                android:textColorHint="#9B9B9B"
+                android:layout_marginTop="12dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/businessName"
+                android:text="Business Name"
+                android:textColorHint="#9B9B9B"
+                android:textColor="#9B9B9B"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp" />
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/businessWebUrl"
+                android:hint="Business Web URL (optional)"
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/businessPhoneNumber"
+                android:hint="Business Phone Number"
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"
+                android:paddingStart="15dp"
+                android:paddingLeft="15dp" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

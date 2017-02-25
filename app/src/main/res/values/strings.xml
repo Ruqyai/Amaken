@@ -1,34 +1,15 @@
 <resources>
     <string name="app_name">Amakenapp</string>
     <string-array name="spinner_options">
-
         <item>Saudi Arabia</item>
-        <item>yemen</item>
-        <item>syria</item>
-        <item>plapla</item>
-        <item>Usa</item>
+        <item>United Arab Emirates</item>
+        <item>Malaysia</item>
+        <item>Syria</item>
+        <item>Kuwait</item>
+        <item>Jordan</item>
         <item>India</item>
-        <item>any name</item>
-        <item>Saudi00 Arabia</item>
-        <item>yem00en</item>
-        <item>sy00ria</item>
-        <item>pl00apla</item>
-        <item>Usoa</item>
-        <item>Indlia</item>
-        <item>any ppname</item>
-        <item>Saudill Arabia</item>
-        <item>yemekkn</item>
-        <item>syria</item>
-        <item>pla,pla</item>
-        <item>Usppa</item>
-        <item>Indddia</item>
-        <item>any uname</item>
-        <item>Saudi Arabia</item>
-        <item>yemuuen</item>
-        <item>syrhia</item>
-        <item>plappla</item>
-        <item>Uusa</item>
-        <item>Inidia</item>
-        <item>any -99name</item>
+        <item>Egypt</item>
+        <item>Iraq</item>
+        <item>Yeman</item>
     </string-array>
 </resources>

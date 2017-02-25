@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -22,12 +23,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
-    /*
-    * =====param send in php file
-    * 'userEmail','password'
-    * */
-    private EditText editEmail, editPassword;
 
+    private EditText editEmail, editPassword;
+    private ImageButton login_Back;
     private Button login_SignIn;
     private ProgressDialog progressDialog;
 
@@ -35,7 +33,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        login_Back = (ImageButton) findViewById(R.id.login_Back);
         login_SignIn = (Button) findViewById(R.id.login_SingIn);
         editEmail = (EditText) findViewById(R.id.login_Email);
         editPassword = (EditText) findViewById(R.id.login_Password);
@@ -43,12 +41,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
         login_SignIn.setOnClickListener(this);
+        login_Back.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-
+        if (v == login_Back) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+        }
         if (v == login_SignIn) {
             singIn();
             finish();
@@ -59,14 +61,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     public void singIn(){
         final String userEmail = editEmail.getText().toString().trim();
         final String password = editPassword.getText().toString().trim();
-        progressDialog.show();
+//        progressDialog.show();
 
         StringRequest send = new  StringRequest(Request.Method.POST,
                                                 Constants.URL_LOGIN,
                                                 new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-               progressDialog.dismiss();
+              // progressDialog.dismiss();
                 try {
                     JSONObject obj = new JSONObject(response);
                     if (!obj.getBoolean("error")) {
@@ -101,7 +103,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                progressDialog.dismiss();
+               // progressDialog.dismiss();
 
                 Toast.makeText(
                         getApplicationContext(),
