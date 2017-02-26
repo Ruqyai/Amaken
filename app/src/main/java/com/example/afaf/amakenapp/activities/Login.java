@@ -1,4 +1,4 @@
-package com.example.afaf.amakenapp;
+package com.example.afaf.amakenapp.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,6 +15,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.afaf.amakenapp.helper.Constants;
+import com.example.afaf.amakenapp.helper.MySingleton;
+import com.example.afaf.amakenapp.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Login extends AppCompatActivity implements View.OnClickListener{
+public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editEmail, editPassword;
     private ImageButton login_Back;
@@ -48,30 +51,30 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v == login_Back) {
-            finish();
+            ///finish();
             startActivity(new Intent(this, MainActivity.class));
         }
         if (v == login_SignIn) {
             singIn();
-            finish();
+            //finish();
         }
 
     }
 
-    public void singIn(){
+    public void singIn() {
         final String userEmail = editEmail.getText().toString().trim();
         final String password = editPassword.getText().toString().trim();
 //        progressDialog.show();
 
-        StringRequest send = new  StringRequest(Request.Method.POST,
-                                                Constants.URL_LOGIN,
-                                                new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-              // progressDialog.dismiss();
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    if (!obj.getBoolean("error")) {
+        StringRequest send = new StringRequest(Request.Method.POST,
+                Constants.URL_LOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // progressDialog.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
                         /*
                        SharedPrefManager.getInstance(getApplicationContext())
                                .userLogin(
@@ -90,20 +93,20 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
                                 );
                                 **/
-                        startActivity(new Intent(getApplicationContext(), SignUpBusiness.class));
-                          finish();
-                    } else {
-                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(getApplicationContext(), SignUpBusiness.class));
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-               // progressDialog.dismiss();
+                // progressDialog.dismiss();
 
                 Toast.makeText(
                         getApplicationContext(),
@@ -112,12 +115,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 ).show();
 
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("userEmail", userEmail);
-                params.put("password",password);
+                params.put("password", password);
                 return params;
             }
         };

@@ -1,4 +1,4 @@
-package com.example.afaf.amakenapp;
+package com.example.afaf.amakenapp.helper;
 
 /**
  * Created by User on 2/12/2017.
@@ -92,6 +92,23 @@ public class SharedPrefManager {
        return sharedPreferences.getString(KEY_USER_EMAIL, null);
     }
 
+    public User getUser(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        User user = new User(
+
+                sharedPreferences.getString("userEmail","hh"),
+                sharedPreferences.getString("userName","hh"),
+                sharedPreferences.getString("userGende","hh"),
+                sharedPreferences.getString("countryName","hh"),
+                sharedPreferences.getString("cityName","hh"),
+                sharedPreferences.getString("profilePicUrl","hh"),
+                Integer.parseInt( sharedPreferences.getString("role","hh"))
+
+
+        );
+        return user;
+
+    }
 }
 
 

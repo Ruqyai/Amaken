@@ -10,18 +10,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login" />
-        <activity android:name=".SignUpChooser" />
-        <activity android:name=".SignUpUser" />
-        <activity android:name=".SignUpBusiness" />
-        <activity android:name=".Reviews">
+        <activity android:name=".activities.Login" />
+        <activity android:name=".activities.SignUpChooser" />
+        <activity android:name=".activities.SignUpUser" />
+        <activity android:name=".activities.SignUpBusiness" />
+        <activity android:name=".helper.Reviews">
 
         </activity>
     </application>

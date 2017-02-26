@@ -1,4 +1,4 @@
-package com.example.afaf.amakenapp;
+package com.example.afaf.amakenapp.helper;
 
 import android.content.Context;
 import android.graphics.Bitmap;

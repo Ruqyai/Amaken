@@ -1,10 +1,12 @@
-package com.example.afaf.amakenapp;
+package com.example.afaf.amakenapp.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.example.afaf.amakenapp.R;
 
 
 public class SignUpBusiness extends AppCompatActivity implements View.OnClickListener{

@@ -1,4 +1,4 @@
-package com.example.afaf.amakenapp;
+package com.example.afaf.amakenapp.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,6 +18,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.afaf.amakenapp.helper.Constants;
+import com.example.afaf.amakenapp.helper.MySingleton;
+import com.example.afaf.amakenapp.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

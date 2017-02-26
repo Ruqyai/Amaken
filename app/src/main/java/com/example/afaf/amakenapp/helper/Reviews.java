@@ -1,10 +1,12 @@
-package com.example.afaf.amakenapp;
+package com.example.afaf.amakenapp.helper;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.RatingBar;
 import android.widget.Toast;
+
+import com.example.afaf.amakenapp.R;
 
 import static com.example.afaf.amakenapp.R.id.ratingBar;
 
