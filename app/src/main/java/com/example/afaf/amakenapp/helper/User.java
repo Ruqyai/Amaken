@@ -8,73 +8,84 @@ import java.util.Map;
 
 public class User {
 
-    private String userEmail, userName, userGende;
-    private int countryId;
-    private String countryName;
-    private int cityId;
-    private String cityName;
-    private int profilePicId;
-    private String profilePicUrl;
-    private int role;
+    private String user_email, user_name, user_password, web_url, phone_number;
+    private int gender;
+    private int country_id;
+    private String country_name;
+    private int city_id;
+    private String city_name;
+    private int profile_pic_id;
+    private String profile_pic_url;
+    private int user_type;
 
-    public User(String userEmail, String userName, String userGende,
-                //int countryId,
-                String countryName,
-                //int cityId,
-                String cityName,
-                //int profilePicId,
-                String profilePicUrl, int role) {
-        this.userEmail = userEmail;
-        this.userName = userName;
-        this.userGende = userGende;
-       // this.countryId = countryId;
-        this.countryName = countryName;
-       // this.cityId = cityId;
-        this.cityName = cityName;
-       // this.profilePicId = profilePicId;
-        this.profilePicUrl = profilePicUrl;
-        this.role = role;
+    public User(String user_email, String user_name, String user_gender,
+                //int country_id,
+                String country_name,
+                //int city_id,
+                String city_name,
+                //int profile_pic_id,
+                String profile_pic_url, int user_type) {
+        this.user_email = user_email;
+        this.user_name = user_name;
+        this.user_password = user_password;
+       // this.country_id = country_id;
+        this.country_name = country_name;
+       // this.city_id = city_id;
+        this.city_name = city_name;
+       // this.profile_pic_id = profile_pic_id;
+        this.profile_pic_url = profile_pic_url;
+        this.user_type = user_type;
     }
 
-
-
-    public String getUserEmail() {
-        return userEmail;
+    public String getUser_email() {
+        return user_email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public String getUserGende() {
-        return userGende;
+    public String getUser_password() {
+        return user_password;
     }
 
-    public int getCountryId() {
-        return countryId;
+    public String getWeb_url() {
+        return web_url;
     }
 
-    public String getCountryName() {
-        return countryName;
+    public String getPhone_number() {
+        return phone_number;
     }
 
-    public int getCityId() {
-        return cityId;
+    public int getGender() {
+        return gender;
     }
 
-    public String getCityName() {
-        return cityName;
+    public int getCountry_id() {
+        return country_id;
     }
 
-    public int getProfilePicId() {
-        return profilePicId;
+    public String getCountry_name() {
+        return country_name;
     }
 
-    public String getProfilePicUrl() {
-        return profilePicUrl;
+    public int getCity_id() {
+        return city_id;
     }
 
-    public int getRole() {
-        return role;
+    public String getCity_name() {
+        return city_name;
+    }
+
+    public int getProfile_pic_id() {
+        return profile_pic_id;
+    }
+
+    public String getProfile_pic_url() {
+        return profile_pic_url;
+    }
+
+    public int getUser_type() {
+        return user_type;
     }
 }
