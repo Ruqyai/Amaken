@@ -57,6 +57,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         if (v == login_SignIn) {
             singIn();
             //finish();
+            //startActivity(new Intent(this, MainActivity.class));
         }
 
     }
