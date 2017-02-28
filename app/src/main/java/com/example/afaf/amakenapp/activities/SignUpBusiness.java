@@ -1,3 +1,4 @@
+
 package com.example.afaf.amakenapp.activities;
 
 import android.content.Intent;
@@ -23,7 +24,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 
 public class SignUpBusiness extends AppCompatActivity implements View.OnClickListener{
@@ -159,4 +159,3 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     }
 
 }
-
