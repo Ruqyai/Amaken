@@ -159,3 +159,4 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     }
 
 }
+
