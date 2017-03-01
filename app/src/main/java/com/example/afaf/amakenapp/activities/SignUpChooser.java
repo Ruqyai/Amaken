@@ -26,6 +26,10 @@ public class SignUpChooser extends AppCompatActivity implements View.OnClickList
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        signUpBusinessCard = (CardView) findViewById(R.id.SignUpBusinessCard);
+        signUpUserCard = (CardView) findViewById(R.id.SignUpUserCard);
+
+
 
         signUpBusinessCard.setOnClickListener(this);
         signUpUserCard.setOnClickListener(this);
