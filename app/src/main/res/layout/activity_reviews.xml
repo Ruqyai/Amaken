@@ -5,7 +5,7 @@
     android:id="@+id/activity_reviews"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.afaf.amakenapp.helper.Reviews">
+    tools:context="com.example.afaf.amakenapp.activities.AddReview">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"

@@ -1,35 +1,35 @@
 
 package com.example.afaf.amakenapp.activities;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.support.v7.app.AppCompatActivity;
+        import android.support.v7.widget.Toolbar;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.EditText;
+        import android.widget.ImageButton;
+        import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.example.afaf.amakenapp.R;
-import com.example.afaf.amakenapp.helper.Constants;
-import com.example.afaf.amakenapp.helper.MySingleton;
+        import com.android.volley.AuthFailureError;
+        import com.android.volley.Request;
+        import com.android.volley.Response;
+        import com.android.volley.VolleyError;
+        import com.android.volley.toolbox.StringRequest;
+        import com.example.afaf.amakenapp.R;
+        import com.example.afaf.amakenapp.helper.Constants;
+        import com.example.afaf.amakenapp.helper.MySingleton;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+        import org.json.JSONException;
+        import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+        import java.util.HashMap;
+        import java.util.Map;
 
 
 public class SignUpBusiness extends AppCompatActivity implements View.OnClickListener{
 
     private EditText editEmail, editPassword, editPersonName,editwebsiteUrl,editPhoneNumber;
-    private ImageButton signUpBusiness_Back;
     private Button signUpBusiness;
 
 
@@ -37,9 +37,13 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_business);
-        signUpBusiness_Back = (ImageButton) findViewById(R.id.signUpBusiness_back);
-        signUpBusiness_Back.setOnClickListener(this);
-        signUpBusiness= (Button) findViewById(R.id.SignUpBusiness);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        signUpBusiness = (Button) findViewById(R.id.SignUpBusiness);
         signUpBusiness.setOnClickListener(this);
 
 
@@ -58,14 +62,10 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
 
 
-        if (v == signUpBusiness_Back) {
-            finish();
-            startActivity(new Intent(this, SignUpChooser.class));
-        }
         if (v == signUpBusiness) {
-            //finish();
-            //startActivity(new Intent(this, SignUpChooser.class));
             singUp();
+
+
         }
 
     }
@@ -92,26 +92,11 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
                         // progressDialog.dismiss();
                         try {
                             JSONObject obj = new JSONObject(response);
+
                             if (!obj.getBoolean("error")) {
-                        /*
-                       SharedPrefManager.getInstance(getApplicationContext())
-                               .userLogin(
-                                       obj.getInt("id"),
-                                       obj.getString("user_email"),
-                                       obj.getString("user_password"),
-                                       obj.getString("user_name"),
-                                       obj.getString("user_gender"),
-                                       obj.getInt("country_id"),
-                                       obj.getString("country_name"),
-                                       obj.getInt("city_id"),
-                                       obj.getString("city_name"),
-                                       obj.getInt("profile_pic_id"),
-                                       obj.getString("profile_pic_url")
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
 
-
-                                );
-                                **/
-                                startActivity(new Intent(getApplicationContext(), SignUpBusiness.class));
+                                startActivity(new Intent(getApplicationContext(), com.example.afaf.amakenapp.activities.NavDrw.class));
                                 finish();
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
@@ -137,7 +122,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("user_Type", userType+"" );
-                params.put("eamil", userEmail);
+                params.put("email", userEmail);
                 params.put("password", password);
                 params.put("name", personName);
                 params.put("gender", Gender+"" );

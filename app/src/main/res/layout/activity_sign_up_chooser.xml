@@ -1,117 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.afaf.amakenapp.activities.SignUpChooser">
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#15AFD8"
-            android:theme="?attr/actionBarTheme"
-            android:minHeight="?attr/actionBarSize"
-            android:id="@+id/toolbar" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="?android:attr/homeAsUpIndicator"
-            android:id="@+id/signUpchooserBack"
-            android:background="#00ffffff"
-            android:paddingLeft="6dp"
-            android:paddingRight="80dp"
-            android:paddingBottom="15dp"
-            android:paddingTop="5dp"
-            android:layout_alignBottom="@+id/toolbar"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-    </RelativeLayout>
-    <TextView
-        android:id="@+id/textViewHead"
-        android:text="Sign Up as .."
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:textColor="#A47A51" />
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-    <android.support.v7.widget.CardView
-        android:layout_margin="5dp"
-        android:id="@+id/SignUpBusinessCard"
-        android:layout_width="fill_parent"
-        app:cardCornerRadius="9dp"
-        android:elevation="8dp"
-        android:layout_height="200dp">
-        <LinearLayout
-            android:padding="@dimen/activity_horizontal_margin"
-            android:layout_width="fill_parent"
-            android:layout_height="220dp"
-            android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/bar"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_sign_up_chooser" />
 
 
 
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="150dp"
-                android:elevation="2dp"
-                android:background="#DDDDDD"
-                android:id="@+id/imageView"
-                app:srcCompat="@drawable/business1_icon" />
-
-            <TextView
-                android:id="@+id/textViewDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Business"
-                android:textSize="15dp"
-                android:layout_gravity="center"
-                android:padding="2dp"
-                android:textStyle="bold"
-                android:textColor="#15AFD8"
-                android:layout_marginTop="5dp" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/SignUpUserCard"
-        android:layout_margin="5dp"
-        android:layout_width="fill_parent"
-        app:cardCornerRadius="9dp"
-        android:elevation="8dp"
-        android:layout_height="200dp">
-        <LinearLayout
-            android:padding="@dimen/activity_horizontal_margin"
-            android:layout_width="fill_parent"
-            android:layout_height="220dp"
-            android:orientation="vertical">
-
-
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="150dp"
-                android:elevation="2dp"
-                android:background="#DDDDDD"
-                android:id="@+id/imageView2"
-                app:srcCompat="@drawable/users" />
-
-            <TextView
-                android:id="@+id/textViewDesc2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="User"
-                android:textColor="#15AFD8"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:padding="2dp"
-                android:layout_marginTop="5dp" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

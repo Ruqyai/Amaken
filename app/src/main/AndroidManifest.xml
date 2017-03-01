@@ -17,13 +17,56 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Login" />
-        <activity android:name=".activities.SignUpChooser" />
-        <activity android:name=".activities.SignUpUser" />
-        <activity android:name=".activities.SignUpBusiness" />
-        <activity android:name=".helper.Reviews">
+        <activity
+            android:name=".activities.SignUpUser"
+            android:label="@string/title_activity_sign_up_user"
+            android:parentActivityName=".activities.SignUpChooser"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.afaf.amakenapp.activities.SignUpChooser" />
+        </activity>
+        <activity
+            android:name=".activities.SignUpBusiness"
+            android:label="@string/title_activity_sign_up_business"
+            android:parentActivityName=".activities.SignUpChooser"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.afaf.amakenapp.activities.SignUpChooser" />
 
         </activity>
+        <activity
+            android:name=".activities.SignUpChooser"
+            android:label="@string/title_activity_sign_up_chooser"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.afaf.amakenapp.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.Login"
+            android:label="@string/title_activity_login"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.afaf.amakenapp.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.AddReview"
+            android:label="@string/title_activity_add_review"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.afaf.amakenapp.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.NavDrw"
+            android:label="@string/title_activity_nav_drw"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
