@@ -5,6 +5,7 @@ package com.example.afaf.amakenapp.activities;
         import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.Toolbar;
+        import android.view.MenuItem;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
@@ -57,10 +58,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         if (v == login_SignIn) {
             singIn();
-            //finish();
-            //startActivity(new Intent(this, MainActivity.class));
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+            return true;
+        }
+        return true;
     }
 
     public void singIn() {

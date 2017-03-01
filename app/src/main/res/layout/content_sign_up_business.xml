@@ -53,7 +53,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/businessName"
-            android:text="Business Name"
+            android:hint="Business Name"
             android:textColorHint="#9B9B9B"
             android:textColor="#9B9B9B"
             android:paddingStart="15dp"

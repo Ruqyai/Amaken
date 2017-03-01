@@ -5,6 +5,7 @@ package com.example.afaf.amakenapp.activities;
         import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.Toolbar;
+        import android.view.MenuItem;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
@@ -60,14 +61,21 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-
-
         if (v == signUpBusiness) {
             singUp();
 
-
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            startActivity(new Intent(getApplicationContext(), SignUpChooser.class));
+
+            return true;
+        }
+        return true;
     }
 
     public void singUp() {

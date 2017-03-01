@@ -5,6 +5,7 @@ package com.example.afaf.amakenapp.activities;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.support.v7.widget.Toolbar;
+        import android.view.MenuItem;
         import android.view.View;
         import android.widget.AdapterView;
         import android.widget.ArrayAdapter;
@@ -60,15 +61,47 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
         editTextPassword = (EditText) findViewById(R.id.UserPassword);
         genderRadio = (RadioGroup) findViewById(R.id.gender);
 
-
-        // TODO: 2/22/2017 need to complete
-
+        
         progressDialog = new ProgressDialog(this);
         buttonRegister = (Button) findViewById(R.id.button_Register);
         buttonRegister.setOnClickListener(this);
 
 
     }
+
+
+    @Override
+    public void onClick(View v) {
+        if (v == buttonRegister)
+        {
+            registerRegularUser();}
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            startActivity(new Intent(getApplicationContext(), SignUpChooser.class));
+
+            return true;
+        }
+        return true;
+    }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+
+
     private void registerRegularUser() {
         final int user_type = 1;
         final String email = editTextEmail.getText().toString().trim();
@@ -125,7 +158,7 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
                 params.put("email", email);
                 params.put("password", password);
                 params.put("name", username);
-                params.put("gender", genderRadio+"");
+                params.put("gender", gender+"");
                 params.put("web_url", web_url);
                 params.put("phone_number", phone_number);
                 params.put("country_id", country_id+"");
@@ -139,27 +172,6 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
         };
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
-
-    @Override
-    public void onClick(View v) {
-        if (v == buttonRegister)
-            registerRegularUser();
-
-
-
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-
 
 }
 
