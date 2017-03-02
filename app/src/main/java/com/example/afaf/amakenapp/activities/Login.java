@@ -10,6 +10,7 @@ package com.example.afaf.amakenapp.activities;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageButton;
+        import android.widget.TextView;
         import android.widget.Toast;
 
         import com.android.volley.AuthFailureError;
@@ -28,7 +29,6 @@ package com.example.afaf.amakenapp.activities;
         import java.util.Map;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
-
     private EditText editEmail, editPassword;
     private Button login_SignIn;
     private ProgressDialog progressDialog;
@@ -72,6 +72,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         return true;
     }
 
+
+
     public void singIn() {
         final String userEmail = editEmail.getText().toString().trim();
         final String password = editPassword.getText().toString().trim();
@@ -90,10 +92,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                        SharedPrefManager.getInstance(getApplicationContext())
                                .userLogin(
                                        obj.getInt("id"),
+                                       obj.getInt("user_type"),
                                        obj.getString("user_email"),
                                        obj.getString("user_password"),
                                        obj.getString("user_name"),
-                                       obj.getString("user_gender"),
+                                       obj.getString("gender"),
+                                       obj.getString("web-url"),
+                                       obj.getString("phone_number"),
                                        obj.getInt("country_id"),
                                        obj.getString("country_name"),
                                        obj.getInt("city_id"),

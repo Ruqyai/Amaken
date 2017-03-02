@@ -17,6 +17,7 @@ public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "mysharedpref12";
 
     private static final String KEY_USER_ID = "userid";
+    private static final String KEY_USER_TYPE = "usertype";
     private static final String KEY_USER_EMAIL = "useremail";
     private static final String KEY_USER_PASSWORD = "userpassword";
     private static final String KEY_USER_NAME = "username";
@@ -42,12 +43,13 @@ public class SharedPrefManager {
         return mInstance;
     }
 
-    public boolean userLogin(int id, String user_email, String user_password, String user_name, String user_gender, int country_id, String country_name, int city_id, String city_name, int profile_pic_id, String profile_pic_url){
+    public boolean userLogin(int id, int user_type, String user_email, String user_password, String user_name, String user_gender, int country_id, String country_name, int city_id, String city_name, int profile_pic_id, String profile_pic_url){
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putInt(KEY_USER_ID, id);
+        editor.putInt(KEY_USER_TYPE, user_type);
         editor.putString(KEY_USER_EMAIL, user_email);
         editor.putString(KEY_USER_PASSWORD, user_password);
         editor.putString(KEY_USER_NAME, user_name);
@@ -92,23 +94,31 @@ public class SharedPrefManager {
        return sharedPreferences.getString(KEY_USER_EMAIL, null);
     }
 
-    public User getUser(){
+ /*   public User getUser(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         User user = new User(
 
-                sharedPreferences.getString("userEmail","hh"),
-                sharedPreferences.getString("userName","hh"),
-                sharedPreferences.getString("userGende","hh"),
-                sharedPreferences.getString("countryName","hh"),
-                sharedPreferences.getString("cityName","hh"),
+                Integer.parseInt( sharedPreferences.getString("user_id","hh")),
+                Integer.parseInt( sharedPreferences.getString("user_type","hh")),
+                sharedPreferences.getString("user_email","hh"),
+                sharedPreferences.getString("user_password","hh"),
+                sharedPreferences.getString("user_name","hh"),
+                Integer.parseInt((sharedPreferences.getString("user_gender","hh")),
+                sharedPreferences.getString("user_web_url","hh"),
+                sharedPreferences.getString("user_phone_number","hh"),
+                Integer.parseInt((sharedPreferences.getString("user_country_id","hh")),
+                sharedPreferences.getString("user_country_name","hh"),
+                Integer.parseInt((sharedPreferences.getString("user_city_id","hh")),
+                sharedPreferences.getString("user_city_name","hh"),
                 sharedPreferences.getString("profilePicUrl","hh"),
                 Integer.parseInt( sharedPreferences.getString("role","hh"))
 
 
         );
+
         return user;
 
-    }
+    }*/
 }
 
 

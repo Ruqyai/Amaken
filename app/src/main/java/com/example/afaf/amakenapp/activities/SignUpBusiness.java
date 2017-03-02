@@ -28,6 +28,7 @@ package com.example.afaf.amakenapp.activities;
         import java.util.Map;
 
 
+
 public class SignUpBusiness extends AppCompatActivity implements View.OnClickListener{
 
     private EditText editEmail, editPassword, editPersonName,editwebsiteUrl,editPhoneNumber;
@@ -41,8 +42,8 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.sign_up_business_toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         signUpBusiness = (Button) findViewById(R.id.SignUpBusiness);
         signUpBusiness.setOnClickListener(this);
@@ -79,7 +80,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     }
 
     public void singUp() {
-        final int userType = 0;
+        final int userType = Constants.CODE_BUSINESS_USER;
 
         final String userEmail = editEmail.getText().toString().trim();
         final String password = editPassword.getText().toString().trim();
@@ -93,7 +94,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
 //        progressDialog.show();
 
         StringRequest send = new StringRequest(Request.Method.POST,
-                Constants.URL_BUSINESS_SINGUP,
+                Constants.URL_SINGUP,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -134,7 +135,6 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
                 params.put("password", password);
                 params.put("name", personName);
                 params.put("gender", Gender+"" );
-
                 params.put("web_url", WebsiteUrl);
                 params.put("phone_number", phoneNumber);
                 params.put("country_id", countryID+"" );

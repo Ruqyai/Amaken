@@ -15,6 +15,7 @@ package com.example.afaf.amakenapp.activities;
         import android.widget.RadioButton;
         import android.widget.RadioGroup;
         import android.widget.Spinner;
+        import android.widget.TextView;
         import android.widget.Toast;
 
         import com.android.volley.AuthFailureError;
@@ -38,8 +39,11 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
     private EditText editTextUsername, editTextEmail, editTextPassword;
     private Button buttonRegister;
     private RadioGroup genderRadio;
+    private RadioButton radioButton;
     private ProgressDialog progressDialog;
     Spinner spinnerDialog;
+    private TextView test;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +63,12 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
         editTextEmail = (EditText) findViewById(R.id.UserEmail);
         editTextUsername = (EditText) findViewById(R.id.UserName);
         editTextPassword = (EditText) findViewById(R.id.UserPassword);
+        test = (TextView) findViewById(R.id.test);
+
         genderRadio = (RadioGroup) findViewById(R.id.gender);
 
-        
+
+
         progressDialog = new ProgressDialog(this);
         buttonRegister = (Button) findViewById(R.id.button_Register);
         buttonRegister.setOnClickListener(this);
@@ -103,7 +110,7 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
 
 
     private void registerRegularUser() {
-        final int user_type = 1;
+        final int user_type = Constants.CODE_NORMAL_USER;
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
         final String username = editTextUsername.getText().toString().trim();
@@ -119,7 +126,7 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
         progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                Constants.URL_REGISTER_REGULAR_USER,
+                Constants.URL_SINGUP,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -163,9 +170,6 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
                 params.put("phone_number", phone_number);
                 params.put("country_id", country_id+"");
                 params.put("city_id", city_id+"");
-
-                // ... need to complete//// TODO: 2/22/2017 need to complete
-
 
                 return params;
             }
