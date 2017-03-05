@@ -10,7 +10,7 @@ public class User {
     private int id;
     private int user_type;
     private String user_email, user_password, user_name;
-    private int gender;
+    private String gender;
     private String web_url, phone_number;
     private int country_id;
     private String country_name;
@@ -25,7 +25,7 @@ public class User {
                 String user_email,
                 String user_password,
                 String user_name,
-                int gender,
+                String gender,
                 String web_url,
                 String phone_number,
                 int country_id,
@@ -72,7 +72,7 @@ public class User {
         return phone_number;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 

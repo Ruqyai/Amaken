@@ -90,7 +90,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
 
-                       SharedPrefManager.getInstance(getApplicationContext())
+                             /* SharedPrefManager.getInstance(getApplicationContext())
                                .userLogin(
                                        obj.getInt("id"),
                                        obj.getInt("user_type"),
@@ -98,19 +98,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                        obj.getString("user_password"),
                                        obj.getString("user_name"),
                                        obj.getString("gender"),
-                                       obj.getString("web-url"),
-                                       obj.getString("phone_number"),
-                                       obj.getInt("country_id"),
-                                       obj.getString("country_name"),
-                                       obj.getInt("city_id"),
-                                       obj.getString("city_name"),
+                                       obj.getString("user_web_url"),
+                                       obj.getString("user_phone_number"),
+                                       obj.getInt("user_country_id"),
+                                       obj.getString("user_country_name"),
+                                       obj.getInt("user_city_id"),
+                                       obj.getString("user_city_name"),
                                        obj.getInt("profile_pic_id"),
                                        obj.getString("profile_pic_url")
-
-
                                 );
 
-                                startActivity(new Intent(getApplicationContext(), NavDrw.class));
+                             */   startActivity(new Intent(getApplicationContext(), NavDrw.class));
                                 finish();
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();

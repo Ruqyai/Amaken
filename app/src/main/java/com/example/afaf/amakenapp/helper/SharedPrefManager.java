@@ -22,6 +22,8 @@ public class SharedPrefManager {
     private static final String KEY_USER_PASSWORD = "userpassword";
     private static final String KEY_USER_NAME = "username";
     private static final String KEY_USER_GENDER = "usergender";
+    private static final String KEY_USER_WEB_URL = "userweburl";
+    private static final String KEY_USER_PHONE_NUMBER = "userphonenumber";
     private static final String KEY_USER_COUNTRY_ID = "usercountry_id";
     private static final String KEY_USER_COUNTRY_NAME = "usercountry_name";
     private static final String KEY_USER_CITY_ID = "usercity_id";
@@ -42,7 +44,7 @@ public class SharedPrefManager {
         return mInstance;
     }
 
-    public boolean userLogin(int id, int user_type, String user_email, String user_password, String user_name, String user_gender, int country_id, String country_name, int city_id, String city_name, int profile_pic_id, String profile_pic_url) {
+    public boolean userLogin(int id, int user_type, String user_email, String user_password, String user_name, String user_gender, String web_url, String phone_number, int country_id, String country_name, int city_id, String city_name, int profile_pic_id, String profile_pic_url) {
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -53,6 +55,8 @@ public class SharedPrefManager {
         editor.putString(KEY_USER_PASSWORD, user_password);
         editor.putString(KEY_USER_NAME, user_name);
         editor.putString(KEY_USER_GENDER, user_gender);
+        editor.putString(KEY_USER_WEB_URL, web_url);
+        editor.putString(KEY_USER_PHONE_NUMBER, phone_number);
         editor.putInt(KEY_USER_COUNTRY_ID, country_id);
         editor.putString(KEY_USER_COUNTRY_NAME, country_name);
         editor.putInt(KEY_USER_CITY_ID, city_id);
@@ -101,7 +105,7 @@ public class SharedPrefManager {
                 sharedPreferences.getString("user_email", "hh"),
                 sharedPreferences.getString("user_password", "hh"),
                 sharedPreferences.getString("user_name", "hh"),
-                Integer.parseInt(sharedPreferences.getString("user_gender", "hh")),
+                sharedPreferences.getString("user_gender", "hh"),
                 sharedPreferences.getString("user_web_url", "hh"),
                 sharedPreferences.getString("user_phone_number", "hh"),
                 Integer.parseInt(sharedPreferences.getString("user_country_id", "hh")),
@@ -109,7 +113,7 @@ public class SharedPrefManager {
                 Integer.parseInt(sharedPreferences.getString("user_city_id", "hh")),
                 sharedPreferences.getString("user_city_name", "hh"),
                 Integer.parseInt(sharedPreferences.getString("profile_pic_id","hh")),
-                sharedPreferences.getString("profilePicUrl", "hh")
+                sharedPreferences.getString("profile_pic_url", "hh")
         );
 
         return user;
