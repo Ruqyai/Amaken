@@ -59,8 +59,8 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        spinnerDialog = (Spinner) findViewById(R.id.spinner_dialog);
-        spinnerDialog2 = (Spinner) findViewById(R.id.spinner_dialog2);
+        spinnerDialog = (Spinner) findViewById(R.id.sign_up_user_countries_spinner_dialog);
+        spinnerDialog2 = (Spinner) findViewById(R.id.sign_up_user_cities_spinner_dialog);
 
 
         countries = new ArrayList<>();
@@ -93,69 +93,6 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
 
     }
 
-
-    private void loadCities(int countryId){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_CITIES+countryId, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject obj = new JSONObject(response);
-
-                    JSONArray arr = obj.getJSONArray("cities");
-
-                    for(int i = 0; i<arr.length(); i++){
-                        cities.add(arr.getJSONObject(i).getString("city_name"));
-
-                        citiesIds.add(arr.getJSONObject(i).getInt("id"));
-                    }
-
-                    ArrayAdapter adapter = new ArrayAdapter<String>(SignUpUser.this, android.R.layout.simple_spinner_dropdown_item, cities);
-                    spinnerDialog2.setAdapter(adapter);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
-    }
-    private void loadCountries(){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_COUNTRIES, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject obj = new JSONObject(response);
-
-                    JSONArray arr = obj.getJSONArray("countries");
-
-                    for(int i = 0; i<arr.length(); i++){
-                        countries.add(arr.getJSONObject(i).getString("country_name"));
-
-                        countryIds.add(arr.getJSONObject(i).getInt("id"));
-                    }
-
-                    ArrayAdapter adapter = new ArrayAdapter<String>(SignUpUser.this, android.R.layout.simple_spinner_dropdown_item, countries);
-                    spinnerDialog.setAdapter(adapter);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
-    }
 
 
 
@@ -193,7 +130,76 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
 
 
 
+    //THIS IS FOR LOADING THE CITIES OF A PARTICULAR COUNTRY
+    private void loadCities(int countryId){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_CITIES+countryId, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
 
+                    JSONArray arr = obj.getJSONArray("cities");
+
+                    for(int i = 0; i<arr.length(); i++){
+                        cities.add(arr.getJSONObject(i).getString("city_name"));
+
+                        citiesIds.add(arr.getJSONObject(i).getInt("id"));
+                    }
+
+                    ArrayAdapter adapter = new ArrayAdapter<String>(SignUpUser.this, android.R.layout.simple_spinner_dropdown_item, cities);
+                    spinnerDialog2.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+
+    //THIS IS FOR LOADING ALL COUNTRIES
+    private void loadCountries(){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_COUNTRIES, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    JSONArray arr = obj.getJSONArray("countries");
+
+                    for(int i = 0; i<arr.length(); i++){
+                        countries.add(arr.getJSONObject(i).getString("country_name"));
+
+                        countryIds.add(arr.getJSONObject(i).getInt("id"));
+                    }
+
+                    ArrayAdapter adapter = new ArrayAdapter<String>(SignUpUser.this, android.R.layout.simple_spinner_dropdown_item, countries);
+                    spinnerDialog.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+
+
+    //THIS IS FOR USER REGISTRATION
     private void registerRegularUser() {
         final int user_type = Constants.CODE_NORMAL_USER;
         final String email = editTextEmail.getText().toString().trim();
