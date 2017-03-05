@@ -1,20 +1,33 @@
 package com.example.afaf.amakenapp.activities;
 
 
-import android.support.v7.app.AppCompatActivity;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.afaf.amakenapp.helper.*;
+
+//// TODO: 3/5/2017  asking about this import
+import com.example.afaf.amakenapp.R;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-//// TODO: 3/5/2017  asking if this is the problem here  
-import com.example.afaf.amakenapp.R;
-import com.example.afaf.amakenapp.helper.GridItemView;
-import com.example.afaf.amakenapp.helper.GridViewAdapter;
+public class ChooseInterest extends AppCompatActivity implements View.OnClickListener{
 
-public class ChooseInterest extends AppCompatActivity {
     private GridView gridView;
     private View btnGo;
     private ArrayList<String> selectedStrings;
@@ -52,11 +65,67 @@ public class ChooseInterest extends AppCompatActivity {
         });
 
         //set listener for Button event
-        btnGo.setOnClickListener(new View.OnClickListener() {
+        btnGo.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+       // if (v == btnGo){
+            //for(int i = 0; i< selectedStrings.length(); i++){
+                //storingInterests(interestId);
+            //}
+
+        }
+
+
+
+
+
+    public void storingInterests(int interestId) {
+        final int userID = 1;
+        final int interestID = interestId;
+
+        StringRequest send = new StringRequest(Request.Method.POST,
+                Constants.URL_STOREINTERESTS,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+
+                              finish();
+                             startActivity(new Intent(getApplicationContext(), NavDrw.class));
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
             @Override
-            public void onClick(View v) {
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(
+                        getApplicationContext(),
+                        error.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
 
             }
-        });
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", userID+"");
+                params.put("interest_id", interestID+"");
+                return params;
+            }
+        };
+
+        MySingleton.getInstance(this).addToRequestQueue(send);
+
     }
 }

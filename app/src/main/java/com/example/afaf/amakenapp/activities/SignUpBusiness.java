@@ -207,8 +207,8 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
 
                                 finish();
-                                   // TODO: 3/5/2017  need fixing
-                                // startActivity(new Intent(getApplicationContext(), ChooseInterest.class));
+                                   // TODO: 3/5/2017  need fixing causing crash
+                                //startActivity(new Intent(getApplicationContext(), ChooseInterest.class));
 
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
