@@ -21,6 +21,7 @@ package com.example.afaf.amakenapp.activities;
         import com.example.afaf.amakenapp.helper.Constants;
         import com.example.afaf.amakenapp.helper.MySingleton;
         import com.example.afaf.amakenapp.R;
+        import com.example.afaf.amakenapp.helper.SharedPrefManager;
 
         import org.json.JSONException;
         import org.json.JSONObject;
@@ -88,7 +89,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
-                        /*
+
                        SharedPrefManager.getInstance(getApplicationContext())
                                .userLogin(
                                        obj.getInt("id"),
@@ -108,7 +109,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
 
                                 );
-                                **/
+
                                 startActivity(new Intent(getApplicationContext(), NavDrw.class));
                                 finish();
                             } else {
