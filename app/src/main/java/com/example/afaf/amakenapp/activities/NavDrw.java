@@ -13,10 +13,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.content.Intent;
+import android.os.Bundle;
+
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
 import com.example.afaf.amakenapp.R;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NavDrw extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private TextView userName;
+    private CircleImageView userProfilePic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +57,20 @@ public class NavDrw extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        userName = (TextView) findViewById(R.id.nav_header_user_name);
+       //  userName.setText("getUserName");
+
+        userProfilePic = (CircleImageView) findViewById(R.id.nav_header_user_profile_pic);
+       // userProfilePic.setImageURI(http://);
+
+
+
     }
 
     @Override
@@ -68,8 +97,8 @@ public class NavDrw extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       // no inspection Simplifiable If Statement
+        if (id == R.id.menuSearch) {
             return true;
         }
 
@@ -82,17 +111,22 @@ public class NavDrw extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_Home) {
 
-        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_notification) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_profile) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_Help) {
+
+        } else if (id == R.id.nav_invites) {
+
+        }
+
+         else if (id == R.id.nav_setting) {
+
+        } else if (id == R.id.nav_Logout) {
 
         }
 

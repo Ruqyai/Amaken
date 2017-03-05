@@ -5,10 +5,12 @@ package com.example.afaf.amakenapp.activities;
         import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.Toolbar;
+        import android.view.MenuItem;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageButton;
+        import android.widget.TextView;
         import android.widget.Toast;
 
         import com.android.volley.AuthFailureError;
@@ -19,6 +21,7 @@ package com.example.afaf.amakenapp.activities;
         import com.example.afaf.amakenapp.helper.Constants;
         import com.example.afaf.amakenapp.helper.MySingleton;
         import com.example.afaf.amakenapp.R;
+        import com.example.afaf.amakenapp.helper.SharedPrefManager;
 
         import org.json.JSONException;
         import org.json.JSONObject;
@@ -27,7 +30,6 @@ package com.example.afaf.amakenapp.activities;
         import java.util.Map;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
-
     private EditText editEmail, editPassword;
     private Button login_SignIn;
     private ProgressDialog progressDialog;
@@ -57,11 +59,21 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         if (v == login_SignIn) {
             singIn();
-            //finish();
-            //startActivity(new Intent(this, MainActivity.class));
         }
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+            return true;
+        }
+        return true;
+    }
+
+
 
     public void singIn() {
         final String userEmail = editEmail.getText().toString().trim();
@@ -77,25 +89,26 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
-                        /*
-                       SharedPrefManager.getInstance(getApplicationContext())
+
+                             /* SharedPrefManager.getInstance(getApplicationContext())
                                .userLogin(
                                        obj.getInt("id"),
+                                       obj.getInt("user_type"),
                                        obj.getString("user_email"),
                                        obj.getString("user_password"),
                                        obj.getString("user_name"),
-                                       obj.getString("user_gender"),
-                                       obj.getInt("country_id"),
-                                       obj.getString("country_name"),
-                                       obj.getInt("city_id"),
-                                       obj.getString("city_name"),
+                                       obj.getString("gender"),
+                                       obj.getString("user_web_url"),
+                                       obj.getString("user_phone_number"),
+                                       obj.getInt("user_country_id"),
+                                       obj.getString("user_country_name"),
+                                       obj.getInt("user_city_id"),
+                                       obj.getString("user_city_name"),
                                        obj.getInt("profile_pic_id"),
                                        obj.getString("profile_pic_url")
-
-
                                 );
-                                **/
-                                startActivity(new Intent(getApplicationContext(), NavDrw.class));
+
+                             */   startActivity(new Intent(getApplicationContext(), NavDrw.class));
                                 finish();
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();

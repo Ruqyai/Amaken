@@ -7,35 +7,50 @@ import java.util.Map;
  */
 
 public class User {
-
-    private String user_email, user_name, user_password, web_url, phone_number;
-    private int gender;
+    private int id;
+    private int user_type;
+    private String user_email, user_password, user_name;
+    private String gender;
+    private String web_url, phone_number;
     private int country_id;
     private String country_name;
     private int city_id;
     private String city_name;
     private int profile_pic_id;
     private String profile_pic_url;
-    private int user_type;
 
-    public User(String user_email, String user_name, String user_gender,
-                //int country_id,
+
+    public User(int id,
+                int user_type,
+                String user_email,
+                String user_password,
+                String user_name,
+                String gender,
+                String web_url,
+                String phone_number,
+                int country_id,
                 String country_name,
-                //int city_id,
+                int city_id,
                 String city_name,
-                //int profile_pic_id,
-                String profile_pic_url, int user_type) {
-        this.user_email = user_email;
-        this.user_name = user_name;
-        this.user_password = user_password;
-       // this.country_id = country_id;
-        this.country_name = country_name;
-       // this.city_id = city_id;
-        this.city_name = city_name;
-       // this.profile_pic_id = profile_pic_id;
-        this.profile_pic_url = profile_pic_url;
+                int profile_pic_id,
+                String profile_pic_url) {
+        this.id = id;
         this.user_type = user_type;
+        this.user_email = user_email;
+        this.user_password = user_password;
+        this.user_name = user_name;
+        this.gender = gender;
+        this.web_url = web_url;
+        this.phone_number = phone_number;
+        this.country_id = country_id;
+        this.country_name = country_name;
+        this.city_id = city_id;
+        this.city_name = city_name;
+        this.profile_pic_id = profile_pic_id;
+        this.profile_pic_url = profile_pic_url;
     }
+
+    public int getId() {return id;}
 
     public String getUser_email() {
         return user_email;
@@ -57,7 +72,7 @@ public class User {
         return phone_number;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 

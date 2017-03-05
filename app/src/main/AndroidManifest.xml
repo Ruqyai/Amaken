@@ -34,7 +34,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.afaf.amakenapp.activities.SignUpChooser" />
-
         </activity>
         <activity
             android:name=".activities.SignUpChooser"
@@ -66,7 +65,8 @@
         <activity
             android:name=".activities.NavDrw"
             android:label="@string/title_activity_nav_drw"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.ChooseInterest"></activity>
     </application>
 
 </manifest>
