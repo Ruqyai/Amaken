@@ -5,6 +5,7 @@ package com.example.afaf.amakenapp.activities;
         import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.Toolbar;
+        import android.text.TextUtils;
         import android.view.MenuItem;
         import android.view.View;
         import android.widget.Button;
@@ -80,17 +81,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         final String password = editPassword.getText().toString().trim();
 //        progressDialog.show();
 
+       // Toast.makeText(this, "Sing In Executed", Toast.LENGTH_LONG).show();
         StringRequest send = new StringRequest(Request.Method.POST,
                 Constants.URL_LOGIN,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // progressDialog.dismiss();
+                       // Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
-
-                             /* SharedPrefManager.getInstance(getApplicationContext())
+//Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_LONG).show();
+                              SharedPrefManager.getInstance(getApplicationContext())
                                .userLogin(
                                        obj.getInt("id"),
                                        obj.getInt("user_type"),
@@ -98,7 +101,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                        obj.getString("user_password"),
                                        obj.getString("user_name"),
                                        obj.getString("gender"),
-                                       obj.getString("user_web_url"),
+                                       TextUtils.isEmpty(obj.getString("user_web_url"))?"":obj.getString("user_web_url"),
                                        obj.getString("user_phone_number"),
                                        obj.getInt("user_country_id"),
                                        obj.getString("user_country_name"),
@@ -108,13 +111,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                        obj.getString("profile_pic_url")
                                 );
 
-                             */   startActivity(new Intent(getApplicationContext(), NavDrw.class));
+                               startActivity(new Intent(getApplicationContext(), NavDrw.class));
                                 finish();
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
+
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {

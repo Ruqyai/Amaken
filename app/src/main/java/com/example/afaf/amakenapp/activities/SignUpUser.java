@@ -132,6 +132,8 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
 
     //THIS IS FOR LOADING THE CITIES OF A PARTICULAR COUNTRY
     private void loadCities(int countryId){
+        cities.clear();
+        citiesIds.clear();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_CITIES+countryId, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -208,8 +210,8 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
         final String gender = ((RadioButton)findViewById(genderRadio.getCheckedRadioButtonId())).getText().toString();
         final String web_url = "";
         final String phone_number = "";
-        final int country_id = 1;
-        final int city_id = 2;
+        final int country_id = countryIds.get(spinnerDialog.getSelectedItemPosition());
+        final int city_id = citiesIds.get(spinnerDialog2.getSelectedItemPosition());
 
 
 
