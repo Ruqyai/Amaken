@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListAdapter;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -38,7 +39,7 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_choose_interest);
 
         gridView = (GridView) findViewById(R.id.grid);
         btnGo = findViewById(R.id.button);
@@ -81,7 +82,7 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
 
 
 
-    public void storingInterests(int interestId) {
+  /*  public void storingInterests(int interestId) {
         final int userID = 1;
         final int interestID = interestId;
 
@@ -127,5 +128,5 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
 
         MySingleton.getInstance(this).addToRequestQueue(send);
 
-    }
+    }*/
 }

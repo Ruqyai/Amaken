@@ -206,7 +206,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
                             if (!obj.getBoolean("error")) {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
 
-                                finish();
+                                //finish();
                                    // TODO: 3/5/2017  need fixing causing crash
                                 //startActivity(new Intent(getApplicationContext(), ChooseInterest.class));
 
