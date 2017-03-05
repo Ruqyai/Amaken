@@ -1,31 +1,30 @@
-
 package com.example.afaf.amakenapp.activities;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.support.v7.widget.Toolbar;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.ImageButton;
-        import android.widget.Toast;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
-        import com.android.volley.AuthFailureError;
-        import com.android.volley.Request;
-        import com.android.volley.Response;
-        import com.android.volley.VolleyError;
-        import com.android.volley.toolbox.StringRequest;
-        import com.example.afaf.amakenapp.R;
-        import com.example.afaf.amakenapp.helper.Constants;
-        import com.example.afaf.amakenapp.helper.MySingleton;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.afaf.amakenapp.R;
+import com.example.afaf.amakenapp.helper.Constants;
+import com.example.afaf.amakenapp.helper.MySingleton;
 
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-        import java.util.HashMap;
-        import java.util.Map;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
@@ -85,7 +84,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
         final String userEmail = editEmail.getText().toString().trim();
         final String password = editPassword.getText().toString().trim();
         final String personName = editPersonName.getText().toString().trim();
-        final int  Gender = 1;
+        final String  gender = "";
         final String WebsiteUrl = editwebsiteUrl.getText().toString().trim();
         final String phoneNumber = editPhoneNumber.getText().toString().trim();
         final int countryID = 1;
@@ -130,11 +129,11 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("user_Type", userType+"" );
+                params.put("user_type", userType+"" );
                 params.put("email", userEmail);
                 params.put("password", password);
                 params.put("name", personName);
-                params.put("gender", Gender+"" );
+                params.put("gender", gender);
                 params.put("web_url", WebsiteUrl);
                 params.put("phone_number", phoneNumber);
                 params.put("country_id", countryID+"" );
@@ -152,4 +151,3 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     }
 
 }
-

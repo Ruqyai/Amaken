@@ -30,8 +30,13 @@ import android.widget.TextView;
 
 import com.example.afaf.amakenapp.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class NavDrw extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private TextView userName;
+    private CircleImageView userProfilePic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,15 @@ public class NavDrw extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        userName = (TextView) findViewById(R.id.nav_header_user_name);
+       //  userName.setText("getUserName");
+
+        userProfilePic = (CircleImageView) findViewById(R.id.nav_header_user_profile_pic);
+       // userProfilePic.setImageURI(http://);
+
+
+
     }
 
     @Override

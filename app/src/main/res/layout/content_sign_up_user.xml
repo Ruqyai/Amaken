@@ -58,7 +58,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/UserName"
-            android:text="User Name"
+            android:hint="User Name"
             android:textColorHint="#9B9B9B"
             android:textColor="#9B9B9B"
             android:paddingStart="15dp"
@@ -97,12 +97,7 @@
                 android:id="@+id/Female"
                 android:layout_weight="1" />
 
-            <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/test"
-                android:layout_weight="1" />
+
 
         </RadioGroup>
 
@@ -113,6 +108,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="58dp"
+            android:spinnerMode="dialog" />
+        <Spinner
+            android:id="@+id/spinner_dialog2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:spinnerMode="dialog" />
 
         <Button
