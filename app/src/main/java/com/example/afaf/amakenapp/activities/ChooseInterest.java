@@ -25,6 +25,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ChooseInterest extends AppCompatActivity implements View.OnClickListener{
@@ -71,20 +72,20 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-       // if (v == btnGo){
-            //for(int i = 0; i< selectedStrings.length(); i++){
-                //storingInterests(interestId);
-            //}
+        if (v == btnGo) {
+            for (int i = 0; i < selectedStrings.size(); i++) {
+
+            }
 
         }
+    }
 
 
 
 
-
-  /*  public void storingInterests(int interestId) {
+    public void storingInterests(final List<Integer> interests) {
         final int userID = 1;
-        final int interestID = interestId;
+
 
         StringRequest send = new StringRequest(Request.Method.POST,
                 Constants.URL_STOREINTERESTS,
@@ -121,12 +122,15 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", userID+"");
-                params.put("interest_id", interestID+"");
+
+                for(int i = 0; i<interests.size(); i++) {
+                    params.put("interest_id["+i+"]", String.valueOf(interests.get(i)));
+                }
                 return params;
             }
         };
 
         MySingleton.getInstance(this).addToRequestQueue(send);
 
-    }*/
+    }
 }
