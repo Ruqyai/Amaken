@@ -40,7 +40,8 @@ public class SignUpChooser extends AppCompatActivity implements View.OnClickList
 
         if (v == signUpBusinessCard) {
             finish();
-            startActivity(new Intent(this, SignUpBusiness.class));
+          //  startActivity(new Intent(this, SignUpBusiness.class));
+            startActivity(new Intent(this, ChooseInterest.class));
         }
 
         if (v == signUpUserCard) {

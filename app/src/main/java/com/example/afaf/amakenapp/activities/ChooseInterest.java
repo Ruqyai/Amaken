@@ -33,6 +33,10 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
     private GridView gridView;
     private View btnGo;
     private ArrayList<String> selectedStrings;
+    private ArrayList<Integer>id= new ArrayList<>();
+    Map<Integer,String>interest;
+
+
     private static final String[] numbers = new String[]{
             "Cafes",
             "Education",
@@ -46,6 +50,7 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
             "Spa",
             "Sport",
             "tourism"};
+
     private static final int[] numb = new int[]{
             R.drawable.cafes,
             R.drawable.education,
@@ -72,6 +77,21 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
         btnGo = findViewById(R.id.button);
 
         selectedStrings = new ArrayList<>();
+        interest=new HashMap<>();
+
+        interest.put(1,"Hospitals");
+        interest.put(2,"Hair stylists");
+        interest.put(3,"Cafes");
+        interest.put(4,"Hospitals");
+        interest.put(5,"tourism");
+        interest.put(6,"Education");
+        interest.put(7,"Entertainment");
+        interest.put(8,"Malls");
+        interest.put(9,"Spa");
+        interest.put(10,"Sport");
+        interest.put(11,"Hotels");
+        interest.put(12,"Parks");
+
 
         final GridViewAdapter adapter = new GridViewAdapter(numbers,numb, this);
         gridView.setAdapter(adapter);
@@ -93,6 +113,51 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
                 }
             }
         });
+        String x="";
+        for (int key : interest.keySet())
+              {
+         for(int i=0;i<selectedStrings.size();i++){
+             x = selectedStrings.remove(i);
+         }
+                  if(interest.get(key).contains(x))
+                      id.add(key);
+
+
+        }
+        /*
+        int store= 14;
+        switch (store){
+            case 1:selectedStrings.contains("Hospitals");
+                id.add(1);
+            case 2:selectedStrings.contains("Hair stylists");
+                id.add(2);
+            case 3:selectedStrings.contains("Cafes");
+                id.add(3);
+            case 4:selectedStrings.contains("tourism");
+                id.add(4);
+            case 5: selectedStrings.contains("Education");
+                id.add(5);
+            case 6:selectedStrings.contains("Restaurants");
+                id.add(6);
+            case 7:selectedStrings.contains("Malls");
+                id.add(7);
+            case 8: selectedStrings.contains("Entertainment");
+                id.add(8);
+            case 9:selectedStrings.contains("Spa");
+                id.add(9);
+            case 10: selectedStrings.contains("Sport");
+                id.add(10);
+            case 11:selectedStrings.contains("Hotels");
+                id.add(11);
+            case 12:selectedStrings.contains("Parks");
+                id.add(12);
+           // default: selectedStrings.contains("");
+             //   id.add(0);
+            }
+            **/
+
+
+
 
 
         //set listener for Button event
@@ -103,6 +168,7 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if (v == btnGo) {
             for (int i = 0; i < selectedStrings.size(); i++) {
+                storingInterests(id);
 
             }
 
