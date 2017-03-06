@@ -14,6 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="66dp"
         android:layout_marginStart="66dp"
+        android:textSize="15dp"
         android:id="@+id/textView" />
     <Button
           android:id="@+id/button"

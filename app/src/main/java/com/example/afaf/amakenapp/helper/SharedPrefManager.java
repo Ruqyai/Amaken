@@ -8,6 +8,8 @@ package com.example.afaf.amakenapp.helper;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.afaf.amakenapp.store.User;
+
 
 public class SharedPrefManager {
 

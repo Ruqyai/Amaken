@@ -14,11 +14,13 @@ public class GridViewAdapter extends BaseAdapter {
 
     private Activity activity;
     private String[] strings;
+    private int[]ints;
     public List<Integer> selectedPositions;
 
-    public GridViewAdapter(String[] strings, Activity activity) {
+    public GridViewAdapter(String[] strings, int[] ints,Activity activity) {
         this.strings = strings;
         this.activity = activity;
+        this.ints=ints;
         selectedPositions = new ArrayList<>();
     }
 
@@ -40,7 +42,7 @@ public class GridViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         GridItemView customView = (convertView == null) ? new GridItemView(activity) : (GridItemView) convertView;
-        customView.display(strings[position], selectedPositions.contains(position));
+        customView.display(strings[position], ints[position],selectedPositions.contains(position));
 
         return customView;
     }

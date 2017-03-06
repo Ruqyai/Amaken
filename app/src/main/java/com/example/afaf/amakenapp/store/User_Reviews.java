@@ -1,4 +1,8 @@
-package com.example.afaf.amakenapp.helper;
+package com.example.afaf.amakenapp.store;
+
+import com.example.afaf.amakenapp.store.Event;
+import com.example.afaf.amakenapp.store.Place;
+import com.example.afaf.amakenapp.store.User;
 
 /**
  * Created by sondos on 05/03/2017.

@@ -1,4 +1,4 @@
-package com.example.afaf.amakenapp.helper;
+package com.example.afaf.amakenapp.store;
 
 /**
  * Created by sondos on 05/03/2017.

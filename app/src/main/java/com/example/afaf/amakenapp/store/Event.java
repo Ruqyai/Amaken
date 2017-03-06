@@ -1,4 +1,4 @@
-package com.example.afaf.amakenapp.helper;
+package com.example.afaf.amakenapp.store;
 
 /**
  * Created by sondos on 05/03/2017.
@@ -61,5 +61,25 @@ public class Event {
     public int getEvent_country_id(){return  event_country_id;}
     public int getEvent_city_id(){ return  event_city_id; }
 
+    /**
+     * Created by sondos on 05/03/2017.
+     */
+
+    public static class Event_Category {
+        private int id;
+        private  String category_type;
+
+        public Event_Category(int id, String category_type){
+            this.id=id;
+            this.category_type=category_type;
+        }
+        public int getId(){
+            return id;
+        }
+        public String getCategory_type(){
+            return category_type;
+        }
+
+    }
 }
 

@@ -34,8 +34,34 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
     private View btnGo;
     private ArrayList<String> selectedStrings;
     private static final String[] numbers = new String[]{
-            "Cafes", "Education", "Entertainment", "Hair stylists", "Hospitals", "Hotels", "Malls", "Parks", "Restaurants", "Spa", "Sport",
+            "Cafes",
+            "Education",
+            "Entertainment",
+            "Hair stylists",
+            "Hospitals",
+            "Hotels",
+            "Malls",
+            "Parks",
+            "Restaurants",
+            "Spa",
+            "Sport",
             "tourism"};
+    private static final int[] numb = new int[]{
+            R.drawable.cafes,
+            R.drawable.education,
+            R.drawable.entertainment,
+            R.drawable.hair_stylists,
+            R.drawable.hospitals,
+            R.drawable.hotels,
+            R.drawable.malls,
+            R.drawable.parks,
+            R.drawable.restaurants,
+            R.drawable.spa,
+            R.drawable.sport,
+            R.drawable.tourism
+
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +73,7 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
 
         selectedStrings = new ArrayList<>();
 
-        final GridViewAdapter adapter = new GridViewAdapter(numbers, this);
+        final GridViewAdapter adapter = new GridViewAdapter(numbers,numb, this);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -58,13 +84,16 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
                     adapter.selectedPositions.remove(selectedIndex);
                     ((GridItemView) v).display(false);
                     selectedStrings.remove((String) parent.getItemAtPosition(position));
+
                 } else {
                     adapter.selectedPositions.add(position);
                     ((GridItemView) v).display(true);
-                    selectedStrings.add((String) parent.getItemAtPosition(position));
+                    boolean add = selectedStrings.add((String) parent.getItemAtPosition(position));
+
                 }
             }
         });
+
 
         //set listener for Button event
         btnGo.setOnClickListener(this);
