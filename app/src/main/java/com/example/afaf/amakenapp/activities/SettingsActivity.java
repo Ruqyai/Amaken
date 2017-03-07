@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 
 import com.example.afaf.amakenapp.R;
+import com.example.afaf.amakenapp.helper.AppCompatPreferenceActivity;
 
 import java.util.List;
 

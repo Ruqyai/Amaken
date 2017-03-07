@@ -1,4 +1,4 @@
-package com.example.afaf.amakenapp.activities;
+package com.example.afaf.amakenapp.helper;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

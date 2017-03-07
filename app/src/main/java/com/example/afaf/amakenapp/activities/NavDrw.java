@@ -127,6 +127,8 @@ public class NavDrw extends AppCompatActivity
 
          else if (id == R.id.nav_setting) {
 
+         //   startActivity(new Intent(NavDrw.this, SettingsActivity.class));
+
         } else if (id == R.id.nav_Logout) {
 
         }
