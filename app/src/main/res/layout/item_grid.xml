@@ -10,17 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:textSize="5sp"
         android:text="test" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srcCompat="@drawable/cafes"
-
         android:id="@+id/imageViewGrid"
         android:layout_below="@+id/text"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+         />
 
 </RelativeLayout>

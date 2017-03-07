@@ -113,6 +113,7 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
                 }
             }
         });
+
         String x="";
         for (int key : interest.keySet())
               {
@@ -121,8 +122,6 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
          }
                   if(interest.get(key).contains(x))
                       id.add(key);
-
-
         }
         /*
         int store= 14;

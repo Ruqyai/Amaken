@@ -22,6 +22,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:background="#15AFD8"
+
            android:text="Save" />
 
 
@@ -29,7 +30,7 @@
         android:id="@+id/grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView"
+        android:layout_below="@id/button"
         android:numColumns="2"
         android:scrollbars="none"
         android:layout_alignParentBottom="true"
