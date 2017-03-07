@@ -1,5 +1,6 @@
 package com.example.afaf.amakenapp.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +39,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     private EditText editEmail, editPassword, editPersonName,editwebsiteUrl,editPhoneNumber;
     private Button signUpBusiness;
     Spinner spinnerDialog, spinnerDialog2;
+    private ProgressDialog progressDialog;
     private ArrayList<String> countries, cities;
     private ArrayList<Integer> countryIds, citiesIds;
 
@@ -65,7 +67,6 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
         citiesIds = new ArrayList<>();
 
         spinnerDialog.setOnItemSelectedListener(this);
-        //spinnerDialog2.setOnItemSelectedListener(this);
 
 
         editEmail = (EditText) findViewById(R.id.businessEmail);
@@ -111,6 +112,8 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
 
     // THIS IS FOR loading cities for a particular country
     private void loadCities(int countryId){
+        cities.clear();
+        citiesIds.clear();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_CITIES+countryId, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -189,10 +192,11 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
         final String  gender = "";
         final String WebsiteUrl = editwebsiteUrl.getText().toString().trim();
         final String phoneNumber = editPhoneNumber.getText().toString().trim();
-        final int countryID = 1;
-        final int cityID = 2;
+        final int countryID = countryIds.get(spinnerDialog.getSelectedItemPosition());
+        final int cityID = citiesIds.get(spinnerDialog2.getSelectedItemPosition());
 
-//        progressDialog.show();
+        progressDialog.setMessage("Registering user...");
+        progressDialog.show();
 
         StringRequest send = new StringRequest(Request.Method.POST,
                 Constants.URL_SINGUP,

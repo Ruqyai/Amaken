@@ -41,10 +41,8 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
     private EditText editTextUsername, editTextEmail, editTextPassword;
     private Button buttonRegister;
     private RadioGroup genderRadio;
-    private RadioButton selectedGenderRadioButton;
     private ProgressDialog progressDialog;
     Spinner spinnerDialog, spinnerDialog2;
-    private TextView test;
 
     private ArrayList<String> countries, cities;
     private ArrayList<Integer> countryIds, citiesIds;
@@ -70,7 +68,6 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
         citiesIds = new ArrayList<>();
 
         spinnerDialog.setOnItemSelectedListener(this);
-        //spinnerDialog2.setOnItemSelectedListener(this);
 
 
 
@@ -232,8 +229,9 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
 
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
 
-                                startActivity(new Intent(getApplicationContext(), com.example.afaf.amakenapp.activities.NavDrw.class));
                                 finish();
+                                startActivity(new Intent(getApplicationContext(), ChooseInterest.class));
+
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
                             }
