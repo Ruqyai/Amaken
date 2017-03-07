@@ -31,6 +31,15 @@ public class SharedPrefManager {
     private static final String KEY_USER_CITY_ID = "usercity_id";
     private static final String KEY_USER_CITY_NAME = "usercity_name";
     private static final String KEY_USER_PROFILE_PIC_ID = "userprofile_pic_id";
+
+
+
+    public static String getKeyUserProfilePicUrl() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_PROFILE_PIC_URL, null);
+
+    }
+
     private static final String KEY_USER_PROFILE_PIC_URL = "userprofile_pic_url";
 
 

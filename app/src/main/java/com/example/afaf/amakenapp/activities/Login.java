@@ -90,7 +90,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
-//Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_LONG).show();
                               SharedPrefManager.getInstance(getApplicationContext())
                                .userLogin(
                                        obj.getInt("id"),
@@ -98,13 +97,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                        obj.getString("user_email"),
                                        obj.getString("user_password"),
                                        obj.getString("user_name"),
-                                       obj.getString("gender"),
-                                       TextUtils.isEmpty(obj.getString("user_web_url"))?"":obj.getString("user_web_url"),
-                                       obj.getString("user_phone_number"),
-                                       obj.getInt("user_country_id"),
-                                       obj.getString("user_country_name"),
-                                       obj.getInt("user_city_id"),
-                                       obj.getString("user_city_name"),
+                                       TextUtils.isEmpty(obj.getString("gender"))?"":obj.getString("gender"),
+                                       TextUtils.isEmpty(obj.getString("web_url"))?"":obj.getString("web_url"),
+                                       TextUtils.isEmpty(obj.getString("phone_number"))?"":obj.getString("phone_number"),
+                                       obj.getInt("country_id"),
+                                       obj.getString("country_name"),
+                                       obj.getInt("city_id"),
+                                       obj.getString("city_name"),
                                        obj.getInt("profile_pic_id"),
                                        obj.getString("profile_pic_url")
                                 );

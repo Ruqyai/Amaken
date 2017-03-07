@@ -13,6 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.afaf.amakenapp.helper.SharedPrefManager;
+
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -63,11 +66,14 @@ public class NavDrw extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+
         userName = (TextView) findViewById(R.id.nav_header_user_name);
-       //  userName.setText("getUserName");
+        userName.setText(SharedPrefManager.getInstance(getApplicationContext())
+                .getUsername());
 
         userProfilePic = (CircleImageView) findViewById(R.id.nav_header_user_profile_pic);
-       // userProfilePic.setImageURI(http://);
+       // userProfilePic.setImageURI(SharedPrefManager.getInstance(getApplicationContext()).getKeyUserProfilePicUrl());
 
 
 
