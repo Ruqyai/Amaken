@@ -3,6 +3,8 @@ package com.example.afaf.amakenapp.activities;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,6 +32,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.afaf.amakenapp.R;
 
@@ -69,8 +72,7 @@ public class NavDrw extends AppCompatActivity
 
 
         userName = (TextView) findViewById(R.id.nav_header_user_name);
-//        userName.setText(SharedPrefManager.getInstance(getApplicationContext())
- //               .getUsername());
+      //  userName.setText(SharedPrefManager.getInstance(getApplicationContext()).getUsername());
 
         userProfilePic = (CircleImageView) findViewById(R.id.nav_header_user_profile_pic);
        // userProfilePic.setImageURI(SharedPrefManager.getInstance(getApplicationContext()).getKeyUserProfilePicUrl());
@@ -97,6 +99,39 @@ public class NavDrw extends AppCompatActivity
         return true;
     }
 
+  /*  private void displaySelectedScreen(int id){
+
+        Fragment fragment = null;
+        switch (id){
+            case R.layout.activity_home:
+                fragment = new HomeActivity();
+                break;
+            case R.layout.activity_notifications:
+                fragment = new NotificationActivity();
+                break;
+            case R.layout.activity_profile:
+                fragment = new ProfileActivity();
+                break;
+
+            case R.layout.activity_invites:
+                fragment = new InvitesActivity();
+                break;
+            case R.layout.activity_help:
+                fragment = new HelpActivity();
+                break;
+        }
+
+        if (fragment != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_nav_drw, fragment);
+            ft.commit();
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+
+    }
+*/
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -112,33 +147,50 @@ public class NavDrw extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        Fragment fragment = null;
         int id = item.getItemId();
 
         if (id == R.id.nav_Home) {
 
+        fragment = new HomeActivity();
 
         } else if (id == R.id.nav_notification) {
 
+        fragment = new NotificationActivity();
+
         } else if (id == R.id.nav_profile) {
+
+        fragment = new ProfileActivity();
 
         } else if (id == R.id.nav_Help) {
 
+        fragment = new HelpActivity();
+
         } else if (id == R.id.nav_invites) {
 
-        }
+        fragment = new InvitesActivity();
 
+        }
          else if (id == R.id.nav_setting) {
 
-         //   startActivity(new Intent(NavDrw.this, SettingsActivity.class));
+         startActivity(new Intent(NavDrw.this, SettingsActivity.class));
 
         } else if (id == R.id.nav_Logout) {
+             Toast.makeText(getApplicationContext(), "Do you want to logout?", Toast.LENGTH_LONG).show();
 
         }
 
+        if (fragment != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_nav_drw, fragment);
+            ft.commit();
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

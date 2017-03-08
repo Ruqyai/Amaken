@@ -12,12 +12,12 @@
         <item>Iraq</item>
         <item>Yeman</item>
     </string-array>
-    <string name="title_activity_sign_up_user">SignUpUser</string>
-    <string name="title_activity_sign_up_business">SignUpBusiness</string>
-    <string name="title_activity_sign_up_chooser">SignUpChooser</string>
-    <string name="title_activity_login">Login</string>
+    <string name="title_activity_sign_up_user">Create a User Account</string>
+    <string name="title_activity_sign_up_business">Create a Business Account</string>
+    <string name="title_activity_sign_up_chooser">Choose a Sign Up Method</string>
+    <string name="title_activity_login">Choose a Login Method</string>
     <string name="title_activity_add_review">AddReview</string>
-    <string name="title_activity_nav_drw">NavDrw</string>
+    <string name="title_activity_nav_drw"></string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -28,7 +28,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">Change Settings</string>
 
     <!-- Strings related to Settings -->
 
