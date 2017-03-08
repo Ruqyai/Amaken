@@ -50,7 +50,7 @@ public class NavDrw extends AppCompatActivity
         setContentView(R.layout.activity_nav_drw);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+/*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +59,7 @@ public class NavDrw extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
+**/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -74,7 +74,7 @@ public class NavDrw extends AppCompatActivity
         userName = (TextView) findViewById(R.id.nav_header_user_name);
       //  userName.setText(SharedPrefManager.getInstance(getApplicationContext()).getUsername());
 
-        userProfilePic = (CircleImageView) findViewById(R.id.nav_header_user_profile_pic);
+      //  userProfilePic = (CircleImageView) findViewById(R.id.nav_header_user_profile_pic);
        // userProfilePic.setImageURI(SharedPrefManager.getInstance(getApplicationContext()).getKeyUserProfilePicUrl());
 
 
