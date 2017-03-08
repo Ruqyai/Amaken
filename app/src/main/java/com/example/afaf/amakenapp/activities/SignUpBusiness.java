@@ -68,7 +68,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
 
         spinnerDialog.setOnItemSelectedListener(this);
 
-
+        progressDialog = new ProgressDialog(this);
         editEmail = (EditText) findViewById(R.id.businessEmail);
         editPassword = (EditText) findViewById(R.id.businessPassword);
         editPersonName = (EditText) findViewById(R.id.businessName);
@@ -203,7 +203,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // progressDialog.dismiss();
+                        progressDialog.dismiss();
                         try {
                             JSONObject obj = new JSONObject(response);
 

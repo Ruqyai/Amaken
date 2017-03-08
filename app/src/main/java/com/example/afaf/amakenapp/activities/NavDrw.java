@@ -69,8 +69,8 @@ public class NavDrw extends AppCompatActivity
 
 
         userName = (TextView) findViewById(R.id.nav_header_user_name);
-        userName.setText(SharedPrefManager.getInstance(getApplicationContext())
-                .getUsername());
+//        userName.setText(SharedPrefManager.getInstance(getApplicationContext())
+ //               .getUsername());
 
         userProfilePic = (CircleImageView) findViewById(R.id.nav_header_user_profile_pic);
        // userProfilePic.setImageURI(SharedPrefManager.getInstance(getApplicationContext()).getKeyUserProfilePicUrl());
