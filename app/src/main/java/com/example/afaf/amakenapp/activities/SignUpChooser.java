@@ -40,9 +40,10 @@ public class SignUpChooser extends AppCompatActivity implements View.OnClickList
 
         if (v == signUpBusinessCard) {
             finish();
-            startActivity(new Intent(this, SignUpBusiness.class));
+          //  startActivity(new Intent(this, SignUpBusiness.class));
           //  startActivity(new Intent(this, SettingsActivity.class));
-          //  startActivity(new Intent(this, NavDrw.class));
+           startActivity(new Intent(this, NavDrw.class));//// TODO: 3/8/2017 NavDrw has error 
+           // startActivity(new Intent(this, ChooseInterest.class));
 
         }
 
