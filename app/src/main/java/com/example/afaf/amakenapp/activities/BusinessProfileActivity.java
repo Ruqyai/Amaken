@@ -13,12 +13,12 @@ import com.example.afaf.amakenapp.R;
  * Created by Muha on 3/8/2017.
  */
 
-public class ProfileActivity extends Fragment{
+public class BusinessProfileActivity extends Fragment{
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_profile, container, false);
+        return inflater.inflate(R.layout.activity_business_profile, container, false);
     }
 
     @Override

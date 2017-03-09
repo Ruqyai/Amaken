@@ -1,11 +1,8 @@
 package com.example.afaf.amakenapp.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,27 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.example.afaf.amakenapp.helper.SharedPrefManager;
 
 
 import android.content.Intent;
-import android.os.Bundle;
 
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.afaf.amakenapp.R;
+import com.example.afaf.amakenapp.helper.Constants;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -109,8 +94,8 @@ public class NavDrw extends AppCompatActivity
             case R.layout.activity_notifications:
                 fragment = new NotificationActivity();
                 break;
-            case R.layout.activity_profile:
-                fragment = new ProfileActivity();
+            case R.layout.activity_user_profile:
+                fragment = new BusinessProfileActivity();
                 break;
 
             case R.layout.activity_invites:
@@ -165,8 +150,12 @@ public class NavDrw extends AppCompatActivity
         fragment = new NotificationActivity();
 
         } else if (id == R.id.nav_profile) {
-
-        fragment = new ProfileActivity();
+            
+            //// TODO: 3/9/2017 get user type from shared preferences 
+            //if (user_type == Constants.CODE_BUSINESS_USER)
+                fragment = new BusinessProfileActivity();
+           // else if (user_type == Constants.CODE_NORMAL_USER)
+            //    fragment = new UserProfileActivity();
 
         } else if (id == R.id.nav_Help) {
 

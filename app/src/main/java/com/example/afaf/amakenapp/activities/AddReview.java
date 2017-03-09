@@ -16,7 +16,7 @@ public class AddReview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reviews);
+        setContentView(R.layout.activity_add_review);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.add_review_activity_toolbar);
         setSupportActionBar(toolbar);
