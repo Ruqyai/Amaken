@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
             fab:fab_title="Add Event"
-            fab:fab_colorPressed="@color/baa"/>
+            fab:fab_colorPressed="@color/bar"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/Adds_place"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
             fab:fab_title="Add Place "
-            fab:fab_colorPressed="@color/baa"/>
+            fab:fab_colorPressed="@color/bar"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 </RelativeLayout>
