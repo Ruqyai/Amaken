@@ -1,11 +1,8 @@
 package com.example.afaf.amakenapp.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,27 +11,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.example.afaf.amakenapp.helper.SharedPrefManager;
 
 
 import android.content.Intent;
-import android.os.Bundle;
 
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.afaf.amakenapp.R;
+import com.example.afaf.amakenapp.helper.Constants;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -50,16 +37,28 @@ public class NavDrw extends AppCompatActivity
         setContentView(R.layout.activity_nav_drw);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-/*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+
+
+        FloatingActionButton addPlaceFab = (FloatingActionButton) findViewById(R.id.Adds_place);
+        addPlaceFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(NavDrw.this, AddPlace.class));
             }
         });
-**/
+        FloatingActionButton addEventFab = (FloatingActionButton) findViewById(R.id.Adds_Event);
+            addEventFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(NavDrw.this, AddEvent.class));
+
+            }
+        });
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -99,38 +98,6 @@ public class NavDrw extends AppCompatActivity
         return true;
     }
 
-  /*  private void displaySelectedScreen(int id){
-
-        Fragment fragment = null;
-        switch (id){
-            case R.layout.activity_home:
-                fragment = new HomeActivity();
-                break;
-            case R.layout.activity_notifications:
-                fragment = new NotificationActivity();
-                break;
-            case R.layout.activity_profile:
-                fragment = new ProfileActivity();
-                break;
-
-            case R.layout.activity_invites:
-                fragment = new InvitesActivity();
-                break;
-            case R.layout.activity_help:
-                fragment = new HelpActivity();
-                break;
-        }
-
-        if (fragment != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_nav_drw, fragment);
-            ft.commit();
-        }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-
-    }
-*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -165,8 +132,12 @@ public class NavDrw extends AppCompatActivity
         fragment = new NotificationActivity();
 
         } else if (id == R.id.nav_profile) {
-
-        fragment = new ProfileActivity();
+            
+            //// TODO: 3/9/2017 get user type from shared preferences 
+            //if (user_type == Constants.CODE_BUSINESS_USER)
+               fragment = new BusinessProfileActivity();
+           // else if (user_type == Constants.CODE_NORMAL_USER)
+               //fragment = new UserProfileActivity();
 
         } else if (id == R.id.nav_Help) {
 
