@@ -104,4 +104,8 @@
     <string name="change_your_profile_picture"><u>Change Your Profile Picture</u></string>
     <string name="title_activity_business_profile_places">My Places</string>
     <string name="title_activity_business_profile_events">My Events</string>
+    <string name="title_activity_profile_bookmarks">My Bookmarks</string>
+    <string name="title_activity_profile_likes">My Likes</string>
+    <string name="title_activity_profile_reviews">My Reviews</string>
+    <string name="title_activity_profile_categories">My Categories</string>
 </resources>

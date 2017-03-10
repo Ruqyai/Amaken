@@ -61,16 +61,13 @@
                     android:id="@+id/imageView4"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/user_profile_pic"
+
                     app:srcCompat="@drawable/bookmarkbutton" />
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/imageView4"
-                    android:layout_below="@+id/imageView4"
                     android:gravity="center"
                     android:text="Bookmarks"
                     android:textColor="@color/baa3" />
@@ -98,16 +95,14 @@
                     android:id="@+id/imageView5"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/user_profile_pic"
+
                     app:srcCompat="@drawable/like" />
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/imageView4"
-                    android:layout_below="@+id/imageView4"
+
                     android:gravity="center"
                     android:text="Likes"
                     android:textColor="@color/baa3" />
@@ -142,16 +137,12 @@
                     android:id="@+id/imageView2"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/user_profile_pic"
                     app:srcCompat="@drawable/reviews" />
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/imageView4"
-                    android:layout_below="@+id/imageView4"
                     android:gravity="center"
                     android:text="Reviews"
                     android:textColor="@color/baa3" />
@@ -179,16 +170,13 @@
                     android:id="@+id/imageView8"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/user_profile_pic"
+
                     app:srcCompat="@drawable/categories" />
 
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/imageView4"
-                    android:layout_below="@+id/imageView4"
                     android:gravity="center"
                     android:text="Categories"
                     android:textColor="@color/baa3" />

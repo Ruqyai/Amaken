@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.afaf.amakenapp.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by Muha on 3/8/2017.
  */
@@ -22,6 +24,8 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
             userLikesCard,
             userReviewsCard,
             userCategoriesCard;
+    private CircleImageView userProfilePic;
+
 
     @Nullable
     @Override
@@ -33,6 +37,8 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
         userLikesCard = (CardView) myView.findViewById(R.id.user_profile_likesCard);
         userReviewsCard = (CardView) myView.findViewById(R.id.user_profile_reviewsCard);
         userCategoriesCard = (CardView) myView.findViewById(R.id.user_profile_categoriesCard);
+        userProfilePic = (CircleImageView) myView.findViewById(R.id.user_profile_pic);
+
 
 
 
@@ -40,6 +46,8 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
         userLikesCard.setOnClickListener(this);
         userReviewsCard.setOnClickListener(this);
         userCategoriesCard.setOnClickListener(this);
+        userProfilePic.setOnClickListener(this);
+
 
         return myView;
 
@@ -55,23 +63,22 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
 
+        if (v == userProfilePic){
+            Toast.makeText(getActivity(), "This is profile pic  clicked", Toast.LENGTH_LONG).show();
+        }
+
         if (v == userBookmarksCard){
-            Toast.makeText(getActivity(), "This is bookmarks card clicked", Toast.LENGTH_LONG).show();
-            //startActivity(new Intent(getActivity(), ProfileBookmarks.class));
+            startActivity(new Intent(getActivity(), ProfileBookmarks.class));
         }
         if (v == userLikesCard){
-            Toast.makeText(getActivity(), "This is likes card clicked", Toast.LENGTH_LONG).show();
-            //startActivity(new Intent(getActivity(), ProfileLikes.class));
+            startActivity(new Intent(getActivity(), ProfileLikes.class));
         }
         if (v == userReviewsCard){
-            Toast.makeText(getActivity(), "This is reviews card clicked", Toast.LENGTH_LONG).show();
-            // startActivity(new Intent(getActivity(), ProfileReviews.class));
+            startActivity(new Intent(getActivity(), ProfileReviews.class));
         }
 
         if (v == userCategoriesCard){
-            Toast.makeText(getActivity(), "This is categories card clicked", Toast.LENGTH_LONG).show();
-
-            //startActivity(new Intent(getActivity(), ProfileCategories.class));
+            startActivity(new Intent(getActivity(), ProfileCategories.class));
         }
     }
 

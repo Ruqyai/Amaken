@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.afaf.amakenapp.activities.BusinessProfileEvents"
-    tools:showIn="@layout/activity_business_profile_events">
+    tools:context="com.example.afaf.amakenapp.activities.ProfileCategories"
+    tools:showIn="@layout/activity_profile_categories">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        android:text="Business Added Events"/>
-
+        android:text="My Categories Page"/>
 
 </android.support.constraint.ConstraintLayout>

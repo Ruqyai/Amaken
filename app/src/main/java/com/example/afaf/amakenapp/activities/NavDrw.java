@@ -153,9 +153,9 @@ public class NavDrw extends AppCompatActivity
             
             //// TODO: 3/9/2017 get user type from shared preferences 
             //if (user_type == Constants.CODE_BUSINESS_USER)
-                fragment = new BusinessProfileActivity();
+               fragment = new BusinessProfileActivity();
            // else if (user_type == Constants.CODE_NORMAL_USER)
-            //    fragment = new UserProfileActivity();
+               //fragment = new UserProfileActivity();
 
         } else if (id == R.id.nav_Help) {
 

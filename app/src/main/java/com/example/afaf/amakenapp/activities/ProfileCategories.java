@@ -1,4 +1,4 @@
-package com.example.afaf.amakenapp;
+package com.example.afaf.amakenapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,19 +9,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.afaf.amakenapp.activities.NavDrw;
+import com.example.afaf.amakenapp.R;
 
-public class BusinessProfileEvents extends AppCompatActivity {
+public class ProfileCategories extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_business_profile_events);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.businessProfileEvents_toolbar);
+        setContentView(R.layout.activity_profile_categories);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.profilecategories_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
 
     //// TODO: 3/9/2017  get previous fragment (business profile activity) activity not NavDrw
     @Override
@@ -33,6 +32,4 @@ public class BusinessProfileEvents extends AppCompatActivity {
         }
         return true;
     }
-
-
 }

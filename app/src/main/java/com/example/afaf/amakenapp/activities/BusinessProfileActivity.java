@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.afaf.amakenapp.BusinessProfileEvents;
 import com.example.afaf.amakenapp.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -67,7 +66,7 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
     public void onClick(View v) {
 
         if (v == businessProfilePic){
-            Toast.makeText(getActivity(), "This is profile pic  card clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "This is profile pic  clicked", Toast.LENGTH_LONG).show();
         }
         if (v == businessPlacesCard){
             startActivity(new Intent(getActivity(), BusinessProfilePlaces.class));
@@ -76,22 +75,17 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
            startActivity(new Intent(getActivity(), BusinessProfileEvents.class));
         }
         if (v == businessBookmarksCard){
-            Toast.makeText(getActivity(), "This is bookmarks card clicked", Toast.LENGTH_LONG).show();
-            //startActivity(new Intent(getActivity(), ProfileBookmarks.class));
+            startActivity(new Intent(getActivity(), ProfileBookmarks.class));
         }
         if (v == businessLikesCard){
-            Toast.makeText(getActivity(), "This is likes card clicked", Toast.LENGTH_LONG).show();
-            //startActivity(new Intent(getActivity(), ProfileLikes.class));
+            startActivity(new Intent(getActivity(), ProfileLikes.class));
         }
         if (v == businessReviewsCard){
-            Toast.makeText(getActivity(), "This is reviews card clicked", Toast.LENGTH_LONG).show();
-            // startActivity(new Intent(getActivity(), ProfileReviews.class));
+            startActivity(new Intent(getActivity(), ProfileReviews.class));
         }
 
         if (v == businessCategoriesCard){
-            Toast.makeText(getActivity(), "This is categories card clicked", Toast.LENGTH_LONG).show();
-
-            //startActivity(new Intent(getActivity(), ProfileCategories.class));
+            startActivity(new Intent(getActivity(), ProfileCategories.class));
         }
     }
 
