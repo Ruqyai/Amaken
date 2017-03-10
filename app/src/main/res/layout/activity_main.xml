@@ -10,7 +10,7 @@
     <ImageButton
         android:id="@+id/signUpMain"
         android:layout_width="wrap_content"
-        android:layout_height="73dp"
+        android:layout_height="75dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
