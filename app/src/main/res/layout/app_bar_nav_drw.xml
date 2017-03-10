@@ -64,7 +64,7 @@
             fab:fab_colorNormal="@color/white"
             fab:fab_title="Add Event"
             fab:fab_icon="@drawable/add_event"
-
+            fab:fab_size="mini"
             fab:fab_colorPressed="@color/bar"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
@@ -74,7 +74,7 @@
             fab:fab_colorNormal="@color/white"
             fab:fab_title="Add Place "
             fab:fab_icon="@drawable/add_place"
-
+            fab:fab_size="mini"
             fab:fab_colorPressed="@color/bar"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
