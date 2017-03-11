@@ -51,9 +51,10 @@ public class ProfileBookmarks extends AppCompatActivity {
         for (int i = 0; i <= 10; i++) {
             ProfileBookmarkListItem listItem = new ProfileBookmarkListItem(
                     R.drawable.target,
-                    "Place Name " + i ,
-                    "Place Category",
-                    R.drawable.bookmark
+                    "Place or Event Name " + i ,
+                    "Place or Event Category",
+                    R.drawable.bookmark,
+                    "Place or Event Bookmarked on "
 
             );
 

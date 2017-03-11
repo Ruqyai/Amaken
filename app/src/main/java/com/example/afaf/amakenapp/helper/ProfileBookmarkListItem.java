@@ -11,16 +11,27 @@ public class ProfileBookmarkListItem {
         private String PlaceOrEventName;
         private String PlaceOrEventCategory;
         private int bookmarkLogo;
+        private String bookmarkTimeStamp;
 
 
     public ProfileBookmarkListItem(int PlaceOrEventPic,
                                    String PlaceOrEventName,
                                    String PlaceOrEventCategory,
-                                   int bookmarkLogo) {
+                                   int bookmarkLogo,
+                                   String bookmarkTimeStamp) {
         this.PlaceOrEventPic = PlaceOrEventPic;
         this.PlaceOrEventName = PlaceOrEventName;
         this.PlaceOrEventCategory = PlaceOrEventCategory;
         this.bookmarkLogo = bookmarkLogo;
+        this.bookmarkTimeStamp = bookmarkTimeStamp;
+    }
+
+    public String getBookmarkTimeStamp() {
+        return bookmarkTimeStamp;
+    }
+
+    public void setBookmarkTimeStamp(String bookmarkTimeStamp) {
+        this.bookmarkTimeStamp = bookmarkTimeStamp;
     }
 
     public int getPlaceOrEventPic() {

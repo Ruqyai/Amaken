@@ -48,6 +48,8 @@ public class ProfileBookmarkAdapter extends RecyclerView.Adapter<ProfileBookmark
 
         holder.PlaceOrEventName.setText(listItem.getPlaceOrEventName());
         holder.PlaceOrEventCategory.setText(listItem.getPlaceOrEventCategory());
+        holder.BookmarkTimeStamp.setText(listItem.getBookmarkTimeStamp());
+
 
 
         Glide.with(context).load(listItem.getBookmarkLogo()).into(holder.bookmarkLogo);
@@ -96,6 +98,7 @@ public class ProfileBookmarkAdapter extends RecyclerView.Adapter<ProfileBookmark
         public TextView PlaceOrEventCategory;
         public ImageView bookmarkLogo;
         public TextView optionsMenuBookmarks;
+        public TextView BookmarkTimeStamp;
 
 
 
@@ -110,6 +113,8 @@ public class ProfileBookmarkAdapter extends RecyclerView.Adapter<ProfileBookmark
             PlaceOrEventName = (TextView) itemView.findViewById(R.id.placeorEventNameBookmarks);
             PlaceOrEventCategory = (TextView) itemView.findViewById(R.id.placeorEventCategoryBookmarks);
             bookmarkLogo =(ImageView)itemView.findViewById(R.id.bookmarkLogoBookmarks);
+            BookmarkTimeStamp = (TextView) itemView.findViewById(R.id.timeStampBookmarks);
+
 
 
             optionsMenuBookmarks = (TextView) itemView.findViewById(R.id.menuOptionsBookmarks);
