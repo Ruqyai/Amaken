@@ -17,7 +17,7 @@ public class Constants {
     public static final String URL_SINGUP = ROOT_URL+ "createUser";
     public static final String URL_STOREINTERESTS = ROOT_URL+"assignInterestCategory";
 
-
+    public static final int DIALOG_EXIT = 3;
     public static final int CODE_NORMAL_USER = 1244;
     public static final int CODE_BUSINESS_USER = 1245;
 }
