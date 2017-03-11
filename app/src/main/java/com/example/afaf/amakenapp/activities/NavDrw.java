@@ -1,5 +1,8 @@
 package com.example.afaf.amakenapp.activities;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -154,8 +157,10 @@ public class NavDrw extends AppCompatActivity
          startActivity(new Intent(NavDrw.this, SettingsActivity.class));
 
         } else if (id == R.id.nav_Logout) {
-             Toast.makeText(getApplicationContext(), "Do you want to logout?", Toast.LENGTH_LONG).show();
 
+            // Toast.makeText(getApplicationContext(), "Do you want to logout?", Toast.LENGTH_LONG).show();
+
+            showDialog(Constants.DIALOG_EXIT);
         }
 
         if (fragment != null) {
@@ -167,4 +172,42 @@ public class NavDrw extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    protected Dialog onCreateDialog(int id) {
+
+        if (id == Constants.DIALOG_EXIT) {
+            AlertDialog.Builder adb = new AlertDialog.Builder(this);
+
+            adb.setTitle("EXIT");
+
+            adb.setMessage("Do you want to exit?");
+
+            adb.setIcon(R.drawable.ic_warning_black_24dp);
+
+            adb.setPositiveButton("YES", myClickListener);
+
+            adb.setNeutralButton("CANCEL", myClickListener);
+
+            adb.setCancelable(false);
+            return adb.create();
+
+        }
+        return super.onCreateDialog(id);
+    }
+    DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case Dialog.BUTTON_POSITIVE:
+                 //   saveData();
+                    finish();
+                    break;
+                case Dialog.BUTTON_NEUTRAL:
+                    break;
+            }
+        }
+    };
+    void saveData() {
+        Toast.makeText(this, "your data was saved", Toast.LENGTH_SHORT).show();
+    }
+
 }
