@@ -108,6 +108,6 @@
     <string name="title_activity_profile_likes">My Likes</string>
     <string name="title_activity_profile_reviews">My Reviews</string>
     <string name="title_activity_profile_categories">My Categories</string>
-    <string name="title_activity_add_place">AddPlace</string>
-    <string name="title_activity_add_event">AddEvent</string>
+    <string name="title_activity_add_place">Add New Place</string>
+    <string name="title_activity_add_event">Add New Event</string>
 </resources>

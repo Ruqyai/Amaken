@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.afaf.amakenapp.R;
 import com.example.afaf.amakenapp.helper.Constants;
+import com.example.afaf.amakenapp.helper.SharedPrefManager;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -77,7 +78,7 @@ public class NavDrw extends AppCompatActivity
       //  userName.setText(SharedPrefManager.getInstance(getApplicationContext()).getUsername());
 
       //  userProfilePic = (CircleImageView) findViewById(R.id.nav_header_user_profile_pic);
-       // userProfilePic.setImageURI(SharedPrefManager.getInstance(getApplicationContext()).getKeyUserProfilePicUrl());
+       //userProfilePic.setImageResource(SharedPrefManager.getInstance(getApplicationContext()).getKeyUserProfilePicUrl());
 
 
 
