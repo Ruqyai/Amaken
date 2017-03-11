@@ -92,7 +92,7 @@
                 android:id="@+id/bookmarkLogo"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                app:srcCompat="@drawable/bookmark"
+                app:srcCompat="@drawable/bookmark2"
                 app:layout_constraintLeft_toRightOf="@+id/statLikes"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="8dp"
