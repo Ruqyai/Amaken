@@ -49,7 +49,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        fab:fab_addButtonColorNormal="@color/white"
+        fab:fab_addButtonColorNormal="@color/bar"
         fab:fab_addButtonColorPressed="@color/white_pressed"
         fab:fab_addButtonPlusIconColor="@color/baa"
         fab:fab_labelStyle="@style/menu_labels_style"
@@ -63,7 +63,9 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
             fab:fab_title="Add Event"
-            fab:fab_colorPressed="@color/baa"/>
+            fab:fab_icon="@drawable/add_event"
+            fab:fab_size="mini"
+            fab:fab_colorPressed="@color/bar"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/Adds_place"
@@ -71,7 +73,9 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
             fab:fab_title="Add Place "
-            fab:fab_colorPressed="@color/baa"/>
+            fab:fab_icon="@drawable/add_place"
+            fab:fab_size="mini"
+            fab:fab_colorPressed="@color/bar"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 </RelativeLayout>
