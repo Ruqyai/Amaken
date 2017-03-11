@@ -173,7 +173,6 @@ public class NavDrw extends AppCompatActivity
         return true;
     }
 
-    //////////////////////
     protected Dialog onCreateDialog(int id) {
 
         if (id == Constants.DIALOG_EXIT) {
