@@ -121,17 +121,17 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
         /* alt+enter to creat constructor*/
         public ViewHolder(View itemView) {
             super(itemView);
-            PlaceOrEventPicture = (ImageView) itemView.findViewById(R.id.placeOrEventPictureBookmarks);
-            PlaceOrEventName = (TextView) itemView.findViewById(R.id.placeorEventNameBookmarks);
-            PlaceOrEventCategory = (TextView) itemView.findViewById(R.id.placeorEventCategoryBookmarks);
-            LikeLogo = (ImageView) itemView.findViewById(R.id.redheartlogo);
+            PlaceOrEventPicture = (ImageView) itemView.findViewById(R.id.bookmarks_placeOrEventPicture);
+            PlaceOrEventName = (TextView) itemView.findViewById(R.id.bookmarks_placeorEventName);
+            PlaceOrEventCategory = (TextView) itemView.findViewById(R.id.bookmarks_placeorEventCategory);
+            LikeLogo = (ImageView) itemView.findViewById(R.id.bookmarks_bookmarkLogo);
             bookmarkLogo =(ImageView)itemView.findViewById(R.id.bookmarkLogo);
             ratingbar = (RatingBar) itemView.findViewById(placeorEventRating);
-            StatBookmarks = (TextView) itemView.findViewById(R.id.statLikes);
+            StatBookmarks = (TextView) itemView.findViewById(R.id.bookmarks_timestamp);
             StatLikes = (TextView) itemView.findViewById(R.id.statBookmarks);
             StatRatings = (TextView) itemView.findViewById(R.id.statRatings);
 
-            optionsMenu = (TextView) itemView.findViewById(R.id.menuOptionsBookmarks);
+            optionsMenu = (TextView) itemView.findViewById(R.id.bookmarks_menuOptions);
 
 
         }
