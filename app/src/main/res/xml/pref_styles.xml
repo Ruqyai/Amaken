@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="switch_preference_1"
+        android:title="Change language" />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="edit_text_preference_1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Change theme" />
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/spinner_options"
+        android:entryValues="@array/pref_sync_frequency_titles"
+        android:key="list_preference_1"
+        android:title="List preference" />
+</PreferenceScreen>

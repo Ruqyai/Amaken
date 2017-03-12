@@ -71,6 +71,7 @@
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
+            android:theme="@style/Theme"
             android:parentActivityName=".activities.NavDrw">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
