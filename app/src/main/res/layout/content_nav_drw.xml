@@ -13,5 +13,20 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.afaf.amakenapp.activities.NavDrw"
     tools:showIn="@layout/app_bar_nav_drw">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="3pt"
+    android:paddingLeft="3pt"
+    android:paddingRight="3pt"
+    android:paddingTop="3pt"
+    >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>
 
 </RelativeLayout>

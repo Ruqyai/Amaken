@@ -11,6 +11,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,12 +27,21 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.afaf.amakenapp.R;
 import com.example.afaf.amakenapp.helper.Constants;
+import com.example.afaf.amakenapp.helper.HomeAdapter;
+import com.example.afaf.amakenapp.helper.HomeListItem;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NavDrw extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<HomeListItem> listItems;
 
     private TextView userName;
     private CircleImageView userProfilePic;
@@ -42,7 +53,38 @@ public class NavDrw extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+///////////////
 
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        listItems = new ArrayList<>();
+
+        for (int i = 0; i <= 10; i++) {
+            HomeListItem listItem = new HomeListItem(
+                    R.drawable.business_home_profile,
+                    "Business Name" ,
+                    R.drawable.place_home_image,
+                    "Place of the Name",
+                    "Category",
+
+                    "Discretion",
+                    "here details about the place..here details about the place..here details about the place..here details about the place..here details about the place" +
+                            "\n" +
+                            "          ",
+                    "Expand >>",
+                    R.attr.ratingBarStyleSmall,
+                    "5"
+            );
+
+            listItems.add(listItem);
+
+        }
+        adapter = new HomeAdapter(listItems,this);
+
+        recyclerView.setAdapter(adapter);
+
+        ////////////////////////////////
 
         FloatingActionButton addPlaceFab = (FloatingActionButton) findViewById(R.id.Adds_place);
         addPlaceFab.setOnClickListener(new View.OnClickListener() {

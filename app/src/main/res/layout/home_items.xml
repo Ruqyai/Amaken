@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:elevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/imageViewHomeBusinessProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                app:srcCompat="@drawable/business_home_profile" />
+
+            <TextView
+                android:id="@+id/TextNameHomeBusiness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imageViewHomeBusinessProfile"
+                android:text="Name Business"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageViewHomeBusinessPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imageViewHomeBusinessProfile"
+                app:srcCompat="@drawable/place_home_image" />
+
+            <TextView
+                android:id="@+id/nameTitPlaceHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/imageViewHomeBusinessPlace"
+                android:text="Name of the Place"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/TextNameHomeCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nameTitPlaceHome"
+                android:layout_marginLeft="10dp"
+                android:text="Category"
+                android:textStyle="italic" />
+
+
+
+            <TextView
+                android:id="@+id/TextHomeDiscretion"
+                android:layout_width="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TextNameHomeCategory"
+                android:text="Discretion"
+                android:textColor="#39bde9"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TextHomeDiscretionMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/TextHomeDiscretion"
+                android:text="here details about the place..here details about the place..here details about the place..here details about the place..here details about the place" />
+
+            <TextView
+                android:id="@+id/TextExpandHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/TextHomeDiscretionMultiLine"
+                android:layout_margin="4pt"
+                android:text="Expand >>"
+                android:textStyle="bold" />
+
+            <RatingBar
+                android:id="@+id/ratingBarHome"
+                style="@android:style/Widget.Holo.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4pt"
+                android:layout_toLeftOf="@+id/TextHomeNumberOfRate"
+                android:layout_below="@+id/TextHomeDiscretionMultiLine" />
+
+                <TextView
+                android:id="@+id/TextHomeNumberOfRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                    android:layout_marginTop="4pt"
+                    android:layout_below="@+id/TextHomeDiscretionMultiLine"
+                    android:layout_alignParentRight="true"
+                android:text="5"
+                 />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+</LinearLayout>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5pt"
+        android:layout_marginRight="5pt"
+        android:layout_marginLeft="5pt"
+        android:elevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+            <ImageView
+                android:id="@+id/imageButtonGalleryHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                app:srcCompat="@drawable/gallery_place" />
+
+            <TextView
+                android:id="@+id/textNumberGalleryImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imageButtonGalleryHome"
+                android:text="22" />
+
+            <ImageView
+                android:id="@+id/imageButtonLikeHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/like_home"
+                android:layout_toRightOf="@+id/textNumberGalleryImage"/>
+
+            <TextView
+                android:id="@+id/textNumberLikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imageButtonLikeHome"
+                android:text="22" />
+
+            <ImageView
+                android:id="@+id/imageButtonSaveHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_toRightOf="@+id/textNumberLikes"
+                app:srcCompat="@drawable/save_home" />
+
+            <TextView
+                android:id="@+id/textNumberSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imageButtonSaveHome"
+                android:text="22" />
+
+
+            <ImageView
+                android:id="@+id/imageButtonReviewHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textNumberSave"
+                app:srcCompat="@drawable/review_home" />
+
+            <TextView
+                android:id="@+id/textNumberReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imageButtonReviewHome"
+                android:text="22" />
+
+            <TextView
+                android:id="@+id/textCountryDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButtonLikeHome"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:text="Country" />
+
+            <TextView
+                android:id="@+id/textCityDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/imageButtonLikeHome"
+                android:layout_toRightOf="@+id/textCountryDetails"
+                android:text="City" />
+
+            <TextView
+                android:id="@+id/textPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textCountryDetails"
+                android:text="+966512345678" />
+
+            <TextView
+                android:id="@+id/textWeb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textPhone"
+                android:text="http//place.com" />
+
+            <TextView
+                android:id="@+id/textViewSeeAllReviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/textWeb"
+                android:text="See all reviews about this place >>"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5pt"
+        android:background="#39bde9">
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2pt"
+
+            />
+    </RelativeLayout>
+</LinearLayout>
