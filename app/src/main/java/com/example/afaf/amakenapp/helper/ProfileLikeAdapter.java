@@ -21,56 +21,56 @@ import java.util.List;
  * Created by USER on 3/10/2017.
  */
 
-public class ProfileBookmarkAdapter extends RecyclerView.Adapter<ProfileBookmarkAdapter.ViewHolder> {
-    private List<ProfileBookmarkListItem> listItems;
+public class ProfileLikeAdapter extends RecyclerView.Adapter<ProfileLikeAdapter.ViewHolder> {
+    private List<ProfileLikesListItem> listItems;
     private Context context;
 
-    public ProfileBookmarkAdapter(List<ProfileBookmarkListItem> listItems, Context context) {
+    public ProfileLikeAdapter(List<ProfileLikesListItem> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
 
     @Override
-    public ProfileBookmarkAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ProfileLikeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.profile_bookmarks_list_item, parent, false);
-        return new ProfileBookmarkAdapter.ViewHolder(v);
+                .inflate(R.layout.profile_likes_list_item, parent, false);
+        return new ProfileLikeAdapter.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(final ProfileBookmarkAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final ProfileLikeAdapter.ViewHolder holder, int position) {
 
-        ProfileBookmarkListItem listItem = listItems.get(position);
+        ProfileLikesListItem listItem = listItems.get(position);
 
         Glide.with(context).load(listItem.getPlaceOrEventPic()).into(holder.PlaceOrEventPicture);
         //holder.PlaceOrEventPicture.setImageResource(listItem.getBusinessProfilePlaceOrEventPic());
 
         holder.PlaceOrEventName.setText(listItem.getPlaceOrEventName());
         holder.PlaceOrEventCategory.setText(listItem.getPlaceOrEventCategory());
-        holder.BookmarkTimeStamp.setText(listItem.getBookmarkTimeStamp());
+        holder.LikeTimeStamp.setText(listItem.getLikeTimeStamp());
 
 
 
-        Glide.with(context).load(listItem.getBookmarkLogo()).into(holder.bookmarkLogo);
+        Glide.with(context).load(listItem.getLikeLogo()).into(holder.likeLogo);
 
 
-        holder.optionsMenuBookmarks.setOnClickListener(new View.OnClickListener() {
+        holder.optionsMenuLikes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //creating a popup menu
-                PopupMenu popup = new PopupMenu(context, holder.optionsMenuBookmarks);
+                PopupMenu popup = new PopupMenu(context, holder.optionsMenuLikes);
                 //inflating menu from xml resource
-                popup.inflate(R.menu.profile_bookmarks_options_menu);
+                popup.inflate(R.menu.profile_likes_options_menu);
                 //adding click listener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.placeOrEventView:
+                            case R.id.placeOrEventOrReviewLikeView:
                                 //handle menu1 click
                                 break;
-                            case R.id.bookmarkRemove:
+                            case R.id.likeUnlike:
                                 //handle menu2 click
                                 break;
                         }
@@ -95,9 +95,9 @@ public class ProfileBookmarkAdapter extends RecyclerView.Adapter<ProfileBookmark
         public ImageView PlaceOrEventPicture;
         public TextView PlaceOrEventName;
         public TextView PlaceOrEventCategory;
-        public ImageView bookmarkLogo;
-        public TextView optionsMenuBookmarks;
-        public TextView BookmarkTimeStamp;
+        public ImageView likeLogo;
+        public TextView optionsMenuLikes;
+        public TextView LikeTimeStamp;
 
 
 
@@ -108,15 +108,15 @@ public class ProfileBookmarkAdapter extends RecyclerView.Adapter<ProfileBookmark
         /* alt+enter to creat constructor*/
         public ViewHolder(View itemView) {
             super(itemView);
-            PlaceOrEventPicture = (ImageView) itemView.findViewById(R.id.bookmarks_placeOrEventPicture);
-            PlaceOrEventName = (TextView) itemView.findViewById(R.id.bookmarks_placeorEventName);
-            PlaceOrEventCategory = (TextView) itemView.findViewById(R.id.bookmarks_placeorEventCategory);
-            bookmarkLogo =(ImageView)itemView.findViewById(R.id.bookmarks_bookmarkLogo);
-            BookmarkTimeStamp = (TextView) itemView.findViewById(R.id.bookmarks_timestamp);
+            PlaceOrEventPicture = (ImageView) itemView.findViewById(R.id.likes_placeOrEventPicture);
+            PlaceOrEventName = (TextView) itemView.findViewById(R.id.likes_placeorEventName);
+            PlaceOrEventCategory = (TextView) itemView.findViewById(R.id.likes_placeorEventCategory);
+            likeLogo =(ImageView)itemView.findViewById(R.id.likes_likesLogo);
+            LikeTimeStamp = (TextView) itemView.findViewById(R.id.likes_timestamp);
 
 
 
-            optionsMenuBookmarks = (TextView) itemView.findViewById(R.id.bookmarks_menuOptions);
+            optionsMenuLikes = (TextView) itemView.findViewById(R.id.likes_menuOptions);
 
 
         }
