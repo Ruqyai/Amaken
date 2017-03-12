@@ -1,17 +1,5 @@
 <resources>
     <string name="app_name">Amakenapp</string>
-    <string-array name="spinner_options">
-        <item>Saudi Arabia</item>
-        <item>United Arab Emirates</item>
-        <item>Malaysia</item>
-        <item>Syria</item>
-        <item>Kuwait</item>
-        <item>Jordan</item>
-        <item>India</item>
-        <item>Egypt</item>
-        <item>Iraq</item>
-        <item>Yeman</item>
-    </string-array>
     <string name="title_activity_sign_up_user">Create a User Account</string>
     <string name="title_activity_sign_up_business">Create a Business Account</string>
     <string name="title_activity_sign_up_chooser">Choose a Sign Up Method</string>
@@ -21,13 +9,8 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_editProfile">edit Profile</string>
-    <string name="android_studio">User Name</string>
-    <string name="title_activity_search">searchActivity</string>
-    <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_settings">Change Settings</string>
 
     <!-- Strings related to Settings -->
@@ -75,20 +58,6 @@
         <item>360</item>
         <item>-1</item>
     </string-array>
-
-    <string-array name="list_preference_entries">
-        <item>Entry 1</item>
-        <item>Entry 2</item>
-        <item>Entry 3</item>
-    </string-array>
-
-    <string-array name="list_preference_entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
 

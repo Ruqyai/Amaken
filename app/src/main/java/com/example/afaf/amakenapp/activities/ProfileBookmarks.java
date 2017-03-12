@@ -54,7 +54,7 @@ public class ProfileBookmarks extends AppCompatActivity {
                     "Place or Event Name " + i ,
                     "Place or Event Category",
                     R.drawable.bookmark,
-                    "Place or Event Bookmarked on "
+                    "This Place or Event BookedMarked on TimeStamp "
 
             );
 

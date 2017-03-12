@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#1D6A87</color>
     <color name="colorAccent">#15AFD8</color>
 
 
     <color name="bar">#15AFD8</color>
     <color name="baa"> #A47A51</color>
     <color name="baa1"> #C6B098</color>
-    <color name="baa2"> #DBE8F1</color>
     <color name="baa3"> #1D6A87</color>
     <color name="white">#fafafa</color>
+    <color name="gray">#bebebe</color>
     <color name="white_pressed">#f1f1f1</color>
-    <color name="half_black">#808080</color>
-    <color name="black_semi_transparent">#B2000000</color>
 </resources>

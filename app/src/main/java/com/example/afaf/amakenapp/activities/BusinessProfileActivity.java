@@ -8,6 +8,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.afaf.amakenapp.R;
@@ -27,6 +28,7 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
             businessReviewsCard,
             businessCategoriesCard;
     private CircleImageView businessProfilePic;
+    private TextView changeProfilePicTxt;
 
     @Nullable
     @Override
@@ -40,6 +42,7 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
         businessReviewsCard = (CardView) myView.findViewById(R.id.business_profile_reviewsCard);
         businessCategoriesCard = (CardView) myView.findViewById(R.id.business_profile_categoriesCard);
         businessProfilePic = (CircleImageView) myView.findViewById(R.id.change_business_profile_pic);
+        changeProfilePicTxt = (TextView) myView.findViewById(R.id.businessProfile_changeProfilePicTxt);
 
 
 
@@ -50,6 +53,7 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
         businessReviewsCard.setOnClickListener(this);
         businessCategoriesCard.setOnClickListener(this);
         businessProfilePic.setOnClickListener(this);
+        changeProfilePicTxt.setOnClickListener(this);
 
         return myView;
 
@@ -66,13 +70,19 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
     public void onClick(View v) {
 
         if (v == businessProfilePic){
+            //// TODO: 3/12/2017  dialog with 2 buttons one for camera and the other for gallery
             Toast.makeText(getActivity(), "This is profile pic  clicked", Toast.LENGTH_LONG).show();
+        }
+
+        if (v == changeProfilePicTxt){
+            //// TODO: 3/12/2017  same as profile pic clicked action
+            Toast.makeText(getActivity(), "This is change profile pic text clicked", Toast.LENGTH_LONG).show();
         }
         if (v == businessPlacesCard){
             startActivity(new Intent(getActivity(), BusinessProfilePlaces.class));
         }
         if (v == businessEventsCard){
-           startActivity(new Intent(getActivity(), BusinessProfileEvents.class));
+            startActivity(new Intent(getActivity(), BusinessProfileEvents.class));
         }
         if (v == businessBookmarksCard){
             startActivity(new Intent(getActivity(), ProfileBookmarks.class));

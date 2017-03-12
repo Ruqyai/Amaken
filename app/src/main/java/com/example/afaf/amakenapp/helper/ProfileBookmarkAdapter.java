@@ -93,7 +93,7 @@ public class ProfileBookmarkAdapter extends RecyclerView.Adapter<ProfileBookmark
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public RoundedImageView PlaceOrEventPicture;
+        public ImageView PlaceOrEventPicture;
         public TextView PlaceOrEventName;
         public TextView PlaceOrEventCategory;
         public ImageView bookmarkLogo;
@@ -109,7 +109,7 @@ public class ProfileBookmarkAdapter extends RecyclerView.Adapter<ProfileBookmark
         /* alt+enter to creat constructor*/
         public ViewHolder(View itemView) {
             super(itemView);
-            PlaceOrEventPicture = (RoundedImageView) itemView.findViewById(R.id.placeOrEventPictureBookmarks);
+            PlaceOrEventPicture = (ImageView) itemView.findViewById(R.id.placeOrEventPictureBookmarks);
             PlaceOrEventName = (TextView) itemView.findViewById(R.id.placeorEventNameBookmarks);
             PlaceOrEventCategory = (TextView) itemView.findViewById(R.id.placeorEventCategoryBookmarks);
             bookmarkLogo =(ImageView)itemView.findViewById(R.id.bookmarkLogoBookmarks);

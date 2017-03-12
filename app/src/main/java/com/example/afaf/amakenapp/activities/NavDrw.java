@@ -22,9 +22,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.afaf.amakenapp.R;
 import com.example.afaf.amakenapp.helper.Constants;
-import com.example.afaf.amakenapp.helper.SharedPrefManager;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -74,10 +74,11 @@ public class NavDrw extends AppCompatActivity
 
 
 
-        userName = (TextView) findViewById(R.id.nav_header_user_name);
+       // userName = (TextView) findViewById(R.id.nav_header_user_name);
       //  userName.setText(SharedPrefManager.getInstance(getApplicationContext()).getUsername());
 
-      //  userProfilePic = (CircleImageView) findViewById(R.id.nav_header_user_profile_pic);
+        //userProfilePic = (CircleImageView) findViewById(R.id.nav_header_user_profile_pic);
+        //Glide.with(getApplicationContext()).load("").into(userProfilePic);
        //userProfilePic.setImageResource(SharedPrefManager.getInstance(getApplicationContext()).getKeyUserProfilePicUrl());
 
 
@@ -129,11 +130,15 @@ public class NavDrw extends AppCompatActivity
 
         if (id == R.id.nav_Home) {
 
-        fragment = new HomeActivity();
+            startActivity(new Intent(this, NavDrw.class));
+
+        } else if (id == R.id.nav_events) {
+
+            fragment = new EventsActivity();
 
         } else if (id == R.id.nav_notification) {
 
-        fragment = new NotificationActivity();
+            fragment = new NotificationActivity();
 
         } else if (id == R.id.nav_profile) {
             
@@ -145,16 +150,16 @@ public class NavDrw extends AppCompatActivity
 
         } else if (id == R.id.nav_Help) {
 
-        fragment = new HelpActivity();
+            fragment = new HelpActivity();
 
         } else if (id == R.id.nav_invites) {
 
-        fragment = new InvitesActivity();
+            fragment = new InvitesActivity();
 
         }
          else if (id == R.id.nav_setting) {
 
-         startActivity(new Intent(NavDrw.this, SettingsActivity.class));
+            startActivity(new Intent(NavDrw.this, SettingsActivity.class));
 
         } else if (id == R.id.nav_Logout) {
 
@@ -200,6 +205,7 @@ public class NavDrw extends AppCompatActivity
                 case Dialog.BUTTON_POSITIVE:
                  //   saveData();
                     finish();
+                    startActivity(new Intent(NavDrw.this, MainActivity.class));
                     break;
                 case Dialog.BUTTON_NEUTRAL:
                     break;

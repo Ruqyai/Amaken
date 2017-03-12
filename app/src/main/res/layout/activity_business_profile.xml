@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
     android:orientation="vertical"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true">
+
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -24,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/changeprofilepic"
+        android:id="@+id/businessProfile_changeProfilePicTxt"
         android:textColor="@color/baa"
         android:text="@string/change_your_profile_picture"
         android:layout_above="@+id/row1"
@@ -46,7 +52,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             >
-
 
             <LinearLayout
                 android:layout_width="100dp"
@@ -246,5 +251,6 @@
         </android.support.v7.widget.CardView>
 
     </TableRow>
-</RelativeLayout>
 
+</RelativeLayout>
+</ScrollView>

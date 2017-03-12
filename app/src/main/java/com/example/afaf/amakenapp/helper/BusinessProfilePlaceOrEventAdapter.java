@@ -121,9 +121,9 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
         /* alt+enter to creat constructor*/
         public ViewHolder(View itemView) {
             super(itemView);
-            PlaceOrEventPicture = (ImageView) itemView.findViewById(R.id.placeOrEventPicture);
-            PlaceOrEventName = (TextView) itemView.findViewById(R.id.placeorEventName);
-            PlaceOrEventCategory = (TextView) itemView.findViewById(R.id.placeorEventCategory);
+            PlaceOrEventPicture = (ImageView) itemView.findViewById(R.id.placeOrEventPictureBookmarks);
+            PlaceOrEventName = (TextView) itemView.findViewById(R.id.placeorEventNameBookmarks);
+            PlaceOrEventCategory = (TextView) itemView.findViewById(R.id.placeorEventCategoryBookmarks);
             LikeLogo = (ImageView) itemView.findViewById(R.id.redheartlogo);
             bookmarkLogo =(ImageView)itemView.findViewById(R.id.bookmarkLogo);
             ratingbar = (RatingBar) itemView.findViewById(placeorEventRating);
@@ -131,7 +131,7 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
             StatLikes = (TextView) itemView.findViewById(R.id.statBookmarks);
             StatRatings = (TextView) itemView.findViewById(R.id.statRatings);
 
-            optionsMenu = (TextView) itemView.findViewById(R.id.menuOptionsBusinessPlaces);
+            optionsMenu = (TextView) itemView.findViewById(R.id.menuOptionsBookmarks);
 
 
         }
