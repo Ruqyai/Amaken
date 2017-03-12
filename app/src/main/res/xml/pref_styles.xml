@@ -11,10 +11,4 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Change theme" />
-    <ListPreference
-        android:defaultValue="1"
-        android:entries="@array/spinner_options"
-        android:entryValues="@array/pref_sync_frequency_titles"
-        android:key="list_preference_1"
-        android:title="List preference" />
 </PreferenceScreen>
