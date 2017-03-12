@@ -8,6 +8,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.afaf.amakenapp.R;
@@ -25,6 +26,8 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
             userReviewsCard,
             userCategoriesCard;
     private CircleImageView userProfilePic;
+    private TextView changeProfilePicTxt;
+
 
 
     @Nullable
@@ -38,6 +41,7 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
         userReviewsCard = (CardView) myView.findViewById(R.id.user_profile_reviewsCard);
         userCategoriesCard = (CardView) myView.findViewById(R.id.user_profile_categoriesCard);
         userProfilePic = (CircleImageView) myView.findViewById(R.id.user_profile_pic);
+        changeProfilePicTxt = (TextView) myView.findViewById(R.id.userProfile_changeProfilePicTxt);
 
 
 
@@ -47,6 +51,8 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
         userReviewsCard.setOnClickListener(this);
         userCategoriesCard.setOnClickListener(this);
         userProfilePic.setOnClickListener(this);
+        changeProfilePicTxt.setOnClickListener(this);
+
 
 
         return myView;
@@ -64,7 +70,12 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
     public void onClick(View v) {
 
         if (v == userProfilePic){
+            //// TODO: 3/12/2017  dialog with 2 buttons one for camera and the other for gallery
             Toast.makeText(getActivity(), "This is profile pic  clicked", Toast.LENGTH_LONG).show();
+        }
+        if (v == changeProfilePicTxt){
+            //// TODO: 3/12/2017  same as profile pic clicked action
+            Toast.makeText(getActivity(), "This is change profile pic text clicked", Toast.LENGTH_LONG).show();
         }
 
         if (v == userBookmarksCard){

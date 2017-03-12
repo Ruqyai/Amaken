@@ -13,7 +13,7 @@ import com.example.afaf.amakenapp.R;
  * Created by Muha on 3/8/2017.
  */
 
-public class HomeActivity extends Fragment{
+public class EventsActivity extends Fragment{
 
     @Nullable
     @Override

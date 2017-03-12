@@ -8,10 +8,9 @@
     tools:context="com.example.afaf.amakenapp.activities.ProfileLikes"
     tools:showIn="@layout/activity_profile_likes">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        android:text="My Likes Page"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewLikes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>
