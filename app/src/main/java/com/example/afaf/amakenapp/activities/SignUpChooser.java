@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -42,8 +44,14 @@ public class SignUpChooser extends AppCompatActivity implements View.OnClickList
             finish();
           //  startActivity(new Intent(this, SignUpBusiness.class));
           //  startActivity(new Intent(this, SettingsActivity.class));
-           startActivity(new Intent(this, NavDrw.class));//// TODO: 3/8/2017 NavDrw has error 
+           startActivity(new Intent(this, NavDrw.class));//// TODO: 3/8/2017 NavDrw has error
            // startActivity(new Intent(this, ChooseInterest.class));
+           // Fragment fragment = null;
+        //  fragment=new HomeActivity();
+           // startActivity(new Intent(this, fragment.);
+           // FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+           // ft.replace(R.layout.activity_business_profile, fragment);
+         //   ft.commit();
 
         }
 

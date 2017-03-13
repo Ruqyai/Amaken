@@ -39,9 +39,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class NavDrw extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private List<HomeListItem> listItems;
 
     private TextView userName;
     private CircleImageView userProfilePic;
@@ -53,38 +50,7 @@ public class NavDrw extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-///////////////
 
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        listItems = new ArrayList<>();
-
-        for (int i = 0; i <= 10; i++) {
-            HomeListItem listItem = new HomeListItem(
-                    R.drawable.business_home_profile,
-                    "Business Name" ,
-                    R.drawable.place_home_image,
-                    "Place of the Name",
-                    "Category",
-
-                    "Discretion",
-                    "here details about the place..here details about the place..here details about the place..here details about the place..here details about the place" +
-                            "\n" +
-                            "          ",
-                    "Expand >>",
-                    R.attr.ratingBarStyleSmall,
-                    "5"
-            );
-
-            listItems.add(listItem);
-
-        }
-        adapter = new HomeAdapter(listItems,this);
-
-        recyclerView.setAdapter(adapter);
-
-        ////////////////////////////////
 
         FloatingActionButton addPlaceFab = (FloatingActionButton) findViewById(R.id.Adds_place);
         addPlaceFab.setOnClickListener(new View.OnClickListener() {
@@ -167,16 +133,22 @@ public class NavDrw extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+
+
         Fragment fragment = null;
+
+
         int id = item.getItemId();
 
         if (id == R.id.nav_Home) {
 
-            startActivity(new Intent(this, NavDrw.class));
+          //  startActivity(new Intent(this, NavDrw.class));
+            fragment= new HomeActivity();
 
         } else if (id == R.id.nav_events) {
 
             fragment = new EventsActivity();
+
 
         } else if (id == R.id.nav_notification) {
 
@@ -212,11 +184,13 @@ public class NavDrw extends AppCompatActivity
 
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_nav_drw, fragment);
-            ft.commit();
+           ft .replace(R.id.content_nav_drw, fragment);
+           ft .commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
+
         return true;
     }
 
@@ -258,4 +232,13 @@ public class NavDrw extends AppCompatActivity
         Toast.makeText(this, "your data was saved", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Fragment fragment=new HomeActivity();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft .replace(R.id.content_nav_drw, fragment);
+        ft .commit();
+
+    }
 }
