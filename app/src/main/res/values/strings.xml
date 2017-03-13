@@ -80,4 +80,12 @@
     <string name="title_activity_add_place">Add New Place</string>
     <string name="title_activity_add_event">Add New Event</string>
     <string name="title_activity_expand_details_maps">Details</string>
+
+    // Strings for the dialog of the photo
+    <string name="Title_Dialog">Adding a Photo</string>
+    <string name="Option1_Dialog">Choose from Gallery</string>
+    <string name="Option2_Dialog">Take Photo</string>
+    <string name="Option3_Dialog">Clear photo</string>
+    <string name="hint_Dialog">Add Description</string>
+    <string name="Done">Done</string>
 </resources>
