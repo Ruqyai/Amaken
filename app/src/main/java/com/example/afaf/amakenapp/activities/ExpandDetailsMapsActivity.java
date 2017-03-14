@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 
 import com.example.afaf.amakenapp.R;
+import com.example.afaf.amakenapp.helper.HomeReviewDetailesAdapter;
+import com.example.afaf.amakenapp.helper.HomeReviewDetailsListItem;
 import com.google.android.gms.maps.SupportMapFragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +39,10 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
     public TextView allReviews;
     public ImageView imageViewHomeBusinessPlaceImage;
 
+    //
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<HomeReviewDetailsListItem> listItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,8 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
         imageViewLike.setImageResource(R.drawable.like_home);
         imageViewReveiw=(ImageView)findViewById(R.id.imageButtonReviewHome);
         imageViewReveiw.setImageResource(R.drawable.review_home);
+
+        /*
         allReviews=(TextView)findViewById(R.id.textViewSeeAllReviews);
 
         allReviews.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +77,35 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
 
         //  ExpandReview ex = new ExpandReview();
         //  ex.onRecycle();
+
+**/
+
+
+
+        recyclerView = (RecyclerView)findViewById(R.id.RecyclerViewUnderMap);
+       recyclerView.setHasFixedSize(false);
+       recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        listItems = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            HomeReviewDetailsListItem listItem = new  HomeReviewDetailsListItem(
+                    R.drawable.profile_user_written,
+                    "User Name  " + i+  " " ,
+                    "User Review good place User Review good place User Review good place User Review good place User Review good place User Review good place User Review good place User Review good place User Review good place User Review good place ",
+
+                    R.drawable.ic_thumb_up_black_24dp,
+                    R.drawable.ic_assistant_photo_black_24dp
+
+            );
+
+            listItems.add(listItem);
+
+        }
+        adapter = new HomeReviewDetailesAdapter(listItems,this);
+
+        recyclerView.setAdapter(adapter);
+
+
 
     }
 
@@ -91,6 +128,10 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
+    /////////////////////////
+
+    ///////
 
 
 

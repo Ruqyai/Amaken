@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textPhone"
                 android:text="http//place.com" />
-
+<!--
             <TextView
                 android:id="@+id/textViewSeeAllReviews"
                 android:layout_width="wrap_content"
@@ -150,7 +150,7 @@
                 android:layout_below="@+id/textWeb"
                 android:text="See all reviews about this place >>"
                 android:textStyle="bold" />
-
+-->
         </RelativeLayout>
 
 
@@ -165,9 +165,25 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="100dp"
             android:layout_margin="2pt"
 
             />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="3pt"
+        android:paddingLeft="3pt"
+        android:paddingRight="3pt"
+        android:paddingTop="3pt"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/RecyclerViewUnderMap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
     </RelativeLayout>
 </LinearLayout>
