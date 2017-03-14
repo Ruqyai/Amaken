@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -28,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/imageViewHomeBusinessProfile"
-                android:text="Name Business"
+                android:text="Business Name"
                 android:layout_marginTop="20dp"
                 android:textStyle="bold" />
 
@@ -45,8 +46,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
+                android:layout_marginLeft="2dp"
+
                 android:layout_below="@+id/imageViewHomeBusinessPlace"
-                android:text="Name of the Place"
+                android:text="Place Name"
                 android:textStyle="bold|italic" />
 
             <TextView
@@ -54,8 +57,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nameTitPlaceHome"
-                android:layout_marginLeft="10dp"
-                android:text="Category"
+                android:layout_marginLeft="2dp"
+                android:text="Place Category"
                 android:textStyle="italic" />
 
 
@@ -66,7 +69,7 @@
                 android:layout_margin="3dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/TextNameHomeCategory"
-                android:text="Discretion"
+                android:text="Description"
                 android:textColor="#39bde9"
                 android:textStyle="bold" />
 
@@ -75,8 +78,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
+                android:layout_margin="3dp"
+                android:maxLength="175"
+                android:maxLines="3"
+                android:ellipsize="end"
                 android:layout_below="@+id/TextHomeDiscretion"
-                android:text="here details about the place..here details about the place..here details about the place..here details about the place..here details about the place" />
+                android:text="here details about the place, here details about the place, here details about the place..here details about the place, here details about the place" />
 
             <TextView
                 android:id="@+id/TextExpandHome"
@@ -84,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/TextHomeDiscretionMultiLine"
-                android:layout_margin="4pt"
+                android:layout_margin="2pt"
                 android:text="Expand >>"
                 android:textStyle="bold" />
 
