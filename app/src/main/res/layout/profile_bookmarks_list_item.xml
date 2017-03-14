@@ -61,6 +61,7 @@
                 android:id="@+id/bookmarks_placeOrEventPicture"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
+                android:adjustViewBounds="true"
                 android:padding="1dp"
                 app:srcCompat="@drawable/target"
                 app:layout_constraintTop_toTopOf="parent"

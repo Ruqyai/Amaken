@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/placeOrEventOrReviewReviewView"
+        android:title="View" />
+
+    <item
+        android:id="@+id/review_edit"
+        android:title="Edit" />
+
+</menu>
