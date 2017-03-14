@@ -61,7 +61,7 @@
                     android:id="@+id/UserPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="@string/password_hint"
                     android:textSize="@dimen/FontSize"
                     android:inputType="textPassword"
                     />
@@ -85,7 +85,7 @@
                     android:id="@+id/UserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="User Name"
+                    android:hint="@string/user_name"
                     android:inputType="text"
                     android:textSize="@dimen/FontSize"/>
 
@@ -101,7 +101,7 @@
                 android:layout_marginTop="8dp"
                 android:paddingLeft="15dp"
                 android:paddingStart="15dp"
-                android:text="Gender"
+                android:text="@string/gender_text"
                 android:textSize="@dimen/FontSize"
                 android:textColor="#A47A51"/>
 
@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Male"
+                    android:text="@string/male"
                     android:textSize="@dimen/FontSize"
                     android:textColor="#15AFD8"
                     android:textColorLink="#15AFD8" />
@@ -131,14 +131,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColor="#15AFD8"
-                    android:text="Female"
+                    android:text="@string/female"
                     android:textSize="@dimen/FontSize"/>
 
 
             </RadioGroup>
 
             <TextView
-                android:text="Country"
+                android:text="@string/country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5"
@@ -154,7 +154,7 @@
                 android:spinnerMode="dialog"
                 android:background="@android:drawable/btn_dropdown"/>
             <TextView
-                android:text="City"
+                android:text="@string/city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView6"
@@ -180,7 +180,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="20dp"
                 android:background="#15AFD8"
-                android:text="SIGN UP"
+                android:text="@string/sign_up"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/FontSize" />
         </LinearLayout>

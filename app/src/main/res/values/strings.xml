@@ -91,6 +91,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--activity main -->
     <string name="already_have_an_account">Already have an account?</string>
+    <!-- Strings related to SignUp user  -->
     <string name="email_address">Email Address</string>
+    <string name="password_hint">Password</string>
+    <string name="user_name">User Name</string>
+    <string name="gender_text">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="sign_up">SIGN UP</string>
 </resources>
