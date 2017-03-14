@@ -48,12 +48,10 @@ public class HomeActivity extends Fragment {
                     R.drawable.business_home_profile,
                     "Business Name  " + i+  " ",
                     R.drawable.place_home_image,
-                    "Place of the Name",
-                    "Category",
-                    "Discretion",
-                    "here details about the place..here details about the place..here details about the place..here details about the place..here details about the place"
-
-                           ,
+                    "Place Name",
+                    "Place Category",
+                    "Description",
+                    "here details about the place, here details about the place, here details about the place, here details about the place, here details about the place",
                     "Expand >>",
                     R.attr.ratingBarStyleSmall,
                     "5"
@@ -65,7 +63,7 @@ public class HomeActivity extends Fragment {
         adapter = new HomeAdapter(listItems, getActivity());
 
         recyclerView.setAdapter(adapter);
-return myView;
+        return myView;
 
     }
 
