@@ -21,7 +21,7 @@
 
             <ImageView
                 android:id="@+id/imageViewBusinessPlace"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 app:srcCompat="@drawable/place_home_image" />
@@ -30,7 +30,6 @@
                 android:id="@+id/nameTitPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
                 android:layout_below="@+id/imageViewBusinessPlace"
                 android:text="Name of the Place"
                 android:textStyle="bold|italic" />
@@ -41,7 +40,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nameTitPlace"
                 android:layout_marginLeft="10dp"
-                android:layout_marginBottom="7dp"
                 android:text="Category"
                 android:textStyle="italic" />
 
@@ -167,7 +165,7 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_margin="2pt"
 
             />
@@ -176,10 +174,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="3pt"
-        android:paddingLeft="3pt"
-        android:paddingRight="3pt"
-        android:paddingTop="3pt"
+
         >
 
         <android.support.v7.widget.RecyclerView
