@@ -40,10 +40,10 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/email_address"
                     android:inputType="text"
-                    android:textSize="@dimen/FontSize"
                     android:textColor="#15AFD8"
                     android:textColorHint="#15AFD8"
-                    android:textColorLink="#15AFD8" />
+                    android:textColorLink="#15AFD8"
+                    android:textSize="@dimen/FontSize"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -77,6 +77,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
                 android:layout_marginTop="25dp"
+
                 >
 
 
@@ -85,8 +86,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="User Name"
-                    android:textSize="@dimen/FontSize"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textSize="@dimen/FontSize"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -120,9 +121,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Male"
+                    android:textSize="@dimen/FontSize"
                     android:textColor="#15AFD8"
-                    android:textColorLink="#15AFD8"
-                    android:textSize="@dimen/FontSize"/>
+                    android:textColorLink="#15AFD8" />
 
                 <RadioButton
                     android:id="@+id/Female"
