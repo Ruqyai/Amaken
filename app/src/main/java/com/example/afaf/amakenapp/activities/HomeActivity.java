@@ -51,9 +51,7 @@ public class HomeActivity extends Fragment {
                     "Place Name",
                     "Place Category",
                     "Description",
-                    "here details about the place, here details about the place, here details about the place, here details about the place, here details about the place"
-
-                           ,
+                    "here details about the place, here details about the place, here details about the place, here details about the place, here details about the place",
                     "Expand >>",
                     R.attr.ratingBarStyleSmall,
                     "5"
@@ -65,7 +63,7 @@ public class HomeActivity extends Fragment {
         adapter = new HomeAdapter(listItems, getActivity());
 
         recyclerView.setAdapter(adapter);
-return myView;
+        return myView;
 
     }
 
