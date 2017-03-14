@@ -16,17 +16,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/imageViewBusinessPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                app:srcCompat="@drawable/place_home_image" />
+
+            <TextView
+                android:id="@+id/nameTitPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/imageViewBusinessPlace"
+                android:text="Name of the Place"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/TextNameCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nameTitPlace"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="7dp"
+                android:text="Category"
+                android:textStyle="italic" />
+
+
+
             <ImageView
                 android:id="@+id/imageButtonGalleryHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_below="@+id/TextNameCategory"
+                android:layout_marginLeft="35dp"
                 app:srcCompat="@drawable/gallery_place" />
 
             <TextView
                 android:id="@+id/textNumberGalleryImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/TextNameCategory"
                 android:layout_toRightOf="@+id/imageButtonGalleryHome"
                 android:text="22" />
 
@@ -35,12 +66,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/like_home"
+                android:layout_below="@+id/TextNameCategory"
                 android:layout_toRightOf="@+id/textNumberGalleryImage"/>
 
             <TextView
                 android:id="@+id/textNumberLikes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/TextNameCategory"
                 android:layout_toRightOf="@+id/imageButtonLikeHome"
                 android:text="22" />
 
@@ -48,7 +81,7 @@
                 android:id="@+id/imageButtonSaveHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:layout_below="@+id/TextNameCategory"
                 android:layout_toRightOf="@+id/textNumberLikes"
                 app:srcCompat="@drawable/save_home" />
 
@@ -56,6 +89,7 @@
                 android:id="@+id/textNumberSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/TextNameCategory"
                 android:layout_toRightOf="@+id/imageButtonSaveHome"
                 android:text="22" />
 
@@ -64,6 +98,7 @@
                 android:id="@+id/imageButtonReviewHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/TextNameCategory"
                 android:layout_toRightOf="@+id/textNumberSave"
                 app:srcCompat="@drawable/review_home" />
 
@@ -71,6 +106,7 @@
                 android:id="@+id/textNumberReview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/TextNameCategory"
                 android:layout_toRightOf="@+id/imageButtonReviewHome"
                 android:text="22" />
 

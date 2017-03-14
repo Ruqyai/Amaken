@@ -29,15 +29,14 @@ public class AllUsersReviewsActivity extends AppCompatActivity implements View.O
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             listItems = new ArrayList<>();
 
-            for (int i = 0; i <= 10; i++) {
+            for (int i = 0; i < 10; i++) {
                 HomeReviewDetailsListItem listItem = new  HomeReviewDetailsListItem(
                         R.drawable.profile_user_written,
-                        "User Name" ,
+                        "User Name  " + i+  " " ,
                         "User Review good place User Review good place User Review good place User Review good place User Review good place User Review good place User Review good place User Review good place User Review good place User Review good place ",
 
                         R.drawable.ic_thumb_up_black_24dp,
                         R.drawable.ic_assistant_photo_black_24dp
-
 
                 );
 

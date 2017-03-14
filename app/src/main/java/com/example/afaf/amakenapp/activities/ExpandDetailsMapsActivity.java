@@ -35,7 +35,7 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
     public ImageView imageViewSave;
     public ImageView imageViewReveiw;
     public TextView allReviews;
-
+    public ImageView imageViewHomeBusinessPlaceImage;
 
 
     @Override
@@ -47,6 +47,8 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        imageViewHomeBusinessPlaceImage=(ImageView) findViewById(R.id.imageViewBusinessPlace);
+        imageViewHomeBusinessPlaceImage.setImageResource(R.drawable.place_home_image);
         imageViewGallery=(ImageView)findViewById(R.id.imageButtonGalleryHome);
         imageViewGallery.setImageResource(R.drawable.gallery_place);
         imageViewSave=(ImageView)findViewById(R.id.imageButtonSaveHome);
@@ -56,15 +58,6 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
         imageViewReveiw=(ImageView)findViewById(R.id.imageButtonReviewHome);
         imageViewReveiw.setImageResource(R.drawable.review_home);
         allReviews=(TextView)findViewById(R.id.textViewSeeAllReviews);
-
-        //   allReviews.setOnClickListener(new View.OnClickListener() {
-        //     @Override
-        //     public void onClick(View v) {
-        //         Intent myIntent = new Intent(v.getContext(),
-        //                AllUsersReviewsActivity.class);
-        //        context.startActivity(myIntent);
-        //      }
-        //   });
 
         allReviews.setOnClickListener(new View.OnClickListener() {
             @Override

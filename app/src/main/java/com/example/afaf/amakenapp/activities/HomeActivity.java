@@ -43,18 +43,17 @@ public class HomeActivity extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         listItems = new ArrayList<>();
 
-        for (int i = 0; i <= 10; i++) {
+        for (int i = 0; i < 10; i++) {
             HomeListItem listItem = new HomeListItem(
                     R.drawable.business_home_profile,
-                    "Business Name",
+                    "Business Name  " + i+  " ",
                     R.drawable.place_home_image,
                     "Place of the Name",
                     "Category",
-
                     "Discretion",
-                    "here details about the place..here details about the place..here details about the place..here details about the place..here details about the place" +
-                            "\n" +
-                            "          ",
+                    "here details about the place..here details about the place..here details about the place..here details about the place..here details about the place"
+
+                           ,
                     "Expand >>",
                     R.attr.ratingBarStyleSmall,
                     "5"
