@@ -103,4 +103,12 @@
     <string name="country">Country</string>
     <string name="city">City</string>
     <string name="sign_up">SIGN UP</string>
+
+    <!-- Strings related to  bussiness profile-->
+    <string name="places_text_view">Places</string>
+    <string name="events_text_View">Events</string>
+    <string name="bookmarks_text_view">Bookmarks</string>
+    <string name="likes_text_view">Likes</string>
+    <string name="reviews_text_view">Reviews</string>
+    <string name="categories_text_view">Categories</string>
 </resources>

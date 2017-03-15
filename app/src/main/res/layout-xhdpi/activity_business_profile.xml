@@ -114,7 +114,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Events"
+                    android:text="@string/events_text_View"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>
@@ -152,7 +152,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Bookmarks"
+                    android:text="@string/bookmarks_text_view"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>
@@ -198,7 +198,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Likes"
+                    android:text="@string/likes_text_view"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>
@@ -235,7 +235,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Reviews"
+                    android:text="@string/reviews_text_view"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>
@@ -273,7 +273,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Categories"
+                    android:text="@string/categories_text_view"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>
