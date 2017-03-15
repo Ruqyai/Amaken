@@ -111,4 +111,19 @@
     <string name="likes_text_view">Likes</string>
     <string name="reviews_text_view">Reviews</string>
     <string name="categories_text_view">Categories</string>
+    <!-- Strings related to  add event -->
+    <string name="enter_event_name">Enter Event name</string>
+    <string name="description_the_event">Description the Event</string>
+    <string name="event_location">Event Location</string>
+    <string name="event_photo">Event photo</string>
+    <string name="event_date">Event date</string>
+    <string name="event_category">Event category</string>
+    <string name="event_country">Country</string>
+    <!-- Strings related to  add place-->
+    <string name="enter_place_name">Enter place name</string>
+    <string name="description_the_place">Description the place</string>
+    <string name="location">Location</string>
+    <string name="place_photo">Place photo</string>
+    <string name="place_category">Place category</string>
+
 </resources>
