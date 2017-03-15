@@ -29,6 +29,7 @@
             android:name=".activities.SignUpUser"
             android:label="@string/title_activity_sign_up_user"
             android:parentActivityName=".activities.SignUpChooser"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

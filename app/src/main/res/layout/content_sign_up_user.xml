@@ -145,13 +145,14 @@
                 android:textSize="@dimen/FontSize"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp" />
+
             <Spinner
                 android:id="@+id/sign_up_user_countries_spinner_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:spinnerMode="dialog"
-                android:background="@android:drawable/btn_dropdown"/>
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dialog" />
             <TextView
                 android:text="@string/city"
                 android:layout_width="match_parent"
@@ -166,6 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:spinnerMode="dialog"
+
                 android:background="@android:drawable/btn_dropdown"/>
 
             <Button
