@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:elevation="5dp">
+        android:elevation="5dp"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,68 +24,68 @@
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
                 android:padding="3dp"
-                android:src="@drawable/ic_person"
+                android:src="@drawable/business1_icon"
                 app:civ_border_color="@color/gray"
                 app:civ_border_width="1dp"
+                android:id="@+id/imageViewEventBusinessProfile"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_alignParentTop="true"
-                android:id="@+id/imageViewHomeBusinessProfile"
                  />
 
             <TextView
-                android:id="@+id/TextNameHomeBusiness"
+                android:id="@+id/TextEventBusinessName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/imageViewHomeBusinessProfile"
+                android:layout_toEndOf="@+id/imageViewEventBusinessProfile"
                 android:text="Business Name"
                 android:layout_marginTop="20dp"
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/imageViewHomeBusinessPlace"
+                android:id="@+id/imageViewEventBusinessPlace"
                 android:layout_width="match_parent"
-                android:layout_alignParentStart="true"
                 android:layout_height="200dp"
+                android:layout_alignParentStart="true"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:layout_below="@+id/imageViewHomeBusinessProfile"
+                android:layout_below="@+id/imageViewEventBusinessProfile"
                 app:srcCompat="@drawable/store" />
 
             <TextView
-                android:id="@+id/nameTitPlaceHome"
+                android:id="@+id/events_eventName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="2dp"
 
-                android:layout_below="@+id/imageViewHomeBusinessPlace"
-                android:text="Place Name"
+                android:layout_below="@+id/imageViewEventBusinessPlace"
+                android:text="Event Name"
                 android:textStyle="bold|italic" />
 
             <TextView
-                android:id="@+id/TextNameHomeCategory"
+                android:id="@+id/events_eventCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/nameTitPlaceHome"
-                android:layout_marginLeft="2dp"
-                android:text="Place Category"
+                android:layout_below="@+id/events_eventName"
+                android:layout_marginStart="2dp"
+                android:text="Event Category"
                 android:textStyle="italic" />
 
 
 
             <TextView
-                android:id="@+id/TextHomeDiscretion"
+                android:id="@+id/TextEventsDiscretion"
                 android:layout_width="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/TextNameHomeCategory"
+                android:layout_below="@+id/events_eventCategory"
                 android:text="Description"
                 android:textColor="#39bde9"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/TextHomeDiscretionMultiLine"
+                android:id="@+id/TextEventDiscretionMultiLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -92,37 +93,45 @@
                 android:maxLength="175"
                 android:maxLines="3"
                 android:ellipsize="end"
-                android:layout_below="@+id/TextHomeDiscretion"
-                android:text="here details about the place, here details about the place, here details about the place..here details about the place, here details about the place" />
+                android:layout_below="@+id/TextEventsDiscretion"
+                android:text="here details about the event, here details about the event, here details about the event..here details about the event, here details about the event" />
 
             <TextView
-                android:id="@+id/TextExpandHome"
+                android:id="@+id/TextExpandEvent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/TextHomeDiscretionMultiLine"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/TextEventDiscretionMultiLine"
                 android:layout_margin="2pt"
                 android:text="Expand >>"
                 android:textStyle="bold" />
 
             <RatingBar
-                android:id="@+id/ratingBarHome"
+                android:id="@+id/ratingBarEvent"
                 style="@android:style/Widget.Holo.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4pt"
-                android:layout_toLeftOf="@+id/TextHomeNumberOfRate"
-                android:layout_below="@+id/TextHomeDiscretionMultiLine" />
+                android:layout_toStartOf="@+id/TextEventNumberOfRate"
+                android:layout_below="@+id/TextEventDiscretionMultiLine" />
 
                 <TextView
-                android:id="@+id/TextHomeNumberOfRate"
+                android:id="@+id/TextEventNumberOfRate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                     android:layout_marginTop="4pt"
-                    android:layout_below="@+id/TextHomeDiscretionMultiLine"
-                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/TextEventDiscretionMultiLine"
+                    android:layout_alignParentEnd="true"
                 android:text="5"
                  />
+
+            <ImageView
+                android:id="@+id/event_on_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                app:srcCompat="@drawable/ic_event_available" />
 
 
         </RelativeLayout>

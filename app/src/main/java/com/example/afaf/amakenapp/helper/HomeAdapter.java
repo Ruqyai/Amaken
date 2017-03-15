@@ -11,6 +11,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 
+import com.bumptech.glide.Glide;
 import com.example.afaf.amakenapp.R;
 import com.example.afaf.amakenapp.activities.ExpandDetailsMapsActivity;
 
@@ -41,10 +42,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         HomeListItem listItem=listItems.get(position);
 
-        holder.imageViewHomeBusinessProfileImage.setImageResource(listItem.getHomeBusinessProfileImage());
+        Glide.with(context).load(listItem.getHomeBusinessProfileImage()).into(holder.imageViewHomeBusinessProfileImage);
         holder.textViewNameHomeBusiness.setText(listItem.getNameHomeBusiness());
         holder.textViewNameHomeCategory.setText(listItem.getNameHomeCategory());
-        holder.imageViewHomeBusinessPlaceImage.setImageResource(listItem.getHomeBusinessPlaceImage());
+        Glide.with(context).load(listItem.getHomeBusinessPlaceImage()).into(holder.imageViewHomeBusinessPlaceImage);
         holder.ratingBarHome.setRating(listItem.getRatingHome());
         holder.textViewHomeNumberOfRate.setText(listItem.getHomeNumberOfRate());
         holder.textViewHomeNameTitPlaceHome.setText(listItem.getHomeNameTitPlaceHome());

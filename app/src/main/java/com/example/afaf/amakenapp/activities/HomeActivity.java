@@ -3,6 +3,7 @@ package com.example.afaf.amakenapp.activities;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +31,11 @@ public class HomeActivity extends Fragment {
     public HomeActivity() {
         // Required empty public constructor
     }
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getActivity().setTitle("Home Page");
+    }
 
 
     @Override
@@ -45,9 +51,9 @@ public class HomeActivity extends Fragment {
 
         for (int i = 0; i < 10; i++) {
             HomeListItem listItem = new HomeListItem(
-                    R.drawable.business_home_profile,
+                    R.drawable.business1_icon,
                     "Business Name  " + i+  " ",
-                    R.drawable.place_home_image,
+                    R.drawable.store,
                     "Place Name",
                     "Place Category",
                     "Description",

@@ -22,7 +22,8 @@
             android:padding="1dp">
 
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/reviews_profile_pic"
                 android:layout_width="73dp"
                 android:layout_height="58dp"
