@@ -83,18 +83,37 @@
             android:layout_marginTop="8dp"
             android:paddingStart="15dp"
             android:paddingLeft="15dp" />
+        <TextView
+            android:text="@string/country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:textColor="#A47A51"
+            android:textSize="@dimen/FontSize"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="10dp" />
         <Spinner
             android:id="@+id/sign_up_business_countries_spinner_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="58dp"
-            android:spinnerMode="dialog" />
+            android:layout_marginTop="15dp"
+            android:spinnerMode="dialog"
+            android:background="@android:drawable/btn_dropdown"/>
+        <TextView
+            android:text="@string/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            android:textColor="#A47A51"
+            android:textSize="@dimen/FontSize"
+            android:paddingLeft="10dp" />
         <Spinner
             android:id="@+id/sign_up_business_cities_spinner_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:spinnerMode="dialog" />
+            android:layout_marginTop="15dp"
+            android:spinnerMode="dialog"
+            android:background="@android:drawable/btn_dropdown"/>
 
         <Button
             android:text="SIGN UP"

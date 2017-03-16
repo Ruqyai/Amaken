@@ -40,10 +40,10 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/email_address"
                     android:inputType="text"
-                    android:textSize="@dimen/FontSize"
                     android:textColor="#15AFD8"
                     android:textColorHint="#15AFD8"
-                    android:textColorLink="#15AFD8" />
+                    android:textColorLink="#15AFD8"
+                    android:textSize="@dimen/FontSize"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -121,8 +121,8 @@
                     android:layout_weight="1"
                     android:text="@string/male"
                     android:textColor="#15AFD8"
-                    android:textColorLink="#15AFD8"
-                    android:textSize="@dimen/FontSize"/>
+                    android:textSize="@dimen/FontSize"
+                    android:textColorLink="#15AFD8" />
 
                 <RadioButton
                     android:id="@+id/Female"
@@ -138,21 +138,20 @@
 
             <TextView
                 android:text="@string/country"
+                android:textSize="@dimen/FontSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5"
                 android:textColor="#A47A51"
-                android:textSize="@dimen/FontSize"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp" />
-
             <Spinner
                 android:id="@+id/sign_up_user_countries_spinner_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dialog" />
+                android:spinnerMode="dialog"
+                android:background="@android:drawable/btn_dropdown"/>
             <TextView
                 android:text="@string/city"
                 android:layout_width="match_parent"
@@ -167,7 +166,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:spinnerMode="dialog"
-
                 android:background="@android:drawable/btn_dropdown"/>
 
             <Button

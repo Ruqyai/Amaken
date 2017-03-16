@@ -91,4 +91,39 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--activity main -->
+    <string name="already_have_an_account">Already have an account?</string>
+    <!-- Strings related to SignUp user  -->
+    <string name="email_address">Email Address</string>
+    <string name="password_hint">Password</string>
+    <string name="user_name">User Name</string>
+    <string name="gender_text">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="sign_up">SIGN UP</string>
+
+    <!-- Strings related to  bussiness profile-->
+    <string name="places_text_view">Places</string>
+    <string name="events_text_View">Events</string>
+    <string name="bookmarks_text_view">Bookmarks</string>
+    <string name="likes_text_view">Likes</string>
+    <string name="reviews_text_view">Reviews</string>
+    <string name="categories_text_view">Categories</string>
+    <!-- Strings related to  add event -->
+    <string name="enter_event_name">Enter Event name</string>
+    <string name="description_the_event">Description the Event</string>
+    <string name="event_location">Event Location</string>
+    <string name="event_photo">Event photo</string>
+    <string name="event_date">Event date</string>
+    <string name="event_category">Event category</string>
+    <string name="event_country">Country</string>
+    <!-- Strings related to  add place-->
+    <string name="enter_place_name">Enter place name</string>
+    <string name="description_the_place">Description the place</string>
+    <string name="location">Location</string>
+    <string name="place_photo">Place photo</string>
+    <string name="place_category">Place category</string>
+
 </resources>
