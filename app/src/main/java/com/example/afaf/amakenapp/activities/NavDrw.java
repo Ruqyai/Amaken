@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -118,12 +119,18 @@ public class NavDrw extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
        // no inspection Simplifiable If Statement
         if (id == R.id.menuSearch) {
+            Fragment fragment=new SearchResult();
+
+
+          //  Fragment fragment=new SearchResult();
+          ////  FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+         ////   ft .replace(R.id.content_nav_drw, fragment);
+         //   ft .commit();
+
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -168,8 +175,9 @@ public class NavDrw extends AppCompatActivity
 
         } else if (id == R.id.nav_invites) {
 
-            fragment = new InvitesActivity();
+         //   fragment = new InvitesActivity();
 
+            fragment = new SearchResult();// // TODO: 3/16/2017 Just For Test
         }
          else if (id == R.id.nav_setting) {
 

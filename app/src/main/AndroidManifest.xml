@@ -94,7 +94,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.afaf.amakenapp.activities.NavDrw" />
         </activity>
-
         <activity
             android:name=".activities.AllUsersReviewsActivity"
             android:label="All Reviews"
@@ -188,6 +187,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.afaf.amakenapp.activities.NavDrw" />
         </activity>
+
     </application>
 
 </manifest>
