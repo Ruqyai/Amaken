@@ -1,0 +1,72 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.afaf.amakenapp.activities.SearchResult">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/buttonFilters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@color/bar"
+        android:textColor="@color/baa"
+        android:text="Filters" />
+        <CheckBox
+            android:id="@+id/checkBoxFilter1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3pt"
+            android:layout_below="@+id/buttonFilters"
+            android:textColor="@color/baa"
+            android:text="Filter 1" />
+        <CheckBox
+            android:id="@+id/checkBoxFilter2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3pt"
+            android:layout_below="@+id/buttonFilters"
+            android:layout_toRightOf="@+id/checkBoxFilter1"
+            android:textColor="@color/baa"
+            android:text="Filter 2" />
+        <CheckBox
+            android:id="@+id/checkBoxFilter3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3pt"
+            android:layout_below="@+id/buttonFilters"
+            android:layout_toRightOf="@+id/checkBoxFilter2"
+            android:textColor="@color/baa"
+            android:text="Filter 3" />
+        <CheckBox
+            android:id="@+id/checkBoxFilter4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3pt"
+            android:layout_below="@+id/buttonFilters"
+            android:textColor="@color/baa"
+            android:layout_toRightOf="@+id/checkBoxFilter3"
+            android:text="Filter 4" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="2pt"
+            android:layout_above="@+id/RecyclerViewFilters"
+            android:background="@color/bar">
+
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/RecyclerViewFilters"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10pt"
+        android:layout_below="@+id/checkBoxFilter4">
+
+    </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+</FrameLayout>

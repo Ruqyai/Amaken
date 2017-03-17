@@ -90,7 +90,6 @@
             android:label="@string/title_activity_business_profile_places"
             android:theme="@style/AppTheme">
         </activity>
-
         <activity
             android:name=".activities.BusinessProfileEvents"
             android:label="@string/title_activity_business_profile_events"
@@ -188,6 +187,7 @@
                 android:value="com.example.afaf.amakenapp.activities.NavDrw" />
 
         </activity>
+
     </application>
 
 </manifest>
