@@ -71,7 +71,7 @@ public class ProfileBookmarks extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            startActivity(new Intent(this, NavDrw.class));
+            finish();
 
             return true;
         }

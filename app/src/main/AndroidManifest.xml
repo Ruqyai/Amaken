@@ -88,22 +88,9 @@
         <activity
             android:name=".activities.BusinessProfilePlaces"
             android:label="@string/title_activity_business_profile_places"
-            android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.afaf.amakenapp.activities.NavDrw" />
         </activity>
 
-        <activity
-            android:name=".activities.AllUsersReviewsActivity"
-            android:label="All Reviews"
-            android:parentActivityName=".activities.NavDrw"
-            android:theme="@style/Theme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.afaf.amakenapp.activities.NavDrw" />
-        </activity>
         <activity
             android:name=".activities.BusinessProfileEvents"
             android:label="@string/title_activity_business_profile_events"
@@ -177,9 +164,13 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/. 
         -->
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name=".activities.ExpandDetailsMapsActivity"
@@ -187,6 +178,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.afaf.amakenapp.activities.NavDrw" />
+
+        </activity>
+        <activity
+            android:name=".activities.ExpandDetailsMapsActivityEvent"
+            android:label="@string/title_activity_expand_details_maps">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.afaf.amakenapp.activities.NavDrw" />
+
         </activity>
     </application>
 

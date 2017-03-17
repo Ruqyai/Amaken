@@ -23,7 +23,7 @@ import java.util.List;
  * Created by Muha on 3/8/2017.
  */
 
-public class EventsActivity extends Fragment{
+public class LatestEventsActivity extends Fragment{
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<EventsListItem> listItems;
@@ -40,6 +40,10 @@ public class EventsActivity extends Fragment{
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         listItems = new ArrayList<>();
+
+        //// TODO: 3/15/2017  check for event date
+        // (if still available set event icon to (ic_event_available_) if not set to ( ic_event_busy)
+
 
         for (int i = 0; i < 10; i++) {
             EventsListItem listItem = new EventsListItem(

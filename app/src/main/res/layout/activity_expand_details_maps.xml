@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--suppress AndroidDomInspection -->
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:scrollbars="none">
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -6,91 +16,93 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5pt"
         android:layout_marginRight="5pt"
         android:layout_marginLeft="5pt"
-        android:elevation="4dp">
+        android:elevation="5dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp">
 
+    <ImageView
+        android:id="@+id/Expand_place_photos"
+        android:layout_width="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/store" />
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5pt"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="5pt"
+
+        android:elevation="5dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:padding="10dp">
-
-            <ImageView
-                android:id="@+id/imageViewBusinessPlace"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                app:srcCompat="@drawable/place_home_image" />
-
-            <TextView
-                android:id="@+id/nameTitPlace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imageViewBusinessPlace"
-                android:text="Name of the Place"
-                android:textStyle="bold|italic" />
-
-            <TextView
-                android:id="@+id/TextNameCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/nameTitPlace"
-                android:layout_marginLeft="10dp"
-                android:text="Category"
-                android:textStyle="italic" />
-
-
 
             <ImageView
                 android:id="@+id/imageButtonGalleryHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/TextNameCategory"
-                android:layout_marginLeft="35dp"
-                app:srcCompat="@drawable/gallery_place" />
+                app:srcCompat="@drawable/ic_gallary" />
 
             <TextView
                 android:id="@+id/textNumberGalleryImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/TextNameCategory"
-                android:layout_toRightOf="@+id/imageButtonGalleryHome"
+                android:layout_toEndOf="@+id/imageButtonGalleryHome"
+                android:layout_alignParentBottom="true"
                 android:text="22" />
 
             <ImageView
                 android:id="@+id/imageButtonLikeHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/like_home"
-                android:layout_below="@+id/TextNameCategory"
-                android:layout_toRightOf="@+id/textNumberGalleryImage"/>
+                android:layout_marginStart="21dp"
+                android:focusableInTouchMode="true"
+                app:srcCompat="@drawable/ic_like_border"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/textNumberGalleryImage" />
 
             <TextView
                 android:id="@+id/textNumberLikes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/TextNameCategory"
-                android:layout_toRightOf="@+id/imageButtonLikeHome"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/imageButtonLikeHome"
                 android:text="22" />
 
             <ImageView
                 android:id="@+id/imageButtonSaveHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/TextNameCategory"
-                android:layout_toRightOf="@+id/textNumberLikes"
-                app:srcCompat="@drawable/save_home" />
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/textNumberLikes"
+                app:srcCompat="@drawable/ic_bookmark_border" />
 
             <TextView
                 android:id="@+id/textNumberSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/TextNameCategory"
-                android:layout_toRightOf="@+id/imageButtonSaveHome"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/imageButtonSaveHome"
                 android:text="22" />
 
 
@@ -98,60 +110,453 @@
                 android:id="@+id/imageButtonReviewHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/TextNameCategory"
-                android:layout_toRightOf="@+id/textNumberSave"
-                app:srcCompat="@drawable/review_home" />
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/textNumberSave"
+                app:srcCompat="@drawable/ic_reply" />
 
             <TextView
                 android:id="@+id/textNumberReview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/TextNameCategory"
-                android:layout_toRightOf="@+id/imageButtonReviewHome"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/imageButtonReviewHome"
                 android:text="22" />
 
-            <TextView
-                android:id="@+id/textCountryDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imageButtonLikeHome"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="5dp"
-                android:text="Country" />
 
-            <TextView
-                android:id="@+id/textCityDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/imageButtonLikeHome"
-                android:layout_toRightOf="@+id/textCountryDetails"
-                android:text="City" />
-
-            <TextView
-                android:id="@+id/textPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textCountryDetails"
-                android:text="+966512345678" />
-
-            <TextView
-                android:id="@+id/textWeb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textPhone"
-                android:text="http//place.com" />
-<!--
-            <TextView
-                android:id="@+id/textViewSeeAllReviews"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/textWeb"
-                android:text="See all reviews about this place >>"
-                android:textStyle="bold" />
--->
         </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1pt"
+        android:layout_marginRight="5pt"
+        android:layout_marginLeft="5pt"
+        android:elevation="4dp">
+
+
+<TableLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    >
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="8dp"
+        >
+        <TextView
+            android:id="@+id/Expand_place_details"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Place Details:"
+            android:textColor="@color/baa"
+            android:textStyle="bold" />
+    </TableRow>
+<TableRow
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/placenamedetails"
+    android:layout_marginRight="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginBottom="8dp"
+
+    >
+    <TextView
+        android:id="@+id/place_name_bold_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:text="Place Name: "
+        android:textAlignment="gravity"
+        android:gravity=""
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/place_name"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:textAlignment="gravity"
+        android:layout_marginStart="5dp"
+        android:gravity=""
+        android:text="Target Stores"
+        android:textStyle="italic" />
+</TableRow>
+
+<TableRow
+       android:layout_height="match_parent"
+       android:layout_width="match_parent"
+       android:orientation="horizontal"
+    android:layout_marginRight="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginBottom="8dp"
+
+
+       >
+        <TextView
+            android:id="@+id/place_category_bold_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAlignment="gravity"
+            android:gravity=""
+            android:text="Place Category: "
+            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/place_category"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:textAlignment="gravity"
+                android:layout_marginStart="5dp"
+                android:gravity=""
+
+                android:text="Mall"
+                android:textStyle="italic" />
+</TableRow>
+
+
+<TableRow
+      android:layout_height="match_parent"
+      android:layout_width="wrap_content"
+      android:orientation="horizontal"
+    android:layout_marginRight="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginBottom="8dp"
+    >
+        <TextView
+            android:id="@+id/place_rating_bold_heading"
+            android:text="Rating Average: "
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAlignment="gravity"
+            android:gravity=""
+            android:textStyle="bold"/>
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+
+    <RatingBar
+        android:id="@+id/place_rating"
+        android:textAlignment="gravity"
+        android:layout_marginStart="5dp"
+        android:gravity=""
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        />
+        <TextView
+            android:id="@+id/place_rating_stat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="4,5"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+
+ </TableRow>
+
+ <TableRow
+         android:layout_height="match_parent"
+         android:layout_width="wrap_content"
+         android:orientation="horizontal"
+     android:layout_marginRight="8dp"
+     android:layout_marginLeft="8dp"
+     android:layout_marginBottom="8dp"
+         >
+
+     <TextView
+         android:id="@+id/place_description_bold_heading"
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:gravity=""
+         android:text="Description: "
+         android:textAlignment="gravity"
+
+         android:textStyle="bold" />
+
+     <TextView
+         android:id="@+id/place_description"
+         android:layout_height="match_parent"
+         android:layout_width="match_parent"
+         android:layout_weight="1"
+         android:layout_marginStart="5dp"
+         android:maxLength="300"
+         android:textAlignment="gravity"
+         android:gravity=""
+         android:text="Here details about the place, here details about the place, here details about the place..here details about the place, here details about the place" />
+
+ </TableRow>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        />
+ <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+     android:layout_margin="8dp"
+     >
+        <TextView
+            android:id="@+id/Expand_place_contact_details"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            android:text="Contact Details:"
+            android:textColor="@color/baa"
+            android:textStyle="bold" />
+    </TableRow>
+
+<TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+    android:layout_marginRight="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginBottom="8dp">
+        <TextView
+            android:id="@+id/place_businessOwner_bold_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Business Owner:"
+            android:textAlignment="gravity"
+            android:gravity=""
+            android:textStyle="bold" />
+        <TextView
+         android:id="@+id/place_businessOwner_name"
+         android:layout_width="match_parent"
+         android:layout_weight="1"
+            android:textAlignment="gravity"
+            android:layout_marginStart="5dp"
+            android:gravity="center_vertical"
+         android:text="Business owner name"
+         android:drawableStart="@drawable/ic_verified_user"
+
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:id="@+id/place_businessWeb_bold_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Business Web:"
+            android:gravity=""
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textWeb"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="5dp"
+            android:textAlignment="gravity"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_web"
+            android:autoLink="web"
+            android:text="www.seu.edu.sa" />
+
+
+     </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        >
+        <TextView
+            android:id="@+id/place_businessPhone_bold_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Business Phone:"
+            android:gravity=""
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textPhone"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="5dp"
+            android:textAlignment="gravity"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_phone"
+            android:autoLink="phone"
+
+            android:text="+966565078487" />
+
+
+    </TableRow>
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:id="@+id/place_businessEmail_bold_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Business Email:"
+            android:gravity=""
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textEmail"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="5dp"
+            android:textAlignment="gravity"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_email"
+            android:autoLink="email"
+            android:text="s130017905@gmail.com" />
+
+    </TableRow>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        />
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="8dp"
+        >
+
+        <TextView
+            android:id="@+id/Expand_place_location_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Location Details:"
+            android:textColor="@color/baa"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Country:"
+            android:textAlignment="gravity"
+            android:gravity=""
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/textCountryDetails"
+            android:text="country name"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:textAlignment="gravity"
+            android:layout_marginStart="5dp"
+            android:gravity=""
+            />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="City:"
+            android:textAlignment="gravity"
+            android:gravity=""
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/textCityDetails"
+            android:text="city name"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:textAlignment="gravity"
+            android:layout_marginStart="5dp"
+            android:gravity=""
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Address:"
+            android:textAlignment="gravity"
+            android:gravity=""
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/textAddressDetails"
+            android:text="address of the place"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:textAlignment="gravity"
+            android:layout_marginStart="5dp"
+            android:gravity=""
+            />
+
+    </TableRow>
+</TableLayout>
+
+            <!--
+                        <TextView
+                            android:id="@+id/textViewSeeAllReviews"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/textWeb"
+                            android:text="See all reviews about this place >>"
+                            android:textStyle="bold" />
+            -->
 
 
     </android.support.v7.widget.CardView>
@@ -171,16 +576,90 @@
             />
     </RelativeLayout>
 
-    <RelativeLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        >
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/RecyclerViewUnderMap"
+        android:layout_height="match_parent"
+        android:layout_marginTop="1pt"
+        android:layout_marginRight="5pt"
+        android:layout_marginLeft="5pt"
+        android:elevation="4dp">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
 
-    </RelativeLayout>
+                android:text="People's Thoughts:"
+                android:textColor="@color/baa"
+                android:textStyle="bold" />
+            <RelativeLayout
+                android:id="@+id/item_flipper"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="8dp"
+                >
+
+                <ImageButton
+                    android:id="@+id/flipp_previous"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_flipp_previous"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginStart="30dp"
+
+
+                    >
+                    <AdapterViewFlipper
+                        android:id="@+id/reviews_simple_flipper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                       />
+
+                </FrameLayout>
+
+
+
+
+                <ImageButton
+                    android:id="@+id/flipp_next"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_flipp_next"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
+
+ <!--       <android.support.v7.widget.RecyclerView
+            android:id="@+id/RecyclerViewUnderMap"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:layout_margin="5pt"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+-->
+
+
+
 </LinearLayout>
+</ScrollView>

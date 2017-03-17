@@ -24,7 +24,7 @@
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
                 android:padding="3dp"
-                android:src="@drawable/business1_icon"
+                android:src="@drawable/ic_person"
                 app:civ_border_color="@color/gray"
                 app:civ_border_width="1dp"
                 android:id="@+id/imageViewEventBusinessProfile"
@@ -32,6 +32,7 @@
                 android:layout_height="60dp"
                 android:layout_alignParentTop="true"
                  />
+
 
             <TextView
                 android:id="@+id/TextEventBusinessName"
@@ -41,6 +42,14 @@
                 android:text="Business Name"
                 android:layout_marginTop="20dp"
                 android:textStyle="bold" />
+            <View
+                android:id="@+id/imageViewEventBusinessPlaceAboveBorder"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_below="@id/imageViewEventBusinessProfile"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                />
 
             <ImageView
                 android:id="@+id/imageViewEventBusinessPlace"
@@ -49,8 +58,17 @@
                 android:layout_alignParentStart="true"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:layout_below="@+id/imageViewEventBusinessProfile"
+                android:layout_below="@+id/imageViewEventBusinessPlaceAboveBorder"
                 app:srcCompat="@drawable/store" />
+            <View
+                android:id="@+id/imageViewEvnetBusinessPlaceBottomBorder"
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_below="@id/imageViewEventBusinessPlace"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                />
 
             <TextView
                 android:id="@+id/events_eventName"
@@ -59,18 +77,23 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="2dp"
 
-                android:layout_below="@+id/imageViewEventBusinessPlace"
+                android:layout_below="@+id/imageViewEvnetBusinessPlaceBottomBorder"
                 android:text="Event Name"
-                android:textStyle="bold|italic" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/events_eventCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/events_eventName"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="8dp"
                 android:text="Event Category"
-                android:textStyle="italic" />
+                android:textColor="@color/gray"
+                android:textStyle="bold"
+                android:layout_alignBaseline="@+id/events_eventName"
+                android:layout_alignBottom="@+id/events_eventName"
+                android:layout_toEndOf="@+id/TextEventsDiscretion"
+                 />
 
 
 
@@ -81,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/events_eventCategory"
                 android:text="Description"
-                android:textColor="#39bde9"
+                android:textColor="@color/baa"
                 android:textStyle="bold" />
 
             <TextView
@@ -103,6 +126,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/TextEventDiscretionMultiLine"
                 android:layout_margin="2pt"
+                android:textColor="@color/baa"
                 android:text="Expand >>"
                 android:textStyle="bold" />
 

@@ -55,7 +55,7 @@ public class HomeActivity extends Fragment {
                     "Business Name  " + i+  " ",
                     R.drawable.store,
                     "Place Name",
-                    "Place Category",
+                    "( Place Category )",
                     "Description",
                     "here details about the place, here details about the place, here details about the place, here details about the place, here details about the place",
                     "Expand >>",

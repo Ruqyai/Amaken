@@ -14,7 +14,7 @@
             android:title="Latest Events" />
         <item
             android:id="@+id/nav_notification"
-            android:icon="@drawable/ic_add_alert_black_24dp"
+            android:icon="@drawable/ic_add_alert"
             android:title="Notifications" />
 
     </group>
@@ -30,7 +30,7 @@
                     android:icon="@drawable/ic_edit_black_24dp"
                     android:title="Profile" />
                 <item android:id="@+id/nav_setting"
-                    android:icon="@drawable/ic_settings_black_24px"
+                    android:icon="@drawable/ic_settings"
                     android:title="Settings" />
                 </group>
             </menu>
@@ -63,7 +63,7 @@
                     android:title="Help" />
 
                 <item android:id="@+id/nav_Logout"
-                    android:icon="@drawable/ic_exit_to_app_black_24dp"
+                    android:icon="@drawable/ic_exit_to_app"
                     android:title="Logout" />
 
     </group>

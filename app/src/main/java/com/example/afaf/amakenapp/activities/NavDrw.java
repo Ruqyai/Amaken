@@ -11,8 +11,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,15 +22,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.afaf.amakenapp.R;
 import com.example.afaf.amakenapp.helper.Constants;
-import com.example.afaf.amakenapp.helper.HomeAdapter;
-import com.example.afaf.amakenapp.helper.HomeListItem;
 import com.getbase.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -82,14 +74,26 @@ public class NavDrw extends AppCompatActivity
 
 
 
+
        // userName = (TextView) findViewById(R.id.nav_header_user_name);
       //  userName.setText(SharedPrefManager.getInstance(getApplicationContext()).getUsername());
 
         //userProfilePic = (CircleImageView) findViewById(R.id.nav_header_user_profile_pic);
         //Glide.with(getApplicationContext()).load("").into(userProfilePic);
        //userProfilePic.setImageResource(SharedPrefManager.getInstance(getApplicationContext()).getKeyUserProfilePicUrl());
+    }
 
 
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Fragment fragment=new HomeActivity();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_nav_drw, fragment);
+        ft.addToBackStack(null);
+        ft.commit();
 
     }
 
@@ -147,7 +151,7 @@ public class NavDrw extends AppCompatActivity
 
         } else if (id == R.id.nav_events) {
 
-            fragment = new EventsActivity();
+            fragment = new LatestEventsActivity();
 
 
         } else if (id == R.id.nav_notification) {
@@ -185,6 +189,7 @@ public class NavDrw extends AppCompatActivity
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
            ft .replace(R.id.content_nav_drw, fragment);
+           ft.addToBackStack(null);
            ft .commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -203,7 +208,7 @@ public class NavDrw extends AppCompatActivity
 
             adb.setMessage("Do you want to exit?");
 
-            adb.setIcon(R.drawable.ic_warning_black_24dp);
+            adb.setIcon(R.drawable.ic_warning);
 
             adb.setPositiveButton("YES", myClickListener);
 
@@ -232,13 +237,5 @@ public class NavDrw extends AppCompatActivity
         Toast.makeText(this, "your data was saved", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Fragment fragment=new HomeActivity();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft .replace(R.id.content_nav_drw, fragment);
-        ft .commit();
 
-    }
 }

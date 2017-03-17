@@ -40,7 +40,14 @@
                 android:text="Business Name"
                 android:layout_marginTop="20dp"
                 android:textStyle="bold" />
-
+            <View
+                android:id="@+id/imageViewHomeBusinessPlaceAboveBorder"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_below="@id/imageViewHomeBusinessProfile"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                />
             <ImageView
                 android:id="@+id/imageViewHomeBusinessPlace"
                 android:layout_width="match_parent"
@@ -48,8 +55,17 @@
                 android:layout_height="200dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:layout_below="@+id/imageViewHomeBusinessProfile"
+                android:layout_below="@+id/imageViewHomeBusinessPlaceAboveBorder"
                 app:srcCompat="@drawable/store" />
+            <View
+                android:id="@+id/imageViewHomeBusinessPlaceBottomBorder"
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_below="@id/imageViewHomeBusinessPlace"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                />
 
             <TextView
                 android:id="@+id/nameTitPlaceHome"
@@ -57,19 +73,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:layout_marginLeft="2dp"
-
-                android:layout_below="@+id/imageViewHomeBusinessPlace"
+                android:layout_below="@+id/imageViewHomeBusinessPlaceBottomBorder"
                 android:text="Place Name"
-                android:textStyle="bold|italic" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/TextNameHomeCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/nameTitPlaceHome"
-                android:layout_marginLeft="2dp"
-                android:text="Place Category"
-                android:textStyle="italic" />
+                android:layout_marginLeft="8dp"
+                android:text="(Place Category)"
+                android:textColor="@color/gray"
+                android:textStyle="bold"
+                android:layout_alignBaseline="@+id/nameTitPlaceHome"
+                android:layout_alignBottom="@+id/nameTitPlaceHome"
+                android:layout_toEndOf="@+id/TextHomeDiscretion" />
 
 
 
@@ -80,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/TextNameHomeCategory"
                 android:text="Description"
-                android:textColor="#39bde9"
+                android:textColor="@color/baa"
                 android:textStyle="bold" />
 
             <TextView
@@ -103,6 +121,8 @@
                 android:layout_below="@+id/TextHomeDiscretionMultiLine"
                 android:layout_margin="2pt"
                 android:text="Expand >>"
+                android:shadowColor="@color/baa"
+                android:textColor="@color/baa"
                 android:textStyle="bold" />
 
             <RatingBar

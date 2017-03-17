@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.afaf.amakenapp.R;
 import com.example.afaf.amakenapp.activities.ExpandDetailsMapsActivity;
+import com.example.afaf.amakenapp.activities.ExpandDetailsMapsActivityEvent;
 
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(v.getContext(),
-                      ExpandDetailsMapsActivity.class);
+                        ExpandDetailsMapsActivityEvent.class);
                 context.startActivity(myIntent);
 
 
