@@ -81,13 +81,18 @@
     <string name="title_activity_add_event">Add New Event</string>
     <string name="title_activity_expand_details_maps">Details</string>
 
-    // Strings for the dialog of the photo
-    <string name="Title_Dialog">Adding a Photo</string>
-    <string name="Option1_Dialog">Choose from Gallery</string>
-    <string name="Option2_Dialog">Take Photo</string>
-    <string name="Option3_Dialog">Clear photo</string>
+    <!-- Strings for the dialog of the photo-->
+    <string name="Title_Dialog_photo">Adding a Photo</string>
+    <string name="Option1_Dialog_photo">Choose from Gallery</string>
+    <string name="Option2_Dialog_photo">Take a Photo</string>
+    <string name="Option3_Dialog_photo">Clear a photo</string>
     <string name="hint_Dialog">Add Description</string>
-    <string name="Done">Done</string>
+    <string name="done">done</string>
+
+    <!--  Strings for the dialog of the location-->
+    <string name="Title_Dialog_loction">Adding a Location</string>
+    <string name="Option1_Dialog_loction">street name </string>
+    <string name="Option2_Dialog_loction">coordination</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

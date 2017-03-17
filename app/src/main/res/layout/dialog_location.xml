@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="20dp">
 
     <TextView
@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/Title_Dialog_photo"
+        android:text="@string/Title_Dialog_loction"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -24,36 +24,25 @@
         android:inputType="textMultiLine" />
 
     <Button
-        android:id="@+id/buttonFromGall"
+        android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="@string/Option1_Dialog_photo" />
+        android:text="@string/Option1_Dialog_loction" />
 
     <Button
-        android:id="@+id/buttonTakephoto"
+        android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Option2_Dialog_photo" />
+        android:text="@string/Option2_Dialog_loction" />
 
     <Button
-        android:id="@+id/buttonClearphoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Option3_Dialog_photo" />
-
-    <Button
-        android:id="@+id/buttonDone"
+        android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="200dp"
-        android:text="@string/done" />
+        android:text="Done" />
 
-    <ImageView
-        android:layout_width="350dp"
-        android:layout_height="300dp"
-        android:id="@+id/image_view"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        />
+
 </LinearLayout>
+

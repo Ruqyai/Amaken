@@ -96,13 +96,16 @@
             android:textSize="@dimen/FontSize"
             android:textColor="@color/baa" />
 
-        <EditText
-            android:id="@+id/editText3"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView3"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp" />
+
+            <ImageButton
+                android:id="@+id/locationimageButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignRight="@+id/textView1"
+                android:layout_below="@+id/textView3"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/loc" />
 
 
         <TextView
@@ -118,7 +121,7 @@
             android:textColor="@color/baa" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/photoimageButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="60dp"
