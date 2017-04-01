@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="1dp"
     android:background="@drawable/first_page"
-    tools:context="com.example.afaf.amakenapp.activities.MainActivity">
+    tools:context="com.amakenapp.website.amakenapp.activities.MainActivity">
 
     <ImageButton
         android:id="@+id/signUpMain"
