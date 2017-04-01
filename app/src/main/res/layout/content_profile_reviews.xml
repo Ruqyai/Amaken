@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.afaf.amakenapp.activities.ProfileLikes"
+    tools:context="com.amakenapp.website.amakenapp.activities.ProfileLikes"
     tools:showIn="@layout/activity_profile_likes">
 
     <android.support.v7.widget.RecyclerView

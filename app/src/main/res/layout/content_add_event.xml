@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.afaf.amakenapp.activities.AddEvent"
+    tools:context="com.amakenapp.website.amakenapp.activities.AddEvent"
     tools:showIn="@layout/activity_add_event">
     <ScrollView
         android:layout_width="368dp"

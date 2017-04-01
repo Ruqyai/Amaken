@@ -3,25 +3,25 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="com.example.afaf.amakenapp.activities.SettingsActivity$GeneralPreferenceFragment"
+        android:fragment="com.amakenapp.website.amakenapp.activities.SettingsActivity$GeneralPreferenceFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_general" />
 
     <header
-        android:fragment="com.example.afaf.amakenapp.activities.SettingsActivity$NotificationPreferenceFragment"
+        android:fragment="com.amakenapp.website.amakenapp.activities.SettingsActivity$NotificationPreferenceFragment"
         android:icon="@drawable/ic_notifications"
         android:title="@string/pref_header_notifications" />
 
     <header
-        android:fragment="com.example.afaf.amakenapp.activities.SettingsActivity$DataSyncPreferenceFragment"
+        android:fragment="com.amakenapp.website.amakenapp.activities.SettingsActivity$DataSyncPreferenceFragment"
         android:icon="@drawable/ic_sync"
         android:title="@string/pref_header_data_sync" />
     <header
-        android:fragment="com.example.afaf.amakenapp.activities.SettingsActivity$DataSyncPreferenceFragment"
+        android:fragment="com.amakenapp.website.amakenapp.activities.SettingsActivity$DataSyncPreferenceFragment"
         android:icon="@drawable/ic_bookmark_black_24dp"
         android:title="Styles" />
     <header
-        android:fragment="com.example.afaf.amakenapp.activities.SettingsActivity$GeneralPreferenceFragment"
+        android:fragment="com.amakenapp.website.amakenapp.activities.SettingsActivity$GeneralPreferenceFragment"
         android:icon="@drawable/ic_edit_black_24dp"
         android:title="Language" />
 
