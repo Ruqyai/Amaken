@@ -20,7 +20,9 @@ android {
         }
     }
 }
-
+repositories {
+    mavenCentral()
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -33,13 +35,15 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:design:25.2.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
+    compile 'com.github.siyamed:android-shape-imageview:0.9.3@aar'
     compile 'com.android.support.constraint:constraint-layout:1.0.0'
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.android.support:support-vector-drawable:25.2.0'
     compile 'com.getbase:floatingactionbutton:1.10.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.google.android.gms:play-services-maps:10.2.0'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.google.firebase:firebase-auth:10.0.1'
     testCompile 'junit:junit:4.12'
 }
 
@@ -60,3 +64,5 @@ dependencies {
 
 
 
+
+apply plugin: 'com.google.gms.google-services'
