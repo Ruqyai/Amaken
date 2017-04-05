@@ -24,10 +24,11 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile project(':facebook-android-sdk-4.20.0')
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:recyclerview-v7:25.2.0'
     compile 'com.android.support:cardview-v7:25.2.0'
@@ -41,26 +42,21 @@ dependencies {
     compile 'com.android.support:support-vector-drawable:25.2.0'
     compile 'com.getbase:floatingactionbutton:1.10.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.google.android.gms:play-services-maps:10.2.0'
+
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'com.google.firebase:firebase-auth:10.0.1'
+    compile 'com.google.firebase:firebase-core:10.0.1'
+    compile 'com.google.firebase:firebase-invites:10.0.1'
+    compile 'com.cr5315:socialbuttons:0.2.0'
+    compile 'com.google.android.gms:play-services-auth:10.0.1'
+    compile 'com.google.firebase:firebase-messaging:10.0.1'
+    compile 'com.google.android.gms:play-services-plus:10.0.1'
+    compile 'com.google.android.gms:play-services-maps:10.0.1'
+    compile 'com.google.android.gms:play-services-places:10.0.1'
+    compile 'com.google.android.gms:play-services-location:10.0.1'
     testCompile 'junit:junit:4.12'
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

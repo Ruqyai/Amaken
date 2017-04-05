@@ -172,7 +172,8 @@ public class NavDrw extends AppCompatActivity
 
         } else if (id == R.id.nav_invites) {
 
-            fragment = new InvitesActivity();
+          //  fragment = new InvitesActivity();
+           startActivity(new Intent(NavDrw.this, InvitesActivity.class));
 
         }
          else if (id == R.id.nav_setting) {
