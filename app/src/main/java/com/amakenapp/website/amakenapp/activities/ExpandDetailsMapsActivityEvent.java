@@ -173,7 +173,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         flipPreviousEvent.setOnClickListener(this);
 
 
-        //animations for the next and previous buttons
+/////////////animations for the next and previous buttons
         Animation mAnimation = new AlphaAnimation(1, 0);
         mAnimation.setDuration(500);
         mAnimation.setInterpolator(new LinearInterpolator());
@@ -181,7 +181,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         mAnimation.setRepeatMode(Animation.REVERSE);
         flipPreviousEvent.startAnimation(mAnimation);
         filpNextEvent.startAnimation(mAnimation);
-
+////////////////
 
         reviewsFlipper = (AdapterViewFlipper) findViewById(R.id.reviews_simple_flipper_events);
         listItems = new ArrayList<>();
@@ -189,9 +189,9 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
             ExpandReviewDetailsListItem listItem = new ExpandReviewDetailsListItem(
                     "User Name " + i + " ",
                     " on TimeStamp ",
-                    R.drawable.ic_person,
+                    "",
                     "good place, good place, good place, good place, good place, good place",
-                    R.attr.ratingBarStyleSmall,
+                    1.5f,
                     R.drawable.ic_thump_up,
                     "22",
                     R.drawable.ic_report_flag
@@ -201,10 +201,10 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
 
         reviewsCustomAdapter = new ReviewsCustomAdapter(listItems, this);
         reviewsFlipper.setAdapter(reviewsCustomAdapter);
-        eventReviews(eventID);
         reviewsFlipper.setFlipInterval(2000);
         reviewsFlipper.setAutoStart(true);
 
+        eventReviews(eventID);
         eventReviews(eventID);
         eventGalleryLoading(eventID);
         eventLikesNumber(eventID);
@@ -236,6 +236,8 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         UiSettings uiSettings = googleMap.getUiSettings();
         uiSettings.setAllGesturesEnabled(true);
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -289,6 +291,8 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
     }
 
     /////////////////////////
+
+
     public void eventInformationLoading(int eventId) {
         final int eventID = eventId;
 
@@ -356,8 +360,6 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
 
 
 
-
-
     public void eventGalleryLoading(int eventId) {
         final int eventID = eventId;
 
@@ -414,14 +416,11 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
                         error.getMessage(),
                         Toast.LENGTH_LONG
                 ).show();
-
             }
         }) {
 
         };
-
         MySingleton.getInstance(this).addToRequestQueue(send);
-
     }
 
 
@@ -702,6 +701,20 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
                             eventReplysNumber.setText(reviewsNumber2);
                             if (!obj.getBoolean("error")) {
                                 JSONArray arr = obj.getJSONArray("eventReviews");
+                                for (int i = 0; i < arr.length(); i++) {
+                                    JSONObject reviewDetails = arr.getJSONObject(i);
+                                    ExpandReviewDetailsListItem listItem = new ExpandReviewDetailsListItem();
+                                    listItem.setReviewUserName(reviewDetails.getString("user_name"));
+                                    listItem.setReviewTimestamp(reviewDetails.getString("review_timeStamp"));
+                                    listItem.setReviewUserProfilePic(reviewDetails.getString("user_photo"));
+                                    listItem.setReviewText(reviewDetails.getString("review_text"));
+                                    Double rate = reviewDetails.getDouble("rate_value");
+                                    String rate2 = Double.toString(rate);
+                                    Float rate3 = Float.parseFloat(rate2);
+                                    eventRating.setRating(rate3);
+                                    listItem.setReviewRatingValue(rate3);
+                                    listItems.add(listItem);
+                                }
                                 }
                             else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();

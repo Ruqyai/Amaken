@@ -142,7 +142,7 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
         reviewsFlipper = (AdapterViewFlipper) findViewById(R.id.reviews_simple_flipper);
         listItems = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        /*for (int i = 0; i < 10; i++) {
             ExpandReviewDetailsListItem listItem = new ExpandReviewDetailsListItem(
                     "User Name " + i + " ",
                     " on TimeStamp ",
@@ -156,7 +156,7 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
 
             listItems.add(listItem);
 
-        }
+        }*/
 
         reviewsCustomAdapter = new ReviewsCustomAdapter(listItems, this);
         reviewsFlipper.setAdapter(reviewsCustomAdapter);

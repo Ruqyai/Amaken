@@ -120,7 +120,9 @@
                 android:text="here details about the event, here details about the event, here details about the event..here details about the event, here details about the event" />
 
             <TextView
+                android:background="?attr/selectableItemBackground"
                 android:id="@+id/TextExpandEvent"
+                android:focusableInTouchMode="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"

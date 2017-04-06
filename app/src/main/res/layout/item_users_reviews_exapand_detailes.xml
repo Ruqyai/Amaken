@@ -62,21 +62,27 @@
 
 
             <RatingBar
+
+        android:textAlignment="gravity"
+        android:layout_marginStart="5dp"
+        android:gravity=""
+        style="?android:attr/ratingBarStyleSmall"
+
                 android:id="@+id/all_reviews_singleReview_rating"
-                style="@android:style/Widget.Holo.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
                 android:isIndicator="true"
                 android:layout_alignStart="@id/textViewUserWhatIsWrite"
-                android:layout_below="@+id/textViewUserWhatIsWrite"
-                android:layout_alignEnd="@+id/all_reviews_timestamp" />
+                android:layout_below="@+id/textViewUserWhatIsWrite" />
 
             <ImageView
                 android:id="@+id/all_reviews_likeLogo"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 app:srcCompat="@drawable/ic_thump_up"
+                android:focusableInTouchMode="true"
+                android:background="?attr/selectableItemBackground"
                 android:layout_marginStart="13dp"
                 android:layout_alignBottom="@+id/all_reviews_singleReview_rating"
                 android:layout_toEndOf="@+id/all_reviews_singleReview_rating"
@@ -95,8 +101,10 @@
 
             <ImageView
                 android:id="@+id/all_reviewReportFlag"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="?attr/selectableItemBackground"
+                android:focusableInTouchMode="true"
                 android:layout_marginStart="8dp"
                 android:layout_below="@id/textViewUserWhatIsWrite"
                 app:srcCompat="@drawable/ic_report_flag"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Amakenapp</string>
+    <string name="app_name">Amaken</string>
     <string name="title_activity_sign_up_user">Create a User Account</string>
     <string name="title_activity_sign_up_business">Create a Business Account</string>
     <string name="title_activity_sign_up_chooser">Choose a Sign Up Method</string>

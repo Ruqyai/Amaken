@@ -1,5 +1,9 @@
 package com.amakenapp.website.amakenapp.helper;
 
+import android.widget.RatingBar;
+
+import com.amakenapp.website.amakenapp.R;
+
 /**
  * Created by User on 3/12/2017.
  */
@@ -8,18 +12,22 @@ public class ExpandReviewDetailsListItem {
 
     private String reviewUserName;
     private String reviewTimestamp;
-    private int reviewUserProfilePic;
+    private String reviewUserProfilePic;
     private String reviewText;
-    private int reviewRatingValue;
-    private int reviewLikeImage;
+    private Float reviewRatingValue;
+    private int reviewLikeImage = R.drawable.ic_thump_up;
     private String reviewLikesNumber;
-    private int reviewFlagImage;
+    private int reviewFlagImage = R.drawable.ic_report_flag;
+
+
+    public ExpandReviewDetailsListItem() {
+    }
 
     public ExpandReviewDetailsListItem(String reviewUserName,
                                        String reviewTimestamp,
-                                       int reviewUserProfilePic,
+                                       String reviewUserProfilePic,
                                        String reviewText,
-                                       int reviewRatingValue,
+                                       Float reviewRatingValue,
                                        int reviewLikeImage,
                                        String reviewLikesNumber,
                                        int reviewFlagImage) {
@@ -49,11 +57,11 @@ public class ExpandReviewDetailsListItem {
         this.reviewTimestamp = reviewTimestamp;
     }
 
-    public int getReviewUserProfilePic() {
+    public String getReviewUserProfilePic() {
         return reviewUserProfilePic;
     }
 
-    public void setReviewUserProfilePic(int reviewUserProfilePic) {
+    public void setReviewUserProfilePic(String reviewUserProfilePic) {
         this.reviewUserProfilePic = reviewUserProfilePic;
     }
 
@@ -65,11 +73,11 @@ public class ExpandReviewDetailsListItem {
         this.reviewText = reviewText;
     }
 
-    public int getReviewRatingValue() {
+    public Float getReviewRatingValue() {
         return reviewRatingValue;
     }
 
-    public void setReviewRatingValue(int reviewRatingValue) {
+    public void setReviewRatingValue(Float reviewRatingValue) {
         this.reviewRatingValue = reviewRatingValue;
     }
 
