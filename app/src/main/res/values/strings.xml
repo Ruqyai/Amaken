@@ -130,5 +130,10 @@
     <string name="location">Location</string>
     <string name="place_photo">Place photo</string>
     <string name="place_category">Place category</string>
+    <string name="bookmarks_text">Bookmarks</string>
+    <string name="likes_text">Likes</string>
+    <string name="reviews_text">Reviews</string>
+    <string name="categories_text">Categories</string>
+    <string name="events_text">Events</string>
 
 </resources>

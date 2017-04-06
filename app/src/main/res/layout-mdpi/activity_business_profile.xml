@@ -32,6 +32,7 @@
         android:layout_gravity="center"
         android:id="@+id/businessProfile_changeProfilePicTxt"
         android:textColor="@color/baa"
+        android:textSize="@dimen/FontSize"
         android:text="@string/change_your_profile_picture"
         android:layout_above="@+id/row1"
         android:layout_toEndOf="@+id/change_business_profile_pic" />
@@ -77,6 +78,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/places_text_view"
+                    android:textSize="@dimen/FontSize"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"
                     android:layout_marginTop="1dp"/>
@@ -115,6 +117,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/events_text_View"
+                    android:textSize="@dimen/FontSize"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>
@@ -153,6 +156,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/bookmarks_text_view"
+                    android:textSize="@dimen/FontSize"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>
@@ -199,6 +203,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/likes_text_view"
+                    android:textSize="@dimen/FontSize"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>
@@ -235,6 +240,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textSize="@dimen/FontSize"
                     android:text="@string/reviews_text_view"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
@@ -273,6 +279,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textSize="@dimen/FontSize"
                     android:text="@string/categories_text_view"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
