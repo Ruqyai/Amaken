@@ -20,4 +20,30 @@ public class Constants {
     public static final int DIALOG_EXIT = 3;
     public static final int CODE_NORMAL_USER = 1244;
     public static final int CODE_BUSINESS_USER = 1245;
+
+    public static final String URL_EVENT_INFO = ROOT_URL+"getEventById/";
+    public static final String URL_EVENT_GALLERY = ROOT_URL+"getEventGallery/";
+    public static final String URL_EVENT_USERS_REVIEWS = ROOT_URL+"getReviewsOnEvent/";
+    public static final String URL_EVENT_STORE_LIKE = ROOT_URL+"storeEventLike";
+    public static final String URL_EVENT_CHECK_LIKE = ROOT_URL+"checkEventLikeEsxits";
+
+    public static final String URL_EVENT_STORE_BOOKMARK = ROOT_URL+"storeEventBookmark";
+    public static final String URL_EVENT_CHECK_BOOKMARK = ROOT_URL+"checkEventBookmarkEsxits";
+    public static final String URL_EVENT_BOOKMARK_NUMBERS = ROOT_URL+"getEventBookmarksNumbers/";
+    public static final String URL_EVENT_LIKES_NUMBERS = ROOT_URL+"getEventLikesNumbers/";
+    public static final String URL_EVENT_USERS_GALLERY = ROOT_URL+"getReviewsGalleryOnEvent/";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

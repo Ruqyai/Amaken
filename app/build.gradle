@@ -40,6 +40,11 @@ dependencies {
     compile 'com.getbase:floatingactionbutton:1.10.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.google.android.gms:play-services-maps:10.2.0'
+
+    //for view pager
+    compile 'me.relex:circleindicator:1.2.2@aar'
+    //
+
     testCompile 'junit:junit:4.12'
 }
 
