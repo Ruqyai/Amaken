@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+               <ImageView
+                   android:id="@+id/Expand_event_or_place_photos"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:padding="2dp"
+                   android:adjustViewBounds="true"
+                   android:scaleType="fitXY"
+                   app:srcCompat="@drawable/store" />
+
+</RelativeLayout>
