@@ -5,13 +5,13 @@
 
     <item
         android:id="@+id/BsPlaceView"
-        android:title="View" />
+        android:title="@string/view_text" />
 
     <item
         android:id="@+id/BsPlaceEdit"
-        android:title="Edit" />
+        android:title="@string/edit_" />
 
     <item
         android:id="@+id/BsPlaceDelete"
-        android:title="Delete" />
+        android:title="@string/delete_text" />
 </menu>

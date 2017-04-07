@@ -182,5 +182,26 @@
     <string name="business_text">Business</string>
     <string name="user_text">User</string>
     <string name="expand_text"><![CDATA[Expand >>]]></string>
+    <!-- String related to nav_drawer_from menu-->
+    <string name="home_text">Home</string>
+    <string name="latest_events_text">Latest Events</string>
+    <string name="notifications_text">Notifications</string>
+    <string name="edit_text">Edit</string>
+    <string name="profile_text">Profile</string>
+    <string name="settings_text">Settings</string>
+    <string name="communicate_text">Communicate</string>
+    <string name="invite_a_friend_text">Invite a Friend</string>
+    <string name="help_text">Help</string>
+    <string name="logout_text">Logout</string>
+    <!-- String related to business_profile_placeandevent_ooption_menu-->
+    <string name="view_text">View</string>
+    <string name="edit_">Edit</string>
+    <string name="delete_text">Delete</string>
+    <!-- String related to bookmarks_profile_ooption_menu-->
+    <string name="remove_text">Remove</string>
+    <!-- String related to likes_profile_ooption_menu-->
+    <string name="unlike_text">Unlike</string>
+    <!-- String related to search_ooption_menu-->
+    <string name="search_text">Search</string>
 
 </resources>

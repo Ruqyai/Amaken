@@ -5,10 +5,10 @@
 
     <item
         android:id="@+id/placeOrEventOrReviewLikeView"
-        android:title="View" />
+        android:title="@string/view_text" />
 
     <item
         android:id="@+id/likeUnlike"
-        android:title="Unlike" />
+        android:title="@string/unlike_text" />
 
 </menu>

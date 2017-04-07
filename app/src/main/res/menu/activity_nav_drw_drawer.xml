@@ -7,20 +7,20 @@
         <item
             android:id="@+id/nav_Home"
             android:icon="@drawable/ic_home_black_24px"
-            android:title="Home" />
+            android:title="@string/home_text" />
         <item
             android:id="@+id/nav_events"
             android:icon="@drawable/ic_event_black_24dp"
-            android:title="Latest Events" />
+            android:title="@string/latest_events_text" />
         <item
             android:id="@+id/nav_notification"
             android:icon="@drawable/ic_add_alert"
-            android:title="Notifications" />
+            android:title="@string/notifications_text" />
 
     </group>
     <group
         android:id="@+id/editMenu">
-        <item android:title="Edit">
+        <item android:title="@string/edit_text">
             <menu>
                 <group
                     android:checkableBehavior="single">
@@ -28,10 +28,10 @@
                 <item
                     android:id="@+id/nav_profile"
                     android:icon="@drawable/ic_edit_black_24dp"
-                    android:title="Profile" />
+                    android:title="@string/profile_text" />
                 <item android:id="@+id/nav_setting"
                     android:icon="@drawable/ic_settings"
-                    android:title="Settings" />
+                    android:title="@string/settings_text" />
                 </group>
             </menu>
         </item>
@@ -40,11 +40,11 @@
     <group
         android:id="@+id/communicateMenu"
         >
-    <item android:title="Communicate">
+    <item android:title="@string/communicate_text">
         <menu>
             <group
                 android:checkableBehavior="single">
-            <item android:title="Invite a Friend"
+            <item android:title="@string/invite_a_friend_text"
                 android:icon="@drawable/ic_person_add_black_24dp"
                 android:id="@+id/nav_invites" />
             </group>
@@ -60,11 +60,11 @@
 
                 <item android:id="@+id/nav_Help"
                     android:icon="@drawable/ic_help_black_24dp"
-                    android:title="Help" />
+                    android:title="@string/help_text" />
 
                 <item android:id="@+id/nav_Logout"
                     android:icon="@drawable/ic_exit_to_app"
-                    android:title="Logout" />
+                    android:title="@string/logout_text" />
 
     </group>
 </menu>
