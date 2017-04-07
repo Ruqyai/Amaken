@@ -13,9 +13,15 @@
             android:icon="@drawable/ic_event_black_24dp"
             android:title="@string/latest_events_text" />
         <item
-            android:id="@+id/nav_notification"
-            android:icon="@drawable/ic_add_alert"
-            android:title="@string/notifications_text" />
+            andro
+            android:icon="@drawable/ic_notifications"
+            android:title="Notifications" />
+        <item
+            android:id="@+id/nav_Discover"
+            android:icon="@drawable/ic_place_black_24dp"
+            android:title="Discover places" />
+
+
 
     </group>
     <group

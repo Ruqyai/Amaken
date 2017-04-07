@@ -1,15 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.amakenapp.website.amakenapp.activities.InvitesActivity">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="invites page"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        />
-</RelativeLayout>
+
+        android:orientation="vertical"
+        android:padding="5pt"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:paddingBottom="3pt"
+            android:paddingTop="3pt">
+
+            <Button
+                android:id="@+id/share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#d2f4453e"
+                android:text="  Share on Google+  "
+                android:padding="4pt"
+                android:textStyle="italic"
+                android:typeface="sans"
+                android:textAllCaps="?attr/windowActionBar"
+                android:layout_gravity="center"
+                android:layout_margin="3pt"
+                android:textColor="#1b1b1b"
+                android:drawableLeft="@drawable/ic_googleplus"
+                />
+
+
+            <com.cr5315.socialbuttons.FacebookShareButton
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="3pt"
+                app:accessToken="@string/facebook_access_token"
+                app:buttonText="Share on Facebook"
+                app:progressType="spinner"
+                app:shareUrl="https://play.google.com/store/apps/details?id=com.seu" />
+            <Button
+                android:id="@+id/share_button_Msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#6213f913"
+                android:text=" Share by whatsApp "
+                android:padding="4pt"
+                android:textStyle="italic"
+                android:typeface="sans"
+                android:textAllCaps="?attr/windowActionBar"
+                android:layout_gravity="center"
+                android:layout_margin="3pt"
+                android:textColor="#1b1b1b"
+                android:drawableLeft="@drawable/ic_whatsapp_logo"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

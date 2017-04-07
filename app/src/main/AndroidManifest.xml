@@ -10,6 +10,8 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +20,7 @@
         android:largeHeap="true"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name="com.amakenapp.website.amakenapp.activities.MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,9 +28,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.SignUpUser"
+            android:name=".activities.SignUpUser"
             android:label="@string/title_activity_sign_up_user"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.SignUpChooser"
+            android:parentActivityName=".activities.SignUpChooser"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
@@ -36,109 +38,126 @@
                 android:value="com.amakenapp.website.amakenapp.activities.SignUpChooser" />
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.SignUpBusiness"
+            android:name=".activities.SignUpBusiness"
             android:label="@string/title_activity_sign_up_business"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.SignUpChooser"
+            android:parentActivityName=".activities.SignUpChooser"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.SignUpChooser" />
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.SignUpChooser"
+            android:name=".activities.SignUpChooser"
             android:label="@string/title_activity_sign_up_chooser"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.MainActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.MainActivity" />
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.Login"
+            android:name=".activities.InvitesActivity"
+            android:label="Tell your Friends"
+            android:parentActivityName=".activities.NavDrw"
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+        </activity>
+        <activity
+            android:name=".activities.Login"
             android:label="@string/title_activity_login"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.MainActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.MainActivity" />
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.AddReview"
+            android:name=".activities.AddReview"
             android:label="@string/title_activity_add_review"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.MainActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.MainActivity" />
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.NavDrw"
+            android:name=".activities.NavDrw"
             android:label="@string/title_activity_nav_drw"
-            android:theme="@style/AppTheme" />
-        <activity android:name="com.amakenapp.website.amakenapp.activities.ChooseInterest" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"
+            android:windowSoftInputMode="stateHidden"
+            android:launchMode="singleTask"><meta-data
+            android:name="android.app.searchable"
+            android:resource="@xml/searchable">
+        </meta-data>
+        </activity>
+
+        <activity android:name=".activities.ChooseInterest" />
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.NavDrw"
+            android:parentActivityName=".activities.NavDrw"
             android:theme="@style/Theme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.BusinessProfilePlaces"
+            android:name=".activities.BusinessProfilePlaces"
             android:label="@string/title_activity_business_profile_places"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:theme="@style/AppTheme" />
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.BusinessProfileEvents"
+            android:name=".activities.BusinessProfileEvents"
             android:label="@string/title_activity_business_profile_events"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.NavDrw"
+            android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.ProfileBookmarks"
+            android:name=".activities.ProfileBookmarks"
             android:label="@string/title_activity_profile_bookmarks"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.NavDrw"
+            android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.ProfileLikes"
+            android:name=".activities.ProfileLikes"
             android:label="@string/title_activity_profile_likes"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.NavDrw"
+            android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.ProfileReviews"
+            android:name=".activities.ProfileReviews"
             android:label="@string/title_activity_profile_reviews"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.NavDrw"
+            android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.ProfileCategories"
+            android:name=".activities.ProfileCategories"
             android:label="@string/title_activity_profile_categories"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.NavDrw"
+            android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.AddPlace"
+            android:name=".activities.AddPlace"
             android:label="@string/title_activity_add_place"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.NavDrw"
+            android:parentActivityName=".activities.NavDrw"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
@@ -146,9 +165,9 @@
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.AddEvent"
+            android:name=".activities.AddEvent"
             android:label="@string/title_activity_add_event"
-            android:parentActivityName="com.amakenapp.website.amakenapp.activities.NavDrw"
+            android:parentActivityName=".activities.NavDrw"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
@@ -172,22 +191,33 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivity"
+            android:name=".activities.ExpandDetailsMapsActivity"
             android:label="@string/title_activity_expand_details_maps">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
-
         </activity>
         <activity
-            android:name="com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivityEvent"
+            android:name=".activities.ExpandDetailsMapsActivityEvent"
             android:label="@string/title_activity_expand_details_maps">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
-
         </activity>
 
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".activities.welcome" />
+
+        <activity android:name=".activities.DiscoverActivity"
+            android:label="Discover Places "
+            android:parentActivityName=".activities.NavDrw"
+            android:theme="@style/Theme"
+            >
+
+        </activity>
     </application>
 
 </manifest>

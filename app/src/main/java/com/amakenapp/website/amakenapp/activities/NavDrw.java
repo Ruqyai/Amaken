@@ -2,6 +2,8 @@ package com.amakenapp.website.amakenapp.activities;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,12 +21,14 @@ import android.view.MenuItem;
 import android.content.Intent;
 
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
 import com.amakenapp.website.amakenapp.helper.Constants;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -42,7 +46,7 @@ public class NavDrw extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        FloatingActionsMenu floatButton = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
 
         FloatingActionButton addPlaceFab = (FloatingActionButton) findViewById(R.id.Adds_place);
         addPlaceFab.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +64,7 @@ public class NavDrw extends AppCompatActivity
 
             }
         });
+        floatButton.setVisibility(View.INVISIBLE);
 
 
 
@@ -112,6 +117,16 @@ public class NavDrw extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.search, menu);
         MenuItem item = menu.findItem(R.id.menuSearch);
+        SearchManager searchManager = (SearchManager)
+                getSystemService(Context.SEARCH_SERVICE);
+
+        SearchView searchView = (SearchView) item.getActionView();
+
+        searchView.setSearchableInfo(searchManager.
+                getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        //searchView.setOnQueryTextListener(this);
+
         return true;
     }
 
@@ -125,7 +140,7 @@ public class NavDrw extends AppCompatActivity
 
        // no inspection Simplifiable If Statement
         if (id == R.id.menuSearch) {
-            return true;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -158,6 +173,9 @@ public class NavDrw extends AppCompatActivity
 
             fragment = new NotificationActivity();
 
+        } else if (id == R.id.nav_Discover) {
+            startActivity(new Intent(NavDrw.this, DiscoverActivity.class));
+
         } else if (id == R.id.nav_profile) {
             
             //// TODO: 3/9/2017 get user type from shared preferences 
@@ -172,7 +190,8 @@ public class NavDrw extends AppCompatActivity
 
         } else if (id == R.id.nav_invites) {
 
-            fragment = new InvitesActivity();
+          //  fragment = new InvitesActivity();
+           startActivity(new Intent(NavDrw.this, InvitesActivity.class));
 
         }
          else if (id == R.id.nav_setting) {

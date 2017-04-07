@@ -21,6 +21,6 @@
         android:id="@+id/imageViewGrid"
         android:layout_below="@+id/text"
         android:layout_centerHorizontal="true"
-         />
+        />
 
 </RelativeLayout>
