@@ -165,5 +165,22 @@
     <string name="event_date_text">Event Date:</string>
     <string name="event_time_text">Event Time:</string>
     <string name="event_days_text">Event Days:</string>
+    <!-- Strings related to review-->
+    <string name="your_review_wil_be_posted_publicly_on_the_app_text">Your review wil be posted publicly on the app</string>
+    <string name="describ_your_experience_text">Describ your experience</string>
+    <string name="cancel_text">CANCEL</string>
+    <string name="post_text_button">POST</string>
+    <!-- String related to sign_up_business-->
+    <string name="email_address_text">Email Address</string>
+    <string name="password_">Password</string>
+    <string name="business_name_hint">Business Name</string>
+    <string name="business_web_url_optional_hint">Business Web URL (optional)</string>
+    <string name="business_phone_number_hint">Business Phone Number</string>
+    <string name="sign_up_button">SIGN UP</string>
+    <!-- String related to sign_up_chooser-->
+    <string name="sign_up_as_text">Sign Up as..</string>
+    <string name="business_text">Business</string>
+    <string name="user_text">User</string>
+    <string name="expand_text"><![CDATA[Expand >>]]></string>
 
 </resources>

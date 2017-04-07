@@ -78,7 +78,7 @@
                 android:layout_marginStart="2dp"
 
                 android:layout_below="@+id/imageViewEvnetBusinessPlaceBottomBorder"
-                android:text="Event Name"
+                android:text="@string/event_name_text"
                 android:textStyle="bold" />
 
             <TextView
@@ -103,7 +103,7 @@
                 android:layout_margin="3dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/events_eventCategory"
-                android:text="Description"
+                android:text="@string/description_"
                 android:textColor="@color/baa"
                 android:textStyle="bold" />
 
@@ -129,7 +129,7 @@
                 android:layout_below="@+id/TextEventDiscretionMultiLine"
                 android:layout_margin="2pt"
                 android:textColor="@color/baa"
-                android:text="Expand >>"
+                android:text="@string/expand_text"
                 android:textStyle="bold" />
 
             <RatingBar

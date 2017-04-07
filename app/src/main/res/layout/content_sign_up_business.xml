@@ -33,7 +33,7 @@
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/businessEmail"
-            android:hint="  Email Address"
+            android:hint="@string/email_address_text"
             android:selectAllOnFocus="false"
             android:allowUndo="true"
             android:textColor="#009688"
@@ -47,7 +47,7 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/businessPassword"
-            android:hint=" Password"
+            android:hint="@string/password_"
             android:textColorHint="#9B9B9B"
             android:layout_marginTop="12dp" />
 
@@ -57,7 +57,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/businessName"
-            android:hint="Business Name"
+            android:hint="@string/business_name_hint"
             android:textColorHint="#9B9B9B"
             android:textColor="#9B9B9B"
             android:paddingStart="15dp"
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/businessWebUrl"
-            android:hint="Business Web URL (optional)"
+            android:hint="@string/business_web_url_optional_hint"
             android:textSize="18sp"
             android:layout_marginTop="8dp"
             android:paddingStart="15dp"
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/businessPhoneNumber"
-            android:hint="Business Phone Number"
+            android:hint="@string/business_phone_number_hint"
             android:textSize="18sp"
             android:layout_marginTop="8dp"
             android:paddingStart="15dp"
@@ -116,7 +116,7 @@
             android:background="@android:drawable/btn_dropdown"/>
 
         <Button
-            android:text="SIGN UP"
+            android:text="@string/sign_up_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/SignUpBusiness"
