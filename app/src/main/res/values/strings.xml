@@ -135,5 +135,35 @@
     <string name="reviews_text">Reviews</string>
     <string name="categories_text">Categories</string>
     <string name="events_text">Events</string>
+    <!-- Strings related to Expand details place-->
+    <string name="place_details_text">Place Details:</string>
+    <string name="place_name_text">Place Name:</string>
+    <string name="place_category_text">Place Category:</string>
+    <string name="rating_average_text">Rating Average:</string>
+    <string name="description_text">Description:</string>
+    <string name="here_details_about_the_place_text">Here details about the place, here details about the place, here details about the place..here details about the place, here details about the place</string>
+    <string name="contact_details_text">Contact Details:</string>
+    <string name="business_owner_text">Business Owner:</string>
+    <string name="business_owner_name_text">Business owner name</string>
+    <string name="business_web_text">Business Web:</string>
+    <string name="business_phone_text">Business Phone:</string>
+    <string name="business_email_text">Business Email:</string>
+    <string name="location_details_text">Location Details:</string>
+    <string name="country_text">Country:</string>
+    <string name="country_name_text">country name</string>
+    <string name="city_text">City:</string>
+    <string name="city_name_text">city name</string>
+    <string name="address_text">Address:</string>
+    <string name="address_of_the_place_text">address of the place</string>
+    <string name="people_s_thoughts_text">People\'s Thoughts:</string>
+    <!-- Strings related to Expand details event-->
+    <string name="event_details_text">Event Details:</string>
+    <string name="event_name_text">Event Name:</string>
+    <string name="event_category_text">Event Category:</string>
+    <string name="description_">Description:</string>
+    <string name="date_details_text">Date Details:</string>
+    <string name="event_date_text">Event Date:</string>
+    <string name="event_time_text">Event Time:</string>
+    <string name="event_days_text">Event Days:</string>
 
 </resources>

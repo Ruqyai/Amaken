@@ -150,7 +150,7 @@
             android:id="@+id/Expand_place_details"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Place Details:"
+            android:text="@string/place_details_text"
             android:textColor="@color/baa"
             android:textStyle="bold" />
     </TableRow>
@@ -169,7 +169,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
 
-        android:text="Place Name: "
+        android:text="@string/place_name_text"
         android:textAlignment="gravity"
         android:gravity=""
         android:textStyle="bold" />
@@ -201,7 +201,7 @@
             android:layout_height="match_parent"
             android:textAlignment="gravity"
             android:gravity=""
-            android:text="Place Category: "
+            android:text="@string/place_category_text"
             android:textStyle="bold" />
             <TextView
                 android:id="@+id/place_category"
@@ -226,7 +226,7 @@
     >
         <TextView
             android:id="@+id/place_rating_bold_heading"
-            android:text="Rating Average: "
+            android:text="@string/rating_average_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textAlignment="gravity"
@@ -277,7 +277,7 @@
          android:layout_width="wrap_content"
          android:layout_height="match_parent"
          android:gravity=""
-         android:text="Description: "
+         android:text="@string/description_text"
          android:textAlignment="gravity"
 
          android:textStyle="bold" />
@@ -291,7 +291,7 @@
          android:maxLength="300"
          android:textAlignment="gravity"
          android:gravity=""
-         android:text="Here details about the place, here details about the place, here details about the place..here details about the place, here details about the place" />
+         android:text="@string/here_details_about_the_place_text" />
 
  </TableRow>
     <View
@@ -312,7 +312,7 @@
             android:layout_width="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
-            android:text="Contact Details:"
+            android:text="@string/contact_details_text"
             android:textColor="@color/baa"
             android:textStyle="bold" />
     </TableRow>
@@ -328,7 +328,7 @@
             android:id="@+id/place_businessOwner_bold_heading"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Business Owner:"
+            android:text="@string/business_owner_text"
             android:textAlignment="gravity"
             android:gravity=""
             android:textStyle="bold" />
@@ -339,7 +339,7 @@
             android:textAlignment="gravity"
             android:layout_marginStart="5dp"
             android:gravity="center_vertical"
-         android:text="Business owner name"
+         android:text="@string/business_owner_name_text"
          android:drawableStart="@drawable/ic_verified_user"
 
             />
@@ -357,7 +357,7 @@
             android:id="@+id/place_businessWeb_bold_heading"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Business Web:"
+            android:text="@string/business_web_text"
             android:gravity=""
             android:textStyle="bold" />
 
@@ -387,7 +387,7 @@
             android:id="@+id/place_businessPhone_bold_heading"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Business Phone:"
+            android:text="@string/business_phone_text"
             android:gravity=""
             android:textStyle="bold" />
 
@@ -416,7 +416,7 @@
             android:id="@+id/place_businessEmail_bold_heading"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Business Email:"
+            android:text="@string/business_email_text"
             android:gravity=""
             android:textStyle="bold" />
 
@@ -453,7 +453,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Location Details:"
+            android:text="@string/location_details_text"
             android:textColor="@color/baa"
             android:textStyle="bold" />
     </TableRow>
@@ -470,13 +470,13 @@
 
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Country:"
+            android:text="@string/country_text"
             android:textAlignment="gravity"
             android:gravity=""
             android:textStyle="bold"/>
         <TextView
             android:id="@+id/textCountryDetails"
-            android:text="country name"
+            android:text="@string/country_name_text"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1"
@@ -500,13 +500,13 @@
 
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="City:"
+            android:text="@string/city_text"
             android:textAlignment="gravity"
             android:gravity=""
             android:textStyle="bold"/>
         <TextView
             android:id="@+id/textCityDetails"
-            android:text="city name"
+            android:text="@string/city_name_text"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1"
@@ -529,13 +529,13 @@
 
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Address:"
+            android:text="@string/address_text"
             android:textAlignment="gravity"
             android:gravity=""
             android:textStyle="bold"/>
         <TextView
             android:id="@+id/textAddressDetails"
-            android:text="address of the place"
+            android:text="@string/address_of_the_place_text"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1"
@@ -592,7 +592,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
 
-                android:text="People's Thoughts:"
+                android:text="@string/people_s_thoughts_text"
                 android:textColor="@color/baa"
                 android:textStyle="bold" />
             <RelativeLayout
