@@ -28,7 +28,7 @@
             android:layout_marginLeft="35dp" />
 
         <TextView
-            android:text="Your review wil be posted publicly on the app"
+            android:text="@string/your_review_wil_be_posted_publicly_on_the_app_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView4"
@@ -57,13 +57,13 @@
             android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/editText2"
-            android:hint="Describ your experience"
+            android:hint="@string/describ_your_experience_text"
             android:layout_below="@+id/ratingBar"
             android:layout_alignRight="@+id/button"
             android:layout_alignEnd="@+id/button" />
 
         <Button
-            android:text="CANCEL"
+            android:text="@string/cancel_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="22dp"
@@ -77,7 +77,7 @@
             android:layout_marginTop="13dp" />
 
         <Button
-            android:text="POST"
+            android:text="@string/post_text_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button2"

@@ -4,10 +4,10 @@
 
     <item
         android:id="@+id/placeOrEventView"
-        android:title="View" />
+        android:title="@string/view_text" />
 
     <item
         android:id="@+id/bookmarkRemove"
-        android:title="Remove" />
+        android:title="@string/remove_text" />
 
 </menu>

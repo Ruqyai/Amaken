@@ -28,16 +28,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="10dp">
+                >
 
-                <ImageView
-                    android:id="@+id/Expand_event_photos"
+                <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="350dp">
+
+                </android.support.v4.view.ViewPager>
+
+                <me.relex.circleindicator.CircleIndicator
+                   android:id="@+id/indicator"
                     android:layout_width="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:layout_height="200dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/store" />
+                    android:layout_height="30dp"
+                    android:layout_below="@id/pager"
+                    android:layout_alignParentBottom="true"
+                    app:ci_drawable="@drawable/ic_indicator_fill"
+                    app:ci_drawable_unselected="@drawable/ic_indicator_outline"
+
+                    />
+
+
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
@@ -69,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/imageButtonGalleryEvent"
                     android:layout_alignParentBottom="true"
-                    android:text="22" />
+                    android:text="" />
 
                 <ImageView
                     android:id="@+id/imageButtonLikeEvent"
@@ -87,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_toEndOf="@+id/imageButtonLikeEvent"
-                    android:text="22" />
+                    android:text="" />
 
                 <ImageView
                     android:id="@+id/imageButtonSaveeEvent"
@@ -103,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_toEndOf="@+id/imageButtonSaveeEvent"
-                    android:text="22" />
+                    android:text="" />
 
 
                 <ImageView
@@ -120,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_toEndOf="@+id/imageButtonReviewEvent"
-                    android:text="22" />
+                    android:text="" />
 
 
             </RelativeLayout>
@@ -150,7 +161,7 @@
                         android:id="@+id/Expand_event_details"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Event Details:"
+                        android:text="@string/event_details_text"
                         android:textColor="@color/baa"
                         android:textStyle="bold" />
                 </TableRow>
@@ -168,8 +179,7 @@
                         android:id="@+id/event_name_bold_heading"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-
-                        android:text="Event Name: "
+                        android:text="@string/event_name_text"
                         android:textAlignment="gravity"
                         android:gravity=""
                         android:textStyle="bold" />
@@ -181,7 +191,6 @@
                         android:textAlignment="gravity"
                         android:layout_marginStart="5dp"
                         android:gravity=""
-                        android:text="Target Sales"
                         android:textStyle="italic" />
                 </TableRow>
 
@@ -201,7 +210,7 @@
                         android:layout_height="match_parent"
                         android:textAlignment="gravity"
                         android:gravity=""
-                        android:text="Event Category: "
+                        android:text="@string/event_category_text"
                         android:textStyle="bold" />
                     <TextView
                         android:id="@+id/event_category"
@@ -210,8 +219,6 @@
                         android:textAlignment="gravity"
                         android:layout_marginStart="5dp"
                         android:gravity=""
-
-                        android:text="Special offer Sales"
                         android:textStyle="italic" />
                 </TableRow>
 
@@ -254,7 +261,6 @@
                             android:id="@+id/event_rating_stat"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="4,5"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -277,7 +283,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity=""
-                        android:text="Description: "
+                        android:text="@string/description_"
                         android:textAlignment="gravity"
 
                         android:textStyle="bold" />
@@ -290,9 +296,7 @@
                         android:layout_marginStart="5dp"
                         android:maxLength="300"
                         android:textAlignment="gravity"
-                        android:gravity=""
-                        android:text="Here details about the event, here details about the event, here details about the event..here details about the event, here details about the event" />
-
+                        android:gravity=""/>
                 </TableRow>
                 <View
                     android:layout_width="match_parent"
@@ -312,7 +316,7 @@
                         android:layout_width="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_height="wrap_content"
-                        android:text="Contact Details:"
+                        android:text="@string/contact_details_text"
                         android:textColor="@color/baa"
                         android:textStyle="bold" />
                 </TableRow>
@@ -328,7 +332,7 @@
                         android:id="@+id/event_businessOwner_bold_heading"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Business Owner:"
+                        android:text="@string/business_owner_text"
                         android:textAlignment="gravity"
                         android:gravity=""
                         android:textStyle="bold" />
@@ -339,7 +343,6 @@
                         android:textAlignment="gravity"
                         android:layout_marginStart="5dp"
                         android:gravity="center_vertical"
-                        android:text="Business owner name"
                         android:drawableStart="@drawable/ic_verified_user"
 
                         />
@@ -357,7 +360,7 @@
                         android:id="@+id/event_businessWeb_bold_heading"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Business Web:"
+                        android:text="@string/business_web_text"
                         android:gravity=""
                         android:textStyle="bold" />
 
@@ -370,7 +373,7 @@
                         android:gravity="center_vertical"
                         android:drawableStart="@drawable/ic_web"
                         android:autoLink="web"
-                        android:text="www.seu.edu.sa" />
+                         />
 
 
                 </TableRow>
@@ -387,7 +390,7 @@
                         android:id="@+id/event_businessPhone_bold_heading"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Business Phone:"
+                        android:text="@string/business_phone_text"
                         android:gravity=""
                         android:textStyle="bold" />
 
@@ -401,7 +404,7 @@
                         android:drawableStart="@drawable/ic_phone"
                         android:autoLink="phone"
 
-                        android:text="+966565078487" />
+                         />
 
 
                 </TableRow>
@@ -416,7 +419,7 @@
                         android:id="@+id/event_businessEmail_bold_heading"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Business Email:"
+                        android:text="@string/business_email_text"
                         android:gravity=""
                         android:textStyle="bold" />
 
@@ -429,7 +432,7 @@
                         android:gravity="center_vertical"
                         android:drawableStart="@drawable/ic_email"
                         android:autoLink="email"
-                        android:text="s130017905@gmail.com" />
+                         />
 
                 </TableRow>
                 <View
@@ -450,7 +453,7 @@
                         android:layout_width="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_height="wrap_content"
-                        android:text="Date Details:"
+                        android:text="@string/date_details_text"
                         android:textColor="@color/baa"
                         android:textStyle="bold" />
                 </TableRow>
@@ -468,7 +471,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity=""
-                        android:text="Event Date:"
+                        android:text="@string/event_date_text"
                         android:textAlignment="gravity"
                         android:textStyle="bold" />
 
@@ -483,7 +486,6 @@
                             android:id="@+id/event_startDate"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:text="start date"
                             android:drawableStart="@drawable/ic_event_start"
                             android:textAlignment="gravity"
                             android:layout_width="wrap_content"
@@ -499,8 +501,6 @@
                             android:textAlignment="gravity"
                             android:gravity="center_vertical"
                             android:drawableStart="@drawable/ic_event_end"
-                            android:text="end date"
-
                             />
                     </LinearLayout>
 
@@ -519,7 +519,7 @@
                         android:id="@+id/event_time"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Event Time:"
+                        android:text="@string/event_time_text"
                         android:gravity=""
                         android:textStyle="bold" />
                     <LinearLayout
@@ -535,7 +535,6 @@
                             android:layout_weight="1"
                             android:textAlignment="gravity"
                             android:gravity="center_vertical"
-                            android:text="start time"
                             android:drawableStart="@drawable/ic_event_start_time"
 
                             />
@@ -546,7 +545,6 @@
                             android:layout_weight="1"
                             android:textAlignment="gravity"
                             android:gravity="center_vertical"
-                            android:text="end time"
                             android:drawableStart="@drawable/ic_event_end_time"
 
                             />
@@ -566,7 +564,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Event Days:"
+                        android:text="@string/event_days_text"
                         android:gravity=""
                         android:textStyle="bold" />
 
@@ -577,7 +575,7 @@
                         android:textAlignment="gravity"
                         android:gravity="center_vertical"
                         android:drawableStart="@drawable/ic_event_days"
-                        android:text="Saturday, Monday, Thursday" />
+                        />
 
 
                 </TableRow>
@@ -603,7 +601,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:text="Location Details:"
+                        android:text="@string/location_details_text"
                         android:textColor="@color/baa"
                         android:textStyle="bold" />
                 </TableRow>
@@ -620,13 +618,12 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Country:"
+                        android:text="@string/country_text"
                         android:textAlignment="gravity"
                         android:gravity=""
                         android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/textCountryDetailsevent"
-                        android:text="country name"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
@@ -650,13 +647,12 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="City:"
+                        android:text="@string/city_text"
                         android:textAlignment="gravity"
                         android:gravity=""
                         android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/textCityDetailsevent"
-                        android:text="city name"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
@@ -679,13 +675,12 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Address:"
+                        android:text="@string/address_text"
                         android:textAlignment="gravity"
                         android:gravity=""
                         android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/textAddressDetailsevent"
-                        android:text="address of the event"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
@@ -710,7 +705,7 @@
                 android:id="@+id/map_event"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="300dp"
                 android:layout_margin="2pt"
 
                 />
@@ -732,7 +727,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
 
-                    android:text="People's Thoughts:"
+                    android:text="@string/people_s_thoughts_text"
                     android:textColor="@color/baa"
                     android:textStyle="bold" />
                 <RelativeLayout

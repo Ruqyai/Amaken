@@ -36,6 +36,7 @@
         android:id="@+id/businessProfile_changeProfilePicTxt"
         android:textColor="@color/baa"
         android:text="@string/change_your_profile_picture"
+        android:textSize="@dimen/FontSize"
         android:layout_above="@+id/row1"
         android:layout_toEndOf="@+id/change_business_profile_pic" />
 
@@ -81,6 +82,7 @@
                     android:gravity="center"
                     android:text="@string/places_text_view"
                     android:textColor="@color/baa3"
+                    android:textSize="@dimen/FontSize"
                     android:layout_marginBottom="3dp"
                     android:layout_marginTop="1dp"/>
             </LinearLayout>
@@ -117,8 +119,9 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Events"
+                    android:text="@string/events_text"
                     android:textColor="@color/baa3"
+                    android:textSize="@dimen/FontSize"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>
 
@@ -155,7 +158,8 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Bookmarks"
+                    android:textSize="@dimen/FontSize"
+                    android:text="@string/bookmarks_text"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>
@@ -201,7 +205,8 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Likes"
+                    android:textSize="@dimen/FontSize"
+                    android:text="@string/likes_text"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>
@@ -238,7 +243,8 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Reviews"
+                    android:textSize="@dimen/FontSize"
+                    android:text="@string/reviews_text"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>
@@ -276,7 +282,8 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Categories"
+                    android:textSize="@dimen/FontSize"
+                    android:text="@string/categories_text"
                     android:textColor="@color/baa3"
                     android:layout_marginBottom="3dp"/>
             </LinearLayout>

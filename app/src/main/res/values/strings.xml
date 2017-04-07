@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Amakenapp</string>
+    <string name="app_name">Amaken</string>
     <string name="title_activity_sign_up_user">Create a User Account</string>
     <string name="title_activity_sign_up_business">Create a Business Account</string>
     <string name="title_activity_sign_up_chooser">Choose a Sign Up Method</string>
@@ -131,7 +131,83 @@
     <string name="location">Location</string>
     <string name="place_photo">Place photo</string>
     <string name="place_category">Place category</string>
+
     /////////////////////////////////////////////////////
+
+    <string name="bookmarks_text">Bookmarks</string>
+    <string name="likes_text">Likes</string>
+    <string name="reviews_text">Reviews</string>
+    <string name="categories_text">Categories</string>
+    <string name="events_text">Events</string>
+    <!-- Strings related to Expand details place-->
+    <string name="place_details_text">Place Details:</string>
+    <string name="place_name_text">Place Name:</string>
+    <string name="place_category_text">Place Category:</string>
+    <string name="rating_average_text">Rating Average:</string>
+    <string name="description_text">Description:</string>
+    <string name="here_details_about_the_place_text">Here details about the place, here details about the place, here details about the place..here details about the place, here details about the place</string>
+    <string name="contact_details_text">Contact Details:</string>
+    <string name="business_owner_text">Business Owner:</string>
+    <string name="business_owner_name_text">Business owner name</string>
+    <string name="business_web_text">Business Web:</string>
+    <string name="business_phone_text">Business Phone:</string>
+    <string name="business_email_text">Business Email:</string>
+    <string name="location_details_text">Location Details:</string>
+    <string name="country_text">Country:</string>
+    <string name="country_name_text">country name</string>
+    <string name="city_text">City:</string>
+    <string name="city_name_text">city name</string>
+    <string name="address_text">Address:</string>
+    <string name="address_of_the_place_text">address of the place</string>
+    <string name="people_s_thoughts_text">People\'s Thoughts:</string>
+    <!-- Strings related to Expand details event-->
+    <string name="event_details_text">Event Details:</string>
+    <string name="event_name_text">Event Name:</string>
+    <string name="event_category_text">Event Category:</string>
+    <string name="description_">Description:</string>
+    <string name="date_details_text">Date Details:</string>
+    <string name="event_date_text">Event Date:</string>
+    <string name="event_time_text">Event Time:</string>
+    <string name="event_days_text">Event Days:</string>
+    <!-- Strings related to review-->
+    <string name="your_review_wil_be_posted_publicly_on_the_app_text">Your review wil be posted publicly on the app</string>
+    <string name="describ_your_experience_text">Describ your experience</string>
+    <string name="cancel_text">CANCEL</string>
+    <string name="post_text_button">POST</string>
+    <!-- String related to sign_up_business-->
+    <string name="email_address_text">Email Address</string>
+    <string name="password_">Password</string>
+    <string name="business_name_hint">Business Name</string>
+    <string name="business_web_url_optional_hint">Business Web URL (optional)</string>
+    <string name="business_phone_number_hint">Business Phone Number</string>
+    <string name="sign_up_button">SIGN UP</string>
+    <!-- String related to sign_up_chooser-->
+    <string name="sign_up_as_text">Sign Up as..</string>
+    <string name="business_text">Business</string>
+    <string name="user_text">User</string>
+    <string name="expand_text"><![CDATA[Expand >>]]></string>
+    <!-- String related to nav_drawer_from menu-->
+    <string name="home_text">Home</string>
+    <string name="latest_events_text">Latest Events</string>
+    <string name="notifications_text">Notifications</string>
+    <string name="edit_text">Edit</string>
+    <string name="profile_text">Profile</string>
+    <string name="settings_text">Settings</string>
+    <string name="communicate_text">Communicate</string>
+    <string name="invite_a_friend_text">Invite a Friend</string>
+    <string name="help_text">Help</string>
+    <string name="logout_text">Logout</string>
+    <!-- String related to business_profile_placeandevent_ooption_menu-->
+    <string name="view_text">View</string>
+    <string name="edit_">Edit</string>
+    <string name="delete_text">Delete</string>
+    <!-- String related to bookmarks_profile_ooption_menu-->
+    <string name="remove_text">Remove</string>
+    <!-- String related to likes_profile_ooption_menu-->
+    <string name="unlike_text">Unlike</string>
+    <!-- String related to search_ooption_menu-->
+    <string name="search_text">Search</string>
+
 
     <string name="action_deep_link">
         com.google.android.gms.samples.appinvite.DEEP_LINK_ACTION

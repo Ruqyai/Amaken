@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/textViewHead"
-            android:text="Sign Up as.."
+            android:text="@string/sign_up_as_text"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                     android:id="@+id/textViewDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Business"
+                    android:text="@string/business_text"
                     android:textSize="15dp"
                     android:layout_gravity="center"
                     android:padding="2dp"
@@ -95,7 +95,7 @@
                     android:id="@+id/textViewDesc2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User"
+                    android:text="@string/user_text"
                     android:textColor="#15AFD8"
                     android:textSize="14sp"
                     android:textStyle="bold"
