@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.amakenapp.website.amakenapp.activities.DiscoverActivity">
+<!--
+
+    <TextView
+        android:id="@+id/textViewNameDiscover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="10pt"
+
+        android:text="Click to Discover any Place" />
+
+    <TextView
+        android:id="@+id/textViewDiscoverDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="10pt"
+        android:text="Click On Search Icon"
+        android:visibility="visible" />
+    <TextView
+        android:id="@+id/textViewDiscoverPhoe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="phone"
+        android:layout_margin="10pt"
+        android:text="phone number"
+        android:visibility="visible" />
+    <TextView
+        android:id="@+id/textViewDiscoverWeb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:layout_margin="10pt"
+        android:text="web site"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imageViewIconDiscover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/places_ic_search"
+        android:layout_margin="10pt"/>
+-->
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Expand_place_details"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Place Details:"
+                android:textColor="@color/baa"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/placenamedetails"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal"
+
+            >
+
+            <TextView
+                android:id="@+id/place_name_bold_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity=""
+                android:text="Place Name: "
+                android:textAlignment="gravity"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/place_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:gravity=""
+                android:text="Target Stores"
+                android:textAlignment="gravity"
+                android:textStyle="italic" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal"
+
+
+            >
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/place_rating_bold_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity=""
+                android:text="Rating Average: "
+                android:textAlignment="gravity"
+                android:textStyle="bold" />
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <RatingBar
+                    android:id="@+id/place_rating"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:gravity=""
+                    android:textAlignment="gravity" />
+
+                <TextView
+                    android:id="@+id/place_rating_stat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="4,5"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal">
+
+
+        </TableRow>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/gray" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Expand_place_contact_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Contact Details:"
+                android:textColor="@color/baa"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/place_businessOwner_bold_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity=""
+                android:text="Place Address:"
+                android:textAlignment="gravity"
+                android:drawableStart="@drawable/ic_verified_user"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/place_Address"
+                android:layout_width="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:text="Place Address"
+                android:textAlignment="gravity" />
+
+            <TextView
+                android:layout_margin="10dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/place_businessWeb_bold_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_web"
+                android:gravity=""
+                android:text="Place Web:"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textWeb"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:autoLink="web"
+                android:gravity="center_vertical"
+
+                android:text="www.seu.edu.sa"
+                android:textAlignment="gravity" />
+            <TextView
+                android:layout_margin="5dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/place_businessPhone_bold_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_phone"
+                android:gravity=""
+                android:text="Place Phone:"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textPhone"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:autoLink="phone"
+                android:gravity="center_vertical"
+
+                android:text="+966565078487"
+
+                android:textAlignment="gravity" />
+
+            <TextView
+                android:layout_margin="5dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal">
+
+
+        </TableRow>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/gray" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+
+        </TableRow>
+
+
+    </TableLayout>
+    <TableLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+       <ImageView
+           android:id="@+id/imageMap"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_margin="8dp"
+
+           />
+
+    </TableLayout>
+
+</LinearLayout>

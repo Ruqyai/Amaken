@@ -10,7 +10,6 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
 
@@ -86,7 +85,16 @@
         <activity
             android:name=".activities.NavDrw"
             android:label="@string/title_activity_nav_drw"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"
+            android:windowSoftInputMode="stateHidden"
+            android:launchMode="singleTask"><meta-data
+            android:name="android.app.searchable"
+            android:resource="@xml/searchable">
+        </meta-data>
+        </activity>
+
         <activity android:name=".activities.ChooseInterest" />
         <activity
             android:name=".activities.SettingsActivity"
@@ -100,7 +108,7 @@
         <activity
             android:name=".activities.BusinessProfilePlaces"
             android:label="@string/title_activity_business_profile_places"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.BusinessProfileEvents"
             android:label="@string/title_activity_business_profile_events"
@@ -201,7 +209,15 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".activities.welcome"></activity>
+        <activity android:name=".activities.welcome" />
+
+        <activity android:name=".activities.DiscoverActivity"
+            android:label="Discover Places "
+            android:parentActivityName=".activities.NavDrw"
+            android:theme="@style/Theme"
+            >
+
+        </activity>
     </application>
 
 </manifest>
