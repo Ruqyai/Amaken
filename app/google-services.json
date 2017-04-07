@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "391715754684",
+    "firebase_url": "https://amaken-21d5b.firebaseio.com",
+    "project_id": "amaken-21d5b",
+    "storage_bucket": "amaken-21d5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391715754684:android:44b21266eaf643f4",
+        "android_client_info": {
+          "package_name": "com.amakenapp.website.amakenapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391715754684-51i6rejh7f7bc03enkibvqeno7mnec0i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amakenapp.website.amakenapp",
+            "certificate_hash": "765c5198b1adc8cc79499990b9175cf7d74c6b4c"
+          }
+        },
+        {
+          "client_id": "391715754684-4gc7igb9op6hqvf61mue2thfcu5eq0b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYoAivgbHim8FXA8GjymDW97FtmcAb4yo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391715754684-4gc7igb9op6hqvf61mue2thfcu5eq0b9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
