@@ -70,7 +70,8 @@
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Cofes"
+                            android:textSize="@dimen/FontSize"
+                            android:text="@string/cofes_text"
                             android:textColor="@color/baa3"
                             android:layout_marginBottom="3dp"
                             android:layout_marginTop="1dp"/>
@@ -110,7 +111,8 @@
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Education"
+                            android:textSize="@dimen/FontSize"
+                            android:text="@string/education_text"
                             android:textColor="@color/baa3"
                             android:layout_marginBottom="3dp"/>
                     </LinearLayout>
@@ -150,7 +152,8 @@
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Entertainment"
+                            android:textSize="@dimen/FontSize"
+                            android:text="@string/entertainment_text"
                             android:textColor="@color/baa3"
                             android:layout_marginBottom="3dp"/>
                     </LinearLayout>
@@ -199,7 +202,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
-                            android:text="Hair Stylists"
+                            android:textSize="@dimen/FontSize"
+                            android:text="@string/hair_stylists_text"
                             android:textColor="@color/baa3" />
                     </LinearLayout>
                     </LinearLayout>
@@ -239,7 +243,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
-                            android:text="Hotels"
+                            android:textSize="@dimen/FontSize"
+                            android:text="@string/hotels_text"
                             android:textColor="@color/baa3" />
                     </LinearLayout>
                     </LinearLayout>
@@ -280,7 +285,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
-                            android:text="Hospitals"
+                            android:textSize="@dimen/FontSize"
+                            android:text="@string/hospitals_text"
                             android:textColor="@color/baa3" />
                     </LinearLayout>
                     </LinearLayout>
@@ -327,9 +333,10 @@
                         <TextView
                             android:id="@+id/textView33"
                             android:layout_width="100dp"
+                            android:textSize="@dimen/FontSize"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Malls"
+                            android:text="@string/malls_text"
                             android:textColor="@color/baa3"
                             android:layout_marginBottom="3dp"
                             android:layout_marginTop="1dp"/>
@@ -372,7 +379,8 @@ android:id="@+id/parksCard"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Parks"
+                            android:textSize="@dimen/FontSize"
+                            android:text="@string/parks_text"
                             android:textColor="@color/baa3"
                             android:layout_marginBottom="3dp"/>
                     </LinearLayout>
@@ -415,7 +423,8 @@ android:id="@+id/restaurantsCard"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Restaurants"
+                            android:textSize="@dimen/FontSize"
+                            android:text="@string/restaurants_text"
                             android:textColor="@color/baa3"
                             android:layout_marginBottom="3dp"/>
                     </LinearLayout>
@@ -468,7 +477,8 @@ android:id="@+id/spaCard"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
-                            android:text="Sap and leisure"
+                            android:textSize="@dimen/FontSize"
+                            android:text="@string/sap_and_leisure_text"
                             android:textColor="@color/baa3" />
                     </LinearLayout>
                     </LinearLayout>
@@ -509,7 +519,8 @@ android:id="@+id/sportCard"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
-                            android:text="Sport"
+                            android:textSize="@dimen/FontSize"
+                            android:text="@string/sport_text"
                             android:textColor="@color/baa3" />
                     </LinearLayout>
                     </LinearLayout>
@@ -548,7 +559,8 @@ android:id="@+id/sportCard"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
-                            android:text="Tourism"
+                            android:textSize="@dimen/FontSize"
+                            android:text="@string/tourism_text"
                             android:textColor="@color/baa3" />
                         </LinearLayout>
 
@@ -565,7 +577,7 @@ android:id="@+id/sportCard"
     android:layout_margin="5dp"
     android:layout_below="@+id/row4"
     android:background="@color/bar"
-    android:text="edit"/>
+    android:text="@string/edit_button"/>
             <Button
                 android:id="@+id/ButtonSave"
                 android:layout_width="wrap_content"
@@ -575,7 +587,7 @@ android:id="@+id/sportCard"
                 android:layout_alignParentEnd="true"
 
                 android:background="@color/bar"
-                android:text="Save"/>
+                android:text="@string/save_button"/>
         </RelativeLayout>
     </ScrollView>
 

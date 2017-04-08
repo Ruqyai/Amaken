@@ -239,4 +239,20 @@
     <string name="facebook_access_token">EAACEdEose0cBAOE6KST3jgZCBDJINoYGOZCwoGfq0LQGwavgM5QpeEvEQC5cFbrKw0ZBoakaxaZBgegZAXKZBbn9vr7sHxd13z86sb9QhVeZAxxPiDpCaeyCAZCTI9ShK9EIP47WRWOJJNVOxVGN1TF3X0usj8PBa02iq4bmpl4ZCTf1WPVDDqMsb6VohE7WVoMUZD</string>
 
     <string name="server_client_id">391715754684-51i6rejh7f7bc03enkibvqeno7mnec0i.apps.googleusercontent.com</string>
+
+    <!-- String related to profile_categories-->
+    <string name="cofes_text">Cofes</string>
+    <string name="education_text">Education</string>
+    <string name="entertainment_text">Entertainment</string>
+    <string name="hair_stylists_text">Hair Stylists</string>
+    <string name="hotels_text">Hotels</string>
+    <string name="hospitals_text">Hospitals</string>
+    <string name="malls_text">Malls</string>
+    <string name="parks_text">Parks</string>
+    <string name="restaurants_text">Restaurants</string>
+    <string name="sap_and_leisure_text">Sap & leisure</string>
+    <string name="sport_text">Sport</string>
+    <string name="tourism_text">Tourism</string>
+    <string name="edit_button">edit</string>
+    <string name="save_button">Save</string>
 </resources>
