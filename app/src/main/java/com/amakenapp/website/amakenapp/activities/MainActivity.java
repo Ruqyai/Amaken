@@ -21,12 +21,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+     ///   if (user!=null){} // TODO: 4/9/2017 here we should check if user already exist in cache memory if yes go to HomeActivity without sign up or sign in
+        startActivity(new Intent(MainActivity.this,NavDrw.class));
         signUpMain= (ImageButton) findViewById(R.id.signUpMain);
         signInMain = (ImageButton) findViewById(R.id.signInMain);
 
         signUpMain.setOnClickListener(this);
         signInMain.setOnClickListener(this);
+        
 
 
 
