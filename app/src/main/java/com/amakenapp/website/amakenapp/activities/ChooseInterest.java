@@ -12,6 +12,7 @@ import com.amakenapp.website.amakenapp.helper.*;
 import com.amakenapp.website.amakenapp.R;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -144,7 +145,7 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
                             if (!obj.getBoolean("error")) {
 
                                 finish();
-                             //   startActivity(new Intent(getApplicationContext(), NavDrw.class));//// TODO: 3/8/2017 NavDrw Has error
+                                startActivity(new Intent(getApplicationContext(), NavDrw.class));
 
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
