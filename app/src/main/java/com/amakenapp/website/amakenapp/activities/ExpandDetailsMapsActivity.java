@@ -4,20 +4,34 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 
+import com.amakenapp.website.amakenapp.helper.ChildAnimationExample;
+import com.amakenapp.website.amakenapp.helper.TransformerAdapter;
 import com.bumptech.glide.Glide;
 import com.amakenapp.website.amakenapp.R;
 import com.amakenapp.website.amakenapp.helper.ExpandReviewDetailsListItem;
 import com.amakenapp.website.amakenapp.helper.ReviewsCustomAdapter;
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.Indicators.PagerIndicator;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.google.android.gms.maps.SupportMapFragment;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
+import android.widget.AdapterView;
 import android.widget.AdapterViewFlipper;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,12 +44,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
+public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener{
 
     private GoogleMap mMap;
     Context context;
+    private SliderLayout mDemoSlider;
 
     private ImageView imageViewGallery;
     private ImageView imageViewLike;
@@ -58,7 +74,7 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
                     locationAdress;
 
     private RatingBar placeRating;
-    private ImageView imageViewHomeBusinessPlaceImage;
+    private ImageView imageViewHomeBusinessPlaceImage,update;
     private ImageButton filpNext, flipPrevious;
 
     ////
@@ -78,7 +94,40 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+       ////////////////////////////////////////////////////
+        mDemoSlider = (SliderLayout)findViewById(R.id.slider);
 
+        HashMap<String,String> file_maps = new HashMap<String, String>();
+        file_maps.put("The name1 ","https://corporate.target.com/_media/TargetCorp/Press/Corporate%20Fact%20Sheet/press-corporate-hero.jpg?width=745&height=370&ext=.jpg");
+        file_maps.put("The name2 ","https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/1rrV/image/46KpZZtiwlY5xELBcux5rTqChVY.jpg");
+        file_maps.put("The name3 ","http://brandchannel.com/wp-content/uploads/2013/03/TargetCanada-560.jpg");
+        file_maps.put("The name4 ", "https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/1rrV/image/46KpZZtiwlY5xELBcux5rTqChVY.jpg");
+
+        for(String name : file_maps.keySet()){
+            TextSliderView textSliderView = new TextSliderView(this);
+            // initialize a SliderLayout
+            textSliderView
+                    .description(name)
+                    .image(file_maps.get(name))
+                    .setScaleType(BaseSliderView.ScaleType.Fit)
+                    .setOnSliderClickListener(this);
+
+            //add your extra information
+            textSliderView.bundle(new Bundle());
+            textSliderView.getBundle()
+                    .putString("extra",name);
+
+            mDemoSlider.addSlider(textSliderView);
+        }
+        mDemoSlider.setPresetTransformer(SliderLayout.Transformer.RotateDown);
+        mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        mDemoSlider.setCustomAnimation(new DescriptionAnimation());
+        mDemoSlider.setDuration(4000);
+        mDemoSlider.addOnPageChangeListener(this);
+
+
+
+        //////////////////////////////////////////////////////////////////
         ///////find views by id for textViews
         placePhotosNumber = (TextView) findViewById(R.id.textNumberGalleryImage);
         placeLikesNumber = (TextView) findViewById(R.id.textNumberLikes);
@@ -99,8 +148,8 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
 
 
 
-        imageViewHomeBusinessPlaceImage=(ImageView) findViewById(R.id.Expand_place_photos);
-        Glide.with(getApplicationContext()).load(R.drawable.store).into(imageViewHomeBusinessPlaceImage);
+      //  imageViewHomeBusinessPlaceImage=(ImageView) findViewById(R.id.Expand_place_photos);
+//        Glide.with(getApplicationContext()).load(R.drawable.store).into(imageViewHomeBusinessPlaceImage);
 
 
         imageViewGallery=(ImageView)findViewById(R.id.imageButtonGalleryHome);
@@ -125,7 +174,8 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
 
         filpNext.setOnClickListener(this);
         flipPrevious.setOnClickListener(this);
-
+        update=(ImageView) findViewById(R.id.update) ;
+        update.setOnClickListener(this);
 
         //animations for the next and previous buttons
         Animation mAnimation = new AlphaAnimation(1, 0);
@@ -160,8 +210,8 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
 
         reviewsCustomAdapter = new ReviewsCustomAdapter(listItems, this);
         reviewsFlipper.setAdapter(reviewsCustomAdapter);
-        //reviewsFlipper.setFlipInterval(2000);
-       // reviewsFlipper.setAutoStart(true);
+        reviewsFlipper.setFlipInterval(2000);
+       reviewsFlipper.setAutoStart(true);
 
 
 
@@ -213,7 +263,6 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
             //// TODO: 3/17/2017 aslo store bookmark on database
             Toast.makeText(getApplicationContext(), "Added to your bookmarks", Toast.LENGTH_LONG).show();
 
-
         }
         if (v == imageViewReveiw){
             v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation));
@@ -236,13 +285,76 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
             reviewsFlipper.showPrevious();
 
         }
+        if (v == update){
+           int click=0;
+            for(int i=0; i>10;i++){
+            click++;
+           if(click ==1){mDemoSlider.setPresetTransformer(SliderLayout.Transformer.RotateDown);}
+                if(click ==1){mDemoSlider.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);}
+                if(click ==2){mDemoSlider.setPresetTransformer(SliderLayout.Transformer.ZoomOut);}
+                if(click ==3){mDemoSlider.setPresetTransformer(SliderLayout.Transformer.RotateUp);}
+                if(click ==4){mDemoSlider.setPresetTransformer(SliderLayout.Transformer.FlipHorizontal);}
+                if(click ==5){mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);}
+                if(click ==6){mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);}
+                if(click ==7){mDemoSlider.setPresetTransformer(SliderLayout.Transformer.CubeIn);}
+                if(click ==8){mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Default);}
+                if(click ==9){mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Fade);}
+                if(click ==10){mDemoSlider.setPresetTransformer(SliderLayout.Transformer.FlipPage);}
+                if(click ==11){mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Tablet);}
+            }
+        }
 
     }
 
     /////////////////////////
 
-    ///////
+    @Override
+    protected void onStop() {
+        // To prevent a memory leak on rotation, make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
+        mDemoSlider.stopAutoCycle();
+        super.onStop();
+    }
 
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+       Toast.makeText(this,"The Name of This place is : "+ slider.getBundle().get("extra") ,Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_custom_indicator:
+                mDemoSlider.setCustomIndicator((PagerIndicator) findViewById(R.id.custom_indicator));
+                break;
+            case R.id.action_custom_child_animation:
+                mDemoSlider.setCustomAnimation(new ChildAnimationExample());
+                break;
+            case R.id.action_restore_default:
+                mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+                mDemoSlider.setCustomAnimation(new DescriptionAnimation());
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+    @Override
+    public void onPageSelected(int position) {
+        Log.d("Slider Demo", "Page Changed: " + position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {}
 
 }

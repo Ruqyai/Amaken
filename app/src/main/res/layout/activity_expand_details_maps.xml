@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--suppress AndroidDomInspection -->
-<ScrollView
-    android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:scrollbars="none">
 
@@ -28,8 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="10dp">
-
+        android:padding="5dp">
+<!--
     <ImageView
         android:id="@+id/Expand_place_photos"
         android:layout_width="match_parent"
@@ -38,9 +38,70 @@
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/store" />
+
+        -->
+
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            custom:auto_cycle="true"
+            custom:indicator_visibility="visible"
+            custom:pager_animation="Accordion"
+            custom:pager_animation_span="1100">
+
+
+        </com.daimajia.slider.library.SliderLayout>
+
+
+        <com.daimajia.slider.library.Indicators.PagerIndicator
+            android:id="@+id/custom_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            custom:selected_color="#0db2f4"
+            custom:unselected_color="#e1a16b38"
+            custom:selected_drawable="@drawable/ic_action_name"
+            custom:shape="oval"
+            custom:selected_padding_left="5dp"
+            custom:selected_padding_right="5dp"
+            custom:unselected_padding_left="5dp"
+            custom:unselected_padding_right="5dp"
+            android:layout_centerHorizontal="true"
+
+            android:layout_below="@+id/slider"
+            custom:selected_width="6dp"
+            custom:selected_height="6dp"
+            custom:unselected_width="6dp"
+            custom:unselected_height="6dp"
+            android:layout_marginBottom="20dp"
+            />
+        <com.daimajia.slider.library.Indicators.PagerIndicator
+            android:id="@+id/custom_indicator2"
+            style="@style/AndroidImageSlider_Corner_Oval_Orange"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/slider"
+            android:layout_marginBottom="20dp"
+            />
+
+
+<ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/custom_indicator2"
+        android:layout_alignParentRight="true"
+        android:id="@+id/update"
+        app:srcCompat="@drawable/ic_fast_forward_black_24dp"/>
+        <!--
+                <ListView
+                    android:id="@+id/transformers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:background="@color/gray"
+                    android:layout_below="@+id/slider"></ListView>
+                    -->
     </RelativeLayout>
     </android.support.v7.widget.CardView>
-
 
 
     <android.support.v7.widget.CardView
@@ -56,6 +117,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp">
+
 
             <ImageView
                 android:id="@+id/imageButtonGalleryHome"
