@@ -31,6 +31,7 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.dialog_photo, container, false);
 
+// inflater used to display the dialog photo
 
         view = inflater.inflate(R.layout.dialog_photo, container, false);
         //gallery button
@@ -42,19 +43,23 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
             }
 
         });
+                //Takephoto button
         Takephoto = (Button) view.findViewById(R.id.buttonTakephoto);
+        //clear photo button
         Clearphoto = (Button) view.findViewById(R.id.buttonClearphoto);
-
+        
+        //Image View 
         imageView = (ImageView) view.findViewById(R.id.image_view);
 
         //done button
         Done = (Button) view.findViewById(R.id.buttonDone);
         Done.setOnClickListener(this);
-        // Do something else
+        // return to the main page 
         return view;
 
 
     }
+// method used to open a gallery from the device
 
     private void openGallery(){
         Intent gallery = new Intent (Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
