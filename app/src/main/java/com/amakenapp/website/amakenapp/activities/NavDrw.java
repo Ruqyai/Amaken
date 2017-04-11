@@ -5,6 +5,11 @@ import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -27,8 +32,17 @@ import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
 import com.amakenapp.website.amakenapp.helper.Constants;
+import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
+import com.amakenapp.website.amakenapp.store.User;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.squareup.picasso.Picasso;
+
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -38,6 +52,8 @@ public class NavDrw extends AppCompatActivity
 
     private TextView userName;
     private CircleImageView userProfilePic;
+    SharedPrefManager sharedPrefManager;
+    int userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +61,8 @@ public class NavDrw extends AppCompatActivity
         setContentView(R.layout.activity_nav_drw);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         FloatingActionsMenu floatButton = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
 
@@ -64,7 +82,6 @@ public class NavDrw extends AppCompatActivity
 
             }
         });
-        floatButton.setVisibility(View.INVISIBLE);
 
 
 
@@ -79,13 +96,19 @@ public class NavDrw extends AppCompatActivity
 
 
 
+        View header=navigationView.getHeaderView(0);
+        userName = (TextView)header.findViewById(R.id.nav_header_user_name);
+        userProfilePic = (CircleImageView) header.findViewById(R.id.nav_header_user_profile_pic);
+        sharedPrefManager=SharedPrefManager.getInstance(this);
+        String x=sharedPrefManager.getUsername();
+        String y=sharedPrefManager.getKeyUserProfilePicUrl();
+        userName.setText(x);
+        Picasso.with(getApplicationContext()).load(y).into(userProfilePic);
+        userType= sharedPrefManager.getUserType();
+        if (userType ==1245){floatButton.setVisibility(View.VISIBLE);}
+        else {floatButton.setVisibility(View.INVISIBLE);}
 
-       // userName = (TextView) findViewById(R.id.nav_header_user_name);
-      //  userName.setText(SharedPrefManager.getInstance(getApplicationContext()).getUsername());
 
-        //userProfilePic = (CircleImageView) findViewById(R.id.nav_header_user_profile_pic);
-        //Glide.with(getApplicationContext()).load("").into(userProfilePic);
-       //userProfilePic.setImageResource(SharedPrefManager.getInstance(getApplicationContext()).getKeyUserProfilePicUrl());
     }
 
 
@@ -177,12 +200,12 @@ public class NavDrw extends AppCompatActivity
             startActivity(new Intent(NavDrw.this, DiscoverActivity.class));
 
         } else if (id == R.id.nav_profile) {
-            
-            //// TODO: 3/9/2017 get user type from shared preferences 
-            //if (user_type == Constants.CODE_BUSINESS_USER)
-               fragment = new BusinessProfileActivity();
-           // else if (user_type == Constants.CODE_NORMAL_USER)
-               //fragment = new UserProfileActivity();
+
+            if (userType ==1245){
+                fragment = new BusinessProfileActivity();
+            }
+            else {fragment = new UserProfileActivity();}
+
 
         } else if (id == R.id.nav_Help) {
 
@@ -190,7 +213,6 @@ public class NavDrw extends AppCompatActivity
 
         } else if (id == R.id.nav_invites) {
 
-          //  fragment = new InvitesActivity();
            startActivity(new Intent(NavDrw.this, InvitesActivity.class));
 
         }
@@ -243,7 +265,7 @@ public class NavDrw extends AppCompatActivity
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case Dialog.BUTTON_POSITIVE:
-                 //   saveData();
+                  saveData();
                     finish();
                     startActivity(new Intent(NavDrw.this, MainActivity.class));
                     break;
@@ -253,7 +275,12 @@ public class NavDrw extends AppCompatActivity
         }
     };
     void saveData() {
-        Toast.makeText(this, "your data was saved", Toast.LENGTH_SHORT).show();
+
+        SharedPrefManager sharedPrefManager=SharedPrefManager.getInstance(this);
+        if (sharedPrefManager.logout()){
+
+
+        }
     }
 
 

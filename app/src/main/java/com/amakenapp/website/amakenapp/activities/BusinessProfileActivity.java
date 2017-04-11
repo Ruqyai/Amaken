@@ -12,8 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
+import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
+import com.amakenapp.website.amakenapp.store.User;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Muha on 3/8/2017.
@@ -43,6 +48,12 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
         businessCategoriesCard = (CardView) myView.findViewById(R.id.business_profile_categoriesCard);
         businessProfilePic = (CircleImageView) myView.findViewById(R.id.change_business_profile_pic);
         changeProfilePicTxt = (TextView) myView.findViewById(R.id.businessProfile_changeProfilePicTxt);
+        SharedPrefManager sharedPrefManager=SharedPrefManager.getInstance(getContext());
+        String x=sharedPrefManager.getUsername();
+        String y=sharedPrefManager.getKeyUserProfilePicUrl();
+        changeProfilePicTxt.setText(x);
+        Picasso.with(getApplicationContext()).load(y).into(businessProfilePic);
+
 
 
 

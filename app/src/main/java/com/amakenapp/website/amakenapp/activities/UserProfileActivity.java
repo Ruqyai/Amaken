@@ -12,8 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
+import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by Muha on 3/8/2017.
@@ -43,7 +47,11 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
         userProfilePic = (CircleImageView) myView.findViewById(R.id.user_profile_pic);
         changeProfilePicTxt = (TextView) myView.findViewById(R.id.userProfile_changeProfilePicTxt);
 
-
+        SharedPrefManager sharedPrefManager=SharedPrefManager.getInstance(getContext());
+        String x=sharedPrefManager.getUsername();
+        String y=sharedPrefManager.getKeyUserProfilePicUrl();
+        changeProfilePicTxt.setText(x);
+        Picasso.with(getApplicationContext()).load(y).into(userProfilePic);
 
 
         userBookmarksCard.setOnClickListener(this);
