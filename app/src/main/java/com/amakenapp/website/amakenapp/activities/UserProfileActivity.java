@@ -31,9 +31,6 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
             userCategoriesCard;
     private CircleImageView userProfilePic;
     private TextView changeProfilePicTxt;
-
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

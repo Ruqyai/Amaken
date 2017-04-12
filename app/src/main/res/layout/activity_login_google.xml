@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.amakenapp.website.amakenapp.activities.LoginGoogleActivity">
+    <com.google.android.gms.common.SignInButton
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="25dp"
+        app:buttonSize="wide"
+         />
+
+    <Button
+        android:id="@+id/sign_out_button"
+
+        android:text="  Sign out  "
+        android:layout_below="@+id/sign_in_button"
+
+        android:textStyle="italic"
+        android:typeface="sans"
+        android:textAllCaps="?attr/windowActionBar"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+
+        android:layout_margin="25dp"
+        android:textColor="#1b1b1b"
+        android:background="@drawable/common_google_signin_btn_text_light"
+        />
+
+</RelativeLayout>

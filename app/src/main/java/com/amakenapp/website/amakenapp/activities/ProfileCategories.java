@@ -72,16 +72,16 @@ public class ProfileCategories extends AppCompatActivity {
         tourismCard.setBackgroundColor(getResources().getColor(R.color.barlight));
         ///
         cafeCard.setBackgroundColor(getResources().getColor(R.color.bar));
-       // educationCard.setBackgroundColor(getResources().getColor(R.color.bar));
+        // educationCard.setBackgroundColor(getResources().getColor(R.color.bar));
         entertainmentCard.setBackgroundColor(getResources().getColor(R.color.bar));
         hair_stylistsCard.setBackgroundColor(getResources().getColor(R.color.bar));
-      //  hospitalsCard.setBackgroundColor(getResources().getColor(R.color.bar));
+        //  hospitalsCard.setBackgroundColor(getResources().getColor(R.color.bar));
         hotelsCard.setBackgroundColor(getResources().getColor(R.color.bar));
-      //  mallsCard.setBackgroundColor(getResources().getColor(R.color.bar));
+        //  mallsCard.setBackgroundColor(getResources().getColor(R.color.bar));
         parksCard.setBackgroundColor(getResources().getColor(R.color.bar));
-      ///  restaurantsCard.setBackgroundColor(getResources().getColor(R.color.bar));
+        ///  restaurantsCard.setBackgroundColor(getResources().getColor(R.color.bar));
         spaCard.setBackgroundColor(getResources().getColor(R.color.bar));
-      //  sportCard.setBackgroundColor(getResources().getColor(R.color.bar));
+        //  sportCard.setBackgroundColor(getResources().getColor(R.color.bar));
         tourismCard.setBackgroundColor(getResources().getColor(R.color.bar));
 
 

@@ -104,9 +104,16 @@ public class NavDrw extends AppCompatActivity
         String y=sharedPrefManager.getKeyUserProfilePicUrl();
         userName.setText(x);
         Picasso.with(getApplicationContext()).load(y).into(userProfilePic);
-        userType= sharedPrefManager.getUserType();
-        if (userType ==1245){floatButton.setVisibility(View.VISIBLE);}
-        else {floatButton.setVisibility(View.INVISIBLE);}
+
+        try {
+            userType= sharedPrefManager.getUserType();
+            if (userType ==1245){floatButton.setVisibility(View.VISIBLE);}
+            else {floatButton.setVisibility(View.INVISIBLE);}
+
+        }
+        catch (Exception e)
+        {floatButton.setVisibility(View.INVISIBLE);}
+
 
 
     }

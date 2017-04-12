@@ -145,7 +145,7 @@ public class SharedPrefManager {
                 sharedPreferences.getString("user_web_url", "null"),
                 sharedPreferences.getString("user_phone_number", "null"),
                 Integer.parseInt(sharedPreferences.getString("user_country_id", "null")),
-                sharedPreferences.getString("user_country_name", "hh"),
+                sharedPreferences.getString("user_country_name", "null"),
                 Integer.parseInt(sharedPreferences.getString("user_city_id", "null")),
                 sharedPreferences.getString("user_city_name", "null"),
                 Integer.parseInt(sharedPreferences.getString("profile_pic_id","null")),
