@@ -10,6 +10,12 @@ import com.amakenapp.website.amakenapp.R;
 
 public class ExpandReviewDetailsListItem {
 
+
+    private int eventId;
+    private int placeId;
+    private int reviewId;
+    private String review_like_exsits;
+    private String reviewType;
     private String reviewUserName;
     private String reviewTimestamp;
     private String reviewUserProfilePic;
@@ -39,6 +45,46 @@ public class ExpandReviewDetailsListItem {
         this.reviewLikeImage = reviewLikeImage;
         this.reviewLikesNumber = reviewLikesNumber;
         this.reviewFlagImage = reviewFlagImage;
+    }
+
+    public String getReview_like_exsits() {
+        return review_like_exsits;
+    }
+
+    public void setReview_like_exsits(String review_like_exsits) {
+        this.review_like_exsits = review_like_exsits;
+    }
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
+
+    public int getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(int placeId) {
+        this.placeId = placeId;
+    }
+
+    public int getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
+    }
+
+    public String getReviewType() {
+        return reviewType;
+    }
+
+    public void setReviewType(String reviewType) {
+        this.reviewType = reviewType;
     }
 
     public String getReviewUserName() {

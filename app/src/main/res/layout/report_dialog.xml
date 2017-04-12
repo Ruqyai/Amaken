@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/report_reasonText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="32dp">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/report_reasonEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Report Reason"
+            android:inputType="textMultiLine"
+            android:maxLength="150"
+            android:textSize="@dimen/FontSize"
+            android:textColor="#15AFD8"
+            android:textColorHint="@color/baa"
+            android:textColorLink="#15AFD8" />
+
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>

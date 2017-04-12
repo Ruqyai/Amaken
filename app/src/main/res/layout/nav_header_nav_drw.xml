@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
     android:background="@drawable/drawer_icon5">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom"
         android:background="#80838182"
+        android:gravity="bottom"
         android:orientation="vertical"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -17,27 +18,33 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/nav_header_user_profile_pic"
             android:layout_width="67dp"
             android:layout_height="67dp"
             android:src="@drawable/profile"
             app:civ_border_color="#ffffff"
-            app:civ_border_width="1dp" />
+            app:civ_border_width="1dp"
+            android:layout_above="@+id/nav_header_user_name"
+             />
 
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:id="@+id/nav_header_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/nav_header_user_profile_pic"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:shadowColor="@color/baa"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
             android:text="User Name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+             />
 
 
-    </LinearLayout>
-
-
+    </RelativeLayout>
 
 
 </LinearLayout>

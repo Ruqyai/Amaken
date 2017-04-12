@@ -56,7 +56,7 @@ public class SharedPrefManager {
     }
 
     public boolean userLogin(
-                             int id,
+                             String id,
                              String user_type,
                              String user_email,
                              String user_password,
@@ -74,7 +74,7 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt(KEY_USER_ID, id);
+        editor.putString(KEY_USER_ID, id);
         editor.putString(KEY_USER_TYPE, user_type);
         editor.putString(KEY_USER_EMAIL, user_email);
         editor.putString(KEY_USER_PASSWORD, user_password);
@@ -110,6 +110,12 @@ public class SharedPrefManager {
         return true;
     }
 
+    public int getUserId() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+        String x= sharedPreferences.getString(KEY_USER_ID, null);
+        return    Integer.parseInt(x);
+    }
 
     public String getUsername() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);

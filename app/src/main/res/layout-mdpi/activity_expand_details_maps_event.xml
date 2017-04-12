@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--suppress AndroidDomInspection -->
-<ScrollView
-    android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:scrollbars="none">
 
@@ -24,7 +24,7 @@
             android:layout_marginRight="5pt"
             android:layout_marginLeft="5pt"
             android:elevation="5dp">
-            <RelativeLayout
+           <!-- <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -37,6 +37,24 @@
 
                 </android.support.v4.view.ViewPager>
 
+                <ImageButton
+                    android:id="@+id/flipp_previous_image_event"
+                    android:background="#90e9e8e8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="75dp"
+                    android:src="@drawable/ic_flipp_previous"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true" />
+
+                <ImageButton
+                    android:id="@+id/flipp_next_image_event"
+                    android:background="#90e9e8e8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="75dp"
+                    android:src="@drawable/ic_flipp_next"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true" />
+
                 <me.relex.circleindicator.CircleIndicator
                    android:id="@+id/indicator"
                     android:layout_width="match_parent"
@@ -48,6 +66,67 @@
 
                     />
 
+
+            </RelativeLayout>-->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp">
+
+
+                <com.daimajia.slider.library.SliderLayout
+                    android:id="@+id/slider_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    custom:auto_cycle="true"
+                    custom:indicator_visibility="visible"
+                    custom:pager_animation="Accordion"
+                    custom:pager_animation_span="1100">
+
+
+                </com.daimajia.slider.library.SliderLayout>
+
+
+                <com.daimajia.slider.library.Indicators.PagerIndicator
+                    android:id="@+id/custom_indicator_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    custom:selected_color="#0db2f4"
+                    custom:unselected_color="#e1a16b38"
+                    custom:selected_drawable="@drawable/ic_action_name"
+                    custom:shape="oval"
+                    custom:selected_padding_left="5dp"
+                    custom:selected_padding_right="5dp"
+                    custom:unselected_padding_left="5dp"
+                    custom:unselected_padding_right="5dp"
+                    android:layout_centerHorizontal="true"
+
+                    android:layout_below="@+id/slider"
+                    custom:selected_width="6dp"
+                    custom:selected_height="6dp"
+                    custom:unselected_width="6dp"
+                    custom:unselected_height="6dp"
+                    android:layout_marginBottom="20dp"
+                    />
+                <com.daimajia.slider.library.Indicators.PagerIndicator
+                    android:id="@+id/custom_indicator2"
+                    style="@style/AndroidImageSlider_Corner_Oval_Orange"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/slider"
+                    android:layout_marginBottom="20dp"
+                    />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/custom_indicator2"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/update2"
+                    app:srcCompat="@drawable/ic_fast_forward_black_24dp"/>
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
@@ -149,14 +228,14 @@
 
             <TableLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
+
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
                     android:layout_margin="8dp"
-                    >
+                    android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/Expand_event_details"
                         android:layout_width="wrap_content"
@@ -165,98 +244,103 @@
                         android:textColor="@color/baa"
                         android:textStyle="bold" />
                 </TableRow>
+
                 <TableRow
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
                     android:id="@+id/eventnamedetails"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal"
 
                     >
+
                     <TextView
                         android:id="@+id/event_name_bold_heading"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:gravity=""
                         android:text="@string/event_name_text"
                         android:textAlignment="gravity"
-                        android:gravity=""
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/event_name"
-                        android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:textAlignment="gravity"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="5dp"
+                        android:layout_weight="1"
                         android:gravity=""
+                        android:textAlignment="gravity"
                         android:textStyle="italic" />
                 </TableRow>
 
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal"
 
 
                     >
+
                     <TextView
                         android:id="@+id/event_category_bold_heading"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textAlignment="gravity"
                         android:gravity=""
                         android:text="@string/event_category_text"
+                        android:textAlignment="gravity"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/event_category"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:textAlignment="gravity"
                         android:layout_marginStart="5dp"
+                        android:layout_weight="1"
                         android:gravity=""
+                        android:textAlignment="gravity"
                         android:textStyle="italic" />
                 </TableRow>
 
 
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="8dp"
-                    >
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/event_rating_bold_heading"
-                        android:text="Rating Average: "
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textAlignment="gravity"
                         android:gravity=""
-                        android:textStyle="bold"/>
+                        android:text="Rating Average: "
+                        android:textAlignment="gravity"
+                        android:textStyle="bold" />
 
                     <LinearLayout
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
 
 
                         <RatingBar
                             android:id="@+id/event_rating"
-                            android:textAlignment="gravity"
-                            android:layout_marginStart="5dp"
-                            android:gravity=""
                             style="?android:attr/ratingBarStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            />
+                            android:layout_marginStart="5dp"
+                            android:gravity=""
+                            android:textAlignment="gravity" />
+
                         <TextView
                             android:id="@+id/event_rating_stat"
                             android:layout_width="wrap_content"
@@ -266,17 +350,15 @@
                     </LinearLayout>
 
 
-
                 </TableRow>
 
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="8dp"
-                    >
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/event_description_bold_heading"
@@ -290,169 +372,174 @@
 
                     <TextView
                         android:id="@+id/event_description"
-                        android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:gravity=""
                         android:maxLength="300"
-                        android:textAlignment="gravity"
-                        android:gravity=""/>
+                        android:textAlignment="gravity" />
                 </TableRow>
+
                 <View
                     android:layout_width="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_height="1dp"
-                    android:background="@color/gray"
-                    />
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/gray" />
+
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
                     android:layout_margin="8dp"
-                    >
+                    android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/Expand_event_contact_details"
                         android:layout_width="wrap_content"
-                        android:layout_marginBottom="5dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:text="@string/contact_details_text"
                         android:textColor="@color/baa"
                         android:textStyle="bold" />
                 </TableRow>
 
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/event_businessOwner_bold_heading"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:gravity=""
                         android:text="@string/business_owner_text"
                         android:textAlignment="gravity"
-                        android:gravity=""
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/event_businessOwner_name"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:textAlignment="gravity"
                         android:layout_marginStart="5dp"
-                        android:gravity="center_vertical"
+                        android:layout_weight="1"
                         android:drawableStart="@drawable/ic_verified_user"
+                        android:gravity="center_vertical"
+                        android:textAlignment="gravity"
 
                         />
 
                 </TableRow>
 
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/event_businessWeb_bold_heading"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/business_web_text"
                         android:gravity=""
+                        android:text="@string/business_web_text"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textWebevent"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="5dp"
-                        android:textAlignment="gravity"
-                        android:gravity="center_vertical"
-                        android:drawableStart="@drawable/ic_web"
+                        android:layout_weight="1"
                         android:autoLink="web"
-                         />
+                        android:drawableStart="@drawable/ic_web"
+                        android:gravity="center_vertical"
+                        android:textAlignment="gravity" />
 
 
                 </TableRow>
 
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="8dp"
-                    >
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/event_businessPhone_bold_heading"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/business_phone_text"
                         android:gravity=""
+                        android:text="@string/business_phone_text"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textPhoneevent"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="5dp"
-                        android:textAlignment="gravity"
-                        android:gravity="center_vertical"
-                        android:drawableStart="@drawable/ic_phone"
+                        android:layout_weight="1"
                         android:autoLink="phone"
+                        android:drawableStart="@drawable/ic_phone"
+                        android:gravity="center_vertical"
+                        android:textAlignment="gravity"
 
-                         />
+                        />
 
 
                 </TableRow>
+
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/event_businessEmail_bold_heading"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/business_email_text"
                         android:gravity=""
+                        android:text="@string/business_email_text"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textEmailevent"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="5dp"
-                        android:textAlignment="gravity"
-                        android:gravity="center_vertical"
-                        android:drawableStart="@drawable/ic_email"
+                        android:layout_weight="1"
                         android:autoLink="email"
-                         />
+                        android:drawableStart="@drawable/ic_email"
+                        android:gravity="center_vertical"
+                        android:textAlignment="gravity" />
 
                 </TableRow>
+
                 <View
                     android:layout_width="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_height="1dp"
-                    android:background="@color/gray"
-                    />
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/gray" />
+
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
                     android:layout_margin="8dp"
-                    >
+                    android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/Expand_event_date_details"
                         android:layout_width="wrap_content"
-                        android:layout_marginBottom="5dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:text="@string/date_details_text"
                         android:textColor="@color/baa"
                         android:textStyle="bold" />
@@ -484,12 +571,12 @@
 
                         <TextView
                             android:id="@+id/event_startDate"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:drawableStart="@drawable/ic_event_start"
-                            android:textAlignment="gravity"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:drawableStart="@drawable/ic_event_start"
+                            android:gravity="center_vertical"
+                            android:textAlignment="gravity"
 
                             />
 
@@ -498,84 +585,85 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:textAlignment="gravity"
-                            android:gravity="center_vertical"
                             android:drawableStart="@drawable/ic_event_end"
-                            />
+                            android:gravity="center_vertical"
+                            android:textAlignment="gravity" />
                     </LinearLayout>
-
 
 
                 </TableRow>
 
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/event_time"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/event_time_text"
                         android:gravity=""
+                        android:text="@string/event_time_text"
                         android:textStyle="bold" />
+
                     <LinearLayout
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/event_startTime"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:textAlignment="gravity"
-                            android:gravity="center_vertical"
                             android:drawableStart="@drawable/ic_event_start_time"
+                            android:gravity="center_vertical"
+                            android:textAlignment="gravity"
 
                             />
+
                         <TextView
                             android:id="@+id/event_endTime"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:textAlignment="gravity"
-                            android:gravity="center_vertical"
                             android:drawableStart="@drawable/ic_event_end_time"
+                            android:gravity="center_vertical"
+                            android:textAlignment="gravity"
 
                             />
-                        </LinearLayout>
+                    </LinearLayout>
 
 
                 </TableRow>
 
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="8dp"
-                    >
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="@string/event_days_text"
                         android:gravity=""
+                        android:text="@string/event_days_text"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/event_days"
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
-                        android:textAlignment="gravity"
-                        android:gravity="center_vertical"
                         android:drawableStart="@drawable/ic_event_days"
-                        />
+                        android:gravity="center_vertical"
+                        android:textAlignment="gravity" />
 
 
                 </TableRow>
@@ -583,18 +671,16 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_height="1dp"
-                    android:background="@color/gray"
-                    />
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/gray" />
 
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
+                    android:layout_height="match_parent"
                     android:layout_margin="8dp"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/Expand_event_location_details"
@@ -607,91 +693,90 @@
                 </TableRow>
 
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal">
 
                     <TextView
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:gravity=""
                         android:text="@string/country_text"
                         android:textAlignment="gravity"
-                        android:gravity=""
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/textCountryDetailsevent"
-                        android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:textAlignment="gravity"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="5dp"
+                        android:layout_weight="1"
                         android:gravity=""
-                        />
+                        android:textAlignment="gravity" />
 
 
                 </TableRow>
 
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal">
 
                     <TextView
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:gravity=""
                         android:text="@string/city_text"
                         android:textAlignment="gravity"
-                        android:gravity=""
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/textCityDetailsevent"
-                        android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:textAlignment="gravity"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="5dp"
+                        android:layout_weight="1"
                         android:gravity=""
-                        />
+                        android:textAlignment="gravity" />
 
                 </TableRow>
 
                 <TableRow
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal">
 
                     <TextView
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:gravity=""
                         android:text="@string/address_text"
                         android:textAlignment="gravity"
-                        android:gravity=""
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/textAddressDetailsevent"
-                        android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
-                        android:textAlignment="gravity"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="5dp"
+                        android:layout_weight="1"
                         android:gravity=""
-                        />
+                        android:textAlignment="gravity" />
 
                 </TableRow>
             </TableLayout>
-
 
 
         </android.support.v7.widget.CardView>
@@ -715,6 +800,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="1pt"
+            android:layout_marginBottom="5dp"
             android:layout_marginRight="5pt"
             android:layout_marginLeft="5pt"
             android:elevation="4dp">
@@ -739,15 +825,15 @@
 
                     <ImageButton
                         android:id="@+id/flipp_previous_event"
-                        android:background="@android:color/transparent"
+                        android:layout_height="100dp"
+                        android:background="#90e9e8e8"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
                         android:src="@drawable/ic_flipp_previous"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentStart="true" />
+                        android:layout_alignParentStart="true"/>
                     <FrameLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="180dp"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="8dp"
@@ -769,12 +855,13 @@
 
                     <ImageButton
                         android:id="@+id/flipp_next_event"
-                        android:background="@android:color/transparent"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
                         android:src="@drawable/ic_flipp_next"
+                        android:layout_alignParentEnd="true"
+                        android:background="#90e9e8e8"
+                        android:layout_height="100dp"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true" />
+                        />
 
                 </RelativeLayout>
 
@@ -782,8 +869,6 @@
 
 
         </android.support.v7.widget.CardView>
-
-
 
     </LinearLayout>
 </ScrollView>
