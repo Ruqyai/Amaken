@@ -2,6 +2,7 @@ package com.amakenapp.website.amakenapp.helper;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,14 +42,33 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         EventsListItem listItem =listItems.get(position);
 
-        Glide.with(context).load(listItem.getEventBusinessProfileImage()).into(holder.eventBusinessProfileImage);
-        holder.eventBusinessName.setText(listItem.getEventBusinessName());
-        Glide.with(context).load(listItem.getEvent_availableOrBusyLogo()).into(holder.event_availableOrBusyLogo);
+        final int eventId = listItem.getEventId();
+        String eventid = Integer.toString(eventId);
+
+        holder.eventId.setText(eventid);
+        String eventavalibility = listItem.getEventavaliabilty();
+
+        String busiessProfilePic = listItem.getEventBusinessProfileImage();
+
+        if (busiessProfilePic.equals(Constants.STRING_USER_PROFILE_PIC))
+            holder.eventBusinessProfileImage.setImageResource(R.drawable.business_home_profile);
+        else
+            Glide.with(context).load(listItem.getEventBusinessProfileImage()).into(holder.eventBusinessProfileImage);
+
+
+            holder.eventBusinessName.setText(listItem.getEventBusinessName());
+
+        if (eventavalibility.equals(Constants.STRING_EVENT_STILL_OPEN))
+            holder.event_availableOrBusyLogo.setImageResource(R.drawable.ic_event_available);
+        else
+            holder.event_availableOrBusyLogo.setImageResource(R.drawable.ic_event_busy);
+
 
         Glide.with(context).load(listItem.getEventPicture()).into(holder.eventPicture);
 
         holder.eventName.setText(listItem.getEventName());
-        holder.eventCategory.setText(listItem.getEventCategory());
+        holder.getEventCategory.setText(listItem.getEventCategory1());
+
         holder.eventDescription.setText(listItem.getEventDescription());
         holder.eventDescriptionMultiLineText.setText(listItem.getEventDescriptionMultiLineText());
 
@@ -57,8 +77,9 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         holder.eventExpand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(v.getContext(),
-                        ExpandDetailsMapsActivityEvent.class);
+
+                Intent myIntent = new Intent(v.getContext(), ExpandDetailsMapsActivityEvent.class);
+                myIntent.putExtra("EVENT_ID", eventId);
                 context.startActivity(myIntent);
 
 
@@ -76,12 +97,17 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        public TextView eventId;
+        public TextView eventavalibilty;
+
         public ImageView eventBusinessProfileImage;
         public TextView eventBusinessName;
         public ImageView event_availableOrBusyLogo;
 
         public ImageView eventPicture;
         public TextView eventName;
+        public TextView getEventCategory;
+
         public TextView eventCategory;
         public TextView eventDescription;
         public TextView eventDescriptionMultiLineText;
@@ -94,6 +120,9 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         public ViewHolder(View itemView) {
             super(itemView);
 
+            eventId= (TextView) itemView.findViewById(R.id.TextEventid);
+            eventavalibilty= (TextView) itemView.findViewById(R.id.TextEventavaliability);
+
             eventBusinessProfileImage=(ImageView) itemView.findViewById(R.id.imageViewEventBusinessProfile);
             eventBusinessName= (TextView) itemView.findViewById(R.id.TextEventBusinessName);
             event_availableOrBusyLogo=(ImageView) itemView.findViewById(R.id.event_on_logo);
@@ -101,13 +130,16 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
             eventPicture=(ImageView) itemView.findViewById(R.id.imageViewEventBusinessPlace);
             eventName = (TextView) itemView.findViewById(R.id.events_eventName) ;
-            eventCategory= (TextView) itemView.findViewById(R.id.events_eventCategory);
+            getEventCategory = (TextView) itemView.findViewById(R.id.events_eventCategory) ;
+
+            //eventCategory= (TextView) itemView.findViewById(R.id.events_eventCategory);
             eventDescription=(TextView) itemView.findViewById(R.id.TextEventsDiscretion);
             eventDescriptionMultiLineText=(TextView) itemView.findViewById(R.id.TextEventDiscretionMultiLine);
 
             eventExpand=(TextView) itemView.findViewById(R.id.TextExpandEvent);
             ratingEvent =(RatingBar) itemView.findViewById(R.id.ratingBarEvent);
             eventRatingStat =(TextView) itemView.findViewById(R.id.TextEventNumberOfRate);
+
 
 
         }

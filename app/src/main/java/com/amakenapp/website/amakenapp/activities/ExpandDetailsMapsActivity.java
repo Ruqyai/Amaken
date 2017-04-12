@@ -174,6 +174,7 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
 
         filpNext.setOnClickListener(this);
         flipPrevious.setOnClickListener(this);
+
         update=(ImageView) findViewById(R.id.update) ;
         update.setOnClickListener(this);
 

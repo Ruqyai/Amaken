@@ -50,7 +50,7 @@ public class InvitesActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         if (v == mButton){
         Intent shareIntent = new PlusShare.Builder(this)
-                .setText("Amazing App  https://play.google.com/store/apps/details?id=com.seu")
+                .setText("Check Out This Amazing App! \n \n https://play.google.com/store/apps/details?id=com.seu")
                 .setType("image/png")
                 .setContentDeepLinkId("testID",
                         "Test Title",

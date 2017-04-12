@@ -1,120 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
- <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/review_Rating_avg"
-            >
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/review_Rating_avg"
+    android:padding="5dp"
+    >
 
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/imageViewUserWrite"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="5dp"
-                android:src="@drawable/profile"
-                app:civ_border_color="#ffffff"
-                app:civ_border_width="1dp"
-                android:layout_alignTop="@+id/textViewUserWhatIsWrite"
-                android:layout_alignParentStart="true" />
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imageViewUserWrite"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/profile"
+        app:civ_border_color="#8b8989"
+        app:civ_border_width="1dp"
+        android:layout_alignTop="@+id/textViewUserWhatIsWrite"
+        android:layout_alignParentStart="true" />
 
-            <TextView
-                android:id="@+id/textNameUserWroteReview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="11dp"
-                android:text="user name"
-                android:textStyle="bold"
-                android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/imageViewUserWrite"
-                />
-            <TextView
-                android:id="@+id/all_reviews_timestamp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:ellipsize="none"
-                android:singleLine="true"
-                android:layout_alignBaseline="@+id/textNameUserWroteReview"
-                android:layout_toEndOf="@+id/textNameUserWroteReview"
-                android:text="on TimeStamp"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/gray"
-                android:textSize="12sp" />
+    <TextView
+        android:id="@+id/textNameUserWroteReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="user name"
+        android:textStyle="bold"
+        android:layout_alignBottom="@+id/review_type"
+        android:layout_alignStart="@+id/imageViewUserWrite"
+        android:layout_below="@+id/review_id"
+        android:layout_toStartOf="@+id/textViewUserWhatIsWrite" />
 
-            <TextView
-                android:id="@+id/textViewUserWhatIsWrite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/imageViewUserWrite"
-                android:layout_below="@id/textNameUserWroteReview"
-                android:maxLength="128"
-                android:ellipsize="none"
-                android:scrollHorizontally="false"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:text="Review Text, Review Text, Review Text,Review Text, Review Text, Review Text, Review Text,Review Text, Review text, Review Text, Review text, Review Text, Review text, Review Text, Review text zainah"
-                 />
+    <TextView
+        android:id="@+id/review_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_alignParentEnd="true"
+        />
+    <TextView
+        android:id="@+id/review_like_exsits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_alignParentEnd="true"
+        />
+    <TextView
+        android:id="@+id/review_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_below="@id/review_id"
+        android:layout_alignParentEnd="true"
+        />
+    <TextView
+        android:id="@+id/event_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/review_type"
+        android:layout_alignParentEnd="true"
+        />
+    <TextView
+        android:id="@+id/place_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/event_id"
+        android:layout_alignParentEnd="true"
+        />
+
+    <TextView
+        android:id="@+id/all_reviews_timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="none"
+        android:singleLine="true"
+        android:text="on TimeStamp"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:layout_above="@+id/textViewUserWhatIsWrite"
+        android:layout_alignStart="@+id/all_reviews_singleReview_rating" />
+
+    <TextView
+        android:id="@+id/textViewUserWhatIsWrite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/imageViewUserWrite"
+        android:layout_below="@id/textNameUserWroteReview"
+        android:maxLength="128"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Review Text, Review Text, Review Text,Review Text, Review Text, Review Text, Review Text,Review Text, Review text, Review Text, Review text, Review Text, Review text, Review Text, Review text zainah"
+        />
 
 
-            <RatingBar
+    <RatingBar
 
         android:textAlignment="gravity"
-        android:layout_marginStart="5dp"
         android:gravity=""
         style="?android:attr/ratingBarStyleSmall"
 
-                android:id="@+id/all_reviews_singleReview_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:isIndicator="true"
-                android:layout_alignStart="@id/textViewUserWhatIsWrite"
-                android:layout_below="@+id/textViewUserWhatIsWrite" />
+        android:id="@+id/all_reviews_singleReview_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:isIndicator="true"
+        android:layout_below="@+id/textViewUserWhatIsWrite"
+        android:layout_alignStart="@+id/textViewUserWhatIsWrite" />
 
-            <ImageView
-                android:id="@+id/all_reviews_likeLogo"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:srcCompat="@drawable/ic_thump_up"
-                android:focusableInTouchMode="true"
-                android:background="?attr/selectableItemBackground"
-                android:layout_marginStart="13dp"
-                android:layout_alignBottom="@+id/all_reviews_singleReview_rating"
-                android:layout_toEndOf="@+id/all_reviews_singleReview_rating"
-                android:layout_below="@+id/textViewUserWhatIsWrite" />
+    <ImageView
+        android:id="@+id/all_reviews_likeLogo"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/ic_thump_up"
+        android:focusableInTouchMode="true"
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginStart="13dp"
+        android:layout_alignBottom="@+id/all_reviews_singleReview_rating"
+        android:layout_toEndOf="@+id/all_reviews_singleReview_rating"
+        android:layout_below="@+id/textViewUserWhatIsWrite" />
 
-            <TextView
-                android:id="@+id/all_reviews_reviewLikeStat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="21"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textSize="12sp"
-                android:layout_below="@id/textViewUserWhatIsWrite"
-                android:layout_alignBottom="@+id/all_reviews_likeLogo"
-                android:layout_toEndOf="@+id/all_reviews_likeLogo" />
+    <TextView
+        android:id="@+id/all_reviews_reviewLikeStat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="21"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:textSize="12sp"
+        android:layout_below="@id/textViewUserWhatIsWrite"
+        android:layout_alignBottom="@+id/all_reviews_likeLogo"
+        android:layout_toEndOf="@+id/all_reviews_likeLogo" />
 
-            <ImageView
-                android:id="@+id/all_reviewReportFlag"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="?attr/selectableItemBackground"
-                android:focusableInTouchMode="true"
-                android:layout_marginStart="8dp"
-                android:layout_below="@id/textViewUserWhatIsWrite"
-                app:srcCompat="@drawable/ic_report_flag"
-                android:layout_alignBottom="@+id/all_reviews_reviewLikeStat"
-                android:layout_toEndOf="@+id/all_reviews_reviewLikeStat"
-                android:layout_alignTop="@+id/all_reviews_likeLogo" />
+    <ImageView
+        android:id="@+id/all_reviewReportFlag"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="?attr/selectableItemBackground"
+        android:focusableInTouchMode="true"
+        android:layout_marginStart="8dp"
+        android:layout_below="@id/textViewUserWhatIsWrite"
+        app:srcCompat="@drawable/ic_report_flag"
+        android:layout_alignBottom="@+id/all_reviews_reviewLikeStat"
+        android:layout_toEndOf="@+id/all_reviews_reviewLikeStat"
+        android:layout_alignTop="@+id/all_reviews_likeLogo" />
 
 
 
 
 
 </RelativeLayout>
-

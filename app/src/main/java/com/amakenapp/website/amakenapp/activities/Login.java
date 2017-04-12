@@ -90,9 +90,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
+                                int userId = obj.getInt("id");
+                                String userIdString = Integer.toString(userId);
                                 SharedPrefManager.getInstance(getApplicationContext())
                                         .userLogin(
-                                                obj.getInt("id"),
+                                                userIdString,
                                                 obj.getString("user_type"),
                                                 obj.getString("user_email"),
                                                 obj.getString("user_password"),

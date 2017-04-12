@@ -132,7 +132,7 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
     public void storingInterests(final List<Integer> interests) {
 
         //getting user ID , //// TODO: 3/7/2017 should be from previous ctivity
-        final int userID = 10;
+        final int userID = 1;
 
 
         StringRequest send = new StringRequest(Request.Method.POST,
