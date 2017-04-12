@@ -17,10 +17,7 @@
 
     <Button
         android:id="@+id/sign_out_button"
-
         android:text="  Sign out  "
-        android:layout_below="@+id/sign_in_button"
-
         android:textStyle="italic"
         android:typeface="sans"
         android:textAllCaps="?attr/windowActionBar"
@@ -28,7 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-
         android:layout_margin="25dp"
         android:textColor="#1b1b1b"
         android:background="@drawable/common_google_signin_btn_text_light"

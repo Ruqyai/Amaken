@@ -112,10 +112,8 @@ public class NavDrw extends AppCompatActivity
 
         }
         catch (Exception e)
-        {floatButton.setVisibility(View.INVISIBLE);}
-
-
-
+        {floatButton.setVisibility(View.INVISIBLE);
+        }
     }
 
 

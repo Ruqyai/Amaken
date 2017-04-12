@@ -1,5 +1,6 @@
 package com.amakenapp.website.amakenapp.activities;
 
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -32,8 +34,7 @@ public class LoginFacebookActivity extends AppCompatActivity  {
     private LoginButton loginButton ;
     private CallbackManager callbackManager ;
     private AccessTokenTracker accessTokenTracker ;
-   // TextView facebookName;
-
+    Uri p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +43,14 @@ public class LoginFacebookActivity extends AppCompatActivity  {
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         loginButton = (LoginButton) findViewById(R.id.login_button);
-     //   facebookName=(TextView) findViewById(R.id.name);
 
         callbackManager = CallbackManager.Factory.create();
-        loginButton.setReadPermissions(Arrays.asList("public_profile"));
+        loginButton.setReadPermissions(Arrays.asList("public_profile","email"));
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
 
                 graphRequest(loginResult.getAccessToken());
-
-
-
-
 
             }
 
@@ -72,40 +68,52 @@ public class LoginFacebookActivity extends AppCompatActivity  {
 
     }
 
-
-
     public void graphRequest(AccessToken token){
         GraphRequest request = GraphRequest.newMeRequest(token,new GraphRequest.GraphJSONObjectCallback(){
 
             @Override
             public void onCompleted(JSONObject object, GraphResponse response) {
-              //  Log.i("fb", "fb user: "+ user.toString());
 
                 try {
 
                     Profile profile = Profile.getCurrentProfile();
                     profile.getFirstName();
-                    String x=  object.get("first_name").toString();
+                    String x=  object.get("email").toString();
                     Toast.makeText(getApplicationContext(),"welcome  " + profile.getFirstName(),Toast.LENGTH_LONG).show();
-
-
-                    //   String x=  object.get("first_name").toString();
-                 //   facebookName.setText(x);
-                //    String email = response.getJSONObject().getString("email");
-                 //   String firstName = response.getJSONObject().getString("first_name");
-                 //   String lastName = response.getJSONObject().getString("last_name");
-                //    String gender = response.getJSONObject().getString("gender");
-                //    facebookName.setText(firstName);
                     startActivity(new Intent(LoginFacebookActivity.this,NavDrw.class));
+                    try {
+                       p= profile.getProfilePictureUri(190,190);
+                        SharedPrefManager.getInstance(getApplicationContext())
+                                .userLogin(
+
+                                        1002,
+                                        "1244",
+                                        x,
+                                        profile.getId(),
+                                        profile.getFirstName()+" "+profile.getLastName(),
+                                        "",
+                                        "",
+                                        "",
+                                        40,
+                                        "",
+                                        100,
+                                        "",
+                                        1002,
+                                        getUPic().toString()
+
+                                );
+
+
+
+                    } catch (Exception e){
+                        e.printStackTrace();
+
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
                     finish();
                } catch (JSONException e) {
                   e.printStackTrace();
                }
-
-
-              //  Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_LONG).show();
-                // startActivity(new Intent(LoginFacebookActivity.this,NavDrw.class));
-
             }
         });
 
@@ -116,12 +124,25 @@ public class LoginFacebookActivity extends AppCompatActivity  {
 
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode,resultCode,data);
 
 
+    }
+    Uri defaultUri;
+    public Uri getUPic() {
+        if(p!=null){
+            return p;}
+        else
+        { defaultUri= Uri.parse("https://img.clipartfest.com/76db68dca190430f68ae64dece275ad8_profile-clip-art-profile-picture-clipart_300-279.png");
+            return defaultUri;}
+    }
+
+
+
+    public Uri getP() {
+        return p;
     }
 }

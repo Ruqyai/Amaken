@@ -1,5 +1,7 @@
 package com.amakenapp.website.amakenapp.activities;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -8,11 +10,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -24,6 +28,11 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URI;
+
 public class LoginGoogleActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener{
@@ -34,127 +43,130 @@ public class LoginGoogleActivity extends AppCompatActivity implements
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
     private ProgressDialog mProgressDialog;
+    private String UName;
+   private String UEmail;
+   private Uri UImage;
+   private String UId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_google);
 
-        // Views
-       // mStatusTextView = (TextView) findViewById(R.id.status);
 
-        // Button listeners
         findViewById(R.id.sign_in_button).setOnClickListener(this);
 
-
-        // [START configure_signin]
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-        // [END configure_signin]
 
-        // [START build_client]
-        // Build a GoogleApiClient with access to the Google Sign-In API and the
-        // options specified by gso.
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-        // [END build_client]
 
-        // [START customize_button]
-        // Set the dimensions of the sign-in button.
         SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
-        // [END customize_button]
+       // signInButton.setSize(SignInButton.SIZE_STANDARD);
+
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
-        if (opr.isDone()) {
-            // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
-            // and the GoogleSignInResult will be available instantly.
-            Log.d(TAG, "Got cached sign-in");
-            GoogleSignInResult result = opr.get();
-            handleSignInResult(result);
-        } else {
-            // If the user has not previously signed in on this device or the sign-in has expired,
-            // this asynchronous branch will attempt to sign in the user silently.  Cross-device
-            // single sign-on will occur in this branch.
-            showProgressDialog();
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(GoogleSignInResult googleSignInResult) {
-                    hideProgressDialog();
-                    handleSignInResult(googleSignInResult);
-                }
-            });
-        }
-    }
-
-    // [START onActivityResult]
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }
     }
-    // [END onActivityResult]
 
-    // [START handleSignInResult]
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
-            // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            String UName=acct.getDisplayName();
+            UName=acct.getDisplayName();
+            UEmail=acct.getEmail();
+             UImage= acct.getPhotoUrl();
+             UId = acct.getId();
             startActivity(new Intent(this,NavDrw.class));
             Toast.makeText(getApplicationContext(), "Welcome  " +UName, Toast.LENGTH_LONG).show();
+            ////////////////
 
-            //  mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));// TODO: 4/11/2017 check
+
+                // progressDialog.dismiss();
+                // Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+                try {
+
+                        SharedPrefManager.getInstance(getApplicationContext())
+                                .userLogin(
+
+                                        1001,
+                                        "1244",
+                                        acct.getEmail(),
+                                        acct.getIdToken(),
+                                        acct.getDisplayName(),
+                                        "",
+                                        "",
+                                        "",
+                                       40,
+                                        "",
+                                        100,
+                                      "",
+                                        1001,
+                                      getUImage().toString()
+                                );
+
+
+
+                } catch (Exception e){
+                    e.printStackTrace();
+
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+
+
+
+
+
+
+
+
+            ////////////////////////
+
+
             updateUI(true);
         } else {
-            // Signed out, show unauthenticated UI.
             updateUI(false);
         }
     }
-    // [END handleSignInResult]
 
-    // [START signIn]
+
+
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-    // [END signIn]
 
-    // [START signOut]
     private void signOut() {
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
 
                     @Override
                     public void onResult(Status status) {
-                        // [START_EXCLUDE]
-                        //Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-                     //   Toast.makeText(this,"bye",Toast.LENGTH_LONG,)
+
+                        Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+                        Toast.makeText(getApplicationContext(), "  Good bye  " , Toast.LENGTH_LONG).show();
 
                         updateUI(false);
-                        // [END_EXCLUDE]
+
+                        Toast.makeText(getApplicationContext(), " Please come back again  " , Toast.LENGTH_LONG).show();
+
                     }
                 });
     }
-    // [END signOut]
 
-    // [START revokeAccess]
     private void revokeAccess() {
         Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
@@ -170,16 +182,14 @@ public class LoginGoogleActivity extends AppCompatActivity implements
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        // An unresolvable error has occurred and Google APIs (including Sign-In) will not
-        // be available.
+
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
 
     private void showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
-           // mProgressDialog.setMessage(getString(R.string.loading));
-            mProgressDialog.setMessage("waiiiiiiiiiiit");
+            mProgressDialog.setMessage("Please wait ...");
             mProgressDialog.setIndeterminate(true);
         }
 
@@ -195,11 +205,9 @@ public class LoginGoogleActivity extends AppCompatActivity implements
     private void updateUI(boolean signedIn) {
         if (signedIn) {
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-            findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE); // TODO: 4/11/2017 udpate
+            findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
         }
         else {
-           // mStatusTextView.setText(R.string.signed_out);
-
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_button).setVisibility(View.GONE);
         }
@@ -210,16 +218,32 @@ public class LoginGoogleActivity extends AppCompatActivity implements
         switch (v.getId()) {
             case R.id.sign_in_button:
                 signIn();
-
+                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
                 break;
             case R.id.sign_out_button:
                 signOut();
                 break;
-            /**
-            case R.id.disconnect_button:
-                revokeAccess();
-                break;
-                 **/
+
         }
+    }
+
+    public String getUName() {
+        return UName;
+    }
+
+    public String getUEmail() {
+        return UEmail;
+    }
+    Uri defaultUri;
+    public Uri getUImage() {
+        if(UImage!=null){
+        return UImage;}
+        else
+        { defaultUri= Uri.parse("https://img.clipartfest.com/76db68dca190430f68ae64dece275ad8_profile-clip-art-profile-picture-clipart_300-279.png");
+            return defaultUri;}
+    }
+
+    public String getUId() {
+        return UId;
     }
 }
