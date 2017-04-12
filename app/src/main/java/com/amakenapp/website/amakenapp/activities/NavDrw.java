@@ -100,14 +100,27 @@ public class NavDrw extends AppCompatActivity
         userName = (TextView)header.findViewById(R.id.nav_header_user_name);
         userProfilePic = (CircleImageView) header.findViewById(R.id.nav_header_user_profile_pic);
         sharedPrefManager=SharedPrefManager.getInstance(this);
-        String x=sharedPrefManager.getUsername();
-        String y=sharedPrefManager.getKeyUserProfilePicUrl();
-        userName.setText(x);
-        Picasso.with(getApplicationContext()).load(y).into(userProfilePic);
-        userType= sharedPrefManager.getUserType();
-        if (userType ==1245){floatButton.setVisibility(View.VISIBLE);}
-        else {floatButton.setVisibility(View.INVISIBLE);}
 
+        String x = sharedPrefManager.getUsername();
+        userName.setText(x);
+
+
+
+
+        String y=sharedPrefManager.getKeyUserProfilePicUrl();
+        Glide.with(this).load(y)
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(userProfilePic);
+        //Picasso.with(getApplicationContext()).load(y).into(userProfilePic);
+
+
+        userType= sharedPrefManager.getUserType();
+        if (userType == Constants.CODE_BUSINESS_USER)
+           {floatButton.setVisibility(View.VISIBLE);}
+        else if(userType == Constants.CODE_NORMAL_USER)
+           {floatButton.setVisibility(View.INVISIBLE);}
 
     }
 
@@ -117,7 +130,7 @@ public class NavDrw extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        Fragment fragment=new HomeActivity();
+        Fragment fragment = new HomeActivity();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_nav_drw, fragment);
         ft.addToBackStack(null);

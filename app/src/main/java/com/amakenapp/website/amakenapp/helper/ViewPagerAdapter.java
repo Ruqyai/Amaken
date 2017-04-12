@@ -32,6 +32,8 @@ public class ViewPagerAdapter extends PagerAdapter {
     Context context;
     private List<Photo> images;
 
+
+
     public ViewPagerAdapter (){
 
     }

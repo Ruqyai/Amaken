@@ -42,6 +42,18 @@
                 android:text="Business Name"
                 android:layout_marginTop="20dp"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/TextEventid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                 />
+            <TextView
+                android:id="@+id/TextEventavaliability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                />
             <View
                 android:id="@+id/imageViewEventBusinessPlaceAboveBorder"
                 android:layout_width="match_parent"
@@ -85,14 +97,12 @@
                 android:id="@+id/events_eventCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/events_eventName"
                 android:layout_marginStart="8dp"
                 android:text="Event Category"
                 android:textColor="@color/gray"
-                android:textStyle="bold"
+                android:textStyle="normal"
+                android:layout_toEndOf="@+id/events_eventName"
                 android:layout_alignBaseline="@+id/events_eventName"
-                android:layout_alignBottom="@+id/events_eventName"
-                android:layout_toEndOf="@+id/TextEventsDiscretion"
                  />
 
 
@@ -102,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/events_eventCategory"
+                android:layout_below="@+id/events_eventName"
                 android:text="@string/description_"
                 android:textColor="@color/baa"
                 android:textStyle="bold" />
@@ -123,18 +133,20 @@
                 android:background="?attr/selectableItemBackground"
                 android:id="@+id/TextExpandEvent"
                 android:focusableInTouchMode="true"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/TextEventDiscretionMultiLine"
                 android:layout_margin="2pt"
-                android:textColor="@color/baa"
+                android:textColor="@color/baa3"
+                android:selectAllOnFocus="true"
                 android:text="@string/expand_text"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold" />
 
             <RatingBar
                 android:id="@+id/ratingBarEvent"
-                style="@android:style/Widget.Holo.RatingBar.Small"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4pt"

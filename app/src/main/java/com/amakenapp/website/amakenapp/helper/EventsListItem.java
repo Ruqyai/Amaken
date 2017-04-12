@@ -6,48 +6,64 @@ package com.amakenapp.website.amakenapp.helper;
 
 public class EventsListItem {
 
-    private int eventBusinessProfileImage;
+    private int eventId;
+    private String eventavaliabilty;
+    private String eventBusinessProfileImage;
     private String eventBusinessName;
     private int event_availableOrBusyLogo;
 
-    private int eventPicture;
+    private String eventPicture;
     private String eventName;
-    private String eventCategory;
-    private String eventDescription;
-    private String eventDescriptionMultiLineText;
-    private String eventExpand;
-    private String eventRatingStat;
-    private int ratingEvent;
+    private String eventCategory1;
 
-    public EventsListItem(int eventBusinessProfileImage,
-                          String eventBusinessName,
-                          int event_availableOrBusyLogo,
-                          int eventPicture, String eventName,
-                          String eventCategory,
-                          String eventDescription,
-                          String eventDescriptionMultiLineText,
-                          String eventExpand,
-                          String eventRatingStat,
-                          int ratingEvent)
-    {
+    private String eventDescription = "Description";
+    private String eventDescriptionMultiLineText;
+    private String eventExpand = "Expand >>";
+    private String eventRatingStat;
+    private Float ratingEvent;
+    private String ratingStat;
+
+    public EventsListItem(int eventId, String eventBusinessProfileImage, String eventBusinessName, int event_availableOrBusyLogo, String eventPicture, String eventName, String eventCategory, String eventDescription, String eventDescriptionMultiLineText, String eventExpand, String eventRatingStat, Float ratingEvent, String ratingStat) {
+        this.eventId = eventId;
         this.eventBusinessProfileImage = eventBusinessProfileImage;
         this.eventBusinessName = eventBusinessName;
         this.event_availableOrBusyLogo = event_availableOrBusyLogo;
         this.eventPicture = eventPicture;
         this.eventName = eventName;
-        this.eventCategory = eventCategory;
+        this.eventCategory1 = eventCategory;
         this.eventDescription = eventDescription;
         this.eventDescriptionMultiLineText = eventDescriptionMultiLineText;
         this.eventExpand = eventExpand;
         this.eventRatingStat = eventRatingStat;
         this.ratingEvent = ratingEvent;
+        this.ratingStat = ratingStat;
     }
 
-    public int getEventBusinessProfileImage() {
+    public void setEventCategory1(String eventCategory1) {
+        this.eventCategory1 = eventCategory1;
+    }
+
+    public String getEventavaliabilty() {
+        return eventavaliabilty;
+    }
+
+    public void setEventavaliabilty(String eventavaliabilty) {
+        this.eventavaliabilty = eventavaliabilty;
+    }
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
+
+    public String getEventBusinessProfileImage() {
         return eventBusinessProfileImage;
     }
 
-    public void setEventBusinessProfileImage(int eventBusinessProfileImage) {
+    public void setEventBusinessProfileImage(String eventBusinessProfileImage) {
         this.eventBusinessProfileImage = eventBusinessProfileImage;
     }
 
@@ -67,11 +83,11 @@ public class EventsListItem {
         this.event_availableOrBusyLogo = event_availableOrBusyLogo;
     }
 
-    public int getEventPicture() {
+    public String getEventPicture() {
         return eventPicture;
     }
 
-    public void setEventPicture(int eventPicture) {
+    public void setEventPicture(String eventPicture) {
         this.eventPicture = eventPicture;
     }
 
@@ -83,12 +99,12 @@ public class EventsListItem {
         this.eventName = eventName;
     }
 
-    public String getEventCategory() {
-        return eventCategory;
+    public String getEventCategory1() {
+        return eventCategory1;
     }
 
     public void setEventCategory(String eventCategory) {
-        this.eventCategory = eventCategory;
+        this.eventCategory1 = eventCategory;
     }
 
     public String getEventDescription() {
@@ -123,11 +139,22 @@ public class EventsListItem {
         this.eventRatingStat = eventRatingStat;
     }
 
-    public int getRatingEvent() {
+    public Float getRatingEvent() {
         return ratingEvent;
     }
 
-    public void setRatingEvent(int ratingEvent) {
+    public void setRatingEvent(Float ratingEvent) {
         this.ratingEvent = ratingEvent;
+    }
+
+    public String getRatingStat() {
+        return ratingStat;
+    }
+
+    public void setRatingStat(String ratingStat) {
+        this.ratingStat = ratingStat;
+    }
+
+    public EventsListItem() {
     }
 }
