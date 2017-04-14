@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.amakenapp.website.amakenapp.R;
+import com.amakenapp.website.amakenapp.chat.ChatActivity;
 
 public class SignUpChooser extends AppCompatActivity implements View.OnClickListener {
     private CardView signUpBusinessCard;
@@ -37,14 +38,15 @@ public class SignUpChooser extends AppCompatActivity implements View.OnClickList
             finish();
           //  startActivity(new Intent(this, SignUpBusiness.class));
           //  startActivity(new Intent(this, SettingsActivity.class));
-          // startActivity(new Intent(this, NavDrw.class));//// TODO: 3/8/2017 NavDrw has error
+          //startActivity(new Intent(this, NavDrw.class));
             startActivity(new Intent(this, ChooseInterest.class));
 
         }
 
         if (v == signUpUserCard) {
             finish();
-            startActivity(new Intent(this, SignUpUser.class));
+          //  startActivity(new Intent(this, SignUpUser.class));
+            startActivity(new Intent(this, ChatActivity.class));
         }
 
     }

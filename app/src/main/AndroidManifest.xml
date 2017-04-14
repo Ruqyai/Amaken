@@ -223,6 +223,16 @@
             >
 
         </activity>
+        <activity android:name=".chat.ChatActivity"
+            android:label="Chatting with Hiri"
+            android:parentActivityName=".activities.NavDrw"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+
+        </activity>
     </application>
 
 </manifest>

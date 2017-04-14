@@ -1,6 +1,7 @@
 package com.amakenapp.website.amakenapp.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -14,8 +15,10 @@ import android.widget.ImageView;
 import com.amakenapp.website.amakenapp.R;
 
 import static android.app.Activity.RESULT_OK;
-
+ /*
 public class DialogPlaceFragment extends DialogFragment implements View.OnClickListener {
+
+
     View view;
     Button Gall;
     Button Takephoto;
@@ -59,40 +62,56 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
 
         //done button
         Done = (Button) view.findViewById(R.id.buttonDone);
-        Done.setOnClickListener(this);
+         Done.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
         // return to the main page 
-        return view;
+        return rootView;
 
 
     }
  /**  method used to open a gallery from the device  */
-
+/*
     private void openGallery(){
         Intent gallery = new Intent (Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
     }
-    @Override
-    public void onClick(View v ){
-        this.dismiss();
-    }
-    @Override
-    public void onActivityResult(int  requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode,resultCode, data);
-        if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
-            imageUri = data.getData();
-            imageView.setImageURI(imageUri);
-        }
+   
+     /**
+     * switching cases for the images collected from gallery or the camera
+     */
 
-    }
+   // @Override
+   // public void onActivityResult(int requestCode, int resultCode, Intent data) {
+      //  switch (requestCode) {
+       //     case 0:
+
+          //      super.onActivityResult(requestCode, resultCode, data);
+          //      if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
+          //          imageUri = data.getData();
+          //          imageView.setImageURI(imageUri);
+           //     }
+
+           // case 1:
+          //      super.onActivityResult(requestCode, resultCode, data);
+         //       Bitmap bp = (Bitmap) data.getExtras().get("data");
+          //      imageView.setImageBitmap(bp);
+//
+
+     //   }
+  //  }
  /**
      * Called when the user taps the Camera button
      */
 
-    public void CameraPicture() {
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, 0);
-    }
-
+   // public void CameraPicture() {
+   //     Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+   //     startActivityForResult(intent, 0);
+   // }
+/*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
          super.onActivityResult(requestCode, resultCode, data);
@@ -102,3 +121,4 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
 
 
 }
+**/
