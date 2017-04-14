@@ -84,25 +84,25 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
      * switching cases for the images collected from gallery or the camera
      */
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case 0:
+   // @Override
+   // public void onActivityResult(int requestCode, int resultCode, Intent data) {
+      //  switch (requestCode) {
+       //     case 0:
 
-                super.onActivityResult(requestCode, resultCode, data);
-                if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
-                    imageUri = data.getData();
-                    imageView.setImageURI(imageUri);
-                }
+          //      super.onActivityResult(requestCode, resultCode, data);
+          //      if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
+          //          imageUri = data.getData();
+          //          imageView.setImageURI(imageUri);
+           //     }
 
-            case 1:
-                super.onActivityResult(requestCode, resultCode, data);
-                Bitmap bp = (Bitmap) data.getExtras().get("data");
-                imageView.setImageBitmap(bp);
+           // case 1:
+          //      super.onActivityResult(requestCode, resultCode, data);
+         //       Bitmap bp = (Bitmap) data.getExtras().get("data");
+          //      imageView.setImageBitmap(bp);
+//
 
-
-        }
-    }
+     //   }
+  //  }
  /**
      * Called when the user taps the Camera button
      */
