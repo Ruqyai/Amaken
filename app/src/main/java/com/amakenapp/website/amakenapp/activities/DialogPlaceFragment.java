@@ -43,13 +43,19 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
             }
 
         });
-                //Takephoto button
+         //Takephoto button
         Takephoto = (Button) view.findViewById(R.id.buttonTakephoto);
         //clear photo button
         Clearphoto = (Button) view.findViewById(R.id.buttonClearphoto);
         
         //Image View 
         imageView = (ImageView) view.findViewById(R.id.image_view);
+        imageView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CameraPicture();
+            }
+        });
 
         //done button
         Done = (Button) view.findViewById(R.id.buttonDone);
@@ -59,7 +65,7 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
 
 
     }
-// method used to open a gallery from the device
+ /**  method used to open a gallery from the device  */
 
     private void openGallery(){
         Intent gallery = new Intent (Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
@@ -78,6 +84,21 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
         }
 
     }
+ /**
+     * Called when the user taps the Camera button
+     */
+
+    public void CameraPicture() {
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+         super.onActivityResult(requestCode, resultCode, data);
+        Bitmap bp = (Bitmap) data.getExtras().get("data");
+        imageView.setImageBitmap(bp);}
+}
 
 
 }
