@@ -59,7 +59,12 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
 
         //done button
         Done = (Button) view.findViewById(R.id.buttonDone);
-        Done.setOnClickListener(this);
+         Done.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
         // return to the main page 
         return view;
 
@@ -71,18 +76,29 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
         Intent gallery = new Intent (Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
     }
-    @Override
-    public void onClick(View v ){
-        this.dismiss();
-    }
-    @Override
-    public void onActivityResult(int  requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode,resultCode, data);
-        if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
-            imageUri = data.getData();
-            imageView.setImageURI(imageUri);
-        }
+   
+     /**
+     * switching cases for the images collected from gallery or the camera
+     */
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 0:
+
+                super.onActivityResult(requestCode, resultCode, data);
+                if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
+                    imageUri = data.getData();
+                    imageView.setImageURI(imageUri);
+                }
+
+            case 1:
+                super.onActivityResult(requestCode, resultCode, data);
+                Bitmap bp = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(bp);
+
+
+        }
     }
  /**
      * Called when the user taps the Camera button
