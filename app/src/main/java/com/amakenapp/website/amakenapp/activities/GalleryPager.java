@@ -55,6 +55,8 @@ public class GalleryPager extends DialogFragment{
     final int position = 0;
 
     private int eventId;
+    private int placeId;
+
 
     static GalleryPager newInstance() {
         GalleryPager f = new GalleryPager();
@@ -90,11 +92,23 @@ public class GalleryPager extends DialogFragment{
         });
 
 
-        eventId = getArguments().getInt("EventId");
-
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
-        usersGalleryLoading(eventId);
+        String galleryType = getArguments().getString("GALLERY_TYPE");
+
+        if(galleryType.equals("PLACE"))
+
+        {
+            placeId = getArguments().getInt("PlaceId");
+            usersGalleryLoadingPlace(placeId);
+        }
+        else if(galleryType.equals("EVENT"))
+        {
+            eventId = getArguments().getInt("EventId");
+            usersGalleryLoading(eventId);
+        }
+
+
         return v;
     }
 
@@ -184,6 +198,62 @@ public class GalleryPager extends DialogFragment{
                                             image.setPhoto_description(url.getString("image_description"));
                                             image.setPhoto_url(url.getString("image_url"));
                                             imagesGallery.add(image);
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        galleryViewPager.notifyDataSetChanged();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(
+                        getActivity(),
+                        error.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+
+            }
+        }) {
+
+        };
+
+        MySingleton.getInstance(getActivity()).addToRequestQueue(send);
+
+    }
+
+
+
+
+
+    public void usersGalleryLoadingPlace(int placeIdArg) {
+        placeId = placeIdArg;
+
+        StringRequest send = new StringRequest(Request.Method.GET,
+                Constants.URL_PLACE_USERS_GALLERY+ placeId,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        imagesGallery.clear();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                JSONArray arr =  obj.getJSONArray("reviews_gallery");
+                                for(int i = 0; i<arr.length(); i++){
+                                    JSONObject url = arr.getJSONObject(i);
+                                    Photo image =  new Photo();
+                                    image.setUserName(url.getString("user_name"));
+                                    image.setDate(url.getString("review_timeStamp"));
+                                    image.setPhoto_description(url.getString("image_description"));
+                                    image.setPhoto_url(url.getString("image_url"));
+                                    imagesGallery.add(image);
                                 }
                             } else {
                                 Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_LONG).show();

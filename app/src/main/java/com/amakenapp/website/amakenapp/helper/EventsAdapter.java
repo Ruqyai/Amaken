@@ -108,7 +108,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         public TextView eventName;
         public TextView getEventCategory;
 
-        public TextView eventCategory;
         public TextView eventDescription;
         public TextView eventDescriptionMultiLineText;
         public TextView eventExpand;

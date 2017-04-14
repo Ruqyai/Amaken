@@ -40,6 +40,12 @@
                 android:text="Business Name"
                 android:layout_marginTop="20dp"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/Textplaceid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                />
             <View
                 android:id="@+id/imageViewHomeBusinessPlaceAboveBorder"
                 android:layout_width="match_parent"
@@ -81,13 +87,12 @@
                 android:id="@+id/TextNameHomeCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="(Place Category)"
+                android:layout_marginStart="8dp"
+                android:text="Place Category"
                 android:textColor="@color/gray"
-                android:textStyle="bold"
-                android:layout_alignBaseline="@+id/nameTitPlaceHome"
-                android:layout_alignBottom="@+id/nameTitPlaceHome"
-                android:layout_toEndOf="@+id/TextHomeDiscretion" />
+                android:textStyle="normal"
+                android:layout_toEndOf="@+id/nameTitPlaceHome"
+                android:layout_alignBaseline="@+id/nameTitPlaceHome" />
 
 
 
@@ -96,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_margin="3dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/TextNameHomeCategory"
+                android:layout_below="@+id/nameTitPlaceHome"
                 android:text="Description"
                 android:textColor="@color/baa"
                 android:textStyle="bold" />
@@ -115,19 +120,22 @@
 
             <TextView
                 android:id="@+id/TextExpandHome"
-                android:layout_width="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:focusableInTouchMode="true"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/TextHomeDiscretionMultiLine"
                 android:layout_margin="2pt"
-                android:text="Expand >>"
-                android:shadowColor="@color/baa"
-                android:textColor="@color/baa"
+                android:textColor="@color/baa3"
+                android:selectAllOnFocus="true"
+                android:text="@string/expand_text"
+                style="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold" />
 
             <RatingBar
                 android:id="@+id/ratingBarHome"
-                style="@android:style/Widget.Holo.RatingBar.Small"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4pt"
