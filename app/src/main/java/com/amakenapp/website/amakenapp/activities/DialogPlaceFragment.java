@@ -19,7 +19,7 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
     View view;
     Button Gall;
     Button Takephoto;
-    Button Clearphoto;
+    
     Button Done;
     ImageView imageView;
 
