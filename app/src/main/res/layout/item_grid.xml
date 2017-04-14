@@ -15,8 +15,8 @@
         app:srcCompat="@drawable/cafes" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
         android:layout_height="wrap_content"
         android:background="@color/barlight"
         android:layout_below="@+id/imageViewGrid"
