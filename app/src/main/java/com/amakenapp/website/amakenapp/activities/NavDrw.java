@@ -31,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
+import com.amakenapp.website.amakenapp.chat.ChatActivity;
 import com.amakenapp.website.amakenapp.helper.Constants;
 import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
 import com.amakenapp.website.amakenapp.store.User;

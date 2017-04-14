@@ -1,6 +1,7 @@
 package com.amakenapp.website.amakenapp.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -14,8 +15,10 @@ import android.widget.ImageView;
 import com.amakenapp.website.amakenapp.R;
 
 import static android.app.Activity.RESULT_OK;
-
+ /*
 public class DialogPlaceFragment extends DialogFragment implements View.OnClickListener {
+
+
     View view;
     Button Gall;
     Button Takephoto;
@@ -66,7 +69,7 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
 
     }
  /**  method used to open a gallery from the device  */
-
+/*
     private void openGallery(){
         Intent gallery = new Intent (Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
@@ -88,11 +91,11 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
      * Called when the user taps the Camera button
      */
 
-    public void CameraPicture() {
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, 0);
-    }
-
+   // public void CameraPicture() {
+   //     Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+   //     startActivityForResult(intent, 0);
+   // }
+/*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
          super.onActivityResult(requestCode, resultCode, data);
@@ -102,3 +105,4 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
 
 
 }
+**/

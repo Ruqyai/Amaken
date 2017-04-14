@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
+import com.amakenapp.website.amakenapp.chat.ChatActivity;
 import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
 import com.amakenapp.website.amakenapp.store.User;
 import com.squareup.picasso.Picasso;
@@ -107,6 +108,7 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
 
         if (v == businessCategoriesCard){
             startActivity(new Intent(getActivity(), ProfileCategories.class));
+
         }
     }
 
