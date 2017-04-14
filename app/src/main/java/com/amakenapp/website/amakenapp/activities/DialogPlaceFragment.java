@@ -66,7 +66,7 @@ public class DialogPlaceFragment extends DialogFragment implements View.OnClickL
             }
         });
         // return to the main page 
-        return view;
+        return rootView;
 
 
     }
