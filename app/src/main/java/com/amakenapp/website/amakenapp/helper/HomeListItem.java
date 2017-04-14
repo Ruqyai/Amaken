@@ -5,118 +5,124 @@ package com.amakenapp.website.amakenapp.helper;
  */
 
 public class HomeListItem {
-    private String nameHomeBusiness;
-    private String nameHomeCategory;
-    private String homeNumberOfRate;
-    private String homeDescription;
-    private String homeDescriptionMultiLine;
-    private String expandHome;
-    private String homeNameTitPlaceHome;
-    private int homeBusinessProfileImage;
-    private int homeBusinessPlaceImage;
-    private int ratingHome;
 
-    public HomeListItem(
-            int homeBusinessProfileImage,
-            String nameHomeBusiness,
-            int homeBusinessPlaceImage,
-            String homeNameTitPlaceHome,
-            String nameHomeCategory,
-            String homeDescription,
-            String homeDescriptionMultiLine,
-            String expandHome,
-            int ratingHome,
-            String homeNumberOfRate
-    ) {
-        this.nameHomeBusiness = nameHomeBusiness;
-        this.nameHomeCategory = nameHomeCategory;
-        this.homeNumberOfRate = homeNumberOfRate;
-        this.homeDescription = homeDescription;
-        this.homeDescriptionMultiLine = homeDescriptionMultiLine;
-        this.expandHome = expandHome;
-        this.homeNameTitPlaceHome = homeNameTitPlaceHome;
-        this.homeBusinessProfileImage = homeBusinessProfileImage;
-        this.homeBusinessPlaceImage = homeBusinessPlaceImage;
-        this.ratingHome = ratingHome;
+    private int placeId;
+
+    private String placeBusinessProfileImage;
+    private String placeBusinessName;
+
+    private String placePicture;
+    private String placeName;
+    private String placeCategory;
+
+    private String placeDescription = "Description";
+    private String placeDescriptionMultiLineText;
+    private String placeExpand = "Expand >>";
+    private String placeRatingStat;
+    private Float ratingplace;
+
+    public HomeListItem() {
     }
 
-    public String getNameHomeBusiness() {
-        return nameHomeBusiness;
+    public HomeListItem(int placeId, String placeBusinessProfileImage, String placeBusinessName, String placePicture, String placeName, String placeCategory, String placeDescription, String placeDescriptionMultiLineText, String placeExpand, String placeRatingStat, Float ratingplace) {
+        this.placeId = placeId;
+        this.placeBusinessProfileImage = placeBusinessProfileImage;
+        this.placeBusinessName = placeBusinessName;
+        this.placePicture = placePicture;
+        this.placeName = placeName;
+        this.placeCategory = placeCategory;
+        this.placeDescription = placeDescription;
+        this.placeDescriptionMultiLineText = placeDescriptionMultiLineText;
+        this.placeExpand = placeExpand;
+        this.placeRatingStat = placeRatingStat;
+        this.ratingplace = ratingplace;
     }
 
-    public String getNameHomeCategory() {
-        return nameHomeCategory;
+    public int getPlaceId() {
+        return placeId;
     }
 
-    public String getHomeNumberOfRate() {
-        return homeNumberOfRate;
+    public void setPlaceId(int placeId) {
+        this.placeId = placeId;
     }
 
-    public String getHomeDescription() {
-        return homeDescription;
+    public String getPlaceBusinessProfileImage() {
+        return placeBusinessProfileImage;
     }
 
-    public String getHomeDescriptionMultiLine() {
-        return homeDescriptionMultiLine;
+    public void setPlaceBusinessProfileImage(String placeBusinessProfileImage) {
+        this.placeBusinessProfileImage = placeBusinessProfileImage;
     }
 
-    public String getExpandHome() {
-        return expandHome;
+    public String getPlaceBusinessName() {
+        return placeBusinessName;
     }
 
-    public String getHomeNameTitPlaceHome() {
-        return homeNameTitPlaceHome;
+    public void setPlaceBusinessName(String placeBusinessName) {
+        this.placeBusinessName = placeBusinessName;
     }
 
-    public int getHomeBusinessProfileImage() {
-        return homeBusinessProfileImage;
+    public String getPlacePicture() {
+        return placePicture;
     }
 
-    public int getHomeBusinessPlaceImage() {
-        return homeBusinessPlaceImage;
+    public void setPlacePicture(String placePicture) {
+        this.placePicture = placePicture;
     }
 
-    public int getRatingHome() {
-        return ratingHome;
+    public String getPlaceName() {
+        return placeName;
     }
 
-    public void setNameHomeBusiness(String nameHomeBusiness) {
-        this.nameHomeBusiness = nameHomeBusiness;
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
     }
 
-    public void setNameHomeCategory(String nameHomeCategory) {
-        this.nameHomeCategory = nameHomeCategory;
+    public String getPlaceCategory() {
+        return placeCategory;
     }
 
-    public void setHomeNumberOfRate(String homeNumberOfRate) {
-        this.homeNumberOfRate = homeNumberOfRate;
+    public void setPlaceCategory(String placeCategory) {
+        this.placeCategory = placeCategory;
     }
 
-    public void setHomeDescription(String homeDescription) {
-        this.homeDescription = homeDescription;
+    public String getPlaceDescription() {
+        return placeDescription;
     }
 
-    public void setHomeDescriptionMultiLine(String homeDescriptionMultiLine) {
-        this.homeDescriptionMultiLine = homeDescriptionMultiLine;
+    public void setPlaceDescription(String placeDescription) {
+        this.placeDescription = placeDescription;
     }
 
-    public void setExpandHome(String expandHome) {
-        this.expandHome = expandHome;
+    public String getPlaceDescriptionMultiLineText() {
+        return placeDescriptionMultiLineText;
     }
 
-    public void setHomeNameTitPlaceHome(String homeNameTitPlaceHome) {
-        this.homeNameTitPlaceHome = homeNameTitPlaceHome;
+    public void setPlaceDescriptionMultiLineText(String placeDescriptionMultiLineText) {
+        this.placeDescriptionMultiLineText = placeDescriptionMultiLineText;
     }
 
-    public void setHomeBusinessProfileImage(int homeBusinessProfileImage) {
-        this.homeBusinessProfileImage = homeBusinessProfileImage;
+    public String getPlaceExpand() {
+        return placeExpand;
     }
 
-    public void setHomeBusinessPlaceImage(int homeBusinessPlaceImage) {
-        this.homeBusinessPlaceImage = homeBusinessPlaceImage;
+    public void setPlaceExpand(String placeExpand) {
+        this.placeExpand = placeExpand;
     }
 
-    public void setRatingHome(int ratingHome) {
-        this.ratingHome = ratingHome;
+    public String getPlaceRatingStat() {
+        return placeRatingStat;
+    }
+
+    public void setPlaceRatingStat(String placeRatingStat) {
+        this.placeRatingStat = placeRatingStat;
+    }
+
+    public Float getRatingplace() {
+        return ratingplace;
+    }
+
+    public void setRatingplace(Float ratingplace) {
+        this.ratingplace = ratingplace;
     }
 }

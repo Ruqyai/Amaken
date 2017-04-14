@@ -1,5 +1,7 @@
 package com.amakenapp.website.amakenapp.helper;
 
+import com.amakenapp.website.amakenapp.R;
+
 /**
  * Created by Muha on 3/10/2017.
  */
@@ -9,33 +11,94 @@ package com.amakenapp.website.amakenapp.helper;
 
 public class BusinessProfilePlaceOrEventListItem {
 
-    private int BusinessProfilePlaceOrEventPic;
-    private String BusinessProfilePlaceOrEventName;
-    private String BusinessProfilePlaceOrEventCategory;
-    private int BusinessProfilePlaceOrEventLikeLogo;
-    private int BusinessProfilePlaceOrEventBookmarkLogo;
-    private int BusinessProfilePlaceOrEventRatingbarLogo;
+
+    private int PlaceOrEventId;
+    private String type;
+    private String PlaceOrEventPic;
+    private String PlaceOrEventName;
+    private String PlaceOrEventCategory;
+    private int PlaceOrEventLikeLogo;
+    private int PlaceOrEventBookmarkLogo;
+    private Float PlaceOrEventRatingbar;
     private String statBookmark, statLikes,statRatings;
 
-    public BusinessProfilePlaceOrEventListItem(int BusinessProfilePlaceOrEventPic,
-                                               String BusinessProfilePlaceOrEventName,
-                                               String placeDescUserLikes,
-                                               int BusinessProfilePlaceOrEventLikeLogo,
-                                               int bookmarkImageUser,
-                                               int ratingbarBusiness,
-                                               String statBookmark,
-                                               String statLikes,
-                                               String statRatings) {
+    public BusinessProfilePlaceOrEventListItem() {
+    }
 
-        this.BusinessProfilePlaceOrEventPic = BusinessProfilePlaceOrEventPic;
-        this.BusinessProfilePlaceOrEventName = BusinessProfilePlaceOrEventName;
-        this.BusinessProfilePlaceOrEventCategory = placeDescUserLikes;
-        this.BusinessProfilePlaceOrEventLikeLogo = BusinessProfilePlaceOrEventLikeLogo;
-        this.BusinessProfilePlaceOrEventBookmarkLogo = bookmarkImageUser;
-        this.BusinessProfilePlaceOrEventRatingbarLogo = ratingbarBusiness;
+    public BusinessProfilePlaceOrEventListItem(String placeOrEventPic, String placeOrEventName, String placeOrEventCategory, int placeOrEventLikeLogo, int placeOrEventBookmarkLogo, Float placeOrEventRatingbar, String statBookmark, String statLikes, String statRatings) {
+        PlaceOrEventPic = placeOrEventPic;
+        PlaceOrEventName = placeOrEventName;
+        PlaceOrEventCategory = placeOrEventCategory;
+        PlaceOrEventLikeLogo = placeOrEventLikeLogo;
+        PlaceOrEventBookmarkLogo = placeOrEventBookmarkLogo;
+        PlaceOrEventRatingbar = placeOrEventRatingbar;
         this.statBookmark = statBookmark;
         this.statLikes = statLikes;
         this.statRatings = statRatings;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getPlaceOrEventId() {
+        return PlaceOrEventId;
+    }
+
+    public void setPlaceOrEventId(int placeOrEventId) {
+        PlaceOrEventId = placeOrEventId;
+    }
+
+    public String getPlaceOrEventPic() {
+        return PlaceOrEventPic;
+    }
+
+    public void setPlaceOrEventPic(String placeOrEventPic) {
+        PlaceOrEventPic = placeOrEventPic;
+    }
+
+    public String getPlaceOrEventName() {
+        return PlaceOrEventName;
+    }
+
+    public void setPlaceOrEventName(String placeOrEventName) {
+        PlaceOrEventName = placeOrEventName;
+    }
+
+    public String getPlaceOrEventCategory() {
+        return PlaceOrEventCategory;
+    }
+
+    public void setPlaceOrEventCategory(String placeOrEventCategory) {
+        PlaceOrEventCategory = placeOrEventCategory;
+    }
+
+    public int getPlaceOrEventLikeLogo() {
+        return PlaceOrEventLikeLogo;
+    }
+
+    public void setPlaceOrEventLikeLogo(int placeOrEventLikeLogo) {
+        PlaceOrEventLikeLogo = placeOrEventLikeLogo;
+    }
+
+    public int getPlaceOrEventBookmarkLogo() {
+        return PlaceOrEventBookmarkLogo;
+    }
+
+    public void setPlaceOrEventBookmarkLogo(int placeOrEventBookmarkLogo) {
+        PlaceOrEventBookmarkLogo = placeOrEventBookmarkLogo;
+    }
+
+    public Float getPlaceOrEventRatingbar() {
+        return PlaceOrEventRatingbar;
+    }
+
+    public void setPlaceOrEventRatingbar(Float placeOrEventRatingbar) {
+        PlaceOrEventRatingbar = placeOrEventRatingbar;
     }
 
     public String getStatBookmark() {
@@ -60,53 +123,5 @@ public class BusinessProfilePlaceOrEventListItem {
 
     public void setStatRatings(String statRatings) {
         this.statRatings = statRatings;
-    }
-
-    public int getBusinessProfilePlaceOrEventPic() {
-        return BusinessProfilePlaceOrEventPic;
-    }
-
-    public void setBusinessProfilePlaceOrEventPic(int businessProfilePlaceOrEventPic) {
-        this.BusinessProfilePlaceOrEventPic = businessProfilePlaceOrEventPic;
-    }
-
-    public String getBusinessProfilePlaceOrEventName() {
-        return BusinessProfilePlaceOrEventName;
-    }
-
-    public void setBusinessProfilePlaceOrEventName(String businessProfilePlaceOrEventName) {
-        this.BusinessProfilePlaceOrEventName = businessProfilePlaceOrEventName;
-    }
-
-    public String getBusinessProfilePlaceOrEventCategory() {
-        return BusinessProfilePlaceOrEventCategory;
-    }
-
-    public void setBusinessProfilePlaceOrEventCategory(String businessProfilePlaceOrEventCategory) {
-        this.BusinessProfilePlaceOrEventCategory = businessProfilePlaceOrEventCategory;
-    }
-
-    public int getBusinessProfilePlaceOrEventLikeLogo() {
-        return BusinessProfilePlaceOrEventLikeLogo;
-    }
-
-    public void setBusinessProfilePlaceOrEventLikeLogo(int businessProfilePlaceOrEventLikeLogo) {
-        this.BusinessProfilePlaceOrEventLikeLogo = businessProfilePlaceOrEventLikeLogo;
-    }
-
-    public int getBusinessProfilePlaceOrEventBookmarkLogo() {
-        return BusinessProfilePlaceOrEventBookmarkLogo;
-    }
-
-    public void setBusinessProfilePlaceOrEventBookmarkLogo(int businessProfilePlaceOrEventBookmarkLogo) {
-        this.BusinessProfilePlaceOrEventBookmarkLogo = businessProfilePlaceOrEventBookmarkLogo;
-    }
-
-    public int getBusinessProfilePlaceOrEventRatingbarLogo() {
-        return BusinessProfilePlaceOrEventRatingbarLogo;
-    }
-
-    public void setBusinessProfilePlaceOrEventRatingbarLogo(int businessProfilePlaceOrEventRatingbarLogo) {
-        this.BusinessProfilePlaceOrEventRatingbarLogo = businessProfilePlaceOrEventRatingbarLogo;
     }
 }

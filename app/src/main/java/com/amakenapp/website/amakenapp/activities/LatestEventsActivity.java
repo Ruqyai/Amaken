@@ -67,10 +67,6 @@ public class LatestEventsActivity extends Fragment{
         getAllLatestevents(userId);
 
 
-
-       /* adapter = new EventsAdapter (listItems, getActivity());
-
-        recyclerView.setAdapter(adapter);*/
         return myView;
     }
 

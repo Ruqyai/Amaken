@@ -114,7 +114,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
     private ImageView imageViewLike;
     private ImageView imageViewSave;
     private ImageView imageViewReveiw;
-    private TextView eventPhotosNumber,
+    private TextView noReviews, addReview, eventPhotosNumber,
             eventLikesNumber,
             eventBookmarksNumber,
             eventReplysNumber,
@@ -159,8 +159,8 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
 
         ////////////////////////////////////////////////////
 
-        update2 = (ImageView) findViewById(R.id.update2);
-        update2.setOnClickListener(this);
+        //update2 = (ImageView) findViewById(R.id.update2);
+       // update2.setOnClickListener(this);
         mDemoSlider = (SliderLayout) findViewById(R.id.slider_event);
 
         file_maps = new HashMap<String, String>();
@@ -181,6 +181,9 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         viewPagerReviews.setAdapter(reviewsViewPager);*/
 
         ///////find views by id for textViews
+        noReviews = (TextView) findViewById(R.id.no_event_reviews);
+        addReview = (TextView) findViewById(R.id.add_one);
+
         eventPhotosNumber = (TextView) findViewById(R.id.textNumberGalleryImageEvent);
         eventLikesNumber = (TextView) findViewById(R.id.textNumberLikesEvent);
         eventBookmarksNumber = (TextView) findViewById(R.id.textNumberSaveEvent);
@@ -221,6 +224,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         imageViewReveiw = (ImageView) findViewById(R.id.imageButtonReviewEvent);
         imageViewReveiw.setImageResource(R.drawable.ic_reply);
         imageViewReveiw.setOnClickListener(this);
+        addReview.setOnClickListener(this);
 
 
         flipPreviousEvent = (ImageButton) findViewById(R.id.flipp_previous_event);
@@ -292,6 +296,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
             {Toast.makeText(getApplicationContext(), "This is Users' Reviews Gallery", Toast.LENGTH_LONG).show();
             Bundle bundle = new Bundle();
             bundle.putInt("EventId", eventID);
+            bundle.putString("GALLERY_TYPE", "EVENT");
 
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             GalleryPager newFragment = GalleryPager.newInstance();
@@ -308,7 +313,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
             v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation));
             eventStoreBookmark(eventID, userId);
         }
-        if (v == imageViewReveiw) {
+        if (v == imageViewReveiw || v == addReview) {
             v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation));
             //// TODO: 3/17/2017 aslo store review on database
             startActivity(new Intent(this, AddReview.class));
@@ -366,41 +371,29 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
             int click = 0;
             for (int i = 0; i > 10; i++) {
                 click++;
-                if (click == 1) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.RotateDown);
+                if (click == 1) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.RotateDown);
                 }
-                if (click == 1) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
+                if (click == 1) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
                 }
-                if (click == 2) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.ZoomOut);
+                if (click == 2) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.ZoomOut);
                 }
-                if (click == 3) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.RotateUp);
+                if (click == 3) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.RotateUp);
                 }
-                if (click == 4) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.FlipHorizontal);
+                if (click == 4) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.FlipHorizontal);
                 }
-                if (click == 5) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
+                if (click == 5) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
                 }
-                if (click == 6) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);
+                if (click == 6) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);
                 }
-                if (click == 7) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.CubeIn);
+                if (click == 7) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.CubeIn);
                 }
-                if (click == 8) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Default);
+                if (click == 8) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Default);
                 }
-                if (click == 9) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Fade);
+                if (click == 9) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Fade);
                 }
-                if (click == 10) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.FlipPage);
+                if (click == 10) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.FlipPage);
                 }
-                if (click == 11) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Tablet);
+                if (click == 11) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Tablet);
                 }
             }
         }
@@ -417,11 +410,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         super.onStop();
     }
 
-    /*@Override
-    public void onSliderClick(BaseSliderView slider) {
-        Toast.makeText(this, "The Name of This place is : " + slider.getBundle().get("extra"), Toast.LENGTH_SHORT).show();
 
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -434,7 +423,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_custom_indicator:
-                mDemoSlider.setCustomIndicator((PagerIndicator) findViewById(R.id.custom_indicator));
+                mDemoSlider.setCustomIndicator((PagerIndicator) findViewById(R.id.custom_indicator_event));
                 break;
             case R.id.action_custom_child_animation:
                 mDemoSlider.setCustomAnimation(new ChildAnimationExample());
@@ -710,8 +699,16 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
                                 reviewsFlipper.setAdapter(reviewsCustomAdapter);
 
                             } else {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                noReviews.setVisibility(View.VISIBLE);
+                                addReview.setVisibility(View.VISIBLE);
+                                flipPreviousEvent.clearAnimation();
+                                filpNextEvent.clearAnimation();
+                                filpNextEvent.setVisibility(View.GONE);
+                                flipPreviousEvent.setVisibility(View.GONE);
                             }
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();

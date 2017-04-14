@@ -83,7 +83,8 @@
                     custom:auto_cycle="true"
                     custom:indicator_visibility="visible"
                     custom:pager_animation="Accordion"
-                    custom:pager_animation_span="1100">
+                    custom:pager_animation_span="1100"
+                    android:layout_alignParentBottom="true">
 
 
                 </com.daimajia.slider.library.SliderLayout>
@@ -96,7 +97,8 @@
                     android:gravity="center"
                     custom:selected_color="#0db2f4"
                     custom:unselected_color="#e1a16b38"
-                    custom:selected_drawable="@drawable/ic_action_name"
+                    custom:selected_drawable="@drawable/ic_indicator_fill"
+                    app:unselected_drawable="@drawable/ic_indicator_outline"
                     custom:shape="oval"
                     custom:selected_padding_left="5dp"
                     custom:selected_padding_right="5dp"
@@ -104,29 +106,22 @@
                     custom:unselected_padding_right="5dp"
                     android:layout_centerHorizontal="true"
 
-                    android:layout_below="@+id/slider"
-                    custom:selected_width="6dp"
-                    custom:selected_height="6dp"
-                    custom:unselected_width="6dp"
-                    custom:unselected_height="6dp"
-                    android:layout_marginBottom="20dp"
-                    />
-                <com.daimajia.slider.library.Indicators.PagerIndicator
-                    android:id="@+id/custom_indicator2"
-                    style="@style/AndroidImageSlider_Corner_Oval_Orange"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/slider"
-                    android:layout_marginBottom="20dp"
+                    android:layout_below="@+id/slider_event"
+                    custom:selected_width="8dp"
+                    custom:selected_height="8dp"
+                    custom:unselected_width="8dp"
+                    custom:unselected_height="8dp"
                     />
 
 
+<!--
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/custom_indicator2"
                     android:layout_alignParentRight="true"
                     android:id="@+id/update2"
-                    app:srcCompat="@drawable/ic_fast_forward_black_24dp"/>
+                    app:srcCompat="@drawable/ic_fast_forward_black_24dp"/>  -->
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
@@ -827,10 +822,40 @@
                         android:id="@+id/flipp_previous_event"
                         android:layout_height="100dp"
                         android:background="#90e9e8e8"
+                        android:visibility="visible"
                         android:layout_width="wrap_content"
                         android:src="@drawable/ic_flipp_previous"
                         android:layout_centerVertical="true"
                         android:layout_alignParentStart="true"/>
+                    <TextView
+                        android:id="@+id/no_event_reviews"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:visibility="gone"
+                        android:textStyle="bold"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:text="No Reviews on This Event Yet! "
+                        android:drawableTop="@drawable/ic_not_reviews"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        />
+                    <TextView
+                        android:id="@+id/add_one"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:paddingBottom="30dp"
+                        android:visibility="gone"
+                        android:textStyle="bold"
+                        android:textColor="@color/baa3"
+                        android:textAlignment="gravity"
+                        android:gravity="bottom"
+                        android:layout_centerHorizontal="true"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:text=" Add one! "
+                         />
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="180dp"
@@ -842,11 +867,12 @@
 
 
                         >
+
+
                         <AdapterViewFlipper
                             android:id="@+id/reviews_simple_flipper_events"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            />
+                            android:layout_height="match_parent" />
 
                     </FrameLayout>
 
@@ -857,6 +883,7 @@
                         android:id="@+id/flipp_next_event"
                         android:layout_width="wrap_content"
                         android:src="@drawable/ic_flipp_next"
+                        android:visibility="visible"
                         android:layout_alignParentEnd="true"
                         android:background="#90e9e8e8"
                         android:layout_height="100dp"

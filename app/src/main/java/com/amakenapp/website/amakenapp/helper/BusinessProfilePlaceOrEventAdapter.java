@@ -3,6 +3,9 @@ package com.amakenapp.website.amakenapp.helper;
 
 
         import android.content.Context;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.support.v7.view.ContextThemeWrapper;
         import android.support.v7.widget.PopupMenu;
         import android.support.v7.widget.RecyclerView;
         import android.view.LayoutInflater;
@@ -12,7 +15,10 @@ package com.amakenapp.website.amakenapp.helper;
         import android.widget.ImageView;
         import android.widget.RatingBar;
         import android.widget.TextView;
+        import android.widget.Toast;
 
+        import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivity;
+        import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivityEvent;
         import com.bumptech.glide.Glide;
         import com.amakenapp.website.amakenapp.R;
 
@@ -46,28 +52,36 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
 
         BusinessProfilePlaceOrEventListItem listItem = listItems.get(position);
 
-        Glide.with(context).load(listItem.getBusinessProfilePlaceOrEventPic()).into(holder.PlaceOrEventPicture);
-        //holder.PlaceOrEventPicture.setImageResource(listItem.getBusinessProfilePlaceOrEventPic());
 
-        holder.PlaceOrEventName.setText(listItem.getBusinessProfilePlaceOrEventName());
-        holder.PlaceOrEventCategory.setText(listItem.getBusinessProfilePlaceOrEventCategory());
+        final int placeOrEventId = listItem.getPlaceOrEventId();
+        final String type = listItem.getType();
 
-        Glide.with(context).load(listItem.getBusinessProfilePlaceOrEventLikeLogo()).into(holder.LikeLogo);
-        //holder.LikeLogo.setImageResource(listItem.getBusinessProfilePlaceOrEventLikeLogo());
 
-        Glide.with(context).load(listItem.getBusinessProfilePlaceOrEventBookmarkLogo()).into(holder.bookmarkLogo);
 
-        //holder.bookmarkLogo.setImageResource(listItem.getBusinessProfilePlaceOrEventBookmarkLogo());
-        holder.ratingbar.setRating(listItem.getBusinessProfilePlaceOrEventRatingbarLogo());
-        holder.StatBookmarks.setText(listItem.getStatBookmark());
+
+
+        Glide.with(context).load(listItem.getPlaceOrEventPic()).into(holder.PlaceOrEventPicture);
+
+        holder.PlaceOrEventName.setText(listItem.getPlaceOrEventName());
+        holder.PlaceOrEventCategory.setText(listItem.getPlaceOrEventCategory());
+
+        holder.LikeLogo.setImageResource(R.drawable.ic_like_fill);
         holder.StatLikes.setText(listItem.getStatLikes());
+
+        holder.bookmarkLogo.setImageResource(R.drawable.ic_bookmark_fill);
+        holder.StatBookmarks.setText(listItem.getStatBookmark());
+
+        holder.ratingbar.setRating(listItem.getPlaceOrEventRatingbar());
         holder.StatRatings.setText(listItem.getStatRatings());
+
+
         holder.optionsMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //creating a popup menu
-                PopupMenu popup = new PopupMenu(context, holder.optionsMenu);
+                Context wrapper = new ContextThemeWrapper(context, R.style.MyPopupMenu);
+                PopupMenu popup = new PopupMenu(wrapper, holder.optionsMenu);
                 //inflating menu from xml resource
                 popup.inflate(R.menu.business_profile_placeandevent_options_menu);
                 //adding click listener
@@ -77,6 +91,20 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
                         switch (item.getItemId()) {
                             case R.id.BsPlaceView:
                                 //handle menu1 click
+                                if (type.equals(Constants.STRING_TYPE_PLACE))
+                                {
+                                   Intent myIntent = new Intent(context, ExpandDetailsMapsActivity.class);
+                                   myIntent.putExtra("PLACE_ID", placeOrEventId);
+                                   myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                   context.startActivity(myIntent);
+                                }
+                                else if (type.equals(Constants.STRING_TYPE_EVENT))
+                                {
+                                    Intent myIntent = new Intent(context, ExpandDetailsMapsActivityEvent.class);
+                                    myIntent.putExtra("EVENT_ID", placeOrEventId);
+                                    myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    context.startActivity(myIntent);
+                                }
                                 break;
                             case R.id.BsPlaceEdit:
                                 //handle menu2 click
@@ -103,6 +131,10 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        public TextView PlaceOrEventId;
+        public TextView type;
+
+
         public ImageView PlaceOrEventPicture;
         public TextView PlaceOrEventName;
         public TextView PlaceOrEventCategory;
@@ -121,6 +153,10 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
         /* alt+enter to creat constructor*/
         public ViewHolder(View itemView) {
             super(itemView);
+            PlaceOrEventId = (TextView) itemView.findViewById(R.id.place_oe_event_id);
+            type = (TextView) itemView.findViewById(R.id.type);
+
+
             PlaceOrEventPicture = (ImageView) itemView.findViewById(R.id.bookmarks_placeOrEventPicture);
             PlaceOrEventName = (TextView) itemView.findViewById(R.id.bookmarks_placeorEventName);
             PlaceOrEventCategory = (TextView) itemView.findViewById(R.id.bookmarks_placeorEventCategory);
@@ -136,6 +172,8 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
 
         }
     }
+
+
 
 
 

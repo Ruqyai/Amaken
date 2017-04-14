@@ -12,6 +12,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="MyPopupMenu" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:popupBackground">#0F213F</item>
+        <item name="android:disabledAlpha">0.5</item>
+    </style>
+
     <style name="menu_labels_style">
         <item name="android:background">@drawable/fab_label_background</item>
         <item name="android:textColor">@color/white</item>

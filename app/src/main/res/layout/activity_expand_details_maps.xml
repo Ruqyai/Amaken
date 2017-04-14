@@ -14,7 +14,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:weightSum="1">
 
     <android.support.v7.widget.CardView
@@ -44,11 +44,12 @@
         <com.daimajia.slider.library.SliderLayout
             android:id="@+id/slider"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="350dp"
             custom:auto_cycle="true"
             custom:indicator_visibility="visible"
             custom:pager_animation="Accordion"
-            custom:pager_animation_span="1100">
+            custom:pager_animation_span="1100"
+            android:layout_alignParentTop="true">
 
 
         </com.daimajia.slider.library.SliderLayout>
@@ -61,7 +62,8 @@
             android:gravity="center"
             custom:selected_color="#0db2f4"
             custom:unselected_color="#e1a16b38"
-            custom:selected_drawable="@drawable/ic_action_name"
+            custom:selected_drawable="@drawable/ic_indicator_fill"
+            app:unselected_drawable="@drawable/ic_indicator_outline"
             custom:shape="oval"
             custom:selected_padding_left="5dp"
             custom:selected_padding_right="5dp"
@@ -70,36 +72,23 @@
             android:layout_centerHorizontal="true"
 
             android:layout_below="@+id/slider"
-            custom:selected_width="6dp"
-            custom:selected_height="6dp"
-            custom:unselected_width="6dp"
-            custom:unselected_height="6dp"
-            android:layout_marginBottom="20dp"
-            />
-        <com.daimajia.slider.library.Indicators.PagerIndicator
-            android:id="@+id/custom_indicator2"
-            style="@style/AndroidImageSlider_Corner_Oval_Orange"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/slider"
-            android:layout_marginBottom="20dp"
+            custom:selected_width="8dp"
+            custom:selected_height="8dp"
+            custom:unselected_width="8dp"
+            custom:unselected_height="8dp"
             />
 
 
-<ImageView
+
+<!--<ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/custom_indicator2"
         android:layout_alignParentRight="true"
         android:id="@+id/update"
         app:srcCompat="@drawable/ic_fast_forward_black_24dp"/>
-        <!--
-                <ListView
-                    android:id="@+id/transformers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:background="@color/gray"
-                    android:layout_below="@+id/slider"></ListView>
-                    -->
+
+                -->
     </RelativeLayout>
     </android.support.v7.widget.CardView>
 
@@ -131,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/imageButtonGalleryHome"
                 android:layout_alignParentBottom="true"
-                android:text="22" />
+                 />
 
             <ImageView
                 android:id="@+id/imageButtonLikeHome"
@@ -149,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/imageButtonLikeHome"
-                android:text="22" />
+                 />
 
             <ImageView
                 android:id="@+id/imageButtonSaveHome"
@@ -165,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/imageButtonSaveHome"
-                android:text="22" />
+                 />
 
 
             <ImageView
@@ -182,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@+id/imageButtonReviewHome"
-                android:text="22" />
+                 />
 
 
         </RelativeLayout>
@@ -243,7 +232,6 @@
         android:textAlignment="gravity"
         android:layout_marginStart="5dp"
         android:gravity=""
-        android:text="Target Stores"
         android:textStyle="italic" />
 </TableRow>
 
@@ -272,8 +260,6 @@
                 android:textAlignment="gravity"
                 android:layout_marginStart="5dp"
                 android:gravity=""
-
-                android:text="Mall"
                 android:textStyle="italic" />
 </TableRow>
 
@@ -316,7 +302,6 @@
             android:id="@+id/place_rating_stat"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="4,5"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -353,7 +338,7 @@
          android:maxLength="300"
          android:textAlignment="gravity"
          android:gravity=""
-         android:text="@string/here_details_about_the_place_text" />
+          />
 
  </TableRow>
     <View
@@ -401,7 +386,6 @@
             android:textAlignment="gravity"
             android:layout_marginStart="5dp"
             android:gravity="center_vertical"
-         android:text="@string/business_owner_name_text"
          android:drawableStart="@drawable/ic_verified_user"
 
             />
@@ -432,7 +416,7 @@
             android:gravity="center_vertical"
             android:drawableStart="@drawable/ic_web"
             android:autoLink="web"
-            android:text="www.seu.edu.sa" />
+             />
 
 
      </TableRow>
@@ -463,7 +447,7 @@
             android:drawableStart="@drawable/ic_phone"
             android:autoLink="phone"
 
-            android:text="+966565078487" />
+             />
 
 
     </TableRow>
@@ -491,7 +475,7 @@
             android:gravity="center_vertical"
             android:drawableStart="@drawable/ic_email"
             android:autoLink="email"
-            android:text="s130017905@gmail.com" />
+             />
 
     </TableRow>
 
@@ -538,7 +522,6 @@
             android:textStyle="bold"/>
         <TextView
             android:id="@+id/textCountryDetails"
-            android:text="@string/country_name_text"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1"
@@ -568,7 +551,6 @@
             android:textStyle="bold"/>
         <TextView
             android:id="@+id/textCityDetails"
-            android:text="@string/city_name_text"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1"
@@ -597,7 +579,6 @@
             android:textStyle="bold"/>
         <TextView
             android:id="@+id/textAddressDetails"
-            android:text="@string/address_of_the_place_text"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1"
@@ -632,7 +613,7 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="300dp"
             android:layout_margin="2pt"
 
             />
@@ -643,6 +624,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="1pt"
         android:layout_marginRight="5pt"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="5pt"
         android:elevation="4dp">
         <LinearLayout
@@ -663,18 +645,48 @@
                 android:layout_width="match_parent"
                 android:layout_marginBottom="8dp"
                 >
+                <TextView
+                    android:id="@+id/no_place_reviews"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:visibility="gone"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:text="No Reviews on This Place Yet! "
+                    android:drawableTop="@drawable/ic_not_reviews"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    />
+                <TextView
+                    android:id="@+id/add_one_place"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:paddingBottom="30dp"
+                    android:visibility="gone"
+                    android:textStyle="bold"
+                    android:textColor="@color/baa3"
+                    android:textAlignment="gravity"
+                    android:gravity="bottom"
+                    android:layout_centerHorizontal="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text=" Add one! "
+                    />
 
                 <ImageButton
                     android:id="@+id/flipp_previous"
-                    android:background="@android:color/transparent"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:background="#90e9e8e8"
+                    android:layout_height="100dp"
+                    android:visibility="visible"
                     android:src="@drawable/ic_flipp_previous"
                     android:layout_centerVertical="true"
                     android:layout_alignParentStart="true" />
                 <FrameLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="180dp"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="8dp"
@@ -696,9 +708,10 @@
 
                 <ImageButton
                     android:id="@+id/flipp_next"
-                    android:background="@android:color/transparent"
+                    android:visibility="visible"
+                    android:background="#90e9e8e8"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="100dp"
                     android:src="@drawable/ic_flipp_next"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true" />
