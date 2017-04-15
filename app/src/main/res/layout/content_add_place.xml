@@ -213,14 +213,13 @@
                 android:popupBackground="@android:color/white"
                 android:spinnerMode="dropdown" />
 
-            <ImageButton
-                android:id="@+id/imageButton2"
+
+            <Button
+                android:id="@+id/buttonDone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="250dp"
-                android:layout_marginTop="76dp"
-                android:background="#00ffffff"
-                fab:srcCompat="@drawable/dane_butto" />
+                android:layout_marginStart="200dp"
+                android:text="@string/done" />
 
         </LinearLayout>
     </RelativeLayout>

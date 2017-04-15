@@ -52,7 +52,6 @@
 
     <ImageView
         android:id="@+id/image_view"
-        android:contentDescription="@string/desc"
         android:layout_width="350dp"
         android:layout_height="300dp"
         android:layout_gravity="center_horizontal"
