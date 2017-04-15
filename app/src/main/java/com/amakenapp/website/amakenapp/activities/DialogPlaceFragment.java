@@ -16,17 +16,16 @@ import com.amakenapp.website.amakenapp.R;
 
 import static android.app.Activity.RESULT_OK;
 
-public class DialogPlaceFragment extends DialogFragment   {
+public class DialogPlaceFragment extends DialogFragment {
 
+    // variables used in the dialog Fragment then the Addplace.
+    private static final int PICK_IMAGE = 100;
+    private static final int PICK_FROM_FILE = 200;
     Button Gall;
     Button Takephoto;
     Button Clearphoto;
     Button Done;
     ImageView imageView;
-
-    private static final int PICK_IMAGE = 100;
-    private static final int PICK_FROM_FILE = 200;
-
     Uri imageUri;
 
     @Override
@@ -38,11 +37,11 @@ public class DialogPlaceFragment extends DialogFragment   {
         View view = inflater.inflate(R.layout.dialog_photo, container, false);
 
 
-         //gallery button
+        //gallery button
         Gall = (Button) view.findViewById(R.id.buttonFromGall);
-        Gall.setOnClickListener(new View.OnClickListener(){
+        Gall.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openGallery();
             }
 
@@ -61,27 +60,27 @@ public class DialogPlaceFragment extends DialogFragment   {
 
         //clear photo button
         Clearphoto = (Button) view.findViewById(R.id.buttonClearphoto);
-        Clearphoto.setOnClickListener(new View.OnClickListener(){
+        Clearphoto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 clearImage();
             }
 
         });
 
-        
+
         //Image View 
         imageView = (ImageView) view.findViewById(R.id.image_view);
 
         //done button
         Done = (Button) view.findViewById(R.id.buttonDone);
         Done.setOnClickListener(new View.OnClickListener() {
-          @Override
+            @Override
             public void onClick(View v) {
                 dismiss();
             }
         });
-// this to prohibt the dialog from going back to the main window
+        // this to prohibit the dialog from going back to the main window
         setCancelable(false);
 
         // return to the main page 
@@ -90,10 +89,12 @@ public class DialogPlaceFragment extends DialogFragment   {
 
     }
 
-    // method used to open a gallery from the device
+    /**
+     * Called when the user taps the open Gallery button to open the gallery
+     */
 
-    private void openGallery(){
-        Intent gallery = new Intent (Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+    private void openGallery() {
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
     }
 
@@ -114,9 +115,8 @@ public class DialogPlaceFragment extends DialogFragment   {
 
     public void CameraPicture() {
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent,PICK_FROM_FILE);
+        startActivityForResult(intent, PICK_FROM_FILE);
     }
-
 
 
     /**
@@ -141,7 +141,6 @@ public class DialogPlaceFragment extends DialogFragment   {
 
 
     }
-
 
 
 }
