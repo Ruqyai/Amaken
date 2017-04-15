@@ -11,6 +11,8 @@ public class Constants {
     public static final String URL_LOGIN = ROOT_URL+"UserLogin";
     public static final String URL_COUNTRIES = ROOT_URL+"getAllCountries";
     public static final String URL_CITIES = ROOT_URL+"getCitiesByCountryId/";
+    public static final String URL_PLACECATEGORIES = ROOT_URL+"getAllPlaceCategories";
+
 
 
 
@@ -28,9 +30,6 @@ public class Constants {
     public static final String STRING_LIKE_EXSITS= "Like exist";
     public static final String STRING_REVIEW_LIKE_EXSITS= "review like exsits";
     public static final String STRING_EVENT_STILL_OPEN= "available";
-
-
-
 
 
 

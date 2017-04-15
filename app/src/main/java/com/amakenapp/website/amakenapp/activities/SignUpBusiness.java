@@ -144,7 +144,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-// this is for loading all countries
+    // this is for loading all countries
     private void loadCountries(){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_COUNTRIES, new Response.Listener<String>() {
             @Override
@@ -183,8 +183,8 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
 // this is for user sign up
 
     public void singUp() {
-        final int userType = Constants.CODE_BUSINESS_USER;
 
+        final int userType = Constants.CODE_BUSINESS_USER;
         final String userEmail = editEmail.getText().toString().trim();
         final String password = editPassword.getText().toString().trim();
         final String personName = editPersonName.getText().toString().trim();

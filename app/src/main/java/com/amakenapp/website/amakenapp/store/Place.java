@@ -19,11 +19,13 @@ public class Place {
     public Place (int id, String place_name, String place_description, double rate_avg, int owner_id,
                   int location_id, int photo_id, int place_category_id, int place_city_id){
         this.id=id;
+        this.owner_id=owner_id;
         this.place_name=place_name;
         this.place_description=place_description;
         this.rate_avg=rate_avg;
         this.location_id=location_id;
         this.photo_id=photo_id;
+        this.place_category_id= place_category_id;
         this.place_country_id=place_category_id;
         this.place_city_id= place_city_id;
 

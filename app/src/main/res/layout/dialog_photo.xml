@@ -36,20 +36,25 @@
         android:layout_height="wrap_content"
         android:text="@string/Option2_Dialog_photo" />
 
-  
+    <Button
+        android:id="@+id/buttonClearphoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Option3_Dialog_photo" />
+
 
     <Button
         android:id="@+id/buttonDone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
+        android:layout_marginStart="200dp"
         android:text="@string/done" />
 
     <ImageView
+        android:id="@+id/image_view"
         android:layout_width="350dp"
         android:layout_height="300dp"
-        android:id="@+id/image_view"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        />
+        android:layout_marginTop="20dp" />
+
 </LinearLayout>
