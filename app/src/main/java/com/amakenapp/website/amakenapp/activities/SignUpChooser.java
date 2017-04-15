@@ -38,6 +38,8 @@ public class SignUpChooser extends AppCompatActivity implements View.OnClickList
             finish();
             startActivity(new Intent(this, SignUpBusiness.class));
           //  startActivity(new Intent(this, SettingsActivity.class));
+
+            startActivity(new Intent(this, AddPlace.class));
           //startActivity(new Intent(this, NavDrw.class));
           //  startActivity(new Intent(this, ChooseInterest.class));
 

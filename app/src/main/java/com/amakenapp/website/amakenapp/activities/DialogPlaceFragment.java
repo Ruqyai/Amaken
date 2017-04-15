@@ -51,7 +51,6 @@ public class DialogPlaceFragment extends DialogFragment   {
         //Takephoto button
         Takephoto = (Button) view.findViewById(R.id.buttonTakephoto);
 
-        setCancelable(false);
 
         Takephoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +58,7 @@ public class DialogPlaceFragment extends DialogFragment   {
                 CameraPicture();
             }
         });
+
         //clear photo button
         Clearphoto = (Button) view.findViewById(R.id.buttonClearphoto);
         Clearphoto.setOnClickListener(new View.OnClickListener(){
@@ -81,6 +81,9 @@ public class DialogPlaceFragment extends DialogFragment   {
                 dismiss();
             }
         });
+// this to prohibt the dialog from going back to the main window
+        setCancelable(false);
+
         // return to the main page 
         return view;
 

@@ -31,70 +31,71 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/EEnterPlace_Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginTop="82dp"
-            android:layout_below="@+id/toolbar">
+            android:orientation="vertical">
 
-
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/EnterPlaceName"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/EEnterPlace_Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_place_name"
-                android:inputType="text"
-                android:textSize="@dimen/FontSize"
-                android:textColor="#15AFD8"
-                android:textColorHint="#15AFD8"
-                android:textColorLink="#15AFD8"
-                android:layout_below="@+id/toolbar"/>
+                android:layout_below="@+id/toolbar"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="82dp">
 
-        </android.support.design.widget.TextInputLayout>
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/EnterPlaceName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/toolbar"
+                    android:hint="@string/enter_place_name"
+                    android:inputType="text"
+                    android:textColor="#15AFD8"
+                    android:textColorHint="#15AFD8"
+                    android:textColorLink="#15AFD8"
+                    android:textSize="@dimen/FontSize" />
+
+            </android.support.design.widget.TextInputLayout>
 
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/Description_theplace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/toolbar"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                android:layout_marginTop="22dp"
-                android:layout_below="@+id/toolbar">
+                android:layout_marginTop="22dp">
 
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/DescriptionthePlace"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/toolbar"
                     android:hint="@string/description_the_place"
                     android:inputType="text"
-                    android:textSize="@dimen/FontSize"
                     android:textColor="#15AFD8"
                     android:textColorHint="#15AFD8"
                     android:textColorLink="#15AFD8"
-                    android:layout_below="@+id/toolbar"/>
+                    android:textSize="@dimen/FontSize" />
 
             </android.support.design.widget.TextInputLayout>
 
 
-        <TextView
+            <TextView
 
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editText2"
-            android:layout_marginLeft="23dp"
-            android:layout_marginTop="30dp"
-            android:text="@string/location"
-            android:textSize="@dimen/FontSize"
-            android:textColor="@color/baa" />
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editText2"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/location"
+                android:textColor="@color/baa"
+                android:textSize="@dimen/FontSize" />
 
 
             <ImageButton
@@ -108,115 +109,113 @@
                 android:src="@drawable/loc" />
 
 
-        <TextView
+            <TextView
 
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editText3"
-            android:layout_marginLeft="23dp"
-            android:layout_marginTop="30dp"
-            android:textSize="@dimen/FontSize"
-            android:text="@string/place_photo"
-            android:textColor="@color/baa" />
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editText3"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/place_photo"
+                android:textColor="@color/baa"
+                android:textSize="@dimen/FontSize" />
 
-        <ImageButton
-            android:id="@+id/photoimageButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="60dp"
-            android:src="@drawable/cam"
-            android:layout_below="@+id/textView4"
-            android:layout_alignEnd="@+id/textView1"
-            android:layout_marginTop="15dp" />
+            <ImageButton
+                android:id="@+id/photoimageButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignEnd="@+id/textView1"
+                android:layout_below="@+id/textView4"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/cam" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageButton"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="23dp"
-            android:layout_marginTop="30dp"
-            android:textSize="@dimen/FontSize"
-            android:text="@string/place_category"
-            android:textColor="@color/baa" />
-
-
-        <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView5"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="29dp"
-            android:layout_marginTop="15dp"
-            android:popupBackground="@android:color/white"
-            android:spinnerMode="dropdown"
-            android:background="@android:drawable/btn_dropdown"/>
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/place_category"
+                android:textColor="@color/baa"
+                android:textSize="@dimen/FontSize" />
 
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView7"
-            android:layout_alignStart="@+id/textView7"
-            android:layout_below="@+id/spinner1"
-            android:layout_marginTop="30dp"
-            android:text="@string/categories_text_view"
-            android:paddingBottom="2dp"
-            android:layout_marginStart="10dp"
-            android:paddingStart="3dp"
-            android:textSize="@dimen/FontSize"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="23dp"
-            android:textColor="@color/baa" />
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView5"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="29dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:popupBackground="@android:color/white"
+                android:spinnerMode="dropdown" />
 
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView6"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="29dp"
-            android:layout_marginTop="15dp"
-            android:popupBackground="@android:color/white"
-            android:spinnerMode="dropdown"
-            android:background="@android:drawable/btn_dropdown"/>
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner2"
-            android:layout_marginLeft="23dp"
-            android:layout_marginTop="30dp"
-            android:text="@string/city"
-            android:paddingBottom="2dp"
-            android:textSize="@dimen/FontSize"
-            android:layout_marginStart="10dp"
-            android:paddingStart="3dp"
-            android:layout_marginBottom="0dp"
-            android:textColor="@color/baa" />
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView7"
+                android:layout_alignStart="@+id/textView7"
+                android:layout_below="@+id/spinner1"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="23dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:paddingBottom="2dp"
+                android:paddingStart="3dp"
+                android:text="@string/categories_text_view"
+                android:textColor="@color/baa"
+                android:textSize="@dimen/FontSize" />
 
-        <Spinner
-            android:id="@+id/spinner3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView7"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="29dp"
-            android:layout_marginTop="15dp"
-            android:popupBackground="@android:color/white"
-            android:spinnerMode="dropdown"
-            android:background="@android:drawable/btn_dropdown"
-            />
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView6"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="29dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:popupBackground="@android:color/white"
+                android:spinnerMode="dropdown" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner2"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="23dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:paddingBottom="2dp"
+                android:paddingStart="3dp"
+                android:text="@string/city"
+                android:textColor="@color/baa"
+                android:textSize="@dimen/FontSize" />
+
+            <Spinner
+                android:id="@+id/spinner3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView7"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="29dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:popupBackground="@android:color/white"
+                android:spinnerMode="dropdown" />
 
             <ImageButton
                 android:id="@+id/imageButton2"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
                 android:layout_marginStart="250dp"
                 android:layout_marginTop="76dp"
