@@ -56,20 +56,20 @@ public class SharedPrefManager {
     }
 
     public boolean userLogin(
-                             String id,
-                             String user_type,
-                             String user_email,
-                             String user_password,
-                             String user_name,
-                             String user_gender,
-                             String web_url,
-                             String phone_number,
-                             int country_id,
-                             String country_name,
-                             int city_id,
-                             String city_name,
-                             int profile_pic_id,
-                             String profile_pic_url) {
+            String id,
+            String user_type,
+            String user_email,
+            String user_password,
+            String user_name,
+            String user_gender,
+            String web_url,
+            String phone_number,
+            int country_id,
+            String country_name,
+            int city_id,
+            String city_name,
+            String profile_pic_id,
+            String profile_pic_url) {
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -86,7 +86,7 @@ public class SharedPrefManager {
         editor.putString(KEY_USER_COUNTRY_NAME, country_name);
         editor.putInt(KEY_USER_CITY_ID, city_id);
         editor.putString(KEY_USER_CITY_NAME, city_name);
-        editor.putInt(KEY_USER_PROFILE_PIC_ID, profile_pic_id);
+        editor.putString(KEY_USER_PROFILE_PIC_ID, profile_pic_id);
         editor.putString(KEY_USER_PROFILE_PIC_URL, profile_pic_url);
 
         editor.commit();
@@ -114,7 +114,8 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
         String x= sharedPreferences.getString(KEY_USER_ID, null);
-        return    Integer.parseInt(x);
+        int id=Integer.parseInt(x);
+        return  id;
     }
 
     public String getUsername() {
@@ -129,7 +130,7 @@ public class SharedPrefManager {
     public int getUserType() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
-                String x= sharedPreferences.getString(KEY_USER_TYPE, null);
+        String x= sharedPreferences.getString(KEY_USER_TYPE, null);
         return    Integer.parseInt(x);
 
     }
@@ -151,11 +152,11 @@ public class SharedPrefManager {
                 sharedPreferences.getString("user_web_url", "null"),
                 sharedPreferences.getString("user_phone_number", "null"),
                 Integer.parseInt(sharedPreferences.getString("user_country_id", "null")),
-                sharedPreferences.getString("user_country_name", "hh"),
+                sharedPreferences.getString("user_country_name", "null"),
                 Integer.parseInt(sharedPreferences.getString("user_city_id", "null")),
                 sharedPreferences.getString("user_city_name", "null"),
                 Integer.parseInt(sharedPreferences.getString("profile_pic_id","null")),
-              sharedPreferences.getString("profile_pic_url", "null")
+                sharedPreferences.getString("profile_pic_url", "null")
         );
 
         return user;
