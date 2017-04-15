@@ -31,9 +31,6 @@ public class Constants {
 
 
 
-
-
-
     public static final String URL_GET_ALL_EVENTS = ROOT_URL+"getAllEvents/";
     public static final String URL_EVENT_INFO = ROOT_URL+"getEventById";
     public static final String URL_EVENT_GALLERY = ROOT_URL+"getEventGallery/";
