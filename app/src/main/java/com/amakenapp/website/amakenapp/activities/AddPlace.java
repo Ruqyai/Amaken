@@ -120,38 +120,7 @@ public class AddPlace extends AppCompatActivity implements AdapterView.OnItemSel
 
 
     }
-    // this is for loading all countries
-    private void loadCategories() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_COUNTRIES, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject obj = new JSONObject(response);
 
-                    JSONArray arr = obj.getJSONArray("countries");
-
-                    for (int i = 0; i < arr.length(); i++) {
-                        countries.add(arr.getJSONObject(i).getString("country_name"));
-
-                        countryIds.add(arr.getJSONObject(i).getInt("id"));
-                    }
-
-                    ArrayAdapter adapter = new ArrayAdapter<String>(AddPlace.this, android.R.layout.simple_spinner_dropdown_item, countries);
-                    spinnerDialog1.setAdapter(adapter);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
-    }
 
 
     @Override
@@ -173,6 +142,40 @@ public class AddPlace extends AppCompatActivity implements AdapterView.OnItemSel
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    // THIS IS FOR loading categories
+    private void loadCategories(int countryId) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_PLACECATEGORIES + countryId, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    JSONArray arr = obj.getJSONArray("categories");
+
+                    for (int i = 0; i < arr.length(); i++) {
+                        categories.add(arr.getJSONObject(i).getString("category_type"));
+
+                        categoriesIds.add(arr.getJSONObject(i).getInt("id"));
+                    }
+
+                    ArrayAdapter adapter = new ArrayAdapter<String>(AddPlace.this, android.R.layout.simple_spinner_dropdown_item, categories);
+                    spinnerDialog.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
     // THIS IS FOR loading cities for a particular country
