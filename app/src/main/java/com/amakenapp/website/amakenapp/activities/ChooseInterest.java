@@ -10,17 +10,24 @@ import com.amakenapp.website.amakenapp.helper.*;
 
 //// TODO: 3/5/2017  asking about this import
 import com.amakenapp.website.amakenapp.R;
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
 import android.widget.GridView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,15 +36,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ChooseInterest extends AppCompatActivity implements View.OnClickListener{
+public class ChooseInterest extends AppCompatActivity implements View.OnClickListener {
 
     private GridView gridView;
     private View btnGo;
-
+    private  int usID ;
+    private String userEmail;
 
     private ArrayList<String> selectedStrings;
     private ArrayList<Integer> selectedIds = new ArrayList<>();
-    Map<Integer,String>interest;
+    Map<Integer, String> interest;
 
 
     private static final String[] numbers = new String[]{
@@ -75,28 +83,28 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_interest);
-
+        getUserIdByEmail();
         gridView = (GridView) findViewById(R.id.grid);
         btnGo = findViewById(R.id.button);
 
         selectedStrings = new ArrayList<>();
-        interest=new HashMap<>();
+        interest = new HashMap<>();
 
-        interest.put(1,"Hospitals");
-        interest.put(2,"Hair stylists");
-        interest.put(3,"Cafes");
-        interest.put(4,"Hospitals");
-        interest.put(5,"tourism");
-        interest.put(6,"Education");
-        interest.put(7,"Entertainment");
-        interest.put(8,"Malls");
-        interest.put(9,"Spa");
-        interest.put(10,"Sport");
-        interest.put(11,"Hotels");
-        interest.put(12,"Parks");
+        interest.put(1, "Hospitals");
+        interest.put(2, "Hair stylists");
+        interest.put(3, "Cafes");
+        interest.put(4, "Hospitals");
+        interest.put(5, "tourism");
+        interest.put(6, "Education");
+        interest.put(7, "Entertainment");
+        interest.put(8, "Malls");
+        interest.put(9, "Spa");
+        interest.put(10, "Sport");
+        interest.put(11, "Hotels");
+        interest.put(12, "Parks");
 
 
-        final GridViewAdapter adapter = new GridViewAdapter(numbers,numb, this);
+        final GridViewAdapter adapter = new GridViewAdapter(numbers, numb, this);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -107,11 +115,11 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
                 if (selectedIndex > -1) {
                     adapter.selectedPositions.remove(selectedIndex);
                     ((GridItemView) v).display(false);
-                    selectedIds.remove(selectedIds.indexOf(position+1));
+                    selectedIds.remove(selectedIds.indexOf(position + 1));
                 } else {
                     adapter.selectedPositions.add(position);
                     ((GridItemView) v).display(true);
-                    selectedIds.add(position+1);
+                    selectedIds.add(position + 1);
 
                 }
 
@@ -130,11 +138,6 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
     }
 
     public void storingInterests(final List<Integer> interests) {
-
-        //getting user ID , //// TODO: 3/7/2017 should be from previous ctivity
-        final int userID = 1;
-
-
         StringRequest send = new StringRequest(Request.Method.POST,
                 Constants.URL_STOREINTERESTS,
                 new Response.Listener<String>() {
@@ -167,12 +170,14 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
             }
         }) {
             @Override
+
             protected Map<String, String> getParams() throws AuthFailureError {
+                int userID =usID;
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", userID+"");
 
-                for(int i = 0; i<interests.size(); i++) {
-                    params.put("interest_id["+i+"]", String.valueOf(interests.get(i)));
+                for (int i = 0; i < interests.size(); i++) {
+                    params.put("interest_id[" + i + "]", String.valueOf(interests.get(i)));
                 }
                 return params;
             }
@@ -181,4 +186,54 @@ public class ChooseInterest extends AppCompatActivity implements View.OnClickLis
         MySingleton.getInstance(this).addToRequestQueue(send);
 
     }
+
+    public int getUserIdByEmail() {
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null)
+            userEmail = extras.getString("email");
+        StringRequest send = new StringRequest(Request.Method.POST, Constants.URL_GET_USER_ID,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                usID = obj.getInt("user_email");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(
+                                getApplicationContext(),
+                                error.getMessage(),
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_email", userEmail);
+                return params;
+            }
+
+        };
+
+        MySingleton.getInstance(this).addToRequestQueue(send);
+        return usID;
+    }
+
+
+
 }
