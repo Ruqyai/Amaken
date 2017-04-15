@@ -35,9 +35,9 @@ public class AddPlace extends AppCompatActivity {
         // Capture button clicks
         PlaceCamDialog.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-               // DialogPlaceFragment dFragment = new DialogPlaceFragment();
+                 DialogPlaceFragment dFragment = new DialogPlaceFragment();
                 // Show DialogFragment
-              //  dFragment.show(fm, "Dialog Fragment");
+              dFragment.show(fm, "Dialog Fragment");
             }
         });
 

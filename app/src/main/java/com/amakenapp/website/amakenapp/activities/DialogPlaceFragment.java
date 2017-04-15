@@ -25,16 +25,18 @@ public class DialogPlaceFragment extends DialogFragment   {
     ImageView imageView;
 
     private static final int PICK_IMAGE = 100;
-    private static final int PICK_FROM_FILE = 2;
+    private static final int PICK_FROM_FILE = 200;
 
     Uri imageUri;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+
+        // inflater used to display the dialog photo
+
         View view = inflater.inflate(R.layout.dialog_photo, container, false);
 
-       // inflater used to display the dialog photo
 
          //gallery button
         Gall = (Button) view.findViewById(R.id.buttonFromGall);
@@ -51,7 +53,7 @@ public class DialogPlaceFragment extends DialogFragment   {
 
         setCancelable(false);
 
-        Takephoto.setOnClickListener(new OnClickListener() {
+        Takephoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CameraPicture();
@@ -73,7 +75,7 @@ public class DialogPlaceFragment extends DialogFragment   {
 
         //done button
         Done = (Button) view.findViewById(R.id.buttonDone);
-        Done.setOnClickListener(new OnClickListener() {
+        Done.setOnClickListener(new View.OnClickListener() {
           @Override
             public void onClick(View v) {
                 dismiss();

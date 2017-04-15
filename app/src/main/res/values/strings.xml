@@ -88,6 +88,7 @@
     <string name="Option2_Dialog_photo">Take a Photo</string>
     <string name="Option3_Dialog_photo">Clear a photo</string>
     <string name="hint_Dialog">Add Description</string>
+    <string name="desc">Description </string>
     <string name="done">done</string>
 
     <!--  Strings for the dialog of the location-->
