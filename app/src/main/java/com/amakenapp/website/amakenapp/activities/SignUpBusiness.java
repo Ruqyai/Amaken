@@ -144,7 +144,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-// this is for loading all countries
+    // this is for loading all countries
     private void loadCountries(){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_COUNTRIES, new Response.Listener<String>() {
             @Override

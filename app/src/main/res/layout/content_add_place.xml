@@ -145,7 +145,7 @@
 
 
             <Spinner
-                android:id="@+id/spinner1"
+                android:id="@+id/add_place_categories_spinner_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView5"
@@ -170,12 +170,12 @@
                 android:layout_marginTop="30dp"
                 android:paddingBottom="2dp"
                 android:paddingStart="3dp"
-                android:text="@string/categories_text_view"
+                android:text="@string/country"
                 android:textColor="@color/baa"
                 android:textSize="@dimen/FontSize" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/add_place_countries_spinner_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView6"
@@ -202,7 +202,7 @@
                 android:textSize="@dimen/FontSize" />
 
             <Spinner
-                android:id="@+id/spinner3"
+                android:id="@+id/add_place_cities_spinner_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView7"
