@@ -1,5 +1,7 @@
 package com.amakenapp.website.amakenapp.helper;
 
+import com.amakenapp.website.amakenapp.activities.ProfileCategories;
+
 /**
  * Created by Muha on 3/11/2017.
  */
@@ -7,14 +9,14 @@ package com.amakenapp.website.amakenapp.helper;
 public class ProfileBookmarkListItem {
 
 
-        private int PlaceOrEventPic;
+        private String PlaceOrEventPic;
         private String PlaceOrEventName;
         private String PlaceOrEventCategory;
         private int bookmarkLogo;
         private String bookmarkTimeStamp;
+  //  public ProfileBookmarkListItem(){}
 
-
-    public ProfileBookmarkListItem(int PlaceOrEventPic,
+    public ProfileBookmarkListItem(String PlaceOrEventPic,
                                    String PlaceOrEventName,
                                    String PlaceOrEventCategory,
                                    int bookmarkLogo,
@@ -34,11 +36,11 @@ public class ProfileBookmarkListItem {
         this.bookmarkTimeStamp = bookmarkTimeStamp;
     }
 
-    public int getPlaceOrEventPic() {
+    public String getPlaceOrEventPic() {
         return PlaceOrEventPic;
     }
 
-    public void setPlaceOrEventPic(int placeOrEventPic) {
+    public void setPlaceOrEventPic(String placeOrEventPic) {
         this.PlaceOrEventPic = placeOrEventPic;
     }
 
