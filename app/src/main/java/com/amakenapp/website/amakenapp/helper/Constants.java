@@ -62,6 +62,7 @@ public class Constants {
 
     public static final String URL_GET_USER_PLACES = ROOT_URL+"getUserPlaces/";
     public static final String URL_GET_USER_EVENTS = ROOT_URL+"getUserEvents/";
+   // public static final String URL_GET_USER_BOOKMARK = ROOT_URL+"getUserBookmarks/";
 
 
 
