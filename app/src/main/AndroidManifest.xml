@@ -25,7 +25,8 @@
         android:largeHeap="true"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,6 +46,7 @@
         <activity
             android:name=".activities.SignUpBusiness"
             android:label="@string/title_activity_sign_up_business"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.SignUpChooser"
             android:theme="@style/AppTheme">
             <meta-data
@@ -55,6 +57,7 @@
             android:name=".activities.SignUpChooser"
             android:label="@string/title_activity_sign_up_chooser"
             android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -64,6 +67,7 @@
             android:name=".activities.InvitesActivity"
             android:label="Tell your Friends"
             android:parentActivityName=".activities.NavDrw"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.Dialog">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -72,6 +76,7 @@
         <activity
             android:name=".activities.Login"
             android:label="@string/title_activity_login"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
@@ -81,6 +86,7 @@
         <activity
             android:name=".activities.AddReview"
             android:label="@string/title_activity_add_review"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
@@ -104,6 +110,7 @@
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.NavDrw"
             android:theme="@style/Theme">
             <meta-data
@@ -113,10 +120,12 @@
         <activity
             android:name=".activities.BusinessProfilePlaces"
             android:label="@string/title_activity_business_profile_places"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.BusinessProfileEvents"
             android:label="@string/title_activity_business_profile_events"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
             <meta-data
@@ -126,6 +135,7 @@
         <activity
             android:name=".activities.ProfileBookmarks"
             android:label="@string/title_activity_profile_bookmarks"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
             <meta-data
@@ -135,6 +145,7 @@
         <activity
             android:name=".activities.ProfileLikes"
             android:label="@string/title_activity_profile_likes"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
             <meta-data
@@ -144,6 +155,7 @@
         <activity
             android:name=".activities.ProfileReviews"
             android:label="@string/title_activity_profile_reviews"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
             <meta-data
@@ -153,6 +165,7 @@
         <activity
             android:name=".activities.ProfileCategories"
             android:label="@string/title_activity_profile_categories"
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
             <meta-data
@@ -197,6 +210,7 @@
 
         <activity
             android:name=".activities.ExpandDetailsMapsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_expand_details_maps">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -204,6 +218,7 @@
         </activity>
         <activity
             android:name=".activities.ExpandDetailsMapsActivityEvent"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_expand_details_maps">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -214,10 +229,12 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".activities.welcome" />
+        <activity android:name=".activities.welcome"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".activities.DiscoverActivity"
             android:label="Discover Places "
+            android:screenOrientation="portrait"
             android:parentActivityName=".activities.NavDrw"
             android:theme="@style/Theme"
             >
