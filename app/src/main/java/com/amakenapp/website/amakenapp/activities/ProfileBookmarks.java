@@ -1,5 +1,6 @@
 package com.amakenapp.website.amakenapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
@@ -7,13 +8,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
 
+import com.amakenapp.website.amakenapp.helper.BusinessProfilePlaceOrEventAdapter;
+import com.amakenapp.website.amakenapp.helper.BusinessProfilePlaceOrEventListItem;
 import com.amakenapp.website.amakenapp.helper.Constants;
-import com.amakenapp.website.amakenapp.helper.HomeAdapter;
-import com.amakenapp.website.amakenapp.helper.ProfileBookmarkListItem;
 import com.amakenapp.website.amakenapp.helper.MySingleton;
 import com.amakenapp.website.amakenapp.helper.ProfileBookmarkAdapter;
 import com.amakenapp.website.amakenapp.helper.ProfileBookmarkListItem;
@@ -35,8 +40,14 @@ public class ProfileBookmarks extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<ProfileBookmarkListItem> listItems;
+    private RelativeLayout loading;
+
+    private LinearLayout  no_bookmarks;
+    private TextView addbookmark;
+
     SharedPrefManager sharedPrefManager;
     private static int userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,19 +55,42 @@ public class ProfileBookmarks extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.profilebookmarks_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         sharedPrefManager = SharedPrefManager.getInstance(getApplicationContext());
         userId = sharedPrefManager.getUserId();
+
+        loading = (RelativeLayout) findViewById(R.id.linlaHeaderProgress_bookmarks);
+        loading.setVisibility(View.VISIBLE);
+
+        no_bookmarks = (LinearLayout) findViewById(R.id.no_bookmarks);
+        addbookmark =(TextView) findViewById(R.id.add_bookmarks);
+        addbookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileBookmarks.this, NavDrw.class));
+            }
+        });
+
         recyclerView = (RecyclerView)findViewById(R.id.recyclerViewBookmarks);
+
+            /* every item of  recycler view has a fixed size*/
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+            /* we put data we want to store inside the list item*/
         listItems = new ArrayList<>();
-        //getBookMarkDetails(userId);//
+
+
+        getAllbookmarks(userId);
+
+
+
     }
 
-   /* // TODO: 4/17/2017 I put in comment to avoid conflict after one of our team tell me she worked also in this activity in the same time
-   /*    //// TODO: 4/17/2017  there are to comment related this (constants + profileBookmarkListItem)
+    //// TODO: 3/9/2017  get previous fragment (business profile activity) activity not NavDrw
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -66,11 +100,12 @@ public class ProfileBookmarks extends AppCompatActivity {
         }
         return true;
     }
-    public void getBookMarkDetails(int userId){
+
+    public void getAllbookmarks(int userId) {
         final int userID = userId;
 
         StringRequest send = new StringRequest(Request.Method.GET,
-                Constants.URL_GET_USER_BOOKMARK + userID,
+                Constants.URL_GET_USER_BOOKMARKS + userID,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -79,37 +114,39 @@ public class ProfileBookmarks extends AppCompatActivity {
                             if (!obj.getBoolean("error")) {
                                 JSONArray arr = obj.getJSONArray("bookmarks");
                                 for (int i = 0; i < arr.length(); i++) {
-                                    JSONObject userBookMark = arr.getJSONObject(i);
-                                    ProfileBookmarkListItem listItem =new ProfileBookmarkListItem();
-                                    String type=userBookMark.getString("bookmark_type");
-                                    if(type.equals("Event"))
-                                    {
-                                        int id= userBookMark.getInt("id");
-                                        int event_id= userBookMark.getInt("event_id");
-                                    listItem.setPlaceOrEventPic(userBookMark.getString("event_photo"));
-                                    listItem.setPlaceOrEventName(userBookMark.getString("event_name"));
-                                    listItem.setPlaceOrEventCategory(userBookMark.getString("event_category"));
-                                    listItem.setBookmarkLogo(R.drawable.bookmark);
-                                    listItem.setBookmarkTimeStamp(userBookMark.getString("bookmark_timestamp"));
+                                    JSONObject bookmarkDetails = arr.getJSONObject(i);
+
+                                    ProfileBookmarkListItem listItem= new ProfileBookmarkListItem();
+                                    listItem.setBoomarkId(bookmarkDetails.getInt("id"));
+
+
+                                    String bookmarkType = bookmarkDetails.getString("bookmark_type");
+                                    if(bookmarkType.equals("Place")) {
+                                        listItem.setBookmarkType(bookmarkType);
+                                        listItem.setBookmarkTimeStamp(bookmarkType+" Bookmarked"+" on  "+bookmarkDetails.getString("bookmark_timestamp")+"");
+                                        listItem.setPlaceOrEventId(bookmarkDetails.getInt("place_id"));
+                                        listItem.setPlaceOrEventPic(bookmarkDetails.getString("place_photo"));
+                                        listItem.setPlaceOrEventName(bookmarkDetails.getString("place_name"));
+                                        listItem.setPlaceOrEventCategory(bookmarkDetails.getString("place_category"));
                                     }
-
-                                    else
-                                    {int id= userBookMark.getInt("id");
-                                        int place_id= userBookMark.getInt("place_id");
-                                        listItem.setPlaceOrEventPic(userBookMark.getString("place_photo"));
-                                        listItem.setPlaceOrEventName(userBookMark.getString("place_name"));
-                                        listItem.setPlaceOrEventCategory(userBookMark.getString("place_category"));
-                                        listItem.setBookmarkLogo(R.drawable.bookmark);
-                                        listItem.setBookmarkTimeStamp(userBookMark.getString("bookmark_timestamp"));
-
+                                    else if(bookmarkType.equals("Event"))
+                                    {
+                                        listItem.setBookmarkType(bookmarkType);
+                                        listItem.setBookmarkTimeStamp(bookmarkType+" Bookmarked"+" on  "+bookmarkDetails.getString("bookmark_timestamp")+"");
+                                        listItem.setPlaceOrEventId(bookmarkDetails.getInt("event_id"));
+                                        listItem.setPlaceOrEventPic(bookmarkDetails.getString("event_photo"));
+                                        listItem.setPlaceOrEventName(bookmarkDetails.getString("event_name"));
+                                        listItem.setPlaceOrEventCategory(bookmarkDetails.getString("event_category"));
                                     }
 
                                     listItems.add(listItem);
                                 }
                                 adapter = new ProfileBookmarkAdapter(listItems, getApplicationContext());
                                 recyclerView.setAdapter(adapter);
-
+                                loading.setVisibility(View.GONE);
                             } else {
+                                loading.setVisibility(View.GONE);
+                                no_bookmarks.setVisibility(View.VISIBLE);
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
@@ -124,7 +161,7 @@ public class ProfileBookmarks extends AppCompatActivity {
             }
         }) ;
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(send);
-*/
     }
 
 
+}

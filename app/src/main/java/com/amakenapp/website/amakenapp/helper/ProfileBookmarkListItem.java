@@ -1,6 +1,6 @@
 package com.amakenapp.website.amakenapp.helper;
 
-import com.amakenapp.website.amakenapp.activities.ProfileCategories;
+import com.amakenapp.website.amakenapp.R;
 
 /**
  * Created by Muha on 3/11/2017.
@@ -9,12 +9,17 @@ import com.amakenapp.website.amakenapp.activities.ProfileCategories;
 public class ProfileBookmarkListItem {
 
 
+        private int boomarkId;
+        private int placeOrEventId;
+        private String bookmarkType;
         private String PlaceOrEventPic;
         private String PlaceOrEventName;
         private String PlaceOrEventCategory;
-        private int bookmarkLogo;
+        private int bookmarkLogo = R.drawable.bookmark2;
         private String bookmarkTimeStamp;
-  //  public ProfileBookmarkListItem(){}
+
+    public ProfileBookmarkListItem() {
+    }
 
     public ProfileBookmarkListItem(String PlaceOrEventPic,
                                    String PlaceOrEventName,
@@ -28,12 +33,28 @@ public class ProfileBookmarkListItem {
         this.bookmarkTimeStamp = bookmarkTimeStamp;
     }
 
-    public String getBookmarkTimeStamp() {
-        return bookmarkTimeStamp;
+    public int getBoomarkId() {
+        return boomarkId;
     }
 
-    public void setBookmarkTimeStamp(String bookmarkTimeStamp) {
-        this.bookmarkTimeStamp = bookmarkTimeStamp;
+    public void setBoomarkId(int boomarkId) {
+        this.boomarkId = boomarkId;
+    }
+
+    public int getPlaceOrEventId() {
+        return placeOrEventId;
+    }
+
+    public void setPlaceOrEventId(int placeOrEventId) {
+        this.placeOrEventId = placeOrEventId;
+    }
+
+    public String getBookmarkType() {
+        return bookmarkType;
+    }
+
+    public void setBookmarkType(String bookmarkType) {
+        this.bookmarkType = bookmarkType;
     }
 
     public String getPlaceOrEventPic() {
@@ -41,7 +62,7 @@ public class ProfileBookmarkListItem {
     }
 
     public void setPlaceOrEventPic(String placeOrEventPic) {
-        this.PlaceOrEventPic = placeOrEventPic;
+        PlaceOrEventPic = placeOrEventPic;
     }
 
     public String getPlaceOrEventName() {
@@ -49,7 +70,7 @@ public class ProfileBookmarkListItem {
     }
 
     public void setPlaceOrEventName(String placeOrEventName) {
-        this.PlaceOrEventName = placeOrEventName;
+        PlaceOrEventName = placeOrEventName;
     }
 
     public String getPlaceOrEventCategory() {
@@ -57,7 +78,7 @@ public class ProfileBookmarkListItem {
     }
 
     public void setPlaceOrEventCategory(String placeOrEventCategory) {
-        this.PlaceOrEventCategory = placeOrEventCategory;
+        PlaceOrEventCategory = placeOrEventCategory;
     }
 
     public int getBookmarkLogo() {
@@ -66,5 +87,13 @@ public class ProfileBookmarkListItem {
 
     public void setBookmarkLogo(int bookmarkLogo) {
         this.bookmarkLogo = bookmarkLogo;
+    }
+
+    public String getBookmarkTimeStamp() {
+        return bookmarkTimeStamp;
+    }
+
+    public void setBookmarkTimeStamp(String bookmarkTimeStamp) {
+        this.bookmarkTimeStamp = bookmarkTimeStamp;
     }
 }

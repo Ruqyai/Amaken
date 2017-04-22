@@ -8,6 +8,60 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.amakenapp.website.amakenapp.activities.ProfileLikes"
     tools:showIn="@layout/activity_profile_likes">
+    <LinearLayout
+        android:id="@+id/linlaHeaderProgress_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ProgressBar
+            android:id="@+id/pbHeaderProgress_reviews"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+        </ProgressBar>
+        <TextView
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Loading Reviews..." />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/no_reviews_yet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+            android:layout_height="wrap_content"
+            android:textAlignment="gravity"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:drawableTop="@drawable/ic_not_reviews"
+            android:gravity="center"
+            android:text="You Haven't Wrote Any Reviews, Yet!" />
+        <TextView
+            android:id="@+id/add_review"
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:textColor="@color/baa3"
+            android:text="Check Out Home Page, and Start Adding!" />
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewReviews"

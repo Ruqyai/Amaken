@@ -280,6 +280,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         mMap.addMarker(new MarkerOptions().position(addressPoint).title("Marker in Saudi Arabia"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(addressPoint));
         UiSettings uiSettings = googleMap.getUiSettings();
+        mMap.getUiSettings().setZoomControlsEnabled(true);
         uiSettings.setAllGesturesEnabled(true);
     }
 

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.amakenapp.website.amakenapp.Help.HelpExpandableListItem;
 import com.amakenapp.website.amakenapp.R;
@@ -20,7 +21,7 @@ import static android.os.Build.VERSION_CODES.M;
 
 public class HelpActivity extends Fragment implements View.OnClickListener {
 
-    private Button helpSecButton;
+    private TextView helpSecButton;
 
     public void onClick (View v){
         if (v == helpSecButton){
@@ -35,7 +36,7 @@ public class HelpActivity extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.activity_help, container, false);
 
-        helpSecButton = (Button) view.findViewById(R.id.helpSecButton);
+        helpSecButton = (TextView) view.findViewById(R.id.helpSecButton);
 
         helpSecButton.setOnClickListener(this);
 

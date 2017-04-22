@@ -26,6 +26,8 @@ public class Constants {
 
     public static final String STRING_TYPE_EVENT = "EVENT";
     public static final String STRING_TYPE_PLACE = "PLACE";
+    public static final String STRING_TYPE_Review = "Review";
+
     public static final String STRING_USER_PROFILE_PIC = "no profile photo";
     public static final String STRING_BOOKMARK_EXSITS= "Bookmark exist";
     public static final String STRING_LIKE_EXSITS= "Like exist";
@@ -61,8 +63,51 @@ public class Constants {
 
 
     public static final String URL_GET_USER_PLACES = ROOT_URL+"getUserPlaces/";
+    public static final String URL_EDIT_PLACE_IMAGE = ROOT_URL+"updatePlace/";
+    public static final String URL_EDIT_PLACE_DETAILS = ROOT_URL+"updatePlace/";
+    public static final String URL_EDIT_PLACE_LOCATION= ROOT_URL+"updateLocation/";
+
+
+    public static final String URL_EDIT_EVENT_DETAILS = ROOT_URL+"updateEvent/";
+
+
+    public static final String URL_DELETE_USER_PLACE = ROOT_URL+"deletePlaceById/";
+
     public static final String URL_GET_USER_EVENTS = ROOT_URL+"getUserEvents/";
-   // public static final String URL_GET_USER_BOOKMARK = ROOT_URL+"getUserBookmarks/";
+    public static final String URL_DELETE_USER_Event = ROOT_URL+"deleteEventById/";
+
+    public static final String URL_GET_USER_BOOKMARKS = ROOT_URL+"getUserBookmarks/";
+    public static final String URL_DELETE_USER_BOOKMARK = ROOT_URL+"deleteBookmarkById/";
+
+    public static final String URL_GET_USER_LIKES = ROOT_URL+"getUserLikes/";
+    public static final String URL_DELETE_USER_LIKE = ROOT_URL+"deleteLikeById/";
+
+    public static final String URL_GET_USER_REVIEWS = ROOT_URL+"getReviewsOfUser/";
+
+    public static final String URL_GET_USER_INTEREST_CATEGORIES = ROOT_URL+"getAllInterestCategories/";
+    public static final String URL_GET_ASSING_USER_INTEREST_CATEGORY = ROOT_URL+"assignInterest";
+
+    public static final String URL_UPLOAD_PHOTO = ROOT_URL+"insertNewPhotoUsingVolley";
+    public static final String URL_UPDATE_PHOTO = ROOT_URL+"";
+
+
+
+    public static final String URL_CATEGORIES = ROOT_URL+"getAllPlaceCategories";
+    public static final String URL_Event_CATEGORIES = ROOT_URL+"getAllEventCategories";
+
+
+
+
+
+
+
+
+    public static final String PHOTO_UPLOAD_URL = "http://amakenapp.website/ImageUpload/zainah.php";
+    public static final String IMAGES_URL = "http://amakenapp.website/ImageUpload/getImages.php";
+
+    public static final String PHOTO_UPLOAD_URL_volley = "http://amakenapp.website/ImageUpload/uploadVolley.php";
+
+
 
 
 

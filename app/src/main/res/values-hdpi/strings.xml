@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_event_title_fab"> <b>Add Event</b> </string>
+    <string name="add_place_title_fab">Add Place</string>
+</resources>

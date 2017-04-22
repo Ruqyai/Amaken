@@ -1,5 +1,6 @@
 package com.amakenapp.website.amakenapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
@@ -31,9 +35,12 @@ import java.util.List;
 
 public class BusinessProfileEvents extends AppCompatActivity {
 
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<BusinessProfilePlaceOrEventListItem> listItems;
+    private LinearLayout loading_event, no_events;
+    private TextView addevent;
 
     SharedPrefManager sharedPrefManager;
     private static int userId;
@@ -48,6 +55,18 @@ public class BusinessProfileEvents extends AppCompatActivity {
 
         sharedPrefManager = SharedPrefManager.getInstance(getApplicationContext());
         userId = sharedPrefManager.getUserId();
+
+        loading_event = (LinearLayout) findViewById(R.id.linlaHeaderProgress_event);
+        loading_event.setVisibility(View.VISIBLE);
+
+        no_events = (LinearLayout) findViewById(R.id.no_events_event);
+        addevent =(TextView) findViewById(R.id.add_event_events);
+        addevent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BusinessProfileEvents.this, AddEvent.class));
+            }
+        });
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
@@ -95,7 +114,7 @@ public class BusinessProfileEvents extends AppCompatActivity {
                                     BusinessProfilePlaceOrEventListItem listItem = new BusinessProfilePlaceOrEventListItem();
 
                                     listItem.setPlaceOrEventId(placeDetails.getInt("event_id"));
-                                    listItem.setPlaceOrEventName(placeDetails.getString("type"));
+                                    listItem.setType(placeDetails.getString("type"));
                                     listItem.setPlaceOrEventName(placeDetails.getString("event_name"));
                                     listItem.setPlaceOrEventCategory(placeDetails.getString("event_category"));
                                     listItem.setPlaceOrEventPic(placeDetails.getString("event_photo"));
@@ -123,8 +142,11 @@ public class BusinessProfileEvents extends AppCompatActivity {
                                 }
                                 adapter = new BusinessProfilePlaceOrEventAdapter(listItems, getApplicationContext());
                                 recyclerView.setAdapter(adapter);
+                                loading_event.setVisibility(View.GONE);
 
                             } else {
+                                loading_event.setVisibility(View.GONE);
+                                no_events.setVisibility(View.VISIBLE);
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {

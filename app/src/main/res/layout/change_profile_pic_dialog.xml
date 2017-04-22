@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/chooseFromGallery"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?attr/selectableItemBackground"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:text="   Choose From Gallery"
+        android:textColor="#15AFD8"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="5dp"
+        android:drawableStart="@drawable/ic_choose_from_galley"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:selectAllOnFocus="true"
+        android:layout_marginTop="15dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        />
+
+    <TextView
+        android:id="@+id/chooseFromCamers"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?attr/selectableItemBackground"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:text="   Capture From Camera"
+        android:textColor="#15AFD8"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textSize="20sp"
+        android:selectAllOnFocus="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:drawableStart="@drawable/ic_capture_by_camera"
+
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="5dp"
+         />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/preview_of_profile_pic"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:src="@drawable/profile"
+        android:layout_marginTop="8dp"
+        app:civ_border_color="#b41b0606"
+        app:civ_border_width="1dp"
+         />
+
+</LinearLayout>

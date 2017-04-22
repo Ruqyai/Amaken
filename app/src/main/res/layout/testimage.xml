@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView1"
+        android:src="@drawable/ic_event_days"
+        android:layout_marginEnd="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/buttonupload" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="chose camera"
+        android:id="@+id/buttonchoose"
+        android:layout_alignTop="@+id/buttonupload" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="chose gallery "
+        android:id="@+id/buttonchoosegallery"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/buttonchoose"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="upload"
+        android:id="@+id/buttonupload"
+        android:layout_below="@+id/imageView1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="9dp" />
+
+
+</RelativeLayout>

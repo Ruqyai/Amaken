@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--suppress AndroidDomInspection -->
+<ScrollView
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:scrollbars="none">
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5pt"
+        android:layout_marginRight="5pt"
+        android:layout_marginLeft="5pt"
+        android:elevation="5dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp">
+        <LinearLayout
+            android:id="@+id/linlaHeaderProgress_EDITEVENT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            >
+
+            <ProgressBar
+                android:id="@+id/pbHeaderProgress_event"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+            </ProgressBar>
+
+        </LinearLayout>
+
+        <ViewFlipper
+            android:id="@+id/viewFlipper_edit"
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+
+
+        </ViewFlipper>
+
+        <ImageButton
+            android:id="@+id/flipp_previous_edit"
+            android:layout_width="wrap_content"
+            android:background="#90e9e8e8"
+            android:layout_height="100dp"
+            android:visibility="visible"
+            android:src="@drawable/ic_flipp_previous"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageButton
+            android:id="@+id/flipp_next_edit"
+            android:visibility="visible"
+            android:background="#90e9e8e8"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_flipp_next"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+
+
+
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1pt"
+        android:layout_marginRight="5pt"
+        android:layout_marginLeft="5pt"
+        android:elevation="4dp">
+
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+
+        >
+        <TextView
+            android:drawableEnd="@drawable/ic_show_details"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:text="Event Name"
+            android:id="@+id/show_deatils_change_place_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/baa"
+            android:textStyle="bold"
+            android:textSize="@dimen/FontSize"
+            android:layout_marginTop="8dp"
+            />
+
+    </TableRow>
+    <TableRow
+        android:id="@+id/placenamedetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal"
+
+        >
+
+            <EditText
+                android:layout_marginTop="8dp"
+                android:id="@+id/place_name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:capitalize="words"
+                android:hint="Event Name"
+                android:inputType="textCapWords"
+                android:textSize="@dimen/FontSize" />
+
+
+    </TableRow>
+
+
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+
+        >
+        <TextView
+            android:text="Event Description"
+            android:drawableEnd="@drawable/ic_show_details"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:id="@+id/show_detils_change_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/baa"
+            android:textStyle="bold"
+            android:textSize="@dimen/FontSize"
+            android:layout_marginTop="8dp"
+            />
+
+    </TableRow>
+    <TableRow
+       android:layout_height="match_parent"
+       android:layout_width="match_parent"
+       android:orientation="horizontal"
+       android:layout_marginRight="8dp"
+       android:layout_marginLeft="8dp"
+       android:layout_marginBottom="8dp"
+
+
+       >
+
+        <EditText
+            android:id="@+id/place_description_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Event Description"
+            android:textSize="@dimen/FontSize"
+            android:inputType="textMultiLine"
+            android:maxLength="300"
+            />
+
+</TableRow>
+
+
+
+
+ <TableRow
+         android:layout_height="match_parent"
+         android:layout_width="wrap_content"
+         android:orientation="horizontal"
+     android:layout_marginRight="8dp"
+     android:layout_marginLeft="8dp"
+     android:layout_marginBottom="8dp"
+         >
+
+     <TextView
+
+         android:text="Event Category"
+         android:drawableEnd="@drawable/ic_show_details"
+         android:textAlignment="gravity"
+         android:gravity="center"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:id="@+id/show_details_change_category"
+         android:textColor="@color/baa"
+         android:textStyle="bold"
+         android:textSize="@dimen/FontSize"
+         android:layout_marginTop="8dp"
+         />
+
+
+ </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@color/barlight"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="8dp"
+        >
+
+
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/place_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.DropDownItem.Spinner"
+            android:spinnerMode="dialog" />
+    </TableRow>
+
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        >
+
+
+        <TextView
+            android:text="Event Country"
+            android:drawableEnd="@drawable/ic_show_details"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:id="@+id/show_detial_change_country"
+            android:layout_width="wrap_content"
+            android:textColor="@color/baa"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/FontSize"
+            />
+    </TableRow>
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@color/barlight"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="8dp">
+
+
+        <Spinner
+            android:id="@+id/sppiner_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.DropDownItem.Spinner"
+
+            android:spinnerMode="dialog" />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:drawableEnd="@drawable/ic_show_details"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:textColor="@color/baa"
+            android:textStyle="bold"
+            android:text="Event City"
+            android:layout_height="wrap_content"
+            android:id="@+id/show_details_change_city"
+            android:textSize="@dimen/FontSize"
+            />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="15dp"
+
+        android:background="@color/barlight"
+        android:layout_marginBottom="8dp">
+
+
+        <Spinner
+            android:id="@+id/spiner_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+
+            style="@style/Widget.AppCompat.DropDownItem.Spinner"
+            />
+
+    </TableRow>
+    <FrameLayout
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:background="@color/bar"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp">
+    <Button
+        android:id="@+id/change_place_details"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:textColor="@color/white"
+        android:text="Save Event Changes"
+        />
+    </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        />
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        >
+
+
+        <TextView
+            android:id="@+id/show_detia_changedate"
+            android:text="Event Date Details"
+            android:drawableEnd="@drawable/ic_show_details"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:textColor="@color/baa"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/FontSize"
+            />
+
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/event_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity=""
+            android:text="@string/event_date_text"
+            android:textAlignment="gravity"
+            android:textStyle="bold" />
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/event_startDate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:text="26/04/2017"
+                android:drawableEnd="@drawable/ic_event_start"
+                android:gravity="center_vertical"
+                android:textAlignment="gravity"
+
+                />
+
+            <TextView
+                android:id="@+id/event_endDate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:text="26/04/2017"
+                android:layout_weight="1"
+                android:drawableEnd="@drawable/ic_event_end"
+                android:gravity="center_vertical"
+                android:textAlignment="gravity" />
+        </LinearLayout>
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/event_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity=""
+            android:text="@string/event_time_text"
+            android:textStyle="bold" />
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/event_startTime"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:text="20:22:33"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableEnd="@drawable/ic_event_start_time"
+                android:gravity="center_vertical"
+                android:textAlignment="gravity"
+
+                />
+
+            <TextView
+                android:id="@+id/event_endTime"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:drawableEnd="@drawable/ic_event_end_time"
+                android:gravity="center_vertical"
+                android:text="20:22:33"
+                android:textAlignment="gravity"
+
+                />
+        </LinearLayout>
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity=""
+            android:text="@string/event_days_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="Saturday, sunday, monday"
+            android:id="@+id/event_days"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_event_days"
+            android:gravity="center_vertical"
+            android:textAlignment="gravity" />
+
+
+
+    </TableRow>
+    <FrameLayout
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:background="@color/bar"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp">
+        <Button
+            android:id="@+id/change_date_details"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:text="Save Date Changes"
+            />
+    </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        />
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        >
+
+
+        <TextView
+            android:text="Event Address"
+            android:id="@+id/show_details_changeaddress"
+            android:drawableEnd="@drawable/ic_show_details"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:textColor="@color/baa"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/FontSize"
+            />
+    </TableRow>
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp">
+
+
+
+
+            <EditText
+                android:id="@+id/place_address_edit"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="15dp"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                android:inputType="textMultiLine"
+                android:textSize="@dimen/FontSize" />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        >
+
+
+        <TextView
+            android:id="@+id/show_detia_changelocation"
+            android:text="Change Event Location"
+            android:drawableEnd="@drawable/ic_show_details"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:textColor="@color/baa"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/FontSize"
+            />
+
+    </TableRow>
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5pt"
+            android:layout_span="2"
+            android:background="#39bde9">
+
+            <fragment
+                android:id="@+id/map_edit"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_centerVertical="true" />
+
+
+        </RelativeLayout>
+
+
+    </TableRow>
+
+
+    <FrameLayout
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:background="@color/bar"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp">
+        <Button
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@color/white"
+
+            android:id="@+id/change_address_details"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:text="Save Location Changes"
+            />
+    </FrameLayout>
+</LinearLayout>
+
+</android.support.v7.widget.CardView>
+
+
+
+
+
+
+</LinearLayout>
+</ScrollView>

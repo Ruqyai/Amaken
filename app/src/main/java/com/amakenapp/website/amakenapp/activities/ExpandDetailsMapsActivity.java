@@ -73,7 +73,7 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
     SharedPrefManager sharedPrefManager;
 
 
-    private static int placeID = 9;
+    private static int placeID;
     private static int userId;
 
     // view pager constants
@@ -253,6 +253,7 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
         mMap.addMarker(new MarkerOptions().position(addressPoint).title("Marker in Saudi Arabia"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(addressPoint));
         UiSettings uiSettings = googleMap.getUiSettings();
+        mMap.getUiSettings().setZoomControlsEnabled(true);
         uiSettings.setAllGesturesEnabled(true);
     }
 

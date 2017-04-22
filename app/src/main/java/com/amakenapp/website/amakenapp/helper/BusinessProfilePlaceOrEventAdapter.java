@@ -2,26 +2,39 @@ package com.amakenapp.website.amakenapp.helper;
 
 
 
+        import android.app.AlertDialog;
         import android.content.Context;
+        import android.content.DialogInterface;
         import android.content.Intent;
-        import android.os.Bundle;
         import android.support.v7.view.ContextThemeWrapper;
         import android.support.v7.widget.PopupMenu;
         import android.support.v7.widget.RecyclerView;
+        import android.view.Gravity;
         import android.view.LayoutInflater;
         import android.view.MenuItem;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.view.WindowManager;
         import android.widget.ImageView;
+        import android.widget.LinearLayout;
         import android.widget.RatingBar;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import com.amakenapp.website.amakenapp.activities.EditEventActivity;
+        import com.amakenapp.website.amakenapp.activities.EditPlaceActivity;
         import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivity;
         import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivityEvent;
+        import com.android.volley.Request;
+        import com.android.volley.Response;
+        import com.android.volley.VolleyError;
+        import com.android.volley.toolbox.StringRequest;
         import com.bumptech.glide.Glide;
         import com.amakenapp.website.amakenapp.R;
 
+
+        import org.json.JSONException;
+        import org.json.JSONObject;
 
         import java.util.List;
 
@@ -34,6 +47,8 @@ package com.amakenapp.website.amakenapp.helper;
 public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<BusinessProfilePlaceOrEventAdapter.ViewHolder> {
     private List<BusinessProfilePlaceOrEventListItem> listItems;
     private Context context;
+    private AlertDialog.Builder alertDialog;
+
 
     public BusinessProfilePlaceOrEventAdapter(List<BusinessProfilePlaceOrEventListItem> listItems, Context context) {
         this.listItems = listItems;
@@ -48,9 +63,10 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
     }
 
     @Override
-    public void onBindViewHolder(final BusinessProfilePlaceOrEventAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final BusinessProfilePlaceOrEventAdapter.ViewHolder holder, final int position) {
 
-        BusinessProfilePlaceOrEventListItem listItem = listItems.get(position);
+
+        final BusinessProfilePlaceOrEventListItem listItem = listItems.get(position);
 
 
         final int placeOrEventId = listItem.getPlaceOrEventId();
@@ -61,6 +77,8 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
 
 
         Glide.with(context).load(listItem.getPlaceOrEventPic()).into(holder.PlaceOrEventPicture);
+
+
 
         holder.PlaceOrEventName.setText(listItem.getPlaceOrEventName());
         holder.PlaceOrEventCategory.setText(listItem.getPlaceOrEventCategory());
@@ -80,7 +98,7 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
             public void onClick(View view) {
 
                 //creating a popup menu
-                Context wrapper = new ContextThemeWrapper(context, R.style.MyPopupMenu);
+                final Context wrapper = new ContextThemeWrapper(context, R.style.MyPopupMenu);
                 PopupMenu popup = new PopupMenu(wrapper, holder.optionsMenu);
                 //inflating menu from xml resource
                 popup.inflate(R.menu.business_profile_placeandevent_options_menu);
@@ -108,9 +126,99 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
                                 break;
                             case R.id.BsPlaceEdit:
                                 //handle menu2 click
+
+                                if (type.equals(Constants.STRING_TYPE_PLACE))
+                                {
+                                    Intent myIntent = new Intent(context, EditPlaceActivity.class);
+                                    myIntent.putExtra("PLACE_ID", placeOrEventId);
+                                    myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    context.startActivity(myIntent);
+                                }
+                                else if (type.equals(Constants.STRING_TYPE_EVENT))
+                                {
+                                    Intent myIntent = new Intent(context, EditEventActivity.class);
+                                    myIntent.putExtra("EVENT_ID", placeOrEventId);
+                                    myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    context.startActivity(myIntent);
+                                }
                                 break;
                             case R.id.BsPlaceDelete:
                                 //handle menu3 click
+
+                                if (type.equals(Constants.STRING_TYPE_PLACE))
+                                {
+                                    alertDialog = new AlertDialog.Builder(context);
+                                    alertDialog.setTitle("Delete");
+                                    TextView myMsg = new TextView(context);
+                                    myMsg.setText("\n \nThis Action Will Affect All Reviews on This Place and Cant't Be Undone!! \n\n Are You Sure You Want to Delete This Place?");
+                                    myMsg.setGravity(Gravity.CENTER_HORIZONTAL);
+                                    myMsg.setPadding(5, 5, 5, 5);
+                                    alertDialog.setIcon(R.drawable.ic_delete_alert);
+                                    alertDialog.setView(myMsg);
+
+                                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                                    {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deletePlace(placeOrEventId);
+                                            swap(position);
+
+                                        }
+                                    });
+
+                                    alertDialog.setNegativeButton("Cancel",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.cancel();
+                                                }
+                                            });
+
+                                    final AlertDialog dialog = alertDialog.create();
+                                    dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                                    //if(isFinishing())
+                                    dialog.show();
+
+                                }
+                                else if (type.equals(Constants.STRING_TYPE_EVENT))
+                                {
+                                    alertDialog = new AlertDialog.Builder(context);
+                                    alertDialog.setTitle("Delete");
+                                    TextView myMsg = new TextView(context);
+                                    myMsg.setText("\n \nThis Action Will Affect All Reviews on This Event and Cant't Be Undone!! \n\n Are You Sure You Want to Delete This Event?");
+                                    myMsg.setGravity(Gravity.CENTER_HORIZONTAL);
+                                    myMsg.setPadding(5, 5, 5, 5);
+
+                                    alertDialog.setIcon(R.drawable.ic_delete_alert);
+                                    alertDialog.setView(myMsg);
+
+                                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                                    {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deleteEvent(placeOrEventId);
+                                            swap(position);
+
+
+                                            /*Intent myIntent = new Intent(context, BusinessProfileEvents.class);
+                                            myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                            ((Activity)context).overridePendingTransition(0, 0);
+                                            ((Activity)context).finish();
+                                             context.startActivity(myIntent);
+                                            ((Activity)context).overridePendingTransition(0, 0);*/
+
+                                        }
+                                    });
+
+                                    alertDialog.setNegativeButton("Cancel",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.cancel();
+                                                }
+                                            });
+
+                                    final AlertDialog dialog = alertDialog.create();
+                                    dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                                    //if(isFinishing())
+                                    dialog.show();
+                                }
                                 break;
                         }
                         return false;
@@ -145,6 +253,7 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
         public TextView StatBookmarks;
         public TextView StatLikes;
         public TextView StatRatings;
+        public LinearLayout loading;
 
 
 
@@ -174,7 +283,75 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
     }
 
 
+    public void swap(int position){
+
+        listItems.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, listItems.size());
+        notifyDataSetChanged();
+
+    }
 
 
+    public void deletePlace(int placeId) {
+        final int placeID = placeId;
 
+        StringRequest send = new StringRequest(Request.Method.DELETE,
+                Constants.URL_DELETE_USER_PLACE + placeID,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                Toast.makeText(context, obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(context, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(
+                        context, error.getMessage(), Toast.LENGTH_LONG).show();
+            }}) {};
+        MySingleton.getInstance(context).addToRequestQueue(send);
+
+    }
+
+    public void deleteEvent(int eventId) {
+        final int eventID = eventId;
+
+        StringRequest send = new StringRequest(Request.Method.DELETE,
+                Constants.URL_DELETE_USER_Event + eventID,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                Toast.makeText(context, obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(context, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(
+                        context, error.getMessage(), Toast.LENGTH_LONG).show();
+            }}) {};
+        MySingleton.getInstance(context).addToRequestQueue(send);
+
+    }
 }

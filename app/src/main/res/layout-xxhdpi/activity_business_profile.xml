@@ -5,12 +5,16 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fadeScrollbars="true"
+    android:scrollbars="none"
     >
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     android:orientation="vertical"
+    android:paddingBottom="100dp"
+
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true">
 
@@ -32,7 +36,7 @@
         android:layout_gravity="center"
         android:id="@+id/businessProfile_changeProfilePicTxt"
         android:textColor="@color/baa"
-        android:textSize="@dimen/FontSize"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:text="@string/change_your_profile_picture"
         android:layout_above="@+id/row1"
         android:layout_toEndOf="@+id/change_business_profile_pic" />

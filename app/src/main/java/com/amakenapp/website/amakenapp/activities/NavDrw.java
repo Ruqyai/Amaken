@@ -25,7 +25,9 @@ import android.view.MenuItem;
 
 import android.content.Intent;
 
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,7 +67,31 @@ public class NavDrw extends AppCompatActivity
 
 
 
-        FloatingActionsMenu floatButton = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
+
+        final FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
+        frameLayout.getBackground().setAlpha(0);
+        final FloatingActionsMenu floatButton = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
+        floatButton.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                frameLayout.getBackground().setAlpha(200);
+                frameLayout.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        floatButton.collapse();
+                        return true;
+                    }
+                });
+            }
+
+            @Override
+            public void onMenuCollapsed() {
+                frameLayout.getBackground().setAlpha(0);
+                frameLayout.setOnTouchListener(null);
+            }
+        });
+
+        //FloatingActionsMenu floatButton = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
 
         FloatingActionButton addPlaceFab = (FloatingActionButton) findViewById(R.id.Adds_place);
         addPlaceFab.setOnClickListener(new View.OnClickListener() {
@@ -223,7 +249,11 @@ public class NavDrw extends AppCompatActivity
 
         } else if (id == R.id.nav_Help) {
 
+            //startActivity(new Intent(NavDrw.this, BusinrssHelp.class));
+            //startActivity(new Intent(NavDrw.this, testimage.class));
             fragment = new HelpActivity();
+
+
 
         } else if (id == R.id.nav_invites) {
 

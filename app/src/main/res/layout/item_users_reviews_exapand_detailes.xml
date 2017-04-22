@@ -10,7 +10,8 @@
     >
 
 
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imageViewUserWrite"
         android:layout_width="75dp"
         android:layout_height="75dp"
@@ -114,10 +115,9 @@
 
     <ImageView
         android:id="@+id/all_reviews_likeLogo"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
         app:srcCompat="@drawable/ic_thump_up"
-        android:focusableInTouchMode="true"
         android:background="?attr/selectableItemBackground"
         android:layout_marginStart="13dp"
         android:layout_alignBottom="@+id/all_reviews_singleReview_rating"
@@ -137,10 +137,9 @@
 
     <ImageView
         android:id="@+id/all_reviewReportFlag"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
         android:background="?attr/selectableItemBackground"
-        android:focusableInTouchMode="true"
         android:layout_marginStart="8dp"
         android:layout_below="@id/textViewUserWhatIsWrite"
         app:srcCompat="@drawable/ic_report_flag"

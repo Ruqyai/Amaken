@@ -1,11 +1,16 @@
 package com.amakenapp.website.amakenapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.view.Window;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -28,11 +33,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class BusinessProfilePlaces extends AppCompatActivity {
+public class BusinessProfilePlaces extends AppCompatActivity{
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<BusinessProfilePlaceOrEventListItem> listItems;
+    private LinearLayout loading, no_places;
+    private TextView addPlace;
 
     SharedPrefManager sharedPrefManager;
     private static int userId;
@@ -49,6 +56,18 @@ public class BusinessProfilePlaces extends AppCompatActivity {
         sharedPrefManager = SharedPrefManager.getInstance(getApplicationContext());
         userId = sharedPrefManager.getUserId();
 
+        loading = (LinearLayout) findViewById(R.id.linlaHeaderProgress);
+        loading.setVisibility(View.VISIBLE);
+
+        no_places = (LinearLayout) findViewById(R.id.no_places);
+        addPlace =(TextView) findViewById(R.id.add_place);
+        addPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BusinessProfilePlaces.this, AddPlace.class));
+            }
+        });
+
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
@@ -60,8 +79,9 @@ public class BusinessProfilePlaces extends AppCompatActivity {
             /* we put data we want to store inside the list item*/
         listItems = new ArrayList<>();
 
-        getAllPlaces(userId);
+        
 
+        getAllPlaces(userId);
 
 
 
@@ -106,7 +126,7 @@ public class BusinessProfilePlaces extends AppCompatActivity {
                                     BusinessProfilePlaceOrEventListItem listItem = new BusinessProfilePlaceOrEventListItem();
 
                                     listItem.setPlaceOrEventId(placeDetails.getInt("place_id"));
-                                    listItem.setPlaceOrEventName(placeDetails.getString("type"));
+                                    listItem.setType(placeDetails.getString("type"));
                                     listItem.setPlaceOrEventName(placeDetails.getString("place_name"));
                                     listItem.setPlaceOrEventCategory(placeDetails.getString("place_category"));
                                     listItem.setPlaceOrEventPic(placeDetails.getString("place_photo"));
@@ -134,8 +154,10 @@ public class BusinessProfilePlaces extends AppCompatActivity {
                                 }
                                 adapter = new BusinessProfilePlaceOrEventAdapter(listItems, getApplicationContext());
                                 recyclerView.setAdapter(adapter);
-
+                                loading.setVisibility(View.GONE);
                             } else {
+                                loading.setVisibility(View.GONE);
+                                no_places.setVisibility(View.VISIBLE);
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="50dp">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Change Place Details"
+        android:gravity="start"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_marginTop="8dp"
+        android:fadeScrollbars="true">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/place_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="32dp">
+
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/place_name_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Place Name"
+                    android:inputType="text"
+                    android:textSize="@dimen/FontSize"
+                    android:textColor="#15AFD8"
+                    android:textColorHint="#15AFD8"
+                    android:textColorLink="#15AFD8" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/User_Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                >
+
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/place_description_edti"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Place Description"
+                    android:textSize="@dimen/FontSize"
+                    android:inputType="textMultiLine"
+                    android:maxLength="300"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+
+
+            <TextView
+                android:text="Place Category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:textColor="#A47A51"
+                android:textSize="@dimen/FontSize"
+                android:layout_marginTop="8dp"
+                 />
+
+            <Spinner
+                android:id="@+id/sign_up_user_countries_spinner_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dialog" />
+            <TextView
+                android:text="Place Country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#A47A51"
+                android:textSize="@dimen/FontSize"
+                />
+            <Spinner
+                android:id="@+id/sppiner_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:spinnerMode="dialog"
+
+                android:background="@android:drawable/btn_dropdown"/>
+
+
+            <TextView
+                android:text="Place City"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6"
+                android:textColor="#A47A51"
+                android:textSize="@dimen/FontSize"
+                 />
+            <Spinner
+                android:id="@+id/spiner_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:spinnerMode="dialog"
+
+                android:background="@android:drawable/btn_dropdown"/>
+
+            <Button
+                android:id="@+id/button_Register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
+                android:background="#15AFD8"
+                android:text="Done"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/FontSize" />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

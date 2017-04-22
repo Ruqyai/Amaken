@@ -50,8 +50,6 @@ public class AddPlace extends AppCompatActivity implements AdapterView.OnItemSel
         setContentView(R.layout.activity_add_place);
                Toolbar toolbar = (Toolbar) findViewById(R.id.addplace_toolbar);
         setSupportActionBar(toolbar);
-
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -126,7 +124,7 @@ public class AddPlace extends AppCompatActivity implements AdapterView.OnItemSel
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            startActivity(new Intent(getApplicationContext(), SignUpChooser.class));
+            startActivity(new Intent(getApplicationContext(), NavDrw.class));
 
             return true;
         }
@@ -177,6 +175,8 @@ public class AddPlace extends AppCompatActivity implements AdapterView.OnItemSel
 
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
+
+
 
     // THIS IS FOR loading cities for a particular country
     private void loadCities(int countryId) {

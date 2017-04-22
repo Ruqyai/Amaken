@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_profile_categories"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.amakenapp.website.amakenapp.activities.ProfileCategories"
     tools:showIn="@layout/activity_profile_categories">
@@ -40,14 +42,16 @@
 
                 <android.support.v7.widget.CardView
                     android:layout_width="100dp"
+                    card_view:cardBackgroundColor="@color/barlight"
                     android:id="@+id/Card_cafe"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:background="#DBE8F1"
+                    android:background="@color/barlight"
                     >
                     <LinearLayout
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/Card_cafe1"
+                        android:layout_height="match_parent"
                         android:layout_alignEnd="@+id/user_profile_pic"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="38dp"
@@ -71,6 +75,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:textSize="@dimen/FontSize"
+                            android:textStyle="bold"
                             android:text="@string/cofes_text"
                             android:textColor="@color/baa3"
                             android:layout_marginBottom="3dp"
@@ -83,12 +88,14 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="100dp"
                     android:id="@+id/educationCard"
+                    card_view:cardBackgroundColor="@color/barlight"
                     android:layout_height="wrap_content"
                     android:background="#DBE8F1"
                     android:layout_margin="5dp">
                     <LinearLayout
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/educationCard1"
+                        android:layout_height="match_parent"
                         android:layout_alignEnd="@+id/user_profile_pic"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="38dp"
@@ -112,6 +119,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:textSize="@dimen/FontSize"
+                            android:textStyle="bold"
                             android:text="@string/education_text"
                             android:textColor="@color/baa3"
                             android:layout_marginBottom="3dp"/>
@@ -123,13 +131,15 @@
                 <android.support.v7.widget.CardView
                     android:id="@+id/entertainmentCard"
                     android:layout_width="100dp"
+                    card_view:cardBackgroundColor="@color/barlight"
                     android:layout_height="wrap_content"
                     android:background="#DBE8F1"
                     android:layout_margin="5dp"
                     >
                     <LinearLayout
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/entertainmentCard1"
+                        android:layout_height="match_parent"
                         android:layout_alignEnd="@+id/user_profile_pic"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="38dp"
@@ -152,6 +162,7 @@
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:textStyle="bold"
                             android:textSize="15sp"
                             android:text="@string/entertainment_text"
                             android:textColor="@color/baa3"
@@ -173,11 +184,13 @@
                     android:id="@+id/hair_stylistsCard"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    card_view:cardBackgroundColor="@color/barlight"
                     android:background="#DBE8F1"
                     android:layout_margin="5dp">
                     <LinearLayout
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/hair_stylistsCard1"
+                        android:layout_height="match_parent"
                         android:layout_alignEnd="@+id/user_profile_pic"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="38dp"
@@ -202,6 +215,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
+                            android:textStyle="bold"
                             android:textSize="@dimen/FontSize"
                             android:text="@string/hair_stylists_text"
                             android:textColor="@color/baa3" />
@@ -213,12 +227,14 @@
                 <android.support.v7.widget.CardView
                     android:id="@+id/hospitalsCard"
                     android:layout_width="100dp"
+                    card_view:cardBackgroundColor="@color/barlight"
                     android:layout_height="wrap_content"
-                    android:background="#DBE8F1"
+                    android:background="@color/barlight"
                     android:layout_margin="5dp">
                     <LinearLayout
+                        android:id="@+id/hospitalsCard1"
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_alignEnd="@+id/user_profile_pic"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="38dp"
@@ -240,6 +256,7 @@
                         <TextView
                             android:id="@+id/textView3"
                             android:layout_width="100dp"
+                            android:textStyle="bold"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
@@ -254,13 +271,15 @@
                 <android.support.v7.widget.CardView
                     android:id="@+id/hotelsCard"
                     android:layout_width="100dp"
+                    card_view:cardBackgroundColor="@color/barlight"
                     android:layout_height="wrap_content"
                     android:background="#DBE8F1"
                     android:layout_margin="5dp">
 
                     <LinearLayout
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/hotelsCard1"
+                        android:layout_height="match_parent"
                         android:layout_alignEnd="@+id/user_profile_pic"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="38dp"
@@ -275,13 +294,15 @@
                             android:layout_marginRight="2dp"
                             android:layout_marginTop="5dp"
                             app:srcCompat="@drawable/hospitals" />
-                    <LinearLayout
+
+                        <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/barlight">
                         <TextView
                             android:id="@+id/textView8"
                             android:layout_width="100dp"
+                            android:textStyle="bold"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
@@ -304,6 +325,7 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="100dp"
                     android:id="@+id/mallsCard"
+                    card_view:cardBackgroundColor="@color/barlight"
                     android:layout_height="wrap_content"
                     android:background="#DBE8F1"
                     android:layout_margin="5dp"
@@ -311,7 +333,9 @@
 
                     <LinearLayout
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/mallsCard1"
+
+                        android:layout_height="match_parent"
                         android:layout_alignEnd="@+id/user_profile_pic"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="38dp"
@@ -333,6 +357,7 @@
                         <TextView
                             android:id="@+id/textView33"
                             android:layout_width="100dp"
+                            android:textStyle="bold"
                             android:textSize="@dimen/FontSize"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -347,7 +372,8 @@
 
                 <android.support.v7.widget.CardView
                     android:layout_width="100dp"
-android:id="@+id/parksCard"
+                    android:id="@+id/parksCard"
+                    card_view:cardBackgroundColor="@color/barlight"
                     android:layout_height="wrap_content"
                     android:background="#DBE8F1"
                     android:layout_margin="5dp">
@@ -355,7 +381,8 @@ android:id="@+id/parksCard"
 
                     <LinearLayout
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/parksCard1"
+                        android:layout_height="match_parent"
                         android:layout_alignEnd="@+id/user_profile_pic"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="38dp"
@@ -366,17 +393,19 @@ android:id="@+id/parksCard"
                             android:id="@+id/imageView88"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            app:srcCompat="@drawable/parks"
                             android:layout_marginLeft="2dp"
                             android:layout_marginRight="2dp"
-                            android:layout_marginTop="5dp"/>
-                    <LinearLayout
+                            android:layout_marginTop="5dp"
+                            app:srcCompat="@drawable/parks" />
+
+                        <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/barlight">
                         <TextView
                             android:id="@+id/textView88"
                             android:layout_width="100dp"
+                            android:textStyle="bold"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:textSize="@dimen/FontSize"
@@ -389,7 +418,8 @@ android:id="@+id/parksCard"
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-android:id="@+id/restaurantsCard"
+                    android:id="@+id/restaurantsCard"
+                    card_view:cardBackgroundColor="@color/barlight"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:background="#DBE8F1"
@@ -399,7 +429,8 @@ android:id="@+id/restaurantsCard"
 
                     <LinearLayout
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/restaurantsCard1"
+                        android:layout_height="match_parent"
                         android:layout_alignEnd="@+id/user_profile_pic"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="38dp"
@@ -410,11 +441,12 @@ android:id="@+id/restaurantsCard"
                             android:id="@+id/imageView44"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            app:srcCompat="@drawable/restaurants"
                             android:layout_marginLeft="2dp"
                             android:layout_marginRight="2dp"
-                            android:layout_marginTop="5dp"/>
-                    <LinearLayout
+                            android:layout_marginTop="5dp"
+                            app:srcCompat="@drawable/restaurants" />
+
+                        <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/barlight">
@@ -423,6 +455,7 @@ android:id="@+id/restaurantsCard"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:textStyle="bold"
                             android:textSize="@dimen/FontSize"
                             android:text="@string/restaurants_text"
                             android:textColor="@color/baa3"
@@ -443,7 +476,8 @@ android:layout_below="@+id/row7"
 
                 <android.support.v7.widget.CardView
                     android:layout_width="100dp"
-android:id="@+id/spaCard"
+                    android:id="@+id/spaCard"
+                    card_view:cardBackgroundColor="@color/barlight"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="#DBE8F1">
@@ -451,7 +485,8 @@ android:id="@+id/spaCard"
 
                     <LinearLayout
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/spaCard1"
+                        android:layout_height="match_parent"
                         android:layout_alignEnd="@+id/user_profile_pic"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="38dp"
@@ -478,6 +513,7 @@ android:id="@+id/spaCard"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
                             android:textSize="@dimen/FontSize"
+                            android:textStyle="bold"
                             android:text="@string/sap_and_leisure_text"
                             android:textColor="@color/baa3" />
                     </LinearLayout>
@@ -486,7 +522,8 @@ android:id="@+id/spaCard"
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-android:id="@+id/sportCard"
+                    android:id="@+id/sportCard"
+                    card_view:cardBackgroundColor="@color/barlight"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp">
@@ -494,7 +531,9 @@ android:id="@+id/sportCard"
 
                     <LinearLayout
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/sportCard1"
+
+                        android:layout_height="match_parent"
                         android:layout_alignEnd="@+id/user_profile_pic"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="38dp"
@@ -516,6 +555,7 @@ android:id="@+id/sportCard"
                         <TextView
                             android:id="@+id/textView773"
                             android:layout_width="100dp"
+                            android:textStyle="bold"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:gravity="center"
@@ -529,17 +569,20 @@ android:id="@+id/sportCard"
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/tourismCard"
+                    card_view:cardBackgroundColor="@color/barlight"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:background="#DBE8F1"
                     android:layout_margin="5dp">
                     <LinearLayout
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/tourismCard1"
+                        android:layout_height="match_parent"
                         android:layout_alignEnd="@+id/user_profile_pic"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="38dp"
                         android:orientation="vertical">
+
                         <ImageView
                             android:id="@+id/imageView08"
                             android:layout_width="100dp"
@@ -548,6 +591,7 @@ android:id="@+id/sportCard"
                             android:layout_marginRight="2dp"
                             android:layout_marginTop="5dp"
                             app:srcCompat="@drawable/tourism" />
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -558,6 +602,7 @@ android:id="@+id/sportCard"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
+                            android:textStyle="bold"
                             android:gravity="center"
                             android:textSize="@dimen/FontSize"
                             android:text="@string/tourism_text"
