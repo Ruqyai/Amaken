@@ -142,7 +142,7 @@
     <string name="categories_text">Categories</string>
     <string name="events_text">Events</string>
 
-///////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
     <!-- Strings related to Expand details place-->
     <string name="place_details_text">Place Details:</string>
     <string name="place_name_text">Place Name:</string>
