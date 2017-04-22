@@ -230,7 +230,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.Help.HelpExpandableListItem" />
         </activity>
-        <activity android:name=".Help.HelpExpandableListItem"
+        <activity
+            android:name=".Help.HelpExpandableListItem"
             android:label="Help"
             android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
@@ -247,97 +248,124 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.Help.HelpExpandableListItem" />
         </activity>
-        <activity android:name=".Help.HelpOverview01" android:label="Overview"
+        <activity
+            android:name=".Help.HelpOverview01"
+            android:label="Overview"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
-        <activity android:name=".Help.HelpOverview02" android:label="Overview"
+        <activity
+            android:name=".Help.HelpOverview02"
+            android:label="Overview"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
-        <activity android:name=".Help.HelpSigningUp00" android:label="Signing Up"
+        <activity
+            android:name=".Help.HelpSigningUp00"
+            android:label="Signing Up"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
-        <activity android:name=".Help.HelpSigningUp01" android:label="Signing Up"
+        <activity
+            android:name=".Help.HelpSigningUp01"
+            android:label="Signing Up"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
-        <activity android:name=".Help.HelpSigningUp02" android:label="Signing Up"
+        <activity
+            android:name=".Help.HelpSigningUp02"
+            android:label="Signing Up"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
-        <activity android:name=".Help.HelpSigningUp03" android:label="Signing Up"
+        <activity
+            android:name=".Help.HelpSigningUp03"
+            android:label="Signing Up"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
-        <activity android:name=".Help.HelpLegalPrivacy00" android:label="Legal and Privacy"
+        <activity
+            android:name=".Help.HelpLegalPrivacy00"
+            android:label="Legal and Privacy"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
-        <activity android:name=".Help.HelpLegalPrivacy01" android:label="Legal and Privacy"
+        <activity
+            android:name=".Help.HelpLegalPrivacy01"
+            android:label="Legal and Privacy"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
-        <activity android:name=".Help.HelpLegalPrivacy02" android:label="Legal and Privacy"
+        <activity
+            android:name=".Help.HelpLegalPrivacy02"
+            android:label="Legal and Privacy"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
-        <activity android:name=".Help.HelpUsingAmaken00" android:label="Using Amaken"
+        <activity
+            android:name=".Help.HelpUsingAmaken00"
+            android:label="Using Amaken"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
-        <activity android:name=".Help.HelpUsingAmaken01" android:label="Using Amaken"
+        <activity
+            android:name=".Help.HelpUsingAmaken01"
+            android:label="Using Amaken"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
-        <activity android:name=".Help.HelpUsingAmaken02" android:label="Using Amaken"
+        <activity
+            android:name=".Help.HelpUsingAmaken02"
+            android:label="Using Amaken"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.Help.HelpExpandableListItem" />
         </activity>
-        <activity android:name=".Help.HelpUsingAmaken03" android:label="Using Amaken"
+        <activity
+            android:name=".Help.HelpUsingAmaken03"
+            android:label="Using Amaken"
             android:parentActivityName=".Help.HelpExpandableListItem"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
+        <activity android:name=".activities.BusinrssHelp"></activity>
     </application>
 
 </manifest>
