@@ -152,7 +152,7 @@
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:textSize="@dimen/FontSize"
+                            android:textSize="15sp"
                             android:text="@string/entertainment_text"
                             android:textColor="@color/baa3"
                             android:layout_marginBottom="3dp"/>

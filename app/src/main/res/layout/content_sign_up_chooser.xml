@@ -89,7 +89,7 @@
                     android:elevation="2dp"
                     android:background="#DDDDDD"
                     android:id="@+id/imageView2"
-                    app:srcCompat="@drawable/business1_icon" />
+                    app:srcCompat="@drawable/users" />
 
                 <TextView
                     android:id="@+id/textViewDesc2"
