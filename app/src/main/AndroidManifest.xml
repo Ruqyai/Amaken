@@ -8,14 +8,15 @@
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
+         location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    
-     <!-- Accessing camera hardware -->
+
+    <!-- Accessing camera hardware -->
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -89,17 +90,16 @@
         </activity>
         <activity
             android:name=".activities.NavDrw"
-            android:label="@string/title_activity_nav_drw"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"
             android:configChanges="orientation"
-            android:windowSoftInputMode="stateHidden"
-            android:launchMode="singleTask"><meta-data
-            android:name="android.app.searchable"
-            android:resource="@xml/searchable">
-        </meta-data>
+            android:label="@string/title_activity_nav_drw"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
-
         <activity android:name=".activities.ChooseInterest" />
         <activity
             android:name=".activities.SettingsActivity"
@@ -185,7 +185,7 @@
              Note that the API key is linked to the encryption key used to sign the APK.
              You need a different API key for each encryption key, including the release key that is used to
              sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
 
         <meta-data
@@ -219,19 +219,124 @@
             android:name=".activities.DiscoverActivity"
             android:label="Discover Places "
             android:parentActivityName=".activities.NavDrw"
-            android:theme="@style/Theme"
-            >
-
-        </activity>
-        <activity android:name=".chat.ChatActivity"
+            android:theme="@style/Theme" />
+        <activity
+            android:name=".chat.ChatActivity"
             android:label="Chatting with Hiri"
             android:parentActivityName=".activities.NavDrw"
             android:screenOrientation="portrait"
             android:theme="@style/Theme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.Help.HelpExpandableListItem" />
+        </activity>
+        <activity android:name=".Help.HelpExpandableListItem"
+            android:label="Help"
+            android:parentActivityName=".activities.NavDrw"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
-
+        </activity>
+        <activity
+            android:name=".Help.HelpOverview00"
+            android:label="Overview"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.Help.HelpExpandableListItem" />
+        </activity>
+        <activity android:name=".Help.HelpOverview01" android:label="Overview"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+        </activity>
+        <activity android:name=".Help.HelpOverview02" android:label="Overview"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+        </activity>
+        <activity android:name=".Help.HelpSigningUp00" android:label="Signing Up"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+        </activity>
+        <activity android:name=".Help.HelpSigningUp01" android:label="Signing Up"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+        </activity>
+        <activity android:name=".Help.HelpSigningUp02" android:label="Signing Up"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+        </activity>
+        <activity android:name=".Help.HelpSigningUp03" android:label="Signing Up"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+        </activity>
+        <activity android:name=".Help.HelpLegalPrivacy00" android:label="Legal and Privacy"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+        </activity>
+        <activity android:name=".Help.HelpLegalPrivacy01" android:label="Legal and Privacy"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+        </activity>
+        <activity android:name=".Help.HelpLegalPrivacy02" android:label="Legal and Privacy"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+        </activity>
+        <activity android:name=".Help.HelpUsingAmaken00" android:label="Using Amaken"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+        </activity>
+        <activity android:name=".Help.HelpUsingAmaken01" android:label="Using Amaken"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
+        </activity>
+        <activity android:name=".Help.HelpUsingAmaken02" android:label="Using Amaken"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.Help.HelpExpandableListItem" />
+        </activity>
+        <activity android:name=".Help.HelpUsingAmaken03" android:label="Using Amaken"
+            android:parentActivityName=".Help.HelpExpandableListItem"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
     </application>
 

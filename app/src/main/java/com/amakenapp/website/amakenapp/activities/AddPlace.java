@@ -48,7 +48,7 @@ public class AddPlace extends AppCompatActivity implements AdapterView.OnItemSel
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_place);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.addplace_toolbar);
+               Toolbar toolbar = (Toolbar) findViewById(R.id.addplace_toolbar);
         setSupportActionBar(toolbar);
 
 
