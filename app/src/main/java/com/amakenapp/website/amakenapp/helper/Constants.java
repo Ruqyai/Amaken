@@ -66,12 +66,14 @@ public class Constants {
     public static final String URL_EDIT_PLACE_IMAGE = ROOT_URL+"updatePlace/";
     public static final String URL_EDIT_PLACE_DETAILS = ROOT_URL+"updatePlace/";
     public static final String URL_EDIT_PLACE_LOCATION= ROOT_URL+"updateLocation/";
+    public static final String URL_DELETE_USER_PLACE = ROOT_URL+"deletePlaceById/";
 
 
+    public static final String URL_CATEGORIES = ROOT_URL+"getAllPlaceCategories";
+    public static final String URL_Event_CATEGORIES = ROOT_URL+"getAllEventCategories";
     public static final String URL_EDIT_EVENT_DETAILS = ROOT_URL+"updateEvent/";
 
 
-    public static final String URL_DELETE_USER_PLACE = ROOT_URL+"deletePlaceById/";
 
     public static final String URL_GET_USER_EVENTS = ROOT_URL+"getUserEvents/";
     public static final String URL_DELETE_USER_Event = ROOT_URL+"deleteEventById/";
@@ -92,8 +94,7 @@ public class Constants {
 
 
 
-    public static final String URL_CATEGORIES = ROOT_URL+"getAllPlaceCategories";
-    public static final String URL_Event_CATEGORIES = ROOT_URL+"getAllEventCategories";
+
 
 
 

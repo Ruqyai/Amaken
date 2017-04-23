@@ -522,24 +522,21 @@ public class EditEventActivity extends FragmentActivity implements
 
 
 
-        private static void updateLabel(Calendar myCalendar, TextView field) {
 
-
-        }
 
 
     @Override
     public void onClick(View v) {
 
         if (v == filpNext){
-            viewFlipper.setInAnimation(this, R.anim.in_from_left);
-            viewFlipper.setOutAnimation(this, R.anim.out_to_right);
+            viewFlipper.setInAnimation(this, R.anim.in_from_right);
+            viewFlipper.setOutAnimation(this, R.anim.out_to_left);
             viewFlipper.showNext();
 
         }
         if (v == flipPrevious){
-            viewFlipper.setInAnimation(this, R.anim.in_from_right);
-            viewFlipper.setOutAnimation(this, R.anim.out_to_left);
+            viewFlipper.setInAnimation(this, R.anim.in_from_left);
+            viewFlipper.setOutAnimation(this, R.anim.out_to_right);
             viewFlipper.showPrevious();
 
         }
@@ -560,7 +557,7 @@ public class EditEventActivity extends FragmentActivity implements
             snackbar.show();
         }
         if (v == changeplacecategory){
-            Snackbar snackbar = Snackbar.make(parentLayout, "Change Event Category that matches your place services\nrequired!!", Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(parentLayout, "Change Event Category that matches your event services\nrequired!!", Snackbar.LENGTH_LONG);
             View snackbarView = snackbar.getView();
             TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
             textView.setMaxLines(5);
@@ -790,7 +787,7 @@ public class EditEventActivity extends FragmentActivity implements
         }
 
         if (v == changeLocationDetails){
-            //editeventAddress(eventID);
+            editEventAddress();
 
         }
         if (v == changeeventdate){
@@ -992,7 +989,8 @@ public class EditEventActivity extends FragmentActivity implements
 
                                         }
 
-                                        if (imagesNum == 4) {
+                                        if (imagesNum == 5) {
+
                                             JSONObject url = arr.getJSONObject(0);
                                             imageID1 = url.getInt("image_id");
                                             imagedescriptionText1 = url.getString("image_description");
@@ -1026,7 +1024,6 @@ public class EditEventActivity extends FragmentActivity implements
                                     }
 
                                     if (imagesNum == 1) {
-                                        Toast.makeText(getApplication(), "this one is excuted", Toast.LENGTH_LONG).show();
                                         imagedescription1.setText(imagedescriptionText1);
                                         Glide.with(getApplicationContext()).load(imageviewString1).into(imageView1);
                                         viewFlipper.addView(view1);
@@ -1079,7 +1076,7 @@ public class EditEventActivity extends FragmentActivity implements
 
                                     }
 
-                                    if (imagesNum == 4) {
+                                    if (imagesNum == 5) {
                                         imagedescription1.setText(imagedescriptionText1);
                                         Glide.with(getApplicationContext()).load(imageviewString1).into(imageView1);
 
@@ -1100,6 +1097,7 @@ public class EditEventActivity extends FragmentActivity implements
                                         viewFlipper.addView(view3);
                                         viewFlipper.addView(view4);
                                         viewFlipper.addView(view5);
+
 
                                     }
 
@@ -1157,7 +1155,6 @@ public class EditEventActivity extends FragmentActivity implements
                                 placeDescription.setText(obj.getString("event_description"));
 
                                 categoryID = obj.getInt("event_category_id");
-                                spinnerDialog.setPrompt("Pick One");
 
 
                                 switch (categoryID) {
@@ -1176,7 +1173,6 @@ public class EditEventActivity extends FragmentActivity implements
                                     default:break;
                                 }
                                 countryID = obj.getInt("country_id");
-                                spinnerDialog1.setPrompt("Pick One");
 
                                 switch (countryID) {
                                     case 1:spinnerDialog1.setSelection(0);break;
@@ -1195,24 +1191,8 @@ public class EditEventActivity extends FragmentActivity implements
                                 }
                                 // todo needs fixing
                                 cityID = obj.getInt("city_id");
-                                spinnerDialog2.setPrompt("Pick One");
 
-                                /*switch (cityID) {
-                                    case 1:spinnerDialog2.setSelection(0);break;
-                                    case 2:spinnerDialog2.setSelection(1);break;
-                                    case 3:spinnerDialog2.setSelection(2);break;
-                                    case 4:spinnerDialog2.setSelection(3);break;
-                                    case 5:spinnerDialog2.setSelection(4);break;
-                                    case 6:spinnerDialog2.setSelection(5);break;
-                                    case 7:spinnerDialog2.setSelection(6);break;
-                                    case 8:spinnerDialog2.setSelection(7);break;
-                                    case 9:spinnerDialog2.setSelection(8);break;
-                                    case 10:spinnerDialog2.setSelection(9);break;
-                                    case 11:spinnerDialog2.setSelection(10);break;
-                                    case 12:spinnerDialog2.setSelection(11);break;
 
-                                    default:break;
-                                }*/
                                 locationAdress.setText(obj.getString("address"));
                                 currentLatitude = obj.getDouble("latitude");
                                 currentLongitude = obj.getDouble("longitude");
@@ -1386,7 +1366,7 @@ public class EditEventActivity extends FragmentActivity implements
         final int chosenCountry = countryIds.get(spinnerDialog1.getSelectedItemPosition());
         final int chosenCity = citiesIds.get(spinnerDialog2.getSelectedItemPosition());
 
-        progressDialog.setMessage("Updating Place Details...");
+        progressDialog.setMessage("Updating Event Details...");
         progressDialog.show();
 
         StringRequest send = new StringRequest(Request.Method.PUT,
@@ -1421,11 +1401,11 @@ public class EditEventActivity extends FragmentActivity implements
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("place_name", placeNamechanged);
-                params.put("place_description", placeDescriptionchanged);
-                params.put("place_category_id", chosenCategory+"");
-                params.put("place_country_id", chosenCountry+"");
-                params.put("place_city_id", chosenCity+"");
+                params.put("name", placeNamechanged);
+                params.put("description", placeDescriptionchanged);
+                params.put("category_id", chosenCategory+"");
+                params.put("country_id", chosenCountry+"");
+                params.put("city_id", chosenCity+"");
                 return params;
             }
 
@@ -1435,14 +1415,13 @@ public class EditEventActivity extends FragmentActivity implements
 
     }
 
-    public void editPlaceAddress(int placeId) {
-        final int placeID = placeId;
+    public void editEventAddress() {
         final String placeAddressChanged = locationAdress.getText().toString().trim();
         final Double latitude = currentLatitude;
         final Double longitude  = currentLongitude;
 
 
-        progressDialog.setMessage("Updating Place Details...");
+        progressDialog.setMessage("Updating Event Location...");
         progressDialog.show();
 
         StringRequest send = new StringRequest(Request.Method.PUT,

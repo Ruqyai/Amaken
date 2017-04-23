@@ -637,7 +637,7 @@ public class EditPlaceActivity extends FragmentActivity implements
         }
 
         if (v == changeLocationDetails){
-            editPlaceAddress(placeID);
+            editPlaceAddress();
 
         }
 
@@ -833,7 +833,7 @@ public class EditPlaceActivity extends FragmentActivity implements
 
                                         }
 
-                                        if (imagesNum == 4) {
+                                        if (imagesNum == 5) {
                                             JSONObject url = arr.getJSONObject(0);
                                             imageID1 = url.getInt("image_id");
                                             imagedescriptionText1 = url.getString("image_description");
@@ -867,7 +867,6 @@ public class EditPlaceActivity extends FragmentActivity implements
                                     }
 
                                     if (imagesNum == 1) {
-                                        Toast.makeText(getApplication(), "this one is excuted", Toast.LENGTH_LONG).show();
                                         imagedescription1.setText(imagedescriptionText1);
                                         Glide.with(getApplicationContext()).load(imageviewString1).into(imageView1);
                                         viewFlipper.addView(view1);
@@ -920,7 +919,7 @@ public class EditPlaceActivity extends FragmentActivity implements
 
                                     }
 
-                                    if (imagesNum == 4) {
+                                    if (imagesNum == 5) {
                                         imagedescription1.setText(imagedescriptionText1);
                                         Glide.with(getApplicationContext()).load(imageviewString1).into(imageView1);
 
@@ -1274,14 +1273,13 @@ public class EditPlaceActivity extends FragmentActivity implements
 
     }
 
-    public void editPlaceAddress(int placeId) {
-        final int placeID = placeId;
+    public void editPlaceAddress() {
         final String placeAddressChanged = locationAdress.getText().toString().trim();
         final Double latitude = currentLatitude;
         final Double longitude  = currentLongitude;
 
 
-        progressDialog.setMessage("Updating Place Details...");
+        progressDialog.setMessage("Updating Place Location...");
         progressDialog.show();
 
         StringRequest send = new StringRequest(Request.Method.PUT,
