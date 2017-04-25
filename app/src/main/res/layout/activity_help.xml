@@ -1,78 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-    android:layout_width="75dp"
-    android:src="@drawable/business1_icon"
-    android:layout_height="75dp"
-    android:id="@+id/circleImageView" />
+        android:id="@+id/circleImageView2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="127dp"
+        android:src="@android:drawable/ic_menu_help"
+        app:civ_border_color="#15AFD8"
+        app:civ_border_width="2dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
     <TextView
+        android:id="@+id/user_help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Business Help"
-        android:layout_above="@+id/circleImageView2"
-        android:layout_toEndOf="@+id/circleImageView"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="25dp"
-        android:id="@+id/textView9" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:src="@drawable/users"
-        android:layout_below="@+id/circleImageView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="51dp"
-        android:id="@+id/circleImageView2" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get User Help"
-        android:layout_alignTop="@+id/circleImageView2"
-        android:layout_alignStart="@+id/textView9"
-        android:layout_marginTop="28dp"
-        android:id="@+id/textView13" />
-
-
+        android:paddingLeft="6dp"
+        android:background="?attr/selectableItemBackground"
+        android:text="Quick description"
+        android:textColor="#a47a51"
+        android:textSize="19sp"
+        android:layout_above="@+id/circleImageView3"
+        android:layout_toEndOf="@+id/circleImageView3"
+        android:layout_marginStart="18dp" />
 
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView3"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:src="@drawable/users"
-        android:layout_alignParentStart="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignStart="@+id/circleImageView2"
         android:layout_below="@+id/circleImageView2"
-        android:layout_marginTop="72dp" />
+        android:layout_marginTop="40dp"
+        android:src="@drawable/read"
+        app:civ_border_color="#15AFD8"
+        app:civ_border_width="2dp" />
+
     <TextView
+        android:id="@+id/helpSecButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Read an overview of "
-        android:id="@+id/helpSecButton"
-        android:layout_marginBottom="26dp"
+        android:background="?attr/selectableItemBackground"
+        android:textColor="#a47a51"
+        android:textSize="19sp"
         android:layout_above="@+id/circleImageView4"
-        android:layout_alignStart="@+id/textView13"
-         />
+        android:layout_alignStart="@+id/user_help" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:src="@drawable/users"
+        android:id="@+id/circleImageView4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignStart="@+id/circleImageView3"
         android:layout_below="@+id/circleImageView3"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="68dp"
-        android:id="@+id/circleImageView4" />
+        android:layout_marginTop="46dp"
+        android:src="@android:drawable/sym_action_chat"
+        app:civ_border_color="#15AFD8"
+        app:civ_border_width="2dp" />
+
     <TextView
         android:layout_width="wrap_content"
+        android:background="?attr/selectableItemBackground"
         android:layout_height="wrap_content"
-        android:hint="gggggggggg"
-
-        android:autoLink="email"
-        android:layout_marginBottom="24dp"
         android:layout_alignBottom="@+id/circleImageView4"
-        android:layout_alignEnd="@+id/textView13" />
+        android:layout_alignStart="@+id/helpSecButton"
+        android:autoLink="email"
+        android:id="@+id/contact_us"
+        android:text="Connect with us"
+        android:textColor="#a47a51"
+        android:textSize="19sp" />
 
 </RelativeLayout>

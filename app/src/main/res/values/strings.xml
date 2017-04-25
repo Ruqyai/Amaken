@@ -263,6 +263,6 @@
     <string name="tourism_text">Tourism</string>
     <string name="edit_button">edit</string>
     <string name="save_button">Save</string>
-    <string name="add_event_title_fab" > <b>Add Event</b> </string>
+    <string name="add_event_title_fab"> <b>Add Event</b> </string>
     <string name="add_place_title_fab">Add Place</string>
 </resources>

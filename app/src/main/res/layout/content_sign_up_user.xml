@@ -9,6 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.amakenapp.website.amakenapp.activities.SignUpUser"
     tools:showIn="@layout/activity_sign_up_user">
@@ -31,7 +33,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                android:layout_marginTop="1dp">
+                android:layout_marginTop="32dp">
 
 
                 <android.support.v7.widget.AppCompatEditText
@@ -54,7 +56,8 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                android:layout_marginTop="1dp">
+                android:layout_marginTop="32dp"
+                app:passwordToggleEnabled="true">
 
 
                 <android.support.v7.widget.AppCompatEditText
@@ -62,9 +65,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password_hint"
-                    android:textSize="@dimen/FontSize"
                     android:inputType="textPassword"
-                    />
+                    android:textSize="@dimen/FontSize" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -76,7 +78,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="25dp"
                 >
 
 
@@ -97,7 +99,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="8dp"
                 android:paddingLeft="15dp"
                 android:paddingStart="15dp"
                 android:text="@string/gender_text"
@@ -138,30 +140,24 @@
 
             <TextView
                 android:text="@string/country"
-                android:layout_width="217dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5"
                 android:textColor="#A47A51"
                 android:textSize="@dimen/FontSize"
-                android:layout_marginStart="25dp"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp" />
 
             <Spinner
                 android:id="@+id/sign_up_user_countries_spinner_dialog"
-                android:layout_width="237dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="15dp"
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dialog" />
-
             <TextView
                 android:text="@string/city"
-                android:layout_marginStart="25dp"
-                android:layout_width="166dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView6"
                 android:textColor="#A47A51"
@@ -169,13 +165,10 @@
                 android:paddingLeft="10dp" />
             <Spinner
                 android:id="@+id/sign_up_user_cities_spinner_dialog"
-                android:layout_width="237dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="15dp"
                 android:spinnerMode="dialog"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
 
                 android:background="@android:drawable/btn_dropdown"/>
 
@@ -186,11 +179,9 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
                 android:background="#15AFD8"
                 android:text="@string/sign_up"
                 android:textColor="#FFFFFF"

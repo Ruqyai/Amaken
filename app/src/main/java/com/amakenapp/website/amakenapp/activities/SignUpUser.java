@@ -2,10 +2,13 @@ package com.amakenapp.website.amakenapp.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -49,7 +53,9 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
 
     private  String email;
     private String password;
-
+    TextInputLayout useLayout;
+    RelativeLayout relativeLayout;
+    TextInputLayout passLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +80,52 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
 
 
         editTextEmail = (EditText) findViewById(R.id.UserEmail);
+        useLayout= (TextInputLayout) findViewById(R.id.user_Email);
         editTextUsername = (EditText) findViewById(R.id.UserName);
         editTextPassword = (EditText) findViewById(R.id.UserPassword);
+        passLayout =(TextInputLayout) findViewById(R.id.User_Password);
+        relativeLayout = (RelativeLayout) findViewById(R.id.content_sign_up_user) ;
+        relativeLayout.setOnClickListener(null);
+        editTextEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+
+                if(editTextEmail.getText().toString().isEmpty()){
+                    useLayout.setErrorEnabled(true);
+                    useLayout.setError("Please enter your Email...!");
+                }else {
+                    useLayout.setErrorEnabled(false);
+                }
+            }
+        });
+        editTextEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if(editTextEmail.getText().toString().isEmpty()){
+                    useLayout.setErrorEnabled(true);
+                    useLayout.setError("Please enter your Email...!");
+                }else {
+                    useLayout.setErrorEnabled(false);
+                }
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
+
+
+        passLayout.setCounterMaxLength(8);
 
         genderRadio = (RadioGroup) findViewById(R.id.gender);
 

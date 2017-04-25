@@ -15,15 +15,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.amakenapp.website.amakenapp.R;
+import com.amakenapp.website.amakenapp.helper.Constants;
+import com.amakenapp.website.amakenapp.helper.MySingleton;
 import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.amakenapp.website.amakenapp.R;
-import com.amakenapp.website.amakenapp.helper.Constants;
-import com.amakenapp.website.amakenapp.helper.MySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,6 +45,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     private ArrayList<Integer> countryIds, citiesIds;
     private  String userEmail;
     private String password;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +75,13 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
         editEmail = (EditText) findViewById(R.id.businessEmail);
         editPassword = (EditText) findViewById(R.id.businessPassword);
         editPersonName = (EditText) findViewById(R.id.businessName);
+
         editwebsiteUrl = (EditText) findViewById(R.id.businessWebUrl);
         editPhoneNumber = (EditText) findViewById(R.id.businessPhoneNumber);
 
         loadCountries();
+
+
     }
 
 
