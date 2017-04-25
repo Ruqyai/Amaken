@@ -392,8 +392,9 @@
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
         <activity android:name=".activities.BusinrssHelp" />
-        <activity android:name=".activities.UserHelpe" />
-        <activity android:name=".activities.ConnectWithUs"></activity>
+
+        <activity android:name=".activities.ConnectWithUs"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
