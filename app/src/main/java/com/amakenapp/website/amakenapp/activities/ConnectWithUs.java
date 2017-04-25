@@ -14,6 +14,10 @@ public class ConnectWithUs extends AppCompatActivity implements View.OnClickList
     ImageButton cancel;
      TextView amakeen_app;
      TextView amaken_i;
+    TextView Amakeen_app_facebook;
+    TextView amakeen_app_Gmail;
+    Intent intent =null, chooser= null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +25,17 @@ public class ConnectWithUs extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_connect_with_us);
         amakeen_app= (TextView) findViewById(R.id.Amakeen_app);
         amaken_i= (TextView) findViewById(R.id.Amaken_i);
+        Amakeen_app_facebook= (TextView) findViewById(R.id.Amakeen_app_facebook) ;
         cancel = (ImageButton) findViewById(R.id.cancel);
+        amakeen_app_Gmail= (TextView) findViewById(R.id.amakeen_app_Gmail);
+
 
         amakeen_app.setOnClickListener(this);
         amaken_i.setOnClickListener(this);
+        amakeen_app_Gmail.setOnClickListener(this);
+        Amakeen_app_facebook.setOnClickListener(this);
         cancel.setOnClickListener(this);
+
     }
         @Override
         public void onClick(View v) {
@@ -44,7 +54,24 @@ public class ConnectWithUs extends AppCompatActivity implements View.OnClickList
 
                 String url = "https://www.instagram.com/amakenapp/";
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url)); startActivity(i);}
+                i.setData(Uri.parse(url)); startActivity(i);
+            }if (v== Amakeen_app_facebook){
+
+                String url = "https://www.facebook.com/AmakenApp";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url)); startActivity(i);
+            }if (v== amakeen_app_Gmail){
+
+              intent = new Intent(Intent.ACTION_SEND);
+                intent.setData(Uri.parse("mailto:"));
+                intent.setType("message/rfc822");
+                String[] to = {"the.fabulous.team1@gmail.com","AmakenApp@gmail.com"};
+                intent.putExtra(Intent.EXTRA_EMAIL, to );
+                intent.putExtra(Intent.EXTRA_SUBJECT, "This was sent from my app");
+                intent.putExtra(Intent.EXTRA_TEXT,"Hello, how can we serve you");
+
+                startActivity(intent);
+            }
 
 
 
