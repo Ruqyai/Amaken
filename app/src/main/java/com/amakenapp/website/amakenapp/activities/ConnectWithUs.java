@@ -30,7 +30,7 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 
 import com.amakenapp.website.amakenapp.chat.ChatActivity;
-import com.amakenapp.website.amakenapp.helper.ChatHeadService;
+import com.amakenapp.website.amakenapp.chat.ChatHeadService;
 
 import jp.co.recruit_lifestyle.android.floatingview.FloatingViewListener;
 import jp.co.recruit_lifestyle.android.floatingview.FloatingViewManager;
