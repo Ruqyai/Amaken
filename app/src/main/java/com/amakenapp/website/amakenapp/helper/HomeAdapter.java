@@ -15,6 +15,9 @@ import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivityEvent
 import com.bumptech.glide.Glide;
 import com.amakenapp.website.amakenapp.R;
 import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivity;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.signature.StringSignature;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -51,16 +54,22 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         String busiessProfilePic = listItem.getPlaceBusinessProfileImage();
 
         if (busiessProfilePic.equals(Constants.STRING_USER_PROFILE_PIC))
-            holder.placeBusinessProfileImage.setImageResource(R.drawable.business_home_profile);
+            holder.placeBusinessProfileImage.setImageResource(R.drawable.business1);
         else
-            Glide.with(context).load(listItem.getPlaceBusinessProfileImage()).into(holder.placeBusinessProfileImage);
+            Glide.with(context).load(listItem.getPlaceBusinessProfileImage())
+                    .diskCacheStrategy( DiskCacheStrategy.NONE )
+                    .skipMemoryCache( true )
+                    .into(holder.placeBusinessProfileImage);
 
 
         holder.placeBusinessName.setText(listItem.getPlaceBusinessName());
 
 
 
-        Glide.with(context).load(listItem.getPlacePicture()).into(holder.placePicture);
+        Glide.with(context).load(listItem.getPlacePicture())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .signature(new StringSignature(String.valueOf(System.currentTimeMillis())))
+                .into(holder.placePicture);
 
         holder.placeName.setText(listItem.getPlaceName());
         holder.placeCategory.setText(listItem.getPlaceCategory());

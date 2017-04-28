@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone" >
+        android:visibility="visible" >
 
         <ProgressBar
             android:id="@+id/pbHeaderProgress_event"

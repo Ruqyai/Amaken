@@ -2,6 +2,7 @@ package com.amakenapp.website.amakenapp.activities;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
@@ -41,10 +44,12 @@ public class HomeActivity extends Fragment {
     private RecyclerView.Adapter adapter;
     private List<HomeListItem> listItems;
     Context context;
+    private LinearLayout loading_event, no_events;
+    private TextView addevent;
 
 
     SharedPrefManager sharedPrefManager;
-    private static int userId;
+    private static int userId, userType;
 
     public HomeActivity() {
         // Required empty public constructor
@@ -62,8 +67,22 @@ public class HomeActivity extends Fragment {
         // Inflate the layout for this fragment
         View myView = inflater.inflate(R.layout.activity_home, container, false);
 
+
         sharedPrefManager = SharedPrefManager.getInstance(getActivity().getApplicationContext());
         userId = sharedPrefManager.getUserId();
+        userType = sharedPrefManager.getUserType();
+
+        loading_event = (LinearLayout) myView.findViewById(R.id.linlaHeaderProgress_event);
+        loading_event.setVisibility(View.VISIBLE);
+
+        no_events = (LinearLayout) myView.findViewById(R.id.no_events_event);
+        addevent =(TextView) myView.findViewById(R.id.add_event_events);
+        addevent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AddPlace.class));
+            }
+        });
 
         recyclerView = (RecyclerView) myView.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -111,8 +130,14 @@ public class HomeActivity extends Fragment {
                                 }
                                 adapter = new HomeAdapter(listItems, getActivity());
                                 recyclerView.setAdapter(adapter);
+                                loading_event.setVisibility(View.GONE);
+
 
                             } else {
+                                loading_event.setVisibility(View.GONE);
+                                no_events.setVisibility(View.VISIBLE);
+                                if(userType==Constants.CODE_NORMAL_USER)
+                                    addevent.setVisibility(View.GONE);
                                 Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {

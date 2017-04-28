@@ -16,6 +16,8 @@ public class User {
     private String city_name;
     private int profile_pic_id;
     private String profile_pic_url;
+    private String profile_pic_url_timestamp;
+
 
 
     public User(int id,
@@ -31,11 +33,10 @@ public class User {
                 int city_id,
                 String city_name,
                 int profile_pic_id,
-                String profile_pic_url) {
+                String profile_pic_url, String profile_pic_url_timestamp) {
         this.id = id;
         this.user_type = user_type;
         this.user_email = user_email;
-        this.user_password = user_password;
         this.user_name = user_name;
         this.gender = gender;
         this.web_url = web_url;
@@ -46,6 +47,8 @@ public class User {
         this.city_name = city_name;
         this.profile_pic_id = profile_pic_id;
         this.profile_pic_url = profile_pic_url;
+        this.profile_pic_url_timestamp = profile_pic_url_timestamp;
+
     }
 
     public int getId() {return id;}

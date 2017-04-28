@@ -33,7 +33,6 @@ dependencies {
     //for view pager
     //
     compile files('libs/Ab.jar')
-    compile files('libs/PhotoUtil.jar')
 
 
 

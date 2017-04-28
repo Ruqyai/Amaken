@@ -3,18 +3,69 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="3pt"
+    android:paddingBottom="3pt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     >
 
-    <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/linlaHeaderProgress_event"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="3pt"
-        android:paddingTop="3pt"
-        >
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ProgressBar
+            android:id="@+id/pbHeaderProgress_event"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+        </ProgressBar>
+        <TextView
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Loading Places..." />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/no_events_event"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+            android:layout_height="wrap_content"
+            android:textAlignment="gravity"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:drawableTop="@drawable/ic_not_reviews"
+            android:gravity="center"
+            android:text="There are no places added to your city, Yet!" />
+        <TextView
+            android:id="@+id/add_event_events"
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:textColor="@color/baa3"
+            android:text="Add One!" />
+    </LinearLayout>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -23,6 +74,5 @@
 
         </android.support.v7.widget.RecyclerView>
 
-    </RelativeLayout>
 
 </LinearLayout>

@@ -105,7 +105,8 @@ public class EventReviewSViewPager extends PagerAdapter {
         Glide.with(context).load(reviews2.getReviewUserProfilePic())
                 .thumbnail(0.5f)
                 .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy( DiskCacheStrategy.NONE )
+                .skipMemoryCache( true )
                 .into(reviewUserProfilePic);
 
         reviewCheckLike(14, 9);

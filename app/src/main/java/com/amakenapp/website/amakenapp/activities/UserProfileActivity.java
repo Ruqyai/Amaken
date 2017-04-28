@@ -1,22 +1,62 @@
 package com.amakenapp.website.amakenapp.activities;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.CardView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
+import com.amakenapp.website.amakenapp.helper.Constants;
+import com.amakenapp.website.amakenapp.helper.MySingleton;
 import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.kosalgeek.android.photoutil.CameraPhoto;
+import com.kosalgeek.android.photoutil.GalleryPhoto;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static android.app.Activity.RESULT_OK;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
@@ -33,6 +73,31 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
     private TextView changeProfilePicTxt;
 
 
+    private AlertDialog.Builder alertDialog;
+    private AlertDialog dialog;
+    Context context ;
+
+    ImageView imageViewProfile;
+    public static final int CAMERA_REQUEST = 1888;
+    public static final int TAKE_GALLERY_CODE = 1;
+    CameraPhoto cameraPhoto;
+    GalleryPhoto galleryPhoto;
+    private Bitmap bitmap;
+    String photoPath;
+
+
+    private static AppCompatEditText input, input2, input3;
+    Spinner spinnerDialog, spinnerDialog1, spinnerDialog2;
+    private ArrayList<String> countries, cities;
+    private ArrayList<Integer> countryIds, citiesIds;
+    private static AlertDialog dialogChangeUserDetail;
+
+    SharedPrefManager sharedPrefManager;
+    private static int userId;
+    String username,userWeb, userPhone, userCountyName, userCityName,userProfilePicUrl, userProfilePicIdTimeStamp;
+    private  static  int  userProfilePicId;
+
+
 
     @Nullable
     @Override
@@ -47,12 +112,29 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
         userProfilePic = (CircleImageView) myView.findViewById(R.id.user_profile_pic);
         changeProfilePicTxt = (TextView) myView.findViewById(R.id.userProfile_changeProfilePicTxt);
 
-        SharedPrefManager sharedPrefManager=SharedPrefManager.getInstance(getContext());
-        String x=sharedPrefManager.getUsername();
-        String y=sharedPrefManager.getKeyUserProfilePicUrl();
-        changeProfilePicTxt.setText(x);
-        Picasso.with(getApplicationContext()).load(y).into(userProfilePic);
 
+
+        sharedPrefManager = SharedPrefManager.getInstance(getContext());
+        userId = sharedPrefManager.getUserId();
+        username = sharedPrefManager.getUsername();
+        userWeb = sharedPrefManager.getUserWeb();
+        userPhone = sharedPrefManager.getUserPhone();
+        userCountyName = sharedPrefManager.getKeyUserCountryName();
+        userCityName = sharedPrefManager.getKeyUserCityName();
+
+        userProfilePicUrl = sharedPrefManager.getKeyUserProfilePicUrl();
+        userProfilePicId = sharedPrefManager.getUserProfilePicId();
+        userProfilePicIdTimeStamp = sharedPrefManager.getKeyUserProfilePicUrlTimeStamp();
+
+        changeProfilePicTxt.setText(username);
+
+        if(userProfilePicId==0)
+            userProfilePic.setImageResource(R.drawable.ic_person);
+        else
+            Glide.with(getApplicationContext()).load(userProfilePicUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                    //.signature(new StringSignature(String.valueOf(userProfilePicIdTimeStamp)))
+                    .into(userProfilePic);
 
         userBookmarksCard.setOnClickListener(this);
         userLikesCard.setOnClickListener(this);
@@ -78,12 +160,114 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
     public void onClick(View v) {
 
         if (v == userProfilePic){
-            //// TODO: 3/12/2017  dialog with 2 buttons one for camera and the other for gallery
-            Toast.makeText(getActivity(), "This is profile pic  clicked", Toast.LENGTH_LONG).show();
+
+            alertDialog = new AlertDialog.Builder(getActivity());
+            alertDialog.setTitle("Change Profile Picture");
+            final View view1 = getActivity().getLayoutInflater().inflate(R.layout.change_profile_pic_dialog, null);
+            alertDialog.setView(view1);
+
+            final TextView choosefromGallery = (TextView) view1.findViewById(R.id.chooseFromGallery);
+            final TextView choosefromCamera = (TextView) view1.findViewById(R.id.chooseFromCamers);
+
+            imageViewProfile = (ImageView) view1.findViewById(R.id.preview_of_profile_pic);
+
+            choosefromGallery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callGallery();                }
+            });
+            choosefromCamera.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {callCamera();}});
+
+            alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    //uploadPhoto();
+                    if(userProfilePicId == 0)
+                    {
+                        uploadPhoto();
+                    }
+                    else
+                    {
+                        updatePhoto();
+                    }
+
+                }
+            });
+
+            alertDialog.setNegativeButton("Cancel",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+            dialog = alertDialog.create();
+            dialog.show();
+            ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
         }
         if (v == changeProfilePicTxt){
-            //// TODO: 3/12/2017  same as profile pic clicked action
-            Toast.makeText(getActivity(), "This is change profile pic text clicked", Toast.LENGTH_LONG).show();
+            alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
+            alertDialog.setTitle("Change Your Details");
+            final View view1 = getActivity().getLayoutInflater().inflate(R.layout.change_username_dialog2, null);
+            input = (AppCompatEditText) view1.findViewById(R.id.report_reasonEdit);
+            final TextView countryName = (TextView) view1.findViewById(R.id.viewCountry);
+            final TextView cityName = (TextView) view1.findViewById(R.id.viewCity);
+
+            input.setText(username);
+            countryName.setText("("+userCountyName+")");
+            cityName.setText("("+userCityName+")");
+
+
+            spinnerDialog = (Spinner) view1.findViewById(R.id.place_category);
+            spinnerDialog1 = (Spinner) view1.findViewById(R.id.sppiner_country);
+            spinnerDialog2 = (Spinner) view1.findViewById(R.id.spiner_city);
+
+
+            countries = new ArrayList<>();
+            countryIds = new ArrayList<>();
+
+            cities = new ArrayList<>();
+            citiesIds = new ArrayList<>();
+
+            spinnerDialog1.setOnItemSelectedListener(new UserProfileActivity.OnSpinnerItemClicked());
+            loadCountries();
+
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.MATCH_PARENT);
+            view1.setLayoutParams(lp);
+            alertDialog.setView(view1);
+            alertDialog.setPositiveButton("Send", new DialogInterface.OnClickListener()
+            {
+                public void onClick(DialogInterface dialog, int which) {
+                    updateUserDetails();
+                }
+            });
+
+            alertDialog.setNegativeButton("Cancel",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+            dialogChangeUserDetail = alertDialog.create();
+            dialogChangeUserDetail.show();
+            input.addTextChangedListener(new TextWatcher() {
+                public void afterTextChanged(Editable s) {
+                    if (input.getText().toString().length()<= 0) {
+                        input.setError("Enter a Name!");
+                        ((AlertDialog) dialogChangeUserDetail).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                    } else {
+                        input.setError(null);
+                        ((AlertDialog) dialogChangeUserDetail).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+
+                    }
+                }
+                public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+                public void onTextChanged(CharSequence s, int start, int before, int count){
+                    input.setError(null);
+                }
+            });
         }
 
         if (v == userBookmarksCard){
@@ -100,5 +284,352 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
             startActivity(new Intent(getActivity(), ProfileCategories.class));
         }
     }
+
+
+
+    public class OnSpinnerItemClicked implements AdapterView.OnItemSelectedListener {
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            int countryId = countryIds.get(position);
+            loadCities(countryId);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView parent) {
+            ((AlertDialog) dialogChangeUserDetail).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+            Toast.makeText(getApplicationContext(), "No Country is selected", Toast.LENGTH_LONG).show();
+
+        }
+    }
+
+    public String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+
+    private Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(),
+                inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+    private String getRealPathFromURI(Uri uri) {
+        Cursor cursor = getActivity().getApplicationContext().getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(idx);
+    }
+
+    private void callCamera() {
+        Intent cameraIntent = new Intent(
+                MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+    }
+
+    private void callGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(intent, TAKE_GALLERY_CODE);
+    }
+
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        bitmap = null;
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+            bitmap = (Bitmap) data.getExtras().get("data");
+            imageViewProfile.setVisibility(View.VISIBLE);
+            imageViewProfile.setImageBitmap(bitmap);
+            ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+            Uri tempUri = getImageUri(getApplicationContext(), bitmap);
+            File finalFile = new File(getRealPathFromURI(tempUri));
+            photoPath = finalFile.toString();
+        } else if (requestCode == TAKE_GALLERY_CODE) {
+            if (resultCode == RESULT_OK) {
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                Cursor cursor = getActivity().getApplicationContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                photoPath = cursor.getString(columnIndex);
+                cursor.close();
+                File tempFile = new File(photoPath);
+                bitmap = BitmapFactory.decodeFile(tempFile.getAbsolutePath());
+                imageViewProfile.setVisibility(View.VISIBLE);
+                imageViewProfile.setImageBitmap(bitmap);
+                ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+            }
+        }
+    }
+
+
+    public void uploadPhoto() {
+        final ProgressDialog loading = ProgressDialog.show(getActivity(), "Uploading...", "Please wait...", false, false);
+
+        StringRequest send = new StringRequest(Request.Method.POST,
+                Constants.URL_UPLOAD_PHOTO,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        loading.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                String picIdString = Integer.toString(obj.getInt("inserted_photo_id"));
+                                sharedPrefManager.setKeyUserProfilePicId(picIdString);
+                                sharedPrefManager.setKeyUserProfilePicUrl(obj.getString("inserted_photo_url")) ;
+                                sharedPrefManager.setKeyUserProfilePicUrlTimeStamp(obj.getString("inserted_photo_url_timeStamp"));
+
+                                getActivity().finish();
+                                getActivity().overridePendingTransition(0, 0);
+                                startActivity(new Intent(getActivity(), NavDrw.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                                getActivity().overridePendingTransition(0, 0);Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            loading.dismiss();
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(
+                        getApplicationContext(),
+                        error.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                String image = getStringImage(bitmap);
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", userId+"");
+                params.put("photo_url", image);
+                return params;
+            }
+        };
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(send);
+
+    }
+
+
+
+
+    public void updatePhoto() {
+        final ProgressDialog loading = ProgressDialog.show(getActivity(), "Updating...", "Please wait...", false, false);
+
+        StringRequest send = new StringRequest(Request.Method.PUT,
+                Constants.URL_UPDATE_PHOTO + userProfilePicId,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        loading.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                sharedPrefManager.setKeyUserProfilePicUrl(obj.getString("inserted_photo_url")) ;
+                                sharedPrefManager.setKeyUserProfilePicUrlTimeStamp(obj.getString("inserted_photo_url_timeStamp")); ;
+
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                                getActivity().finish();
+                                getActivity().overridePendingTransition(0, 0);
+                                startActivity(new Intent(getActivity(), NavDrw.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                                getActivity().overridePendingTransition(0, 0);
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            loading.dismiss();
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(
+                        getApplicationContext(),
+                        error.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                String image = getStringImage(bitmap);
+                Map<String, String> params = new HashMap<>();
+                params.put("photo", image);
+                return params;
+            }
+        };
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(send);
+
+    }
+
+
+
+
+    public void updateUserDetails() {
+        final ProgressDialog loading = ProgressDialog.show(getActivity(), "Uploading...", "Please wait...", false, false);
+
+        final String userNAME = input.getText().toString().trim();
+        final String userWEB = "";
+        final String userPHONE ="";
+        final int usercountruid = countryIds.get(spinnerDialog1.getSelectedItemPosition());
+        final int usercityid = citiesIds.get(spinnerDialog2.getSelectedItemPosition());
+
+        StringRequest send = new StringRequest(Request.Method.PUT,
+                Constants.URL_Update_User_Details ,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        loading.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                sharedPrefManager.setKeyUserName(obj.getString("user_name"));
+                                sharedPrefManager.setKeyUserWebUrl(obj.getString("web_url"));
+                                sharedPrefManager.setKeyUserPhoneNumber(obj.getString("phone_number"));
+                                sharedPrefManager.setKeyUserCountryId(obj.getInt("country_id"));
+                                sharedPrefManager.setKeyUserCountryName(obj.getString("country_name"));
+                                sharedPrefManager.setKeyUserCityId(obj.getInt("city_id"));
+                                sharedPrefManager.setKeyUserCityName(obj.getString("city_name"));
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+
+                                getActivity().finish();
+                                getActivity().overridePendingTransition(0, 0);
+                                startActivity(new Intent(getActivity(), NavDrw.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                                getActivity().overridePendingTransition(0, 0);
+                                /*Fragment fragment = new BusinessProfileActivity();
+                                FragmentTransaction ft = ((NavDrw) getActivity()).getSupportFragmentManager().beginTransaction();
+                                ft.replace(R.id.content_nav_drw, fragment);
+                                ft.addToBackStack(null);
+                                ft.commit();*/
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            loading.dismiss();
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(
+                        getApplicationContext(),
+                        error.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", userId+"");
+                params.put("name", userNAME);
+                params.put("web_url", userWEB);
+                params.put("phone_number", userPHONE);
+                params.put("country_id", usercountruid+"");
+                params.put("city_id", usercityid+"");
+
+                return params;
+            }
+        };
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(send);
+
+    }
+
+
+    private void loadCountries() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_COUNTRIES, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    JSONArray arr = obj.getJSONArray("countries");
+
+                    for (int i = 0; i < arr.length(); i++) {
+                        countries.add(arr.getJSONObject(i).getString("country_name"));
+
+                        countryIds.add(arr.getJSONObject(i).getInt("id"));
+                    }
+
+                    ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, countries);
+                    spinnerDialog1.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+    }
+
+    // THIS IS FOR loading cities for a particular country
+    private void loadCities(int countryId) {
+        cities.clear();
+        citiesIds.clear();
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_CITIES + countryId, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    JSONArray arr = obj.getJSONArray("cities");
+
+                    for (int i = 0; i < arr.length(); i++) {
+                        cities.add(arr.getJSONObject(i).getString("city_name"));
+
+                        citiesIds.add(arr.getJSONObject(i).getInt("id"));
+                    }
+                    ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, cities);
+                    spinnerDialog2.setAdapter(adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+    }
+
+
+
 
 }

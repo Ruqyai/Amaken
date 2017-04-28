@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.amakenapp.website.amakenapp.R;
 import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivityEvent;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -51,9 +53,10 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         String busiessProfilePic = listItem.getEventBusinessProfileImage();
 
         if (busiessProfilePic.equals(Constants.STRING_USER_PROFILE_PIC))
-            holder.eventBusinessProfileImage.setImageResource(R.drawable.business_home_profile);
+            holder.eventBusinessProfileImage.setImageResource(R.drawable.business1);
         else
-            Glide.with(context).load(listItem.getEventBusinessProfileImage()).into(holder.eventBusinessProfileImage);
+            Picasso.with(context).load(listItem.getEventBusinessProfileImage())
+                    .into(holder.eventBusinessProfileImage);
 
 
             holder.eventBusinessName.setText(listItem.getEventBusinessName());
@@ -64,7 +67,10 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             holder.event_availableOrBusyLogo.setImageResource(R.drawable.ic_event_busy);
 
 
-        Glide.with(context).load(listItem.getEventPicture()).into(holder.eventPicture);
+        Glide.with(context).load(listItem.getEventPicture())
+                .diskCacheStrategy( DiskCacheStrategy.NONE )
+                .skipMemoryCache( true )
+                .into(holder.eventPicture);
 
         holder.eventName.setText(listItem.getEventName());
         holder.getEventCategory.setText(listItem.getEventCategory1());

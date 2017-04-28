@@ -24,6 +24,9 @@ public class Constants {
     public static final int CODE_NORMAL_USER = 1244;
     public static final int CODE_BUSINESS_USER = 1245;
 
+    public static final String GO_TO_CAMERA = "camera";
+
+
     public static final String STRING_TYPE_EVENT = "EVENT";
     public static final String STRING_TYPE_PLACE = "PLACE";
     public static final String STRING_TYPE_Review = "Review";
@@ -35,7 +38,7 @@ public class Constants {
     public static final String STRING_EVENT_STILL_OPEN= "available";
 
 
-
+//expand event information and operations
     public static final String URL_GET_ALL_EVENTS = ROOT_URL+"getAllEvents/";
     public static final String URL_EVENT_INFO = ROOT_URL+"getEventById";
     public static final String URL_EVENT_GALLERY = ROOT_URL+"getEventGallery/";
@@ -44,7 +47,7 @@ public class Constants {
     public static final String URL_EVENT_STORE_BOOKMARK = ROOT_URL+"storeEventBookmark";
     public static final String URL_EVENT_USERS_GALLERY = ROOT_URL+"getReviewsGalleryOnEvent/";
 
-
+//expand place operations and information
     public static final String URL_GET_ALL_PLACES = ROOT_URL+"getAllPlaces/";
     public static final String URL_PLACE_INFO = ROOT_URL+"getPlaceById";
     public static final String URL_PLACE_GALLERY = ROOT_URL+"getPlaceGallery/";
@@ -54,26 +57,43 @@ public class Constants {
     public static final String URL_PLACE_USERS_GALLERY = ROOT_URL+"getReviewsGalleryOnPlace/";
 
 
-
+//reviews urls
     public static final String URL_REVIEW_STORE_LIKE = ROOT_URL+"storeReviewLike";
     public static final String URL_REVIEW_LIKES_NUMBERS = ROOT_URL+"getReviewLikesNumbers/";
     public static final String URL_REVIEW_CHECK_LIKE = ROOT_URL+"checkReviewLikeEsxits";
     public static final String URL_REVIEW_REPORT = ROOT_URL+"reportReview";
 
 
+//edit place details
 
     public static final String URL_GET_USER_PLACES = ROOT_URL+"getUserPlaces/";
     public static final String URL_EDIT_PLACE_IMAGE = ROOT_URL+"updatePlace/";
     public static final String URL_EDIT_PLACE_DETAILS = ROOT_URL+"updatePlace/";
     public static final String URL_EDIT_PLACE_LOCATION= ROOT_URL+"updateLocation/";
     public static final String URL_DELETE_USER_PLACE = ROOT_URL+"deletePlaceById/";
+    public static final String URL_UPLOAD_PHOTO_Place = ROOT_URL+"insertNewPhotoUsingVolleyPlace";
 
 
+//edit event details
     public static final String URL_CATEGORIES = ROOT_URL+"getAllPlaceCategories";
     public static final String URL_Event_CATEGORIES = ROOT_URL+"getAllEventCategories";
     public static final String URL_EDIT_EVENT_DETAILS = ROOT_URL+"updateEvent/";
+    public static final String URL_EDIT_EVENT_DATE= ROOT_URL+"updateDate/";
+    public static final String URL_UPLOAD_PHOTO_Event = ROOT_URL+"insertNewPhotoUsingVolleyEvent";
+    public static final String URL_UPDATE_PHOTO_Event = ROOT_URL+"updatePhotoUsingVolleyBusinessGallery/";
 
 
+    public static final String URL_ADD_EVENT= ROOT_URL+"createNewEvent";
+    public static final String URL_ADD_EVENT_DATE= ROOT_URL+"createNewDate";
+    public static final String URL_ADD_EVENT_LOCATION= ROOT_URL+"insertNewLocation";
+
+    public static final String URL_ADD_PLACE= ROOT_URL+"createNewPlace";
+
+
+
+
+
+//profile operations urls
 
     public static final String URL_GET_USER_EVENTS = ROOT_URL+"getUserEvents/";
     public static final String URL_DELETE_USER_Event = ROOT_URL+"deleteEventById/";
@@ -84,13 +104,17 @@ public class Constants {
     public static final String URL_GET_USER_LIKES = ROOT_URL+"getUserLikes/";
     public static final String URL_DELETE_USER_LIKE = ROOT_URL+"deleteLikeById/";
 
+
     public static final String URL_GET_USER_REVIEWS = ROOT_URL+"getReviewsOfUser/";
 
     public static final String URL_GET_USER_INTEREST_CATEGORIES = ROOT_URL+"getAllInterestCategories/";
     public static final String URL_GET_ASSING_USER_INTEREST_CATEGORY = ROOT_URL+"assignInterest";
 
+
+//profile pic insert urls
+    public static final String URL_Update_User_Details= ROOT_URL+"updateUser";
     public static final String URL_UPLOAD_PHOTO = ROOT_URL+"insertNewPhotoUsingVolley";
-    public static final String URL_UPDATE_PHOTO = ROOT_URL+"";
+    public static final String URL_UPDATE_PHOTO = ROOT_URL+"updatePhotoUsingVolley/";
 
 
 

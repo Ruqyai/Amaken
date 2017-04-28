@@ -1,10 +1,15 @@
 package com.amakenapp.website.amakenapp.helper;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.Settings;
+import android.support.design.widget.Snackbar;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
@@ -22,12 +28,14 @@ import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivity;
 import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivityEvent;
+import com.amakenapp.website.amakenapp.activities.ProfileLikes;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.amakenapp.website.amakenapp.R;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +51,9 @@ public class ProfileLikeAdapter extends RecyclerView.Adapter<ProfileLikeAdapter.
     private List<ProfileLikesListItem> listItems;
     private Context context;
     private AlertDialog.Builder alertDialog;
+    private View  parentLayout;
+    private  final int OVERLAY_PERMISSION_REQ_CODE = 100;
+
 
 
     public ProfileLikeAdapter(List<ProfileLikesListItem> listItems, Context context) {
@@ -60,6 +71,7 @@ public class ProfileLikeAdapter extends RecyclerView.Adapter<ProfileLikeAdapter.
     @Override
     public void onBindViewHolder(final ProfileLikeAdapter.ViewHolder holder, final int position) {
 
+
         ProfileLikesListItem listItem = listItems.get(position);
 
         final int like_id = listItem.getLike_id();
@@ -73,12 +85,15 @@ public class ProfileLikeAdapter extends RecyclerView.Adapter<ProfileLikeAdapter.
             holder.placeoreventlikelayout.setVisibility(View.VISIBLE);
             holder.likeLogo.setImageResource(listItem.getLikeLogo());
             holder.LikeTimeStamp.setText(listItem.getLike_timestamp());
-            Glide.with(context).load(listItem.getPlaceOrEventPic()).into(holder.PlaceOrEventPicture);
+            Glide.with(context).load(listItem.getPlaceOrEventPic())
+                    .diskCacheStrategy( DiskCacheStrategy.NONE )
+                    .skipMemoryCache( true )
+                    .into(holder.PlaceOrEventPicture);
             holder.PlaceOrEventName.setText(listItem.getPlaceOrEventName());
             holder.PlaceOrEventCategory.setText(listItem.getPlaceOrEventCategory());
             holder.optionsMenuLikes.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(final View view) {
 
                     //creating a popup menu
                     final Context wrapper = new ContextThemeWrapper(context, R.style.MyPopupMenu);
@@ -97,9 +112,7 @@ public class ProfileLikeAdapter extends RecyclerView.Adapter<ProfileLikeAdapter.
                                         myIntent.putExtra("PLACE_ID", like_place_or_event_id);
                                         myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         context.startActivity(myIntent);
-                                    }
-                                    else if (like_type.equalsIgnoreCase(Constants.STRING_TYPE_EVENT))
-                                    {
+                                    } else if (like_type.equalsIgnoreCase(Constants.STRING_TYPE_EVENT)) {
                                         Intent myIntent = new Intent(context, ExpandDetailsMapsActivityEvent.class);
                                         myIntent.putExtra("EVENT_ID", like_place_or_event_id);
                                         myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -109,37 +122,24 @@ public class ProfileLikeAdapter extends RecyclerView.Adapter<ProfileLikeAdapter.
                                     break;
                                 case R.id.likeUnlike:
                                     //handle menu2 click
-                                    alertDialog = new AlertDialog.Builder(context);
-                                    alertDialog.setTitle("Delete");
-                                    TextView myMsg = new TextView(context);
-                                    myMsg.setText(" \n\n Are You Sure You Want to Remove This from Your Likes?");
-                                    myMsg.setPadding(5, 5, 5, 5);
-                                    myMsg.setGravity(Gravity.CENTER_HORIZONTAL);
-                                    alertDialog.setIcon(R.drawable.ic_delete_alert);
-                                    alertDialog.setView(myMsg);
-
-                                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                                    {
-                                        public void onClick(DialogInterface dialog, int which) {
+                                    final String message = "Are You Sure You Want to Remove This from Your Likes?"
+                                            + " Click Delete to Accept!";
+                                    final Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE);
+                                    View snackbarView = snackbar.getView();
+                                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                    textView.setMaxLines(6);  // show multiple line
+                                    snackbar.setAction("Delete", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            snackbar.dismiss();
                                             deleteLike(like_id);
                                             swap(position);
-
                                         }
                                     });
-
-                                    alertDialog.setNegativeButton("Cancel",
-                                            new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    dialog.cancel();
-                                                }
-                                            });
-
-                                    final AlertDialog dialog = alertDialog.create();
-                                    dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                                    //if(isFinishing())
-                                    dialog.show();
+                                    snackbar.show();
 
                                     break;
+
                             }
                             return false;
                         }
@@ -165,7 +165,7 @@ public class ProfileLikeAdapter extends RecyclerView.Adapter<ProfileLikeAdapter.
             holder.reviewrating.setRating(listItem.getReviewRating());
             holder.optionsMenuLikesrevies.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(final View view) {
 
                     //creating a popup menu
                     final Context wrapper = new ContextThemeWrapper(context, R.style.MyPopupMenu);
@@ -196,35 +196,22 @@ public class ProfileLikeAdapter extends RecyclerView.Adapter<ProfileLikeAdapter.
                                     break;
                                 case R.id.likeUnlike:
                                     //handle menu2 click
-                                    alertDialog = new AlertDialog.Builder(context);
-                                    alertDialog.setTitle("Delete");
-                                    TextView myMsg = new TextView(context);
-                                    myMsg.setText(" \n\n Are You Sure You Want to Remove This from Your Likes?");
-                                    myMsg.setPadding(5, 5, 5, 5);
-                                    myMsg.setGravity(Gravity.CENTER_HORIZONTAL);
-                                    alertDialog.setIcon(R.drawable.ic_delete_alert);
-                                    alertDialog.setView(myMsg);
-
-                                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                                    {
-                                        public void onClick(DialogInterface dialog, int which) {
+                                    final String message = "Are You Sure You Want to Remove This from Your Likes?"
+                                            + " Click Delete to Accept!";
+                                    final Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE);
+                                    View snackbarView = snackbar.getView();
+                                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                    textView.setMaxLines(6);  // show multiple line
+                                    snackbar.setAction("Delete", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            snackbar.dismiss();
                                             deleteLike(like_id);
                                             swap(position);
-
                                         }
                                     });
+                                    snackbar.show();
 
-                                    alertDialog.setNegativeButton("Cancel",
-                                            new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    dialog.cancel();
-                                                }
-                                            });
-
-                                    final AlertDialog dialog = alertDialog.create();
-                                    dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                                    //if(isFinishing())
-                                    dialog.show();
 
                                     break;
                             }
@@ -290,6 +277,7 @@ public class ProfileLikeAdapter extends RecyclerView.Adapter<ProfileLikeAdapter.
         /* alt+enter to creat constructor*/
         public ViewHolder(View itemView) {
             super(itemView);
+            parentLayout = itemView.findViewById(R.id.root_view);
 
             //place Or Event layout
             placeoreventlikelayout = (RelativeLayout) itemView.findViewById(R.id.like_place_or_event_layout);
@@ -330,6 +318,34 @@ public class ProfileLikeAdapter extends RecyclerView.Adapter<ProfileLikeAdapter.
         notifyDataSetChanged();
 
     }
+
+
+
+
+    public  void displayPromptForEnablingAlert(final Activity activity) {
+
+        String locationProviders = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+        if (locationProviders == null || locationProviders.equals("")) {
+
+
+            final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
+            final String message = "Enable either GPS or any other location"
+                    + " service to find current location.  Click OK to go to"
+                    + " location services settings to let you do so.";
+            final Snackbar snackbar = Snackbar.make(parentLayout, message, Snackbar.LENGTH_INDEFINITE);
+            View snackbarView = snackbar.getView();
+            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setMaxLines(6);  // show multiple line
+            snackbar.setAction("OK", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    activity.startActivity(new Intent(action));
+                    snackbar.dismiss();
+                }
+            });
+            snackbar.show();
+        }}
+
 
 
     public void deleteLike(int likeId) {

@@ -350,9 +350,10 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
                                                 obj.getString("country_name"),
                                                 obj.getInt("city_id"),
                                                 obj.getString("city_name"),
-                                                TextUtils.isEmpty(obj.getString("profile_pic_id"))?"":obj.getString("profile_pic_id") ,
-                                                TextUtils.isEmpty(obj.getString("profile_pic_url"))?"":obj.getString("profile_pic_url")
-                                        );
+                                                obj.getString("profile_pic_id"),
+                                                obj.getString("profile_pic_url"),
+                                                obj.getString("profile_pic_timeStamp")
+                                                );
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
                             }

@@ -1,6 +1,7 @@
 package com.amakenapp.website.amakenapp.activities;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -8,11 +9,19 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -24,6 +33,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -53,6 +63,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.signature.StringSignature;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -69,17 +81,26 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.kosalgeek.android.photoutil.CameraPhoto;
+import com.kosalgeek.android.photoutil.GalleryPhoto;
+import com.kosalgeek.android.photoutil.ImageLoader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class EditEventActivity extends FragmentActivity implements
         OnMapReadyCallback,
@@ -101,7 +122,7 @@ public class EditEventActivity extends FragmentActivity implements
     private LocationRequest mLocationRequest;
     SupportMapFragment mapFrag;
     Location mLastLocation;*/
-
+    String des;
 
     private double currentLatitude;
     private double currentLongitude;
@@ -131,7 +152,7 @@ public class EditEventActivity extends FragmentActivity implements
     private ArrayList<String> countries, cities, categories;
     private ArrayList<Integer> countryIds, citiesIds, categoriesIds;
 
-    private ImageView imageView1, imageView2, imageView3, imageView4, imageView5 ;
+    private ImageView imageView1, imageView2, imageView3, imageView4, imageView5, imageViewProfile ;
     private ImageButton filpNext, flipPrevious, getmylocation;
     private Button changeImageButton1,
                    changeImageButton2,
@@ -144,6 +165,11 @@ public class EditEventActivity extends FragmentActivity implements
     private LinearLayout loading;
 
 
+    private Boolean changeButton1,
+            changeButton2,
+            changeButton3,
+            changeButton4,
+            changeButton5;
 
     private ViewFlipper viewFlipper;
     private static int imagesNum, locationID, dateID, categoryID, countryID, cityID, imageID1, imageID2, imageID3, imageID4, imageID5;
@@ -156,10 +182,19 @@ public class EditEventActivity extends FragmentActivity implements
     private AlertDialog.Builder alertDialog;
     FragmentManager fm = getSupportFragmentManager();
     private static Calendar myCalendar;
+    private AlertDialog dialog;
+    //final int CAMERA_REQUEST = 12333;
+    final int GALLERY_REQUEST = 2200;
 
 
 
+    private Bitmap bitmap;
+    String photoPath;
 
+    public static final int CAMERA_REQUEST = 1888;
+    public static final int TAKE_GALLERY_CODE = 1;
+
+    String DAYSSTRINGS="";
 
 
     @Override
@@ -171,6 +206,7 @@ public class EditEventActivity extends FragmentActivity implements
         loading = (LinearLayout) findViewById(R.id.linlaHeaderProgress_EDITEVENT);
         loading.setVisibility(View.VISIBLE);
 
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -181,6 +217,9 @@ public class EditEventActivity extends FragmentActivity implements
         sharedPrefManager = SharedPrefManager.getInstance(this);
         userId = sharedPrefManager.getUserId();
         eventID = getIntent().getExtras().getInt("EVENT_ID");
+
+        alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Change Event Photo");
 
         ////////////////////////////////////////////////////
 
@@ -337,6 +376,13 @@ public class EditEventActivity extends FragmentActivity implements
         flipPrevious.setOnClickListener(this);
 
         eventGalleryLoading(eventID);
+
+        viewFlipper.addView(view1);
+        viewFlipper.addView(view2);
+        viewFlipper.addView(view3);
+        viewFlipper.addView(view4);
+        viewFlipper.addView(view5);
+
         loadeventCategories();
         loadCountries();
         eventInformationLoading(eventID, userId);
@@ -381,7 +427,6 @@ public class EditEventActivity extends FragmentActivity implements
         addressPoint = new LatLng(23.497085, 44.870015);
         mMarker =  mMap.addMarker(new MarkerOptions().position(addressPoint).title("Default Marker in Saudi Arabia"));
         mMarker.setDraggable(true);
-        mMap.setMyLocationEnabled(true);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(addressPoint));
         UiSettings uiSettings = googleMap.getUiSettings();
         uiSettings.setAllGesturesEnabled(true);
@@ -399,7 +444,7 @@ public class EditEventActivity extends FragmentActivity implements
                 mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
                     @Override
                     public boolean onMyLocationButtonClick() {
-                        Toast.makeText(EditEventActivity.this, "This is button clicked",
+                        Toast.makeText(EditEventActivity.this, "Current Location Requested!",
                                 Toast.LENGTH_SHORT).show();
                         buildGoogleApiClient();
                         return false;
@@ -424,6 +469,10 @@ public class EditEventActivity extends FragmentActivity implements
     }
 
     protected synchronized void buildGoogleApiClient() {
+        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) || !manager.isProviderEnabled( LocationManager.NETWORK_PROVIDER ) ) {
+            displayPromptForEnablingGPS(this);
+        }
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -469,6 +518,32 @@ public class EditEventActivity extends FragmentActivity implements
             }
         }
     }
+
+
+    public  void displayPromptForEnablingGPS(final Activity activity) {
+
+        String locationProviders = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+        if (locationProviders == null || locationProviders.equals("")) {
+
+
+            final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
+            final String message = "Enable either GPS or any other location"
+                    + " service to find current location.  Click OK to go to"
+                    + " location services settings to let you do so.";
+            final Snackbar snackbar = Snackbar.make(parentLayout, message, Snackbar.LENGTH_INDEFINITE);
+            View snackbarView = snackbar.getView();
+            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setMaxLines(6);  // show multiple line
+            snackbar.setAction("OK", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    activity.startActivity(new Intent(action));
+                    snackbar.dismiss();
+                }
+            });
+            snackbar.show();
+        }}
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -529,14 +604,14 @@ public class EditEventActivity extends FragmentActivity implements
     public void onClick(View v) {
 
         if (v == filpNext){
-            viewFlipper.setInAnimation(this, R.anim.in_from_right);
-            viewFlipper.setOutAnimation(this, R.anim.out_to_left);
+            viewFlipper.setInAnimation(this, R.anim.in_from_left);
+            viewFlipper.setOutAnimation(this, R.anim.out_to_right);
             viewFlipper.showNext();
 
         }
         if (v == flipPrevious){
-            viewFlipper.setInAnimation(this, R.anim.in_from_left);
-            viewFlipper.setOutAnimation(this, R.anim.out_to_right);
+            viewFlipper.setInAnimation(this, R.anim.in_from_right);
+            viewFlipper.setOutAnimation(this, R.anim.out_to_left);
             viewFlipper.showPrevious();
 
         }
@@ -609,26 +684,268 @@ public class EditEventActivity extends FragmentActivity implements
         }
 
         if (v == changeImageButton1){
-            // Next screen comes in from right.
-            Toast.makeText(getApplication(), "images id "+ imageID1, Toast.LENGTH_LONG).show();
+
+
+            //LayoutInflater factory = LayoutInflater.from(v.getContext());
+            final View view1 = getLayoutInflater().inflate(R.layout.dialog_add_photo, null);
+            alertDialog.setView(view1);
+
+            final TextView choosefromGallery = (TextView) view1.findViewById(R.id.chooseFromGallery);
+            final TextView choosefromCamera = (TextView) view1.findViewById(R.id.chooseFromCamers);
+            final EditText adddescription = (EditText) view1.findViewById(R.id.adddescription);
+
+
+            imageViewProfile = (ImageView) view1.findViewById(R.id.preview_of_profile_pic);
+
+            choosefromGallery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callGallery();
+                }
+            });
+            choosefromCamera.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callCamera();
+                }
+            });
+
+            AlertDialog.Builder change = alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    //uploadPhoto();
+                    if (changeButton1)
+                    {
+                        updatePhoto(imageID1, adddescription );
+                    }
+                    else
+                    {
+                        uploadPhoto(imageID1, adddescription );
+
+                    }
+                }
+            });
+
+            alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            dialog = alertDialog.create();
+            dialog.show();
+            ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setEnabled(false);
 
         }
         if (v == changeImageButton2){
-            // Next screen comes in from right.
-            Toast.makeText(getApplication(), "images id "+ imageID2, Toast.LENGTH_LONG).show();
 
-        }if (v == changeImageButton3){
-            // Next screen comes in from right.
-            Toast.makeText(getApplication(), "images id "+ imageID3, Toast.LENGTH_LONG).show();
 
+            //LayoutInflater factory = LayoutInflater.from(v.getContext());
+            final View view1 = getLayoutInflater().inflate(R.layout.dialog_add_photo, null);
+            alertDialog.setView(view1);
+
+            final TextView choosefromGallery = (TextView) view1.findViewById(R.id.chooseFromGallery);
+            final TextView choosefromCamera = (TextView) view1.findViewById(R.id.chooseFromCamers);
+            final EditText adddescription = (EditText) view1.findViewById(R.id.adddescription);
+
+
+            imageViewProfile = (ImageView) view1.findViewById(R.id.preview_of_profile_pic);
+
+            choosefromGallery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callGallery();
+                }
+            });
+            choosefromCamera.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callCamera();
+                }
+            });
+
+            AlertDialog.Builder change = alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    //uploadPhoto();
+                    if (changeButton2)
+                    {
+                        updatePhoto(imageID2, adddescription );
+                    }
+                    else
+                    {
+                        uploadPhoto(imageID2, adddescription );
+
+                    }
+                }
+            });
+
+            alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            dialog = alertDialog.create();
+            dialog.show();
+            ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setEnabled(false);
+
+        }if (v == changeImageButton3)
+        {
+            // Next screen comes in from right.
+
+
+            //LayoutInflater factory = LayoutInflater.from(v.getContext());
+            final View view1 = getLayoutInflater().inflate(R.layout.dialog_add_photo, null);
+            alertDialog.setView(view1);
+
+            final TextView choosefromGallery = (TextView) view1.findViewById(R.id.chooseFromGallery);
+            final TextView choosefromCamera = (TextView) view1.findViewById(R.id.chooseFromCamers);
+            final EditText adddescription = (EditText) view1.findViewById(R.id.adddescription);
+
+
+            imageViewProfile = (ImageView) view1.findViewById(R.id.preview_of_profile_pic);
+
+            choosefromGallery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callGallery();
+                }
+            });
+            choosefromCamera.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callCamera();
+                }
+            });
+
+            AlertDialog.Builder change = alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    //uploadPhoto();
+                    if (changeButton3)
+                    {
+                        updatePhoto(imageID3, adddescription );
+                    }
+                    else
+                    {
+                        uploadPhoto(imageID3, adddescription );
+
+                    }
+                }
+            });
+
+            alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            dialog = alertDialog.create();
+            dialog.show();
+            ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setEnabled(false);
         }if (v == changeImageButton4){
-            // Next screen comes in from right.
-            Toast.makeText(getApplication(), "images id "+ imageID4, Toast.LENGTH_LONG).show();
 
-        }if (v == changeImageButton5){
-            // Next screen comes in from right.
-            Toast.makeText(getApplication(), "images id "+ imageID5, Toast.LENGTH_LONG).show();
 
+            //LayoutInflater factory = LayoutInflater.from(v.getContext());
+            final View view1 = getLayoutInflater().inflate(R.layout.dialog_add_photo, null);
+            alertDialog.setView(view1);
+
+            final TextView choosefromGallery = (TextView) view1.findViewById(R.id.chooseFromGallery);
+            final TextView choosefromCamera = (TextView) view1.findViewById(R.id.chooseFromCamers);
+            final EditText adddescription = (EditText) view1.findViewById(R.id.adddescription);
+
+
+            imageViewProfile = (ImageView) view1.findViewById(R.id.preview_of_profile_pic);
+
+            choosefromGallery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callGallery();
+                }
+            });
+            choosefromCamera.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callCamera();
+                }
+            });
+
+            AlertDialog.Builder change = alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    //uploadPhoto();
+                    if (changeButton4)
+                    {
+                        updatePhoto(imageID4, adddescription );
+                    }
+                    else
+                    {
+                        uploadPhoto(imageID4, adddescription );
+
+                    }
+                }
+            });
+
+            alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            dialog = alertDialog.create();
+            dialog.show();
+            ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setEnabled(false);
+        }
+
+        if (v == changeImageButton5){
+
+
+            //LayoutInflater factory = LayoutInflater.from(v.getContext());
+            final View view1 = getLayoutInflater().inflate(R.layout.dialog_add_photo, null);
+            alertDialog.setView(view1);
+
+            final TextView choosefromGallery = (TextView) view1.findViewById(R.id.chooseFromGallery);
+            final TextView choosefromCamera = (TextView) view1.findViewById(R.id.chooseFromCamers);
+            final EditText adddescription = (EditText) view1.findViewById(R.id.adddescription);
+
+
+            imageViewProfile = (ImageView) view1.findViewById(R.id.preview_of_profile_pic);
+
+            choosefromGallery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callGallery();
+                }
+            });
+            choosefromCamera.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callCamera();
+
+                }
+            });
+
+            AlertDialog.Builder change = alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    //uploadPhoto();
+                    if (changeButton5)
+                    {
+                        updatePhoto(imageID5, adddescription );
+                    }
+                    else
+                    {
+                        uploadPhoto(imageID5, adddescription );
+
+                    }
+                }
+            });
+
+            alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            dialog = alertDialog.create();
+            dialog.show();
+            ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setEnabled(false);
         }
 
         if (v == startDate){
@@ -677,7 +994,7 @@ public class EditEventActivity extends FragmentActivity implements
                     endDate.setText(sdf.format(myCalendar.getTime()));
                 }
             }, mYear, mMonth, mDay);
-            mDatePicker.setTitle("Select Start Date");
+            mDatePicker.setTitle("Select End Date");
             mDatePicker.show();
 
         }
@@ -692,7 +1009,7 @@ public class EditEventActivity extends FragmentActivity implements
                     startTime.setText( selectedHour + ":" + selectedMinute);
                 }
             }, hour, minute, true);//Yes 24 hour time
-            mTimePicker.setTitle("Select Time");
+            mTimePicker.setTitle("Select Start Time");
             mTimePicker.show();
         }
 
@@ -707,33 +1024,31 @@ public class EditEventActivity extends FragmentActivity implements
                     endTime.setText( selectedHour + ":" + selectedMinute);
                 }
             }, hour, minute, true);//Yes 24 hour time
-            mTimePicker.setTitle("Select Time");
+            mTimePicker.setTitle("Select End Time");
             mTimePicker.show();
         }
 
-        if (v == days){
-            AlertDialog dialog;
+        if (v == days)
+        {
+              AlertDialog dialog;
              //following code will be in your activity.java file
-            final CharSequence[] items = {" Easy "," Medium "," Hard "," Very Hard "};
-            // arraylist to keep the selected items
-            final ArrayList seletedItems=new ArrayList();
+              final CharSequence[] items = {" Saturday "," Sunday "," Monday "," Tuesday ", " Thursday ", " Friday "};
+              // arraylist to keep the selected items
+              final ArrayList<Integer> selectedStrings = new ArrayList<Integer>();
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Select The Difficulty Level");
-            builder.setMultiChoiceItems(items, null,
+              AlertDialog.Builder builder = new AlertDialog.Builder(this);
+              builder.setTitle("Select The Days");
+              builder.setMultiChoiceItems(items, null,
                     new DialogInterface.OnMultiChoiceClickListener() {
                         // indexSelected contains the index of item (of which checkbox checked)
                         @Override
                         public void onClick(DialogInterface dialog, int indexSelected,
                                             boolean isChecked) {
                             if (isChecked) {
-                                // If the user checked the item, add it to the selected items
-                                // write your code when user checked the checkbox
-                                seletedItems.add(indexSelected);
-                            } else if (seletedItems.contains(indexSelected)) {
-                                // Else, if the item is already in the array, remove it
-                                // write your code when user Uchecked the checkbox
-                                seletedItems.remove(Integer.valueOf(indexSelected));
+                                if(!selectedStrings.contains(indexSelected))
+                                selectedStrings.add(indexSelected);
+                                else
+                                 selectedStrings.remove(indexSelected);
                             }
                         }
                     })
@@ -741,8 +1056,13 @@ public class EditEventActivity extends FragmentActivity implements
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int id) {
-                            //  Your code when user clicked on OK
-                            //  You can write the code  to save the selected item here
+                            String item = "";
+                            for (int i = 0; i<selectedStrings.size(); i++)
+                            {    item = item + items[selectedStrings.get(i)];
+                            if ( i!= selectedStrings.size()-1)
+                                item = item + ", ";
+                            }
+                            days.setText(item);
 
                         }
                     })
@@ -773,7 +1093,6 @@ public class EditEventActivity extends FragmentActivity implements
             Boolean con4 = countryID == chosenCountry;
             Boolean con5 = cityID == chosenCity;
 
-
        /* if ( con1 && con2 && con3 && con4 && con5 )
         Toast.makeText(getApplication(), "No Changes Detected!!" + categoriesIds.get(spinnerDialog.getSelectedItemPosition()), Toast.LENGTH_LONG).show();
 
@@ -782,8 +1101,6 @@ public class EditEventActivity extends FragmentActivity implements
 */
 
             editeventDetails(eventID);
-
-
         }
 
         if (v == changeLocationDetails){
@@ -791,9 +1108,7 @@ public class EditEventActivity extends FragmentActivity implements
 
         }
         if (v == changeeventdate){
-            Toast.makeText(getApplication(), "saving ", Toast.LENGTH_LONG).show();
-
-            //editPlaceAddress(placeID);
+            editEventDate();
 
         }
 
@@ -894,13 +1209,75 @@ public class EditEventActivity extends FragmentActivity implements
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,11));
     }
 
+    private Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(),
+                inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+    private String getRealPathFromURI(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(idx);
+    }
+
+    private void callCamera() {
+        Intent cameraIntent = new Intent(
+                MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+    }
+
+    private void callGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(intent, TAKE_GALLERY_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        bitmap = null;
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+            bitmap = (Bitmap) data.getExtras().get("data");
+            imageViewProfile.setVisibility(View.VISIBLE);
+            ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setEnabled(true);
+            imageViewProfile.setImageBitmap(bitmap); //imageView is your ImageView
+            Uri tempUri = getImageUri(getApplicationContext(), bitmap);
+            File finalFile = new File(getRealPathFromURI(tempUri));
+            photoPath = finalFile.toString();
+        } else if (requestCode == TAKE_GALLERY_CODE) {
+            if (resultCode == RESULT_OK) {
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                photoPath = cursor.getString(columnIndex);
+                cursor.close();
+                File tempFile = new File(photoPath);
+                bitmap = BitmapFactory.decodeFile(tempFile.getAbsolutePath());
+                imageViewProfile.setVisibility(View.VISIBLE);
+                ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setEnabled(true);
+                imageViewProfile.setImageBitmap(bitmap);
+            }
+        }
+    }
 
 
 
 
-
-
-
+    public String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
 
 
 
@@ -927,6 +1304,27 @@ public class EditEventActivity extends FragmentActivity implements
                                             imagedescriptionText1 = url.getString("image_description");
                                             imageviewString1 = url.getString("image_url");
 
+                                            imagedescription1.setText(imagedescriptionText1);
+                                            Glide.with(getApplicationContext()).load(imageviewString1)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))
+                                                    .into(imageView1);
+
+                                            changeImageButton2.setText("Add more Images");
+                                            changeImageButton3.setText("Add more Images");
+                                            changeImageButton4.setText("Add more Images");
+                                            changeImageButton5.setText("Add more Images");
+
+
+                                            changeButton1 = true;
+                                            changeButton2 = false;
+                                            changeButton3 = false;
+                                            changeButton4 = false;
+                                            changeButton5 = false;
+
+
+
+
 
                                         }
                                         if (imagesNum == 2) {
@@ -940,6 +1338,30 @@ public class EditEventActivity extends FragmentActivity implements
                                             imageID2 = url2.getInt("image_id");
                                             imagedescriptionText2 = url2.getString("image_description");
                                             imageviewString2 = url2.getString("image_url");
+
+
+                                            imagedescription1.setText(imagedescriptionText1);
+                                            Glide.with(getApplicationContext()).load(imageviewString1)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))
+                                                    .into(imageView1);
+
+                                            imagedescription2.setText(imagedescriptionText2);
+                                            Glide.with(getApplicationContext()).load(imageviewString2)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))
+                                                    .into(imageView2);
+
+
+                                            changeImageButton3.setText("Add more Images");
+                                            changeImageButton4.setText("Add more Images");
+                                            changeImageButton5.setText("Add more Images");
+
+                                            changeButton1 = true;
+                                            changeButton2 = true;
+                                            changeButton3 = false;
+                                            changeButton4 = false;
+                                            changeButton5 = false;
 
                                         }
                                         if (imagesNum == 3) {
@@ -961,6 +1383,36 @@ public class EditEventActivity extends FragmentActivity implements
                                             imagedescriptionText3 = url3.getString("image_description");
                                             imageviewString3 = url3.getString("image_url");
 
+
+
+                                            imagedescription1.setText(imagedescriptionText1);
+                                            Glide.with(getApplicationContext()).load(imageviewString1)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))
+                                                    .into(imageView1);
+
+                                            imagedescription2.setText(imagedescriptionText2);
+                                            Glide.with(getApplicationContext()).load(imageviewString2)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))
+                                                    .into(imageView2);
+
+                                            imagedescription3.setText(imagedescriptionText3);
+                                            Glide.with(getApplicationContext()).load(imageviewString3)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))
+                                                    .into(imageView3);
+
+
+
+                                            changeImageButton4.setText("Add more Images");
+                                            changeImageButton5.setText("Add more Images");
+
+                                            changeButton1 = true;
+                                            changeButton2 = true;
+                                            changeButton3 = true;
+                                            changeButton4 = false;
+                                            changeButton5 = false;
 
                                         }
                                         if (imagesNum == 4) {
@@ -986,6 +1438,40 @@ public class EditEventActivity extends FragmentActivity implements
                                             imageID4 = url4.getInt("image_id");
                                             imagedescriptionText4 = url4.getString("image_description");
                                             imageviewString4 = url4.getString("image_url");
+
+
+                                            imagedescription1.setText(imagedescriptionText1);
+                                            Glide.with(getApplicationContext()).load(imageviewString1)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))
+                                                    .into(imageView1);
+
+                                            imagedescription2.setText(imagedescriptionText2);
+                                            Glide.with(getApplicationContext()).load(imageviewString2)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))
+                                                    .into(imageView2);
+
+                                            imagedescription3.setText(imagedescriptionText3);
+                                            Glide.with(getApplicationContext()).load(imageviewString3)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))
+                                                    .into(imageView3);
+
+                                            imagedescription4.setText(imagedescriptionText4);
+                                            Glide.with(getApplicationContext()).load(imageviewString4)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))
+                                                    .into(imageView4);
+
+
+                                            changeImageButton5.setText("Add more Images");
+
+                                            changeButton1 = true;
+                                            changeButton2 = true;
+                                            changeButton3 = true;
+                                            changeButton4 = true;
+                                            changeButton5 = false;
 
                                         }
 
@@ -1020,86 +1506,42 @@ public class EditEventActivity extends FragmentActivity implements
                                             imagedescriptionText5 = url5.getString("image_description");
                                             imageviewString5 = url5.getString("image_url");
 
+                                            imagedescription1.setText(imagedescriptionText1);
+                                            Glide.with(getApplicationContext()).load(imageviewString1)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))                                                    .into(imageView1);
+
+                                            imagedescription2.setText(imagedescriptionText2);
+                                            Glide.with(getApplicationContext()).load(imageviewString2)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))                                                    .into(imageView2);
+
+                                            imagedescription3.setText(imagedescriptionText3);
+                                            Glide.with(getApplicationContext()).load(imageviewString3)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))                                                    .into(imageView3);
+
+                                            imagedescription4.setText(imagedescriptionText4);
+                                            Glide.with(getApplicationContext()).load(imageviewString4)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))                                                    .into(imageView4);
+
+                                            imagedescription5.setText(imagedescriptionText5);
+                                            Glide.with(getApplicationContext()).load(imageviewString5)
+                                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                    .signature(new StringSignature(String.valueOf(url.getString("image_timeStamp"))))                                                    .into(imageView5);
+
+                                            changeButton1 = true;
+                                            changeButton2 = true;
+                                            changeButton3 = true;
+                                            changeButton4 = true;
+                                            changeButton5 = true;
+
+
                                         }
                                     }
 
-                                    if (imagesNum == 1) {
-                                        imagedescription1.setText(imagedescriptionText1);
-                                        Glide.with(getApplicationContext()).load(imageviewString1).into(imageView1);
-                                        viewFlipper.addView(view1);
 
-
-                                    }
-                                    if (imagesNum == 2) {
-                                        imagedescription1.setText(imagedescriptionText1);
-                                        Glide.with(getApplicationContext()).load(imageviewString1).into(imageView1);
-
-                                        imagedescription2.setText(imagedescriptionText2);
-                                        Glide.with(getApplicationContext()).load(imageviewString2).into(imageView2);
-
-                                        viewFlipper.addView(view1);
-                                        viewFlipper.addView(view2);
-
-                                    }
-                                    if (imagesNum == 3) {
-
-                                        imagedescription1.setText(imagedescriptionText1);
-                                        Glide.with(getApplicationContext()).load(imageviewString1).into(imageView1);
-
-                                        imagedescription2.setText(imagedescriptionText2);
-                                        Glide.with(getApplicationContext()).load(imageviewString2).into(imageView2);
-
-                                        imagedescription3.setText(imagedescriptionText3);
-                                        Glide.with(getApplicationContext()).load(imageviewString3).into(imageView3);
-
-                                        viewFlipper.addView(view1);
-                                        viewFlipper.addView(view2);
-                                        viewFlipper.addView(view3);
-                                    }
-                                    if (imagesNum == 4) {
-                                        imagedescription1.setText(imagedescriptionText1);
-                                        Glide.with(getApplicationContext()).load(imageviewString1).into(imageView1);
-
-                                        imagedescription2.setText(imagedescriptionText2);
-                                        Glide.with(getApplicationContext()).load(imageviewString2).into(imageView2);
-
-                                        imagedescription3.setText(imagedescriptionText3);
-                                        Glide.with(getApplicationContext()).load(imageviewString3).into(imageView3);
-
-                                        imagedescription4.setText(imagedescriptionText4);
-                                        Glide.with(getApplicationContext()).load(imageviewString4).into(imageView4);
-
-                                        viewFlipper.addView(view1);
-                                        viewFlipper.addView(view2);
-                                        viewFlipper.addView(view3);
-                                        viewFlipper.addView(view4);
-
-                                    }
-
-                                    if (imagesNum == 5) {
-                                        imagedescription1.setText(imagedescriptionText1);
-                                        Glide.with(getApplicationContext()).load(imageviewString1).into(imageView1);
-
-                                        imagedescription2.setText(imagedescriptionText2);
-                                        Glide.with(getApplicationContext()).load(imageviewString2).into(imageView2);
-
-                                        imagedescription3.setText(imagedescriptionText3);
-                                        Glide.with(getApplicationContext()).load(imageviewString3).into(imageView3);
-
-                                        imagedescription4.setText(imagedescriptionText4);
-                                        Glide.with(getApplicationContext()).load(imageviewString4).into(imageView4);
-
-                                        imagedescription5.setText(imagedescriptionText5);
-                                        Glide.with(getApplicationContext()).load(imageviewString5).into(imageView5);
-
-                                        viewFlipper.addView(view1);
-                                        viewFlipper.addView(view2);
-                                        viewFlipper.addView(view3);
-                                        viewFlipper.addView(view4);
-                                        viewFlipper.addView(view5);
-
-
-                                    }
 
 
                                 } else {
@@ -1153,6 +1595,11 @@ public class EditEventActivity extends FragmentActivity implements
                                 placeName.setText(obj.getString("event_name"));
                                 placeDescription1 = obj.getString("event_description");
                                 placeDescription.setText(obj.getString("event_description"));
+                                startDate.setText(obj.getString("strat_date"));
+                                endDate.setText(obj.getString("end_date"));
+                                startTime.setText(obj.getString("start_time"));
+                                endTime.setText(obj.getString("end_time"));
+                                days.setText(obj.getString("days"));
 
                                 categoryID = obj.getInt("event_category_id");
 
@@ -1467,4 +1914,244 @@ public class EditEventActivity extends FragmentActivity implements
         MySingleton.getInstance(this).addToRequestQueue(send);
 
     }
+
+
+
+    public void editEventDate() {
+        final String startDate2 = startDate.getText().toString().trim();
+        final String endDate2 = endDate.getText().toString().trim();
+        final String startTime2  = startTime.getText().toString().trim();
+        final String endTime2  = endTime.getText().toString().trim();
+        final String days2 = days.getText().toString().trim();
+
+
+
+        progressDialog.setMessage("Updating Event Date...");
+        progressDialog.show();
+
+        StringRequest send = new StringRequest(Request.Method.PUT,
+                Constants.URL_EDIT_EVENT_DATE +dateID ,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(
+                        getApplicationContext(),
+                        error.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("start_date", startDate2);
+                params.put("end_date", endDate2);
+                params.put("start_time", startTime2);
+                params.put("end_time", endTime2);
+                params.put("days", days2);
+
+                return params;
+            }
+
+        };
+
+        MySingleton.getInstance(this).addToRequestQueue(send);
+
+    }
+
+
+
+    public void uploadPhoto(final int imageId, final TextView  imagedescription) {
+        final String imageDecription = imagedescription.getText().toString().trim();
+        final ProgressDialog loading = ProgressDialog.show(this, "Uploading...", "Please wait...", false, false);
+
+        StringRequest send = new StringRequest(Request.Method.POST,
+                Constants.URL_UPLOAD_PHOTO_Event,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        loading.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+
+
+                                if(imageId == imageID1)
+                                {imagedescription1.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView1);
+                                    imageID1 =obj.getInt("inserted_photo_id");
+                                    changeImageButton1.setText("Change first image");
+                                    changeButton1 = true;
+                                }
+                                if(imageId == imageID2)
+                                {imagedescription2.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView2);
+                                    changeImageButton2.setText("Change second image");
+                                    changeButton2 = true;
+                                }
+                                if(imageId == imageID3)
+                                {imagedescription3.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView3);
+                                    changeImageButton3.setText("Change third image");
+                                    changeButton3 = true;}
+                                if(imageId == imageID4)
+                                {imagedescription4.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView4);
+                                    changeImageButton4.setText("Change fourth image");
+                                    changeButton4 = true;
+                                }
+                                if(imageId == imageID5)
+                                {imagedescription5.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView5);
+                                    changeImageButton5.setText("Change fifth image");
+                                    changeButton5 = true;
+                                }
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            loading.dismiss();
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(
+                        getApplicationContext(),
+                        error.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                String image = getStringImage(bitmap);
+                Map<String, String> params = new HashMap<>();
+                params.put("event_id", eventID+"");
+                params.put("image_description", imageDecription);
+                params.put("image", image);
+                return params;
+            }
+        };
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(send);
+
+    }
+
+    public void updatePhoto(final int imageId, final TextView  imagedescription) {
+        final String imageDecription = imagedescription.getText().toString().trim();
+        final ProgressDialog loading = ProgressDialog.show(this, "Updating...", "Please wait...", false, false);
+
+        StringRequest send = new StringRequest(Request.Method.PUT,
+                Constants.URL_UPDATE_PHOTO_Event + imageId,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        loading.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+
+                                if(imageId == imageID1)
+                                {imagedescription1.setText(obj.getString("inserted_photo_description"));
+                                Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                        .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                        .into(imageView1);}
+                                if(imageId == imageID2)
+                                {imagedescription2.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView2);}
+                                if(imageId == imageID3)
+                                {imagedescription3.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView3);}
+                                if(imageId == imageID4)
+                                {imagedescription4.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView4);}
+                                if(imageId == imageID5)
+                                {imagedescription5.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView5);}
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            loading.dismiss();
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(
+                        getApplicationContext(),
+                        error.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                String image = getStringImage(bitmap);
+                Map<String, String> params = new HashMap<>();
+                params.put("image_description", imageDecription);
+                params.put("image", image);
+                return params;
+            }
+        };
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(send);
+
+    }
+
 }

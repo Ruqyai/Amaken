@@ -6,6 +6,7 @@ package com.amakenapp.website.amakenapp.helper;
         import android.content.Context;
         import android.content.DialogInterface;
         import android.content.Intent;
+        import android.support.design.widget.Snackbar;
         import android.support.v7.view.ContextThemeWrapper;
         import android.support.v7.widget.PopupMenu;
         import android.support.v7.widget.RecyclerView;
@@ -31,6 +32,7 @@ package com.amakenapp.website.amakenapp.helper;
         import com.android.volley.toolbox.StringRequest;
         import com.bumptech.glide.Glide;
         import com.amakenapp.website.amakenapp.R;
+        import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 
         import org.json.JSONException;
@@ -76,7 +78,10 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
 
 
 
-        Glide.with(context).load(listItem.getPlaceOrEventPic()).into(holder.PlaceOrEventPicture);
+        Glide.with(context).load(listItem.getPlaceOrEventPic())
+                .diskCacheStrategy( DiskCacheStrategy.NONE )
+                .skipMemoryCache( true )
+                .into(holder.PlaceOrEventPicture);
 
 
 
@@ -95,7 +100,7 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
 
         holder.optionsMenu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
 
                 //creating a popup menu
                 final Context wrapper = new ContextThemeWrapper(context, R.style.MyPopupMenu);
@@ -147,77 +152,40 @@ public class BusinessProfilePlaceOrEventAdapter extends RecyclerView.Adapter<Bus
 
                                 if (type.equals(Constants.STRING_TYPE_PLACE))
                                 {
-                                    alertDialog = new AlertDialog.Builder(context);
-                                    alertDialog.setTitle("Delete");
-                                    TextView myMsg = new TextView(context);
-                                    myMsg.setText("\n \nThis Action Will Affect All Reviews on This Place and Cant't Be Undone!! \n\n Are You Sure You Want to Delete This Place?");
-                                    myMsg.setGravity(Gravity.CENTER_HORIZONTAL);
-                                    myMsg.setPadding(5, 5, 5, 5);
-                                    alertDialog.setIcon(R.drawable.ic_delete_alert);
-                                    alertDialog.setView(myMsg);
 
-                                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                                    {
-                                        public void onClick(DialogInterface dialog, int which) {
+                                    final String message = "This Action Will Affect All Reviews on This Place and Cant't Be Undone!! \n\n Are You Sure You Want to Delete This Place?"
+                                            + " Click Delete to Accept!";
+                                    final Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE);
+                                    View snackbarView = snackbar.getView();
+                                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                    textView.setMaxLines(6);  // show multiple line
+                                    snackbar.setAction("Delete", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            snackbar.dismiss();
                                             deletePlace(placeOrEventId);
                                             swap(position);
-
                                         }
                                     });
-
-                                    alertDialog.setNegativeButton("Cancel",
-                                            new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    dialog.cancel();
-                                                }
-                                            });
-
-                                    final AlertDialog dialog = alertDialog.create();
-                                    dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                                    //if(isFinishing())
-                                    dialog.show();
+                                    snackbar.show();
 
                                 }
-                                else if (type.equals(Constants.STRING_TYPE_EVENT))
-                                {
-                                    alertDialog = new AlertDialog.Builder(context);
-                                    alertDialog.setTitle("Delete");
-                                    TextView myMsg = new TextView(context);
-                                    myMsg.setText("\n \nThis Action Will Affect All Reviews on This Event and Cant't Be Undone!! \n\n Are You Sure You Want to Delete This Event?");
-                                    myMsg.setGravity(Gravity.CENTER_HORIZONTAL);
-                                    myMsg.setPadding(5, 5, 5, 5);
-
-                                    alertDialog.setIcon(R.drawable.ic_delete_alert);
-                                    alertDialog.setView(myMsg);
-
-                                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                                    {
-                                        public void onClick(DialogInterface dialog, int which) {
+                                else if (type.equals(Constants.STRING_TYPE_EVENT)) {
+                                    final String message = "This Action Will Affect All Reviews on This Event and Cant't Be Undone!! \n\n Are You Sure You Want to Delete This Event?"
+                                            + " Click Delete to Accept!";
+                                    final Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE);
+                                    View snackbarView = snackbar.getView();
+                                    TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                    textView.setMaxLines(6);  // show multiple line
+                                    snackbar.setAction("Delete", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            snackbar.dismiss();
                                             deleteEvent(placeOrEventId);
                                             swap(position);
-
-
-                                            /*Intent myIntent = new Intent(context, BusinessProfileEvents.class);
-                                            myIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                            ((Activity)context).overridePendingTransition(0, 0);
-                                            ((Activity)context).finish();
-                                             context.startActivity(myIntent);
-                                            ((Activity)context).overridePendingTransition(0, 0);*/
-
                                         }
                                     });
-
-                                    alertDialog.setNegativeButton("Cancel",
-                                            new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    dialog.cancel();
-                                                }
-                                            });
-
-                                    final AlertDialog dialog = alertDialog.create();
-                                    dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                                    //if(isFinishing())
-                                    dialog.show();
+                                    snackbar.show();
                                 }
                                 break;
                         }

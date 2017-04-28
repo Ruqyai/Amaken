@@ -19,6 +19,7 @@ import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivity;
 import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivityEvent;
 import com.bumptech.glide.Glide;
 import com.amakenapp.website.amakenapp.R;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.github.siyamed.shapeimageview.RoundedImageView;
 
 import java.util.List;
@@ -56,7 +57,10 @@ public class ProfileReviewsAdapter extends RecyclerView.Adapter<ProfileReviewsAd
         holder.likeLogo.setImageResource(listItem.getReviewLikeImage());
 
         holder.reviewTimeStamp.setText(listItem.getReviewTimestamp());
-        Glide.with(context).load(listItem.getPlaceoreventPic()).into(holder.placeorEventPic);
+        Glide.with(context).load(listItem.getPlaceoreventPic())
+                .diskCacheStrategy( DiskCacheStrategy.NONE )
+                .skipMemoryCache( true )
+                .into(holder.placeorEventPic);
         holder.placeOrEventName.setText(listItem.getPlaceoreventName());
         holder.placeOrEventCategory.setText(listItem.getPlaceoreventCategory());
 

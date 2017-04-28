@@ -4,7 +4,7 @@
     <string name="title_activity_sign_up_business">Create a Business Account</string>
     <string name="title_activity_sign_up_chooser">Choose a Sign Up Method</string>
     <string name="title_activity_login">Choose a Login Method</string>
-    <string name="title_activity_add_review">AddReview</string>
+    <string name="title_activity_add_review">Add a Review</string>
     <string name="title_activity_nav_drw"></string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -78,8 +78,8 @@
     <string name="title_activity_profile_likes">My Likes</string>
     <string name="title_activity_profile_reviews">My Reviews</string>
     <string name="title_activity_profile_categories">My Categories</string>
-    <string name="title_activity_add_place">Add New Place</string>
-    <string name="title_activity_add_event">Add New Event</string>
+    <string name="title_activity_add_place">Add a New Place</string>
+    <string name="title_activity_add_event">Add a New Event</string>
     <string name="title_activity_expand_details_maps">Details</string>
 
     <!-- Strings for the dialog of the photo-->

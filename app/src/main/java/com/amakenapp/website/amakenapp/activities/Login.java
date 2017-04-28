@@ -101,9 +101,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                                 obj.getString("country_name"),
                                                 obj.getInt("city_id"),
                                                 obj.getString("city_name"),
-                                                TextUtils.isEmpty(obj.getString("profile_pic_id"))?"":obj.getString("profile_pic_id"),
-                                                TextUtils.isEmpty(obj.getString("profile_pic_url"))?"":obj.getString("profile_pic_url")
-                                        );
+                                                obj.getString("profile_pic_id"),
+                                                obj.getString("profile_pic_url"),
+                                                obj.getString("profile_pic_timeStamp")
+                                                );
 
                                 startActivity(new Intent(getApplicationContext(), NavDrw.class));
                                 finish();

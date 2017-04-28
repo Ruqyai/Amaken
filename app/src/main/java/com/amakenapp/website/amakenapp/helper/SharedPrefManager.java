@@ -26,16 +26,18 @@ public class SharedPrefManager {
     private static final String KEY_USER_TYPE = "usertype";
     private static final String KEY_USER_EMAIL = "useremail";
     private static final String KEY_USER_PASSWORD = "userpassword";
-    private static final String KEY_USER_NAME = "username";
-    private static final String KEY_USER_GENDER = "usergender";
-    private static final String KEY_USER_WEB_URL = "userweburl";
-    private static final String KEY_USER_PHONE_NUMBER = "userphonenumber";
-    private static final String KEY_USER_COUNTRY_ID = "usercountry_id";
-    private static final String KEY_USER_COUNTRY_NAME = "usercountry_name";
-    private static final String KEY_USER_CITY_ID = "usercity_id";
-    private static final String KEY_USER_CITY_NAME = "usercity_name";
-    private static final String KEY_USER_PROFILE_PIC_ID = "userprofile_pic_id";
-    private static final String KEY_USER_PROFILE_PIC_URL = "profile_pic_url";
+    private static  String KEY_USER_NAME = "username";
+    private static  String KEY_USER_GENDER = "usergender";
+    private static  String KEY_USER_WEB_URL = "userweburl";
+    private static  String KEY_USER_PHONE_NUMBER = "userphonenumber";
+    private static  String KEY_USER_COUNTRY_ID = "usercountry_id";
+    private static  String KEY_USER_COUNTRY_NAME = "usercountry_name";
+    private static  String KEY_USER_CITY_ID = "usercity_id";
+    private static  String KEY_USER_CITY_NAME = "usercity_name";
+    private static  String KEY_USER_PROFILE_PIC_ID = "userprofile_pic_id";
+    private static  String KEY_USER_PROFILE_PIC_URL = "profile_pic_url";
+    private static  String KEY_USER_PROFILE_PIC_URL_TIME_STAMP = "profile_pic_url_timestamp";
+
 
 
 
@@ -47,6 +49,8 @@ public class SharedPrefManager {
         mCtx = context;
 
     }
+
+
 
     public static synchronized SharedPrefManager getInstance(Context context) {
         if (mInstance == null) {
@@ -69,7 +73,8 @@ public class SharedPrefManager {
             int city_id,
             String city_name,
             String profile_pic_id,
-            String profile_pic_url) {
+            String profile_pic_url,
+            String pic_timestamp) {
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -88,6 +93,8 @@ public class SharedPrefManager {
         editor.putString(KEY_USER_CITY_NAME, city_name);
         editor.putString(KEY_USER_PROFILE_PIC_ID, profile_pic_id);
         editor.putString(KEY_USER_PROFILE_PIC_URL, profile_pic_url);
+        editor.putString(KEY_USER_PROFILE_PIC_URL_TIME_STAMP, pic_timestamp);
+
 
         editor.commit();
 
@@ -122,9 +129,46 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_USER_NAME, null);
     }
+    public String getUserWeb() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_WEB_URL, null);
+    }
+    public String getUserPhone() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_PHONE_NUMBER, null);
+    }
     public String getKeyUserProfilePicUrl() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_USER_PROFILE_PIC_URL, null);
+
+    }
+    public String getKeyUserProfilePicUrlTimeStamp() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_PROFILE_PIC_URL_TIME_STAMP, null);
+    }
+
+    public String getKeyUserCountryName() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_COUNTRY_NAME, null);
+    }
+    public String getKeyUserCityName() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_CITY_NAME, null);
+    }
+
+    public int getUserCountryId() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+        String x= sharedPreferences.getString(KEY_USER_COUNTRY_ID, null);
+        return    Integer.parseInt(x);
+
+    }
+
+    public int getUserCityId() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+        String x= sharedPreferences.getString(KEY_USER_CITY_ID, null);
+        return    Integer.parseInt(x);
 
     }
     public int getUserType() {
@@ -138,6 +182,83 @@ public class SharedPrefManager {
     public String getUserEmail() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_USER_EMAIL, null);
+    }
+
+    public int getUserProfilePicId() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+        String x= sharedPreferences.getString(KEY_USER_PROFILE_PIC_ID, null);
+        int id=Integer.parseInt(x);
+        return  id;
+    }
+
+    public static void setKeyUserProfilePicUrl(String keyUserProfilePicUrl) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_USER_PROFILE_PIC_URL, keyUserProfilePicUrl);
+        editor.commit();
+    }
+
+    public static void setKeyUserProfilePicId(String keyUserProfilePicId) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_USER_PROFILE_PIC_ID, keyUserProfilePicId);
+        editor.commit();
+    }
+
+     public static void setKeyUserCountryId(int keyUserCountryId) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(KEY_USER_COUNTRY_ID, keyUserCountryId);
+        editor.commit();
+    }
+
+    public static void setKeyUserCountryName(String keyUserCountryName) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_USER_COUNTRY_NAME, keyUserCountryName);
+        editor.commit();
+    }
+
+    public static void setKeyUserCityId(int keyUserCityId) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(KEY_USER_CITY_ID, keyUserCityId);
+        editor.commit();
+    }
+
+    public static void setKeyUserCityName(String keyUserCityName) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_USER_CITY_NAME, keyUserCityName);
+        editor.commit();
+    }
+
+    public static void setKeyUserProfilePicUrlTimeStamp(String keyUserProfilePicUrlTimeStamp) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_USER_PROFILE_PIC_URL_TIME_STAMP, keyUserProfilePicUrlTimeStamp);
+        editor.commit();
+    }
+
+
+    public static void setKeyUserName(String keyUserProfilePicUrl) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_USER_NAME, keyUserProfilePicUrl);
+        editor.commit();
+    }
+    public static void setKeyUserWebUrl(String keyUserProfilePicUrl) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_USER_WEB_URL, keyUserProfilePicUrl);
+        editor.commit();
+    }
+    public static void setKeyUserPhoneNumber(String keyUserProfilePicUrl) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_USER_PHONE_NUMBER, keyUserProfilePicUrl);
+        editor.commit();
     }
 
     public User getUser() {
@@ -156,7 +277,8 @@ public class SharedPrefManager {
                 Integer.parseInt(sharedPreferences.getString("user_city_id", "null")),
                 sharedPreferences.getString("user_city_name", "null"),
                 Integer.parseInt(sharedPreferences.getString("profile_pic_id","null")),
-                sharedPreferences.getString("profile_pic_url", "null")
+                sharedPreferences.getString("profile_pic_url", "null"),
+                sharedPreferences.getString("profile_pic_url_timestamp", "null")
         );
 
         return user;

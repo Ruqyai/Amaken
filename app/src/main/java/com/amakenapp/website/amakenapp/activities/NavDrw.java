@@ -37,8 +37,10 @@ import com.amakenapp.website.amakenapp.chat.ChatActivity;
 import com.amakenapp.website.amakenapp.helper.Constants;
 import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
 import com.amakenapp.website.amakenapp.store.User;
+import com.android.volley.toolbox.ImageLoader;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.signature.StringSignature;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.squareup.picasso.Picasso;
@@ -49,6 +51,8 @@ import java.net.URL;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class NavDrw extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -56,7 +60,7 @@ public class NavDrw extends AppCompatActivity
     private TextView userName;
     private CircleImageView userProfilePic;
     SharedPrefManager sharedPrefManager;
-    int userType;
+    int userType, userProfilePicId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,22 +136,30 @@ public class NavDrw extends AppCompatActivity
         userName.setText(x);
 
 
+        userType= sharedPrefManager.getUserType();
+        if (userType == Constants.CODE_BUSINESS_USER)
+        {floatButton.setVisibility(View.VISIBLE);}
+        else if(userType == Constants.CODE_NORMAL_USER)
+        {floatButton.setVisibility(View.INVISIBLE);}
+        String userProfilePicUrl=sharedPrefManager.getKeyUserProfilePicUrl();
+        String userProfilePicIdTimeStamp = sharedPrefManager.getKeyUserProfilePicUrlTimeStamp();
+        userProfilePicId = sharedPrefManager.getUserProfilePicId();
 
+        if(userProfilePicId==0 )
+           {if(userType==Constants.CODE_BUSINESS_USER)
+            userProfilePic.setImageResource(R.drawable.business1);
+            else if(userType==Constants.CODE_NORMAL_USER)
+            userProfilePic.setImageResource(R.drawable.ic_person);
+           }
+        else
+            Glide.with(getApplicationContext()).load(userProfilePicUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(userProfilePic);
 
-        String y=sharedPrefManager.getKeyUserProfilePicUrl();
-        Glide.with(this).load(y)
-                .thumbnail(0.5f)
-                .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(userProfilePic);
         //Picasso.with(getApplicationContext()).load(y).into(userProfilePic);
 
 
-        userType= sharedPrefManager.getUserType();
-        if (userType == Constants.CODE_BUSINESS_USER)
-           {floatButton.setVisibility(View.VISIBLE);}
-        else if(userType == Constants.CODE_NORMAL_USER)
-           {floatButton.setVisibility(View.INVISIBLE);}
+
 
     }
 
@@ -250,7 +262,7 @@ public class NavDrw extends AppCompatActivity
         } else if (id == R.id.nav_Help) {
 
             //startActivity(new Intent(NavDrw.this, BusinrssHelp.class));
-            //startActivity(new Intent(NavDrw.this, testimage.class));
+           // startActivity(new Intent(NavDrw.this, testimage.class));
             fragment = new HelpActivity();
 
 
