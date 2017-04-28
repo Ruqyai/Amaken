@@ -22,6 +22,9 @@ android {
 }
 repositories {
     mavenCentral()
+    maven {
+        url "https://jitpack.io"
+    }
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -33,8 +36,9 @@ dependencies {
     //for view pager
     //
     compile files('libs/Ab.jar')
+    compile files('libs/PhotoUtil.jar')
 
-
+    compile 'com.github.recruit-lifestyle:FloatingView:2.2'
 
 
     compile 'com.google.android.gms:play-services-maps:10.0.1'

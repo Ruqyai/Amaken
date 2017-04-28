@@ -18,18 +18,7 @@ android:layout_alignParentLeft="true"
         android:orientation="horizontal">
 
 
-         <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/happy_robot"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-             android:layout_margin="2dp"
-             app:civ_border_color="#fdfafafa"
-        android:src="@drawable/happy_robot"
-        app:civ_border_width="1dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        />
+
 
         <!--
             <TextView
@@ -58,7 +47,7 @@ android:layout_alignParentLeft="true"
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:paddingTop="30dp"
         android:layout_above="@+id/send_message_layout"
         android:divider="@null" />
     <!--To type and send the message-->

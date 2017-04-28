@@ -1,4 +1,4 @@
-package com.amakenapp.website.amakenapp.chat.MessagesList;
+package com.amakenapp.website.amakenapp.chat;
 
 
 public class ChatMessage {

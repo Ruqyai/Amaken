@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:tag="user_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fadeScrollbars="true"
+    android:scrollbarAlwaysDrawHorizontalTrack="false"
+    android:scrollbarAlwaysDrawVerticalTrack="false"
+    android:scrollbars="none"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1pt"
+            android:layout_marginRight="5pt"
+            android:layout_marginLeft="5pt"
+            android:elevation="4dp"
+            android:id="@+id/cardPic">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/user_pic_d"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/profile"
+                    app:civ_border_color="#b41b0606"
+                    app:civ_border_width="1dp"
+                    android:layout_alignStart="@+id/row1"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:id="@+id/user_details_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/user_name"
+                    android:textColor="@color/baa"
+
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/user_pic_d"
+                    android:paddingBottom="20dp"/>
+
+
+            </RelativeLayout>
+
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_below="@+id/cardPic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1pt"
+            android:layout_marginRight="5pt"
+            android:layout_marginLeft="5pt"
+            android:elevation="4dp">
+
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                >
+                <TableRow
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_margin="8dp"
+                    >
+                    <TextView
+                        android:id="@+id/User_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="User Details"
+                        android:textColor="@color/baa"
+                        android:textStyle="bold" />
+                </TableRow>
+                <TableRow
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:id="@+id/placenamedetails"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
+
+                    >
+                    <TextView
+                        android:id="@+id/name_bold_heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        android:text="Name  "
+                        android:textAlignment="gravity"
+                        android:gravity=""
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:textAlignment="gravity"
+                        android:layout_marginStart="5dp"
+                        android:gravity=""
+                        android:textStyle="italic" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
+
+
+                    >
+                    <TextView
+                        android:id="@+id/place_category_bold_heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAlignment="gravity"
+                        android:gravity=""
+                        android:text="User Type"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/user_type_d"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:textAlignment="gravity"
+                        android:layout_marginStart="5dp"
+                        android:gravity=""
+                        android:textStyle="italic" />
+                </TableRow>
+                <TableRow
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
+
+
+                    >
+                    <TextView
+                        android:id="@+id/gender_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textAlignment="gravity"
+                        android:gravity=""
+                        android:text="Gender"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/user_gender_d"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:textAlignment="gravity"
+                        android:layout_marginStart="5dp"
+                        android:gravity=""
+                        android:textStyle="italic" />
+                </TableRow>
+
+
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    />
+                <TableRow
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_margin="8dp"
+                    >
+                    <TextView
+                        android:id="@+id/Expand_place_contact_details"
+                        android:layout_width="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contact_details_text"
+                        android:textColor="@color/baa"
+                        android:textStyle="bold" />
+                </TableRow>
+
+
+
+
+                <TableRow
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:id="@+id/place_businessWeb_bold_heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Web  "
+                        android:gravity=""
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textWeb_d"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:textAlignment="gravity"
+                        android:gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_web"
+                        android:autoLink="web"
+                        />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
+                    >
+                    <TextView
+                        android:id="@+id/place_businessPhone_bold_heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Phone  "
+                        android:gravity=""
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textPhone_d"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:textAlignment="gravity"
+                        android:gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_phone"
+                        android:autoLink="phone"
+
+                        />
+
+
+                </TableRow>
+                <TableRow
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:id="@+id/place_businessEmail_bold_heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Email   "
+                        android:gravity=""
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textEmail_d"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:textAlignment="gravity"
+                        android:gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_email"
+                        android:autoLink="email"
+                        />
+
+                </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    />
+
+                <TableRow
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_margin="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/location_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="@string/location_details_text"
+                        android:textColor="@color/baa"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/country_text"
+                        android:textAlignment="gravity"
+                        android:gravity=""
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/textCountryDetails_d"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:textAlignment="gravity"
+                        android:layout_marginStart="5dp"
+                        android:gravity=""
+                        />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/city_text"
+                        android:textAlignment="gravity"
+                        android:gravity=""
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/textCityDetails_d"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:textAlignment="gravity"
+                        android:layout_marginStart="5dp"
+                        android:gravity=""
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp">
+
+
+
+                </TableRow>
+            </TableLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
+</ScrollView>

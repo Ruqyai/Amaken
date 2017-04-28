@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.amakenapp.website.amakenapp.R;
-import com.amakenapp.website.amakenapp.chat.ChatAdapter.ChatMessageAdapter;
-import com.amakenapp.website.amakenapp.chat.MessagesList.ChatMessage;
+import com.amakenapp.website.amakenapp.chat.ChatMessageAdapter;
+import com.amakenapp.website.amakenapp.chat.ChatMessage;
 
 import org.alicebot.ab.AIMLProcessor;
 import org.alicebot.ab.Bot;

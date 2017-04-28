@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -46,6 +47,38 @@
         android:largeHeap="true"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
+
+        <service
+            android:name="com.amakenapp.website.amakenapp.helper.ChatHeadService"
+            android:exported="false"/>
+
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".search.SearchResult" />
+
+        <activity
+            android:name=".search.SearchResult"
+            android:label=""
+            android:parentActivityName=".activities.NavDrw"
+            android:theme="@style/Theme">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".search.FiltersActivity"
+            android:label=""
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
+
+        </activity>
+
+
+
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -116,9 +149,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
+
         </activity>
         <activity android:name=".activities.ChooseInterest" />
         <activity android:name=".activities.testimage" />
@@ -257,7 +296,7 @@
             android:theme="@style/Theme" />
         <activity
             android:name=".chat.ChatActivity"
-            android:label="Chatting with Hiri"
+            android:label="May I can hep you"
             android:parentActivityName=".activities.NavDrw"
             android:screenOrientation="portrait"
             android:theme="@style/Theme">
@@ -401,8 +440,12 @@
                 android:value="com.amakenapp.website.amakenapp.activities.NavDrw" />
         </activity>
         <activity android:name=".activities.BusinrssHelp" />
+        <activity android:name=".activities.UserDetailsActivity"></activity>
 
         <activity android:name=".activities.ConnectWithUs"
+            android:parentActivityName=".activities.NavDrw"
+            android:theme="@style/Theme"
+            android:label="back"
             android:screenOrientation="portrait"></activity>
     </application>
 

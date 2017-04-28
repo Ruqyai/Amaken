@@ -36,6 +36,7 @@ import com.amakenapp.website.amakenapp.R;
 import com.amakenapp.website.amakenapp.chat.ChatActivity;
 import com.amakenapp.website.amakenapp.helper.Constants;
 import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
+import com.amakenapp.website.amakenapp.search.*;
 import com.amakenapp.website.amakenapp.store.User;
 import com.android.volley.toolbox.ImageLoader;
 import com.bumptech.glide.Glide;
@@ -192,15 +193,7 @@ public class NavDrw extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.search, menu);
         MenuItem item = menu.findItem(R.id.menuSearch);
-        SearchManager searchManager = (SearchManager)
-                getSystemService(Context.SEARCH_SERVICE);
-
-        SearchView searchView = (SearchView) item.getActionView();
-
-        searchView.setSearchableInfo(searchManager.
-                getSearchableInfo(getComponentName()));
-        searchView.setSubmitButtonEnabled(true);
-        //searchView.setOnQueryTextListener(this);
+        getMenuInflater().inflate(R.menu.filters, menu);
 
         return true;
     }
@@ -212,10 +205,14 @@ public class NavDrw extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-       // no inspection Simplifiable If Statement
         if (id == R.id.menuSearch) {
+            startActivity(new Intent(NavDrw.this, com.amakenapp.website.amakenapp.search.SearchResult.class));
+            return true;
 
+        }
+        if (id == R.id.action_filter) {
+            startActivity(new Intent(NavDrw.this, FiltersActivity.class));
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

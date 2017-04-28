@@ -15,6 +15,12 @@
     <string name="facebook_app_id">1963319577234405</string>
 
     <!-- Strings related to Settings -->
+    <string name="chathead_click_message">Click</string>
+    <string name="finish_deleted">FloatingView has been deleted.</string>
+    <string name="deleted_soon">FloatingView will be deleted soon.</string>
+    <string name="touch_finished_position" formatted="false">Current position (%d,%d)</string>
+    <string name="chathead_content_title"> Chat: Active</string>
+    <string name="content_text"> running.</string>
 
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>

@@ -6,7 +6,16 @@ package com.amakenapp.website.amakenapp.helper;
 
 public class Constants {
 
+
     private static final String ROOT_URL = "http://amakenapp.website/placesapp/v1/";
+
+    public static final String URL_SEARCH = ROOT_URL+"getSearchTerm/";
+    public static final String URL_SEARCH_PLACE = ROOT_URL+"getPlaceFilter/";
+    public static final String URL_SEARCH_EVENT = ROOT_URL+"getEventFilter/";
+    public static final String URL_SEARCH_USER = ROOT_URL+"getUserFilter/";
+
+
+    public static final String URL_GET_USER_BY_ID = ROOT_URL +"getUserById/";
 
     public static final String URL_LOGIN = ROOT_URL+"UserLogin";
     public static final String URL_COUNTRIES = ROOT_URL+"getAllCountries";

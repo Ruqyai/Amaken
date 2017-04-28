@@ -1,4 +1,4 @@
-package com.amakenapp.website.amakenapp.chat.ChatAdapter;
+package com.amakenapp.website.amakenapp.chat;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.amakenapp.website.amakenapp.chat.MessagesList.ChatMessage;
+import com.amakenapp.website.amakenapp.chat.ChatMessage;
 import com.amakenapp.website.amakenapp.R;
 
 import java.util.List;
