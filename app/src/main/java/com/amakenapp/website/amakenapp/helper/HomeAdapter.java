@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 
 import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivityEvent;
+import com.amakenapp.website.amakenapp.activities.UserDetailsActivity;
 import com.bumptech.glide.Glide;
 import com.amakenapp.website.amakenapp.R;
 import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivity;
@@ -45,6 +46,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         HomeListItem listItem=listItems.get(position);
+        final int  owenr_id = listItem.getOwnerId();
+
 
         final int placeId = listItem.getPlaceId();
         String placeid = Integer.toString(placeId);
@@ -70,6 +73,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .signature(new StringSignature(String.valueOf(System.currentTimeMillis())))
                 .into(holder.placePicture);
+        holder.placeBusinessProfileImage.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+                        Intent intent = new Intent(context, UserDetailsActivity.class);
+                               intent.putExtra("USER_ID", owenr_id);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                               context.startActivity(intent);
+                          }
+       });
 
         holder.placeName.setText(listItem.getPlaceName());
         holder.placeCategory.setText(listItem.getPlaceCategory());

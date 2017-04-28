@@ -20,6 +20,17 @@ public class HomeListItem {
     private String placeExpand = "Expand >>";
     private String placeRatingStat;
     private Float ratingplace;
+    private int OwnerId;
+
+            public int getOwnerId() {
+                return OwnerId;
+           }
+
+            public void setOwnerId(int ownerId) {
+                OwnerId = ownerId;
+           }
+
+
 
     public HomeListItem() {
     }

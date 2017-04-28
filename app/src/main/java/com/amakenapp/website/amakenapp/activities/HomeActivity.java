@@ -118,7 +118,7 @@ public class HomeActivity extends Fragment {
                                     listItem.setPlaceName(placeDetails.getString("place_name"));
                                     listItem.setPlaceCategory(placeDetails.getString("place_category"));
                                     listItem.setPlaceDescriptionMultiLineText(placeDetails.getString("place_description"));
-
+                                    listItem.setOwnerId(placeDetails.getInt("owner_id"));
 
                                     Double rate = placeDetails.getDouble("rate_avrg");
                                     String rate2 = Double.toString(rate);

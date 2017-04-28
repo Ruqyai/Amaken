@@ -78,21 +78,38 @@ public class UserDetailsActivity extends AppCompatActivity {
                                     }
 
                                     else{type.setText("Business Owner");
+
+
                                         email.setText(userDetails.getString("user_email"));
-                                        wep.setText(userDetails.getString("web_url"));
-                                        phone.setText(userDetails.getString("phone_number"));
+
+                                       // String webNull=userDetails.getString("web_url");
+                                        if(userDetails.getString("web_url").contains("null")){
+                                        wep.setText("not available");}
+                                        else{wep.setText(userDetails.getString("web_url"));}
+                                        if(userDetails.getString("phone_number").contains("null")){
+                                            phone.setText("not available");}
+                                        else {phone.setText(userDetails.getString("phone_number"));}
                                         gender.setText("no information");}
 
                                     country.setText(userDetails.getString("country_name"));
                                     city.setText(userDetails.getString("city_name"));
                                     String url_pic=userDetails.getString("profile_pic_url");
+                                    if(userDetails.getString("profile_pic_url").contains("null")){
+                                        Glide.with(UserDetailsActivity.this).load(R.drawable.com_facebook_profile_picture_blank_portrait)
+                                                .thumbnail(0.5f)
+                                                .crossFade()
+                                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                .into(ProfilePic);
+                                    }
+
+
                                     Glide.with(UserDetailsActivity.this).load(url_pic)
                                             .thumbnail(0.5f)
                                             .crossFade()
                                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                                             .into(ProfilePic);
 
-                                    // Picasso.with(getApplicationContext()).load(url_pic).into(ProfilePic);
+
 
 
                                 }
