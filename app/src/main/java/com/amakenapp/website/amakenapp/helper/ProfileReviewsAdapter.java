@@ -15,6 +15,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.amakenapp.website.amakenapp.activities.AddReview;
+import com.amakenapp.website.amakenapp.activities.EditReviewActivity;
 import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivity;
 import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivityEvent;
 import com.bumptech.glide.Glide;
@@ -102,8 +103,8 @@ public class ProfileReviewsAdapter extends RecyclerView.Adapter<ProfileReviewsAd
                                 break;
                             case R.id.review_edit:
                                 //handle menu2 click
-                                Intent myIntent = new Intent(context, AddReview.class);
-                                myIntent.putExtra("Review_ID", reviewId);
+                                Intent myIntent = new Intent(context, EditReviewActivity.class);
+                                myIntent.putExtra("REVIEW_ID", reviewId);
                                 myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 context.startActivity(myIntent);
                                 break;

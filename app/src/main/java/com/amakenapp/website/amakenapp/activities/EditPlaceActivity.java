@@ -698,7 +698,7 @@ public class EditPlaceActivity extends FragmentActivity implements
                     }
                     else
                     {
-                        uploadPhoto(imageID1, adddescription );
+                        uploadPhoto(1, adddescription );
 
                     }
                 }
@@ -750,7 +750,7 @@ public class EditPlaceActivity extends FragmentActivity implements
                     }
                     else
                     {
-                        uploadPhoto(imageID2, adddescription );
+                        uploadPhoto(2, adddescription );
 
                     }
                 }
@@ -804,7 +804,7 @@ public class EditPlaceActivity extends FragmentActivity implements
                     }
                     else
                     {
-                        uploadPhoto(imageID3, adddescription );
+                        uploadPhoto(3, adddescription );
 
                     }
                 }
@@ -855,7 +855,7 @@ public class EditPlaceActivity extends FragmentActivity implements
                     }
                     else
                     {
-                        uploadPhoto(imageID4, adddescription );
+                        uploadPhoto(4, adddescription );
 
                     }
                 }
@@ -908,7 +908,7 @@ public class EditPlaceActivity extends FragmentActivity implements
                     }
                     else
                     {
-                        uploadPhoto(imageID5, adddescription );
+                        uploadPhoto(5, adddescription );
 
                     }
                 }
@@ -1789,7 +1789,7 @@ public class EditPlaceActivity extends FragmentActivity implements
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
 
-                                if(imageId == imageID1)
+                                if(imageId == 1)
                                 {imagedescription1.setText(obj.getString("inserted_photo_description"));
                                     Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
                                             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -1799,41 +1799,46 @@ public class EditPlaceActivity extends FragmentActivity implements
                                     changeImageButton1.setText("Change first image");
                                     changeButton1 = true;
                                 }
-                                if(imageId == imageID2)
+                                if(imageId == 2)
                                 {imagedescription2.setText(obj.getString("inserted_photo_description"));
                                     Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
                                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                                             .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
                                             .into(imageView2);
+                                    imageID2 =obj.getInt("inserted_photo_id");
                                     changeImageButton2.setText("Change second image");
                                     changeButton2 = true;
                                 }
-                                if(imageId == imageID3)
+                                if(imageId == 3)
                                 {imagedescription3.setText(obj.getString("inserted_photo_description"));
                                     Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
                                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                                             .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
                                             .into(imageView3);
                                     changeImageButton3.setText("Change third image");
+                                    imageID3 =obj.getInt("inserted_photo_id");
                                     changeButton3 = true;}
-                                if(imageId == imageID4)
+                                if(imageId == 4)
                                 {imagedescription4.setText(obj.getString("inserted_photo_description"));
                                     Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
                                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                                             .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
                                             .into(imageView4);
+                                    imageID4 =obj.getInt("inserted_photo_id");
                                     changeImageButton4.setText("Change fourth image");
                                     changeButton4 = true;
                                 }
-                                if(imageId == imageID5)
+                                if(imageId == 5)
                                 {imagedescription5.setText(obj.getString("inserted_photo_description"));
                                     Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
                                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                                             .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
                                             .into(imageView5);
+                                    imageID5 =obj.getInt("inserted_photo_id");
                                     changeImageButton5.setText("Change fifth image");
                                     changeButton5 = true;
                                 }
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
 
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();

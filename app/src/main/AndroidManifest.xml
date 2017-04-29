@@ -141,6 +141,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.MainActivity" />
         </activity>
+
+
         <activity
             android:name=".activities.NavDrw"
             android:configChanges="orientation"
@@ -282,6 +284,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.amakenapp.website.amakenapp.activities.BusinessProfileEvents" />
+        </activity>
+
+        <activity
+            android:name=".activities.EditReviewActivity"
+            android:label="Edit Review">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.amakenapp.website.amakenapp.activities.ProfileReviews" />
         </activity>
 
         <meta-data

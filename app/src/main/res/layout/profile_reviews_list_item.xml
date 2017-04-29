@@ -58,9 +58,9 @@
                 android:maxLines="2"
                 android:text="Review Text, Review text, Review Text, Review text, Review Text, Review text, Review Text, Review text"
                 android:layout_marginStart="13dp"
-                android:layout_alignParentTop="true"
+                android:layout_below="@+id/review_place_or_event_category"
                 android:layout_toEndOf="@+id/reviews_profile_pic"
-                android:layout_marginTop="74dp" />
+                 />
 
 
             <RatingBar
@@ -132,10 +132,10 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
             <TextView
-                android:id="@+id/review_place_or_event_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
+            android:id="@+id/review_place_or_event_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
             <TextView
                 android:id="@+id/review_place_or_event_name"
                 android:layout_width="wrap_content"
@@ -152,9 +152,11 @@
                 android:visibility="visible"
                 android:text="category"
                 android:textColor="@color/gray"
-                android:layout_alignTop="@+id/review_place_or_event_name"
-                android:layout_toEndOf="@+id/review_place_or_event_name"
-                android:layout_marginStart="11dp" />
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_alignStart="@+id/review_place_or_event_name"
+                android:layout_below="@+id/review_place_or_event_name"
+                 />
 
             <TextView
                 android:id="@+id/textView10"

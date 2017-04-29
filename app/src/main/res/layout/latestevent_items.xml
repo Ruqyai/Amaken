@@ -71,7 +71,8 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:layout_below="@+id/imageViewEventBusinessPlaceAboveBorder"
-                app:srcCompat="@drawable/store" />
+                android:background="@drawable/ic_action_name"
+                />
             <View
                 android:id="@+id/imageViewEvnetBusinessPlaceBottomBorder"
                 android:layout_width="match_parent"

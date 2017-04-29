@@ -42,6 +42,7 @@ public class Constants {
 
     public static final String STRING_USER_PROFILE_PIC = "no profile photo";
     public static final String STRING_BOOKMARK_EXSITS= "Bookmark exist";
+    public static final String STRING_Review_EXSITS = "Review exist";
     public static final String STRING_LIKE_EXSITS= "Like exist";
     public static final String STRING_REVIEW_LIKE_EXSITS= "review like exsits";
     public static final String STRING_EVENT_STILL_OPEN= "available";
@@ -124,6 +125,23 @@ public class Constants {
     public static final String URL_Update_User_Details= ROOT_URL+"updateUser";
     public static final String URL_UPLOAD_PHOTO = ROOT_URL+"insertNewPhotoUsingVolley";
     public static final String URL_UPDATE_PHOTO = ROOT_URL+"updatePhotoUsingVolley/";
+
+
+
+//review operations
+    public static final String URL_UPLOAD_PHOTO_REVIEW_PLACE= ROOT_URL+"insertNewPhotoUsingVolleyReviewOnPlace";
+    public static final String URL_UPLOAD_PHOTO_REVIEW_EVENT= ROOT_URL+"insertNewPhotoUsingVolleyReviewOnEvent";
+    public static final String URL_INSERT_REVIEW_ON_PLACE= ROOT_URL+"writePlaceReview";
+    public static final String URL_INSERT_REVIEW_ON_EVENT= ROOT_URL+"writeEventReview";
+
+    public static final String URL_EDIT_REVIEW= ROOT_URL+"updateReviewById/";
+    public static final String URL_GET_REVIEW_BY_ID= ROOT_URL+"getReviewById/";
+    public static final String URL_GET_REVIEW_Gallery= ROOT_URL+"getReviewGallery/";
+
+
+
+
+
 
 
 

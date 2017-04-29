@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -26,19 +25,19 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.format.DateFormat;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -47,6 +46,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -55,6 +55,7 @@ import android.widget.ViewFlipper;
 
 import com.amakenapp.website.amakenapp.R;
 import com.amakenapp.website.amakenapp.helper.Constants;
+import com.amakenapp.website.amakenapp.helper.MyCommand;
 import com.amakenapp.website.amakenapp.helper.MySingleton;
 import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
 import com.android.volley.AuthFailureError;
@@ -83,7 +84,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.kosalgeek.android.photoutil.CameraPhoto;
 import com.kosalgeek.android.photoutil.GalleryPhoto;
-import com.kosalgeek.android.photoutil.ImageLoader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -91,8 +91,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -100,15 +98,11 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
+import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EditEventActivity extends FragmentActivity implements
-        OnMapReadyCallback,
-        View.OnClickListener,
-        AdapterView.OnItemSelectedListener,
-        ConnectionCallbacks,
-        OnConnectionFailedListener,
-        LocationListener {
+import static com.amakenapp.website.amakenapp.R.id.ratingBar;
+
+public class EditReviewActivity extends FragmentActivity implements View.OnClickListener{
 
     private GoogleMap mMap;
     private Marker mMarker;
@@ -129,12 +123,9 @@ public class EditEventActivity extends FragmentActivity implements
     Context context;
 
     private LatLng addressPoint;
-    SharedPrefManager sharedPrefManager;
 
 
-    private static int eventID;
-    private static int userId;
-    private ProgressDialog progressDialog;
+    private static int REVIEWID;
 
 
 
@@ -142,24 +133,20 @@ public class EditEventActivity extends FragmentActivity implements
     private TextView changeplacename, chnageplacedescription, changeplacecategory, changeplacecountry, changeplacecit, changeplaceaddress, changeplacelocation, changedate;
 
 
-    private static TextView startDate, endDate, startTime, endTime, days;
 
-    private EditText placeName,
-                    placeDescription,
-                    locationAdress;
 
     Spinner spinnerDialog, spinnerDialog1, spinnerDialog2;
     private ArrayList<String> countries, cities, categories;
     private ArrayList<Integer> countryIds, citiesIds, categoriesIds;
 
-    private ImageView imageView1, imageView2, imageView3, imageView4, imageView5, imageViewProfile ;
-    private ImageButton filpNext, flipPrevious, getmylocation;
+    private ImageView imageView1, imageView2, imageView3, imageView4, imageView5 ;
+    private ImageButton filpNext, flipPrevious;
     private Button changeImageButton1,
                    changeImageButton2,
                    changeImageButton3,
                     changeImageButton4,
                     changeImageButton5,
-                    changePlaceDetails,
+                    changeReviewDetails,
                     changeLocationDetails,
                     changeeventdate;
     private LinearLayout loading;
@@ -172,7 +159,7 @@ public class EditEventActivity extends FragmentActivity implements
             changeButton5;
 
     private ViewFlipper viewFlipper;
-    private static int imagesNum, locationID, dateID, categoryID, countryID, cityID, imageID1, imageID2, imageID3, imageID4, imageID5;
+    private static int  imageID1, imageID2, imageID3, imageID4, imageID5;
     private static String imagedescriptionText1, imagedescriptionText2, imagedescriptionText3, imagedescriptionText4, imagedescriptionText5;
     private static String imageviewString1, imageviewString2, imageviewString3, imageviewString4, imageviewString5, placeName1, placeDescription1;
 
@@ -188,19 +175,36 @@ public class EditEventActivity extends FragmentActivity implements
 
 
 
-    private Bitmap bitmap;
-    String photoPath;
 
     public static final int CAMERA_REQUEST = 1888;
     public static final int TAKE_GALLERY_CODE = 1;
 
-    String DAYSSTRINGS="";
+    private CircleImageView userProfilePic;
+    private EditText reviewText;
+    private RatingBar ratingbar1;
+    SharedPrefManager sharedPrefManager;
+    private ImageButton add_photo;
+    private ImageView imageViewProfile ;
+    private Button cancel, post;
+    private  int userProfilePicId, userType, insertedReviewID, imagesNum =0;
 
+
+
+    private static int eventID, placeID;
+    private static int userId;
+    private ProgressDialog progressDialog;
+    CameraPhoto cameraPhoto;
+    GalleryPhoto galleryPhoto;
+    private Bitmap bitmap;
+    String photoPath, review_type;
+
+    LinearLayout container;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_event);
+        setContentView(R.layout.activity_edit_review);
         context = this.getApplicationContext();
         parentLayout = findViewById(R.id.root_view);
         loading = (LinearLayout) findViewById(R.id.linlaHeaderProgress_EDITEVENT);
@@ -209,17 +213,14 @@ public class EditEventActivity extends FragmentActivity implements
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map_edit);
-        mapFragment.getMapAsync(this);
 
         //get user id from shared preferences
         sharedPrefManager = SharedPrefManager.getInstance(this);
         userId = sharedPrefManager.getUserId();
-        eventID = getIntent().getExtras().getInt("EVENT_ID");
+        REVIEWID = getIntent().getExtras().getInt("REVIEW_ID");
 
         alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setTitle("Change Event Photo");
+        alertDialog.setTitle("Change Review Photo");
 
         ////////////////////////////////////////////////////
 
@@ -254,12 +255,6 @@ public class EditEventActivity extends FragmentActivity implements
         changeImageButton5 = (Button) view5.findViewById(R.id.change5);
 
 
-        changePlaceDetails = (Button) findViewById(R.id.change_place_details);
-        changeLocationDetails = (Button) findViewById(R.id.change_address_details);
-        changeeventdate = (Button) findViewById(R.id.change_date_details);
-
-        progressDialog = new ProgressDialog(this);
-
 
         changeImageButton1.setOnClickListener(this);
         changeImageButton2.setOnClickListener(this);
@@ -267,115 +262,40 @@ public class EditEventActivity extends FragmentActivity implements
         changeImageButton4.setOnClickListener(this);
         changeImageButton5.setOnClickListener(this);
 
-        changePlaceDetails.setOnClickListener(this);
-        changeLocationDetails.setOnClickListener(this);
-        changeeventdate.setOnClickListener(this);
 
-
-        changeplacename = (TextView) findViewById(R.id.show_deatils_change_place_name);
-        chnageplacedescription = (TextView) findViewById(R.id.show_detils_change_description);
-        changeplacecategory = (TextView) findViewById(R.id.show_details_change_category) ;
-        changeplacecountry = (TextView) findViewById(R.id.show_detial_change_country);
-        changeplacecit = (TextView) findViewById(R.id.show_details_change_city);
-        changeplaceaddress = (TextView) findViewById(R.id.show_details_changeaddress);
-        changeplacelocation = (TextView) findViewById(R.id.show_detia_changelocation);
-        changedate = (TextView) findViewById(R.id.show_detia_changedate);
-
-//////////////////////////////////////////////////
-
-        startDate = (TextView) findViewById(R.id.event_startDate);
-        endDate = (TextView) findViewById(R.id.event_endDate);
-        startTime = (TextView) findViewById(R.id.event_startTime);
-        endTime = (TextView) findViewById(R.id.event_endTime);
-        days = (TextView) findViewById(R.id.event_days);
-
-        startDate.setOnClickListener(this);
-        endDate.setOnClickListener(this);
-        startTime.setOnClickListener(this);
-        endTime.setOnClickListener(this);
-        days.setOnClickListener(this);
-
-
-
-
-/////////////////////////////////////////////
-
-
-        changeplacename.setOnClickListener(this);
-        chnageplacedescription.setOnClickListener(this);
-        changeplacecategory.setOnClickListener(this);
-        changeplacecountry.setOnClickListener(this);
-        changeplacecit.setOnClickListener(this);
-        changeplaceaddress.setOnClickListener(this);
-        changeplacelocation.setOnClickListener(this);
-        changedate.setOnClickListener(this);
-
-        //////////////////////////////////////////////////////////////////
-        ///////find views by id for textViews
-
-
-        placeName = (EditText) findViewById(R.id.place_name_edit);
-        placeDescription = (EditText) findViewById(R.id.place_description_edit);
-        locationAdress = (EditText) findViewById(R.id.place_address_edit);
-        placeName.addTextChangedListener(new TextWatcher() {
+        changeReviewDetails = (Button) findViewById(R.id.change_REVIEW_DETAILS);
+        progressDialog = new ProgressDialog(this);
+        changeReviewDetails.setOnClickListener(this);
+        ratingbar1 = (RatingBar) findViewById(ratingBar);
+        reviewText = (EditText) findViewById(R.id.editText2) ;
+        reviewText.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
-                if (placeName.getText().toString().length()<= 0) {
-                    placeName.setError("*required field, Please Enter Event Name!");
-                    changePlaceDetails.setEnabled(false);
+                if (reviewText.getText().toString().length()<= 0) {
+                    reviewText.setError("Required field, Please Enter Review Text!");
+                    changeReviewDetails.setEnabled(false);
                 } else {
-                    placeName.setError(null);
-                    changePlaceDetails.setEnabled(true);
+                    reviewText.setError(null);
+                    changeReviewDetails.setEnabled(true);
 
                 }
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after){}
             public void onTextChanged(CharSequence s, int start, int before, int count){
-                placeName.setError(null);
-            }
-        });
-        placeDescription.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable s) {
-                if (placeDescription.getText().toString().length()<= 0) {
-                    placeDescription.setError("*required field, Please Enter Event Description!");
-                    changePlaceDetails.setEnabled(false);
-                } else {
-                    placeDescription.setError(null);
-                    changePlaceDetails.setEnabled(true);
-
-                }
-            }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-            public void onTextChanged(CharSequence s, int start, int before, int count){
-                placeName.setError(null);
+                reviewText.setError(null);
             }
         });
 
-        spinnerDialog = (Spinner) findViewById(R.id.place_category);
-        spinnerDialog1 = (Spinner) findViewById(R.id.sppiner_country);
-        spinnerDialog2 = (Spinner) findViewById(R.id.spiner_city);
 
-        categories = new ArrayList<>();
-        categoriesIds = new ArrayList<>();
 
-        countries = new ArrayList<>();
-        countryIds = new ArrayList<>();
-
-        cities = new ArrayList<>();
-        citiesIds = new ArrayList<>();
-
-        spinnerDialog1.setOnItemSelectedListener(this);
         ///////
 
         flipPrevious = (ImageButton) findViewById(R.id.flipp_previous_edit);
         filpNext = (ImageButton) findViewById(R.id.flipp_next_edit);
 
-
-
-
         filpNext.setOnClickListener(this);
         flipPrevious.setOnClickListener(this);
 
-        eventGalleryLoading(eventID);
+        reviewGalleryLoading(REVIEWID);
 
         viewFlipper.addView(view1);
         viewFlipper.addView(view2);
@@ -383,209 +303,20 @@ public class EditEventActivity extends FragmentActivity implements
         viewFlipper.addView(view4);
         viewFlipper.addView(view5);
 
-        loadeventCategories();
-        loadCountries();
-        eventInformationLoading(eventID, userId);
 
+        reviewInfoLoading (REVIEWID);
 
 
 
     }
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //Now lets connect to the API
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.v(this.getClass().getSimpleName(), "onPause()");
-
-        //Disconnect from API onPause()
-        if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-        }
-    }
-
-    protected void onStop() {
-        if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-        }
-        super.onStop();
-    }
-
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        // Add a default marker in saudi arabia  and move the camera
-        addressPoint = new LatLng(23.497085, 44.870015);
-        mMarker =  mMap.addMarker(new MarkerOptions().position(addressPoint).title("Default Marker in Saudi Arabia"));
-        mMarker.setDraggable(true);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(addressPoint));
-        UiSettings uiSettings = googleMap.getUiSettings();
-        uiSettings.setAllGesturesEnabled(true);
-        mMap.getUiSettings().setZoomControlsEnabled(true);
 
 
 
-        //Initialize Google Play Services
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
-                //Location Permission already granted
-                mMap.setMyLocationEnabled(true);
-                mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
-                    @Override
-                    public boolean onMyLocationButtonClick() {
-                        Toast.makeText(EditEventActivity.this, "Current Location Requested!",
-                                Toast.LENGTH_SHORT).show();
-                        buildGoogleApiClient();
-                        return false;
-                    }
-                });
-            } else {
-                //Request Location Permission
-                checkLocationPermission();
-            }
-        }
-        else {
-            mMap.setMyLocationEnabled(true);
-            mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
-                @Override
-                public boolean onMyLocationButtonClick() {
-                    Toast.makeText(EditEventActivity.this, "Current Location Requested", Toast.LENGTH_SHORT).show();
-                    buildGoogleApiClient();
-                    return false;
-                }
-            });}
-
-    }
-
-    protected synchronized void buildGoogleApiClient() {
-        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
-        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) || !manager.isProviderEnabled( LocationManager.NETWORK_PROVIDER ) ) {
-            displayPromptForEnablingGPS(this);
-        }
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-        mGoogleApiClient.connect();
-
-    }
-
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-    private void checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                new AlertDialog.Builder(this)
-                        .setTitle("Location Permission Needed")
-                        .setMessage("This app needs the Location permission, please accept to use location functionality")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //Prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(EditEventActivity.this,
-                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                        MY_PERMISSIONS_REQUEST_LOCATION );
-                            }
-                        })
-                        .create()
-                        .show();
 
 
-            } else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION );
-            }
-        }
-    }
 
 
-    public  void displayPromptForEnablingGPS(final Activity activity) {
 
-        String locationProviders = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
-        if (locationProviders == null || locationProviders.equals("")) {
-
-
-            final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
-            final String message = "Enable either GPS or any other location"
-                    + " service to find current location.  Click OK to go to"
-                    + " location services settings to let you do so.";
-            final Snackbar snackbar = Snackbar.make(parentLayout, message, Snackbar.LENGTH_INDEFINITE);
-            View snackbarView = snackbar.getView();
-            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-            textView.setMaxLines(6);  // show multiple line
-            snackbar.setAction("OK", new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    activity.startActivity(new Intent(action));
-                    snackbar.dismiss();
-                }
-            });
-            snackbar.show();
-        }}
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do.
-                    if (ContextCompat.checkSelfPermission(this,
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-
-
-                        mMap.setMyLocationEnabled(true);
-                        mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
-                            @Override
-                            public boolean onMyLocationButtonClick() {
-                                Toast.makeText(EditEventActivity.this, "Current Location Requested!",
-                                        Toast.LENGTH_SHORT).show();
-                                if (mGoogleApiClient == null) {
-                                buildGoogleApiClient();}
-                                return false;
-                            }
-                        }); }
-
-                } else {
-
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
-                }
-                return;
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
-    }
 
 
 
@@ -616,72 +347,7 @@ public class EditEventActivity extends FragmentActivity implements
 
         }
 
-        if (v == chnageplacedescription){
-            Snackbar snackbar = Snackbar.make(parentLayout, "Change Event  Description\nWrite Up to 300 char, Keep it Clear\nrequired field!!", Snackbar.LENGTH_LONG);
-            View snackbarView = snackbar.getView();
-            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-            textView.setMaxLines(5);
-            snackbar.show();
-        }
 
-        if (v == changeplacename){
-            Snackbar snackbar = Snackbar.make(parentLayout, "Change Event Name\nKeep it Descriptive and Clear for easy Search\nrequired field!!\npress save after completing all changes", Snackbar.LENGTH_LONG);
-            View snackbarView = snackbar.getView();
-            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-            textView.setMaxLines(5);
-            snackbar.show();
-        }
-        if (v == changeplacecategory){
-            Snackbar snackbar = Snackbar.make(parentLayout, "Change Event Category that matches your event services\nrequired!!", Snackbar.LENGTH_LONG);
-            View snackbarView = snackbar.getView();
-            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-            textView.setMaxLines(5);
-            snackbar.show();
-        }
-
-        if (v == changeplacecountry){
-            Snackbar snackbar = Snackbar.make(parentLayout, "Change Event Country\nThis is necessary for user's recommendations\nrequired!!", Snackbar.LENGTH_LONG);
-            View snackbarView = snackbar.getView();
-            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-            textView.setMaxLines(5);
-            snackbar.show();
-        }
-
-        if (v == changeplacecit){
-            Snackbar snackbar = Snackbar.make(parentLayout, "Change Event City\nThis is necessary for user's recommendations\nrequired!!", Snackbar.LENGTH_LONG);
-            View snackbarView = snackbar.getView();
-            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-            textView.setMaxLines(5);
-            snackbar.show();
-        }
-        if (v == changeplaceaddress){
-            Snackbar snackbar = Snackbar.make(parentLayout, "Change Event Address\nThis is optional for more clarifications\noptional field!!", Snackbar.LENGTH_LONG);
-            View snackbarView = snackbar.getView();
-            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-            textView.setMaxLines(5);
-            snackbar.show();
-        }
-        if (v == changeplacelocation){
-            final Snackbar snackbar = Snackbar.make(parentLayout, "Choose drag and drop of marker\nor press my location button on the map to display your location on the map and press save when done\nRequired!!", Snackbar.LENGTH_INDEFINITE);
-            View snackbarView = snackbar.getView();
-            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-            textView.setMaxLines(6);  // show multiple line
-            snackbar.setAction("Dismiss", new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    snackbar.dismiss();
-                }
-            });
-            snackbar.show();
-        }
-
-        if (v == changedate){
-            Snackbar snackbar = Snackbar.make(parentLayout, "Change Event Date, Time, and days\nselect from picker the corresponding date you want to change to\n press save changes when done!", Snackbar.LENGTH_LONG);
-            View snackbarView = snackbar.getView();
-            TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-            textView.setMaxLines(6);
-            snackbar.show();
-        }
 
         if (v == changeImageButton1){
 
@@ -719,8 +385,10 @@ public class EditEventActivity extends FragmentActivity implements
                     }
                     else
                     {
-                        uploadPhoto(1, adddescription );
-
+                        if(review_type.equals("Place"))
+                            uploadPhotoPlace(1, adddescription);
+                        else if (review_type.equals("Event"))
+                            uploadPhotoEvent(1, adddescription);
                     }
                 }
             });
@@ -772,7 +440,10 @@ public class EditEventActivity extends FragmentActivity implements
                     }
                     else
                     {
-                        uploadPhoto(2, adddescription );
+                        if(review_type.equals("Place"))
+                            uploadPhotoPlace(2, adddescription);
+                        else if (review_type.equals("Event"))
+                            uploadPhotoEvent(2, adddescription);
 
                     }
                 }
@@ -826,7 +497,10 @@ public class EditEventActivity extends FragmentActivity implements
                     }
                     else
                     {
-                        uploadPhoto(3, adddescription );
+                        if(review_type.equals("Place"))
+                            uploadPhotoPlace(3, adddescription);
+                        else if (review_type.equals("Event"))
+                            uploadPhotoEvent(3, adddescription);
 
                     }
                 }
@@ -877,7 +551,10 @@ public class EditEventActivity extends FragmentActivity implements
                     }
                     else
                     {
-                        uploadPhoto(4, adddescription );
+                        if(review_type.equals("Place"))
+                            uploadPhotoPlace(4, adddescription);
+                        else if (review_type.equals("Event"))
+                            uploadPhotoEvent(4, adddescription);
 
                     }
                 }
@@ -931,7 +608,10 @@ public class EditEventActivity extends FragmentActivity implements
                     }
                     else
                     {
-                        uploadPhoto(5, adddescription );
+                        if(review_type.equals("Place"))
+                            uploadPhotoPlace(5, adddescription);
+                        else if (review_type.equals("Event"))
+                            uploadPhotoEvent(5, adddescription);
 
                     }
                 }
@@ -948,175 +628,53 @@ public class EditEventActivity extends FragmentActivity implements
                     .setEnabled(false);
         }
 
-        if (v == startDate){
-            myCalendar = Calendar.getInstance();
-            //To show current date in the datepicker
-            int mYear = myCalendar.get(Calendar.YEAR);
-            int mMonth = myCalendar.get(Calendar.MONTH);
-            int mDay = myCalendar.get(Calendar.DAY_OF_MONTH);
 
-            DatePickerDialog mDatePicker;
-            mDatePicker = new DatePickerDialog(EditEventActivity.this, new DatePickerDialog.OnDateSetListener() {
-                public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
-                    /*      Your code   to get date and time    */
-                    myCalendar.set(Calendar.YEAR, selectedyear);
-                    myCalendar.set(Calendar.MONTH, selectedmonth);
-                    myCalendar.set(Calendar.DAY_OF_MONTH, selectedday);
+        if (v == changeReviewDetails){
+            v.startAnimation(buttonClick);
 
-                    String myFormat = "yyyy-MM-dd"; //In which you need put here
-                    SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                    startDate.setText(sdf.format(myCalendar.getTime()));
-                }
-            }, mYear, mMonth, mDay);
-            mDatePicker.setTitle("Select Start Date");
-            mDatePicker.show();
-
-        }
-        if (v == endDate){
-
-            myCalendar = Calendar.getInstance();
-
-            //To show current date in the datepicker
-            int mYear = myCalendar.get(Calendar.YEAR);
-            int mMonth = myCalendar.get(Calendar.MONTH);
-            int mDay = myCalendar.get(Calendar.DAY_OF_MONTH);
-
-            DatePickerDialog mDatePicker;
-            mDatePicker = new DatePickerDialog(EditEventActivity.this, new DatePickerDialog.OnDateSetListener() {
-                public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
-                    /*      Your code   to get date and time    */
-                    myCalendar.set(Calendar.YEAR, selectedyear);
-                    myCalendar.set(Calendar.MONTH, selectedmonth);
-                    myCalendar.set(Calendar.DAY_OF_MONTH, selectedday);
-
-                    String myFormat = "yyyy-MM-dd"; //In which you need put here
-                    SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                    endDate.setText(sdf.format(myCalendar.getTime()));
-                }
-            }, mYear, mMonth, mDay);
-            mDatePicker.setTitle("Select End Date");
-            mDatePicker.show();
-
-        }
-        if (v == startTime){
-            myCalendar = Calendar.getInstance();
-            int hour = myCalendar.get(Calendar.HOUR_OF_DAY);
-            int minute = myCalendar.get(Calendar.MINUTE);
-            TimePickerDialog mTimePicker;
-            mTimePicker = new TimePickerDialog(EditEventActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                    startTime.setText( selectedHour + ":" + selectedMinute);
-                }
-            }, hour, minute, true);//Yes 24 hour time
-            mTimePicker.setTitle("Select Start Time");
-            mTimePicker.show();
-        }
-
-        if (v == endTime){
-            myCalendar = Calendar.getInstance();
-            int hour = myCalendar.get(Calendar.HOUR_OF_DAY);
-            int minute = myCalendar.get(Calendar.MINUTE);
-            TimePickerDialog mTimePicker;
-            mTimePicker = new TimePickerDialog(EditEventActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                    endTime.setText( selectedHour + ":" + selectedMinute);
-                }
-            }, hour, minute, true);//Yes 24 hour time
-            mTimePicker.setTitle("Select End Time");
-            mTimePicker.show();
-        }
-
-        if (v == days)
-        {
-              AlertDialog dialog;
-             //following code will be in your activity.java file
-              final CharSequence[] items = {" Saturday "," Sunday "," Monday "," Tuesday ", " Thursday ", " Friday "};
-              // arraylist to keep the selected items
-              final ArrayList<Integer> selectedStrings = new ArrayList<Integer>();
-
-              AlertDialog.Builder builder = new AlertDialog.Builder(this);
-              builder.setTitle("Select The Days");
-              builder.setMultiChoiceItems(items, null,
-                    new DialogInterface.OnMultiChoiceClickListener() {
-                        // indexSelected contains the index of item (of which checkbox checked)
-                        @Override
-                        public void onClick(DialogInterface dialog, int indexSelected,
-                                            boolean isChecked) {
-                            if (isChecked) {
-                                if(!selectedStrings.contains(indexSelected))
-                                selectedStrings.add(indexSelected);
-                                else
-                                 selectedStrings.remove(indexSelected);
-                            }
+            String reviewText2 = reviewText.getText().toString().trim();
+            Float rating = ratingbar1.getRating();
+            if(reviewText2.length()<=0){
+                reviewText.requestFocus();
+                reviewText.setError("Required field, Please Enter Your Review!");
+                reviewText.addTextChangedListener(new TextWatcher() {
+                    public void afterTextChanged(Editable s) {
+                        if (reviewText.getText().toString().length()<= 0) {
+                            reviewText.setError("Required field, Please Enter Your Review!");
+                        } else {
+                            reviewText.setError(null);
                         }
-                    })
-                    // Set the action buttons
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int id) {
-                            String item = "";
-                            for (int i = 0; i<selectedStrings.size(); i++)
-                            {    item = item + items[selectedStrings.get(i)];
-                            if ( i!= selectedStrings.size()-1)
-                                item = item + ", ";
-                            }
-                            days.setText(item);
+                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+                    public void onTextChanged(CharSequence s, int start, int before, int count){
+                        reviewText.setError(null);
+                    }
+                });
+            }
+            else if(rating == 0.0)
+            {
+                ratingbar1.requestFocus();
+                showToast("Please Set a Rating!");
+            }
+            else
+            {
 
-                        }
-                    })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int id) {
-                            //  Your code when user clicked on Cancel
-                            dialog.dismiss();
+                editReview();
 
-                        }
-                    });
-
-            dialog = builder.create();//AlertDialog dialog; create like this outside onClick
-            dialog.show();
+            }
 
         }
 
-        if (v == changePlaceDetails){
-            String placeNamechanged = placeName.getText().toString().trim();
-            String placeDescriptionchanged = placeDescription.getText().toString().trim();
-            int chosenCategory = categoriesIds.get(spinnerDialog.getSelectedItemPosition());
-            int chosenCountry = countryIds.get(spinnerDialog1.getSelectedItemPosition());
-            int chosenCity = citiesIds.get(spinnerDialog2.getSelectedItemPosition());
 
-            Boolean con1 = placeNamechanged.equals(placeName1);
-            Boolean con2 = placeDescriptionchanged.equals(placeDescription1);
-            Boolean con3 = categoryID == chosenCategory;
-            Boolean con4 = countryID == chosenCountry;
-            Boolean con5 = cityID == chosenCity;
-
-       /* if ( con1 && con2 && con3 && con4 && con5 )
-        Toast.makeText(getApplication(), "No Changes Detected!!" + categoriesIds.get(spinnerDialog.getSelectedItemPosition()), Toast.LENGTH_LONG).show();
-
-        else
-        Toast.makeText(getApplication(), "saving "+ con1+ " "+ con2+ " "+con3+ " "+con4+ " "+con5 + " " +placeNamechanged + " "+ placeDescriptionchanged + " " + chosenCategory + " " + chosenCountry+ " " + chosenCity, Toast.LENGTH_LONG).show();
-*/
-
-            editeventDetails(eventID);
-        }
-
-        if (v == changeLocationDetails){
-            editEventAddress();
-
-        }
-        if (v == changeeventdate){
-            editEventDate();
-
-        }
 
 
     }
     /////////////////////////
 
-
+    private void showToast(String meg){
+        final String message = meg;
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -1128,86 +686,8 @@ public class EditEventActivity extends FragmentActivity implements
 
 
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        int countryId = countryIds.get(position);
-        loadCities(countryId);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-        mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(1000);
-        mLocationRequest.setFastestInterval(1000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-        }
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-          /*
-             * Google Play services can resolve some errors it detects.
-             * If the error has a resolution, try sending an Intent to
-             * start a Google Play services activity that can resolve
-             * error.
-             */
-        if (connectionResult.hasResolution()) {
-            try {
-                // Start an Activity that tries to resolve the error
-                connectionResult.startResolutionForResult(this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
-                    /*
-                     * Thrown if Google Play services canceled the original
-                     * PendingIntent
-                     */
-            } catch (IntentSender.SendIntentException e) {
-                // Log the error
-                e.printStackTrace();
-            }
-        } else {
-                /*
-                 * If no resolution is available, display a dialog to the
-                 * user with the error.
-                 */
-            Log.e("Error", "Location services connection failed with code " + connectionResult.getErrorCode());
-        }
 
 
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        mLastLocation = location;
-        if (mMarker != null) {
-            mMarker.remove();
-        }
-
-        //Place current location marker
-        currentLatitude = location.getLatitude();
-        currentLongitude = location.getLongitude();
-        LatLng latLng = new LatLng(currentLatitude, currentLongitude);
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title("Your Current Position");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-        mMarker = mMap.addMarker(markerOptions);
-        //move map camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,11));
-    }
 
     private Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -1269,8 +749,6 @@ public class EditEventActivity extends FragmentActivity implements
     }
 
 
-
-
     public String getStringImage(Bitmap bmp){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -1281,11 +759,15 @@ public class EditEventActivity extends FragmentActivity implements
 
 
 
-    public void eventGalleryLoading ( int eventId){
-            final int eventID = eventId;
+
+
+
+
+    public void reviewGalleryLoading ( int reviewId){
+            final int reviewID = reviewId;
 
             StringRequest send = new StringRequest(Request.Method.GET,
-                    Constants.URL_EVENT_GALLERY + eventID,
+                    Constants.URL_GET_REVIEW_Gallery + reviewID,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -1293,9 +775,10 @@ public class EditEventActivity extends FragmentActivity implements
                                 JSONObject obj = new JSONObject(response);
                                 if (!obj.getBoolean("error")) {
                                     loading.setVisibility(View.GONE);
-                                    JSONArray arr = obj.getJSONArray("event_gallery");
+                                    JSONArray arr = obj.getJSONArray("review_gallery");
                                     imagesNum = arr.length();
                                     for (int i = 0; i < arr.length(); i++) {
+
 
                                         if (imagesNum == 1) {
                                             JSONObject url = arr.getJSONObject(0);
@@ -1321,10 +804,6 @@ public class EditEventActivity extends FragmentActivity implements
                                             changeButton3 = false;
                                             changeButton4 = false;
                                             changeButton5 = false;
-
-
-
-
 
                                         }
                                         if (imagesNum == 2) {
@@ -1536,16 +1015,27 @@ public class EditEventActivity extends FragmentActivity implements
                                             changeButton3 = true;
                                             changeButton4 = true;
                                             changeButton5 = true;
-
-
                                         }
                                     }
 
-
-
-
                                 } else {
-                                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                                    if (imagesNum == 0) {
+                                        loading.setVisibility(View.GONE);
+                                        changeImageButton1.setText("Add Images");
+                                        changeImageButton2.setText("Add Images");
+                                        changeImageButton3.setText("Add Images");
+                                        changeImageButton4.setText("Add Images");
+                                        changeImageButton5.setText("Add Images");
+
+
+                                        changeButton1 = false;
+                                        changeButton2 = false;
+                                        changeButton3 = false;
+                                        changeButton4 = false;
+                                        changeButton5 = false;
+
+                                    }
+                                    //Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -1573,12 +1063,11 @@ public class EditEventActivity extends FragmentActivity implements
 
 
 
-    public void eventInformationLoading(int eventId, int userId) {
-        final int eventID = eventId;
-        final int userID = userId;
+    public void reviewInfoLoading(int reviewId){
+        final int reviewID = reviewId;
 
-        StringRequest send = new StringRequest(Request.Method.POST,
-                Constants.URL_EVENT_INFO,
+        StringRequest send = new StringRequest(Request.Method.GET,
+                Constants.URL_GET_REVIEW_BY_ID + reviewID,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -1586,90 +1075,19 @@ public class EditEventActivity extends FragmentActivity implements
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
 
-                                obj.getInt("event_id");
+                                obj.getInt("review_id");
+                                reviewText.setText(obj.getString("review_text"));
 
-                                locationID = obj.getInt("location_id");
-                                dateID = obj.getInt("event_date_id");
-
-                                placeName1 = obj.getString("event_name");
-                                placeName.setText(obj.getString("event_name"));
-                                placeDescription1 = obj.getString("event_description");
-                                placeDescription.setText(obj.getString("event_description"));
-                                startDate.setText(obj.getString("strat_date"));
-                                endDate.setText(obj.getString("end_date"));
-                                startTime.setText(obj.getString("start_time"));
-                                endTime.setText(obj.getString("end_time"));
-                                days.setText(obj.getString("days"));
-
-                                categoryID = obj.getInt("event_category_id");
-
-
-                                switch (categoryID) {
-                                    case 1:spinnerDialog.setSelection(0);break;
-                                    case 2:spinnerDialog.setSelection(1);break;
-                                    case 3:spinnerDialog.setSelection(2);break;
-                                    case 4:spinnerDialog.setSelection(3);break;
-                                    case 5:spinnerDialog.setSelection(4);break;
-                                    case 6:spinnerDialog.setSelection(5);break;
-                                    case 7:spinnerDialog.setSelection(6);break;
-                                    case 8:spinnerDialog.setSelection(7);break;
-                                    case 9:spinnerDialog.setSelection(8);break;
-                                    case 10:spinnerDialog.setSelection(9);break;
-                                    case 11:spinnerDialog.setSelection(10);break;
-                                    case 12:spinnerDialog.setSelection(11);break;
-                                    default:break;
-                                }
-                                countryID = obj.getInt("country_id");
-
-                                switch (countryID) {
-                                    case 1:spinnerDialog1.setSelection(0);break;
-                                    case 2:spinnerDialog1.setSelection(1);break;
-                                    case 3:spinnerDialog1.setSelection(2);break;
-                                    case 4:spinnerDialog1.setSelection(3);break;
-                                    case 5:spinnerDialog1.setSelection(4);break;
-                                    case 6:spinnerDialog1.setSelection(5);break;
-                                    case 7:spinnerDialog1.setSelection(6);break;
-                                    case 8:spinnerDialog1.setSelection(7);break;
-                                    case 9:spinnerDialog1.setSelection(8);break;
-                                    case 10:spinnerDialog1.setSelection(9);break;
-                                    case 11:spinnerDialog1.setSelection(10);break;
-                                    case 12:spinnerDialog1.setSelection(11);break;
-                                    default:break;
-                                }
-                                // todo needs fixing
-                                cityID = obj.getInt("city_id");
-
-
-                                locationAdress.setText(obj.getString("address"));
-                                currentLatitude = obj.getDouble("latitude");
-                                currentLongitude = obj.getDouble("longitude");
-                                mMap.clear();
-                                addressPoint = new LatLng(currentLatitude, currentLongitude);
-                                mMarker = mMap.addMarker(new MarkerOptions().position(addressPoint).title(obj.getString("address")));
-                                mMarker.setDraggable(true);
-                                mMap.moveCamera(CameraUpdateFactory.newLatLng(addressPoint));
-                                mMap.getUiSettings().setZoomControlsEnabled(true);
-                                mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
-                                    @Override
-                                    public void onMarkerDragStart(Marker marker) {
-                                        Toast.makeText(getApplicationContext(),"Marker Drag Start..."+marker.getPosition().latitude+"..."+marker.getPosition().longitude,
-                                                Toast.LENGTH_LONG).show();
-                                    }
-
-                                    @Override
-                                    public void onMarkerDrag(Marker marker) {
-
-                                    }
-
-                                    @Override
-                                    public void onMarkerDragEnd(Marker marker) {
-                                        mMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
-                                        currentLatitude = marker.getPosition().latitude;
-                                        currentLongitude = marker.getPosition().longitude;
-                                        Toast.makeText(getApplicationContext(),"Marker Drop at \n" +"Latitude: " +currentLatitude+ "\nLongitude: " +currentLongitude, Toast.LENGTH_LONG).show();
-                                    }
-                                });
-
+                                Double rate = obj.getDouble("rate_value");
+                                String rate2 = Double.toString(rate);
+                                Float rate3 = Float.parseFloat(rate2);
+                                ratingbar1.setRating(rate3);
+                                review_type = obj.getString("review_type");
+                                if(review_type.equals("Place"))
+                                    placeID=obj.getInt("place_id");
+                                else if (review_type.equals("Event"))
+                                    eventID=obj.getInt("event_id");
+                                userId = obj.getInt("user_id");
 
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
@@ -1681,143 +1099,27 @@ public class EditEventActivity extends FragmentActivity implements
                     }
                 }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        error.getMessage(),
-                        Toast.LENGTH_LONG
-                ).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("event_id", eventID + "");
-                params.put("user_id", userID + "");
-                return params;
-            }
-
-        };
-
+            public void onErrorResponse(VolleyError error) {Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();}}) {};
         MySingleton.getInstance(this).addToRequestQueue(send);
 
     }
 
-    // this is for loading all countries
-    private void loadCountries() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_COUNTRIES, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject obj = new JSONObject(response);
-
-                    JSONArray arr = obj.getJSONArray("countries");
-
-                    for (int i = 0; i < arr.length(); i++) {
-                        countries.add(arr.getJSONObject(i).getString("country_name"));
-
-                        countryIds.add(arr.getJSONObject(i).getInt("id"));
-                    }
-
-                    ArrayAdapter adapter = new ArrayAdapter<String>(EditEventActivity.this, android.R.layout.simple_spinner_dropdown_item, countries);
-                    spinnerDialog1.setAdapter(adapter);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
-    }
-
-    // THIS IS FOR loading cities for a particular country
-    private void loadCities(int countryId) {
-        cities.clear();
-        citiesIds.clear();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_CITIES + countryId, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject obj = new JSONObject(response);
-
-                    JSONArray arr = obj.getJSONArray("cities");
-
-                    for (int i = 0; i < arr.length(); i++) {
-                        cities.add(arr.getJSONObject(i).getString("city_name"));
-
-                        citiesIds.add(arr.getJSONObject(i).getInt("id"));
-                    }
-                    ArrayAdapter adapter = new ArrayAdapter<String>(EditEventActivity.this, android.R.layout.simple_spinner_dropdown_item, cities);
-                    spinnerDialog2.setAdapter(adapter);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
-    }
-
-    // this is for loading all countries
-    private void loadeventCategories() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_Event_CATEGORIES, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject obj = new JSONObject(response);
-
-                    JSONArray arr = obj.getJSONArray("categories");
-
-                    for (int i = 0; i < arr.length(); i++) {
-                        categories.add(arr.getJSONObject(i).getString("category_type"));
-
-                        categoriesIds.add(arr.getJSONObject(i).getInt("id"));
-                    }
-
-                    ArrayAdapter adapter = new ArrayAdapter<String>(EditEventActivity.this, android.R.layout.simple_spinner_dropdown_item, categories);
-                    spinnerDialog.setAdapter(adapter);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
-    }
 
 
 
-    public void editeventDetails(int eventId) {
-        final int eventID = eventId;
-        final String placeNamechanged = placeName.getText().toString().trim();
-        final String placeDescriptionchanged = placeDescription.getText().toString().trim();
-        final int chosenCategory = categoriesIds.get(spinnerDialog.getSelectedItemPosition());
-        final int chosenCountry = countryIds.get(spinnerDialog1.getSelectedItemPosition());
-        final int chosenCity = citiesIds.get(spinnerDialog2.getSelectedItemPosition());
 
-        progressDialog.setMessage("Updating Event Details...");
+
+    public void editReview() {
+        final int reviewId= REVIEWID;
+        final String reviewText2 = reviewText.getText().toString().trim();
+        final Float reviewRating2 = ratingbar1.getRating();
+
+
+        progressDialog.setMessage("Updating Review Information...");
         progressDialog.show();
 
         StringRequest send = new StringRequest(Request.Method.PUT,
-                Constants.URL_EDIT_EVENT_DETAILS +eventID ,
+                Constants.URL_EDIT_REVIEW +reviewId ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -1848,64 +1150,8 @@ public class EditEventActivity extends FragmentActivity implements
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("name", placeNamechanged);
-                params.put("description", placeDescriptionchanged);
-                params.put("category_id", chosenCategory+"");
-                params.put("country_id", chosenCountry+"");
-                params.put("city_id", chosenCity+"");
-                return params;
-            }
-
-        };
-
-        MySingleton.getInstance(this).addToRequestQueue(send);
-
-    }
-
-    public void editEventAddress() {
-        final String placeAddressChanged = locationAdress.getText().toString().trim();
-        final Double latitude = currentLatitude;
-        final Double longitude  = currentLongitude;
-
-
-        progressDialog.setMessage("Updating Event Location...");
-        progressDialog.show();
-
-        StringRequest send = new StringRequest(Request.Method.PUT,
-                Constants.URL_EDIT_PLACE_LOCATION +locationID ,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        progressDialog.dismiss();
-
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            if (!obj.getBoolean("error")) {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        error.getMessage(),
-                        Toast.LENGTH_LONG
-                ).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("address", placeAddressChanged);
-                params.put("latitude", latitude+"");
-                params.put("longitude", longitude+"");
+                params.put("review_text", reviewText2);
+                params.put("rate_value", reviewRating2+"");
                 return params;
             }
 
@@ -1917,73 +1163,18 @@ public class EditEventActivity extends FragmentActivity implements
 
 
 
-    public void editEventDate() {
-        final String startDate2 = startDate.getText().toString().trim();
-        final String endDate2 = endDate.getText().toString().trim();
-        final String startTime2  = startTime.getText().toString().trim();
-        final String endTime2  = endTime.getText().toString().trim();
-        final String days2 = days.getText().toString().trim();
 
 
 
-        progressDialog.setMessage("Updating Event Date...");
-        progressDialog.show();
 
-        StringRequest send = new StringRequest(Request.Method.PUT,
-                Constants.URL_EDIT_EVENT_DATE +dateID ,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        progressDialog.dismiss();
-
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            if (!obj.getBoolean("error")) {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        error.getMessage(),
-                        Toast.LENGTH_LONG
-                ).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("start_date", startDate2);
-                params.put("end_date", endDate2);
-                params.put("start_time", startTime2);
-                params.put("end_time", endTime2);
-                params.put("days", days2);
-
-                return params;
-            }
-
-        };
-
-        MySingleton.getInstance(this).addToRequestQueue(send);
-
-    }
-
-
-
-    public void uploadPhoto(final int imageId, final TextView  imagedescription) {
+    public void uploadPhotoEvent(final int imageId, final TextView  imagedescription) {
         final String imageDecription = imagedescription.getText().toString().trim();
+        final int eventid = eventID;
+        final int reviewid = REVIEWID;
         final ProgressDialog loading = ProgressDialog.show(this, "Uploading...", "Please wait...", false, false);
 
         StringRequest send = new StringRequest(Request.Method.POST,
-                Constants.URL_UPLOAD_PHOTO_Event,
+                Constants.URL_UPLOAD_PHOTO_REVIEW_EVENT,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -2019,8 +1210,8 @@ public class EditEventActivity extends FragmentActivity implements
                                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                                             .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
                                             .into(imageView3);
-                                    imageID3 =obj.getInt("inserted_photo_id");
                                     changeImageButton3.setText("Change third image");
+                                    imageID3 =obj.getInt("inserted_photo_id");
                                     changeButton3 = true;}
                                 if(imageId == 4)
                                 {imagedescription4.setText(obj.getString("inserted_photo_description"));
@@ -2028,8 +1219,8 @@ public class EditEventActivity extends FragmentActivity implements
                                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                                             .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
                                             .into(imageView4);
-                                    imageID4 =obj.getInt("inserted_photo_id");
                                     changeImageButton4.setText("Change fourth image");
+                                    imageID4 =obj.getInt("inserted_photo_id");
                                     changeButton4 = true;
                                 }
                                 if(imageId == 5)
@@ -2038,11 +1229,12 @@ public class EditEventActivity extends FragmentActivity implements
                                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                                             .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
                                             .into(imageView5);
-                                    imageID5 =obj.getInt("inserted_photo_id");
                                     changeImageButton5.setText("Change fifth image");
+                                    imageID5 =obj.getInt("inserted_photo_id");
                                     changeButton5 = true;
                                 }
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                                showToast(obj.getString("message"));
+
 
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
@@ -2068,7 +1260,8 @@ public class EditEventActivity extends FragmentActivity implements
             protected Map<String, String> getParams() throws AuthFailureError {
                 String image = getStringImage(bitmap);
                 Map<String, String> params = new HashMap<>();
-                params.put("event_id", eventID+"");
+                params.put("review_id", reviewid+"");
+                params.put("event_id", eventid+"");
                 params.put("image_description", imageDecription);
                 params.put("image", image);
                 return params;
@@ -2078,6 +1271,115 @@ public class EditEventActivity extends FragmentActivity implements
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(send);
 
     }
+
+
+    public void uploadPhotoPlace(final int imageId, final TextView  imagedescription) {
+        final String imageDecription = imagedescription.getText().toString().trim();
+        final int placeId = placeID;
+        final int reviewid = REVIEWID;
+
+        final ProgressDialog loading = ProgressDialog.show(this, "Uploading...", "Please wait...", false, false);
+
+        StringRequest send = new StringRequest(Request.Method.POST,
+                Constants.URL_UPLOAD_PHOTO_REVIEW_PLACE,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        loading.dismiss();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+
+
+                                if(imageId == 1)
+                                {imagedescription1.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView1);
+                                    imageID1 =obj.getInt("inserted_photo_id");
+                                    changeImageButton1.setText("Change first image");
+                                    changeButton1 = true;
+                                }
+                                if(imageId == 2)
+                                {imagedescription2.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView2);
+                                    imageID2 =obj.getInt("inserted_photo_id");
+                                    changeImageButton2.setText("Change second image");
+                                    changeButton2 = true;
+                                }
+                                if(imageId == 3)
+                                {imagedescription3.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView3);
+                                    changeImageButton3.setText("Change third image");
+                                    imageID3 =obj.getInt("inserted_photo_id");
+                                    changeButton3 = true;}
+                                if(imageId == 4)
+                                {imagedescription4.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView4);
+                                    changeImageButton4.setText("Change fourth image");
+                                    imageID4 =obj.getInt("inserted_photo_id");
+                                    changeButton4 = true;
+                                }
+                                if(imageId == 5)
+                                {imagedescription5.setText(obj.getString("inserted_photo_description"));
+                                    Glide.with(getApplicationContext()).load(obj.getString("inserted_photo_url"))
+                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .signature(new StringSignature(String.valueOf(obj.getString("inserted_photo_url_timeStamp"))))
+                                            .into(imageView5);
+                                    changeImageButton5.setText("Change fifth image");
+                                    imageID5 =obj.getInt("inserted_photo_id");
+                                    changeButton5 = true;
+                                }
+                                showToast(obj.getString("message"));
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            loading.dismiss();
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(
+                        getApplicationContext(),
+                        error.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                String image = getStringImage(bitmap);
+                Map<String, String> params = new HashMap<>();
+                params.put("review_id", reviewid+"");
+                params.put("place_id", placeId+"");
+                params.put("image_description", imageDecription);
+                params.put("image", image);
+                return params;
+            }
+        };
+
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(send);
+
+    }
+
+
+
 
     public void updatePhoto(final int imageId, final TextView  imagedescription) {
         final String imageDecription = imagedescription.getText().toString().trim();

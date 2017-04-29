@@ -136,6 +136,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
     private ImageButton filpNextEvent, flipPreviousEvent;
     private ImageButton filpNextEventimage, flipPreviousEventimage;
 
+    private String reviewMessage;
 
     ////
     private List<ExpandReviewDetailsListItem> listItems;
@@ -316,9 +317,18 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         }
         if (v == imageViewReveiw || v == addReview) {
             v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation));
-            //// TODO: 3/17/2017 aslo store review on database
-            startActivity(new Intent(this, AddReview.class));
-
+           // startActivity(new Intent(this, AddReview.class));
+            if (reviewMessage.equals(Constants.STRING_Review_EXSITS))
+                showToast("Sorry You already Have Wrote a Review on This Event!");
+            else
+            {
+                finish();
+                overridePendingTransition(0, 0);
+                Intent myIntent3 = new Intent(this, AddReview.class);
+                myIntent3.putExtra("EVENT_ID", eventID);
+                myIntent3.putExtra("REVIEW_TYPE", "EVENT");
+                startActivity(myIntent3);
+                overridePendingTransition(0, 0);}
         }
 
         if (v == filpNextEvent) {
@@ -411,7 +421,10 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         super.onStop();
     }
 
-
+    private void showToast(String meg){
+        final String message = meg;
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -460,6 +473,9 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
                                 String reviewsPhotosNumber2 = Integer.toString(reviewsPhotosNumber);
                                 eventPhotosNumber.setText(reviewsPhotosNumber2);
 
+                                reviewMessage = obj.getString("review_message");
+
+
                                 int likesNum = obj.getInt("event_likes_number");
                                 String likesNum1 = Integer.toString(likesNum);
                                 eventLikesNumber.setText(likesNum1);
@@ -485,7 +501,8 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
                                 Double rate = obj.getDouble("rate_avrg");
                                 String rate2 = Double.toString(rate);
                                 Float rate3 = Float.parseFloat(rate2);
-                                eventRatingStat.setText(rate2);
+                                String result = String.format("%.1f", rate);
+                                eventRatingStat.setText(result);
                                 eventRating.setRating(rate3);
                                 eventDescription.setText(obj.getString("event_description"));
                                 ownerName.setText(obj.getString("owner_name"));

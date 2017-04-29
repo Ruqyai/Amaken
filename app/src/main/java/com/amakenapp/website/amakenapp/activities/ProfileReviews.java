@@ -147,9 +147,9 @@ public class ProfileReviews extends AppCompatActivity {
                                     else if (reviewType.equalsIgnoreCase("Event"))
                                     {
                                         listItem.setEventOrPlaceId(reviewDetails.getInt("event_id"));
-                                        listItem.setPlaceoreventName(reviewDetails.getString("event_photo"));
-                                        listItem.setPlaceoreventCategory(reviewDetails.getString("event_name"));
-                                        listItem.setPlaceoreventPic(reviewDetails.getString("event_category"));
+                                        listItem.setPlaceoreventName(reviewDetails.getString("event_name"));
+                                        listItem.setPlaceoreventCategory(reviewDetails.getString("event_category"));
+                                        listItem.setPlaceoreventPic(reviewDetails.getString("event_photo"));
                                     }
 
 
@@ -177,5 +177,6 @@ public class ProfileReviews extends AppCompatActivity {
         }) ;
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(send);
     }
+
 
 }

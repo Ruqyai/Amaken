@@ -51,7 +51,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:drawableTop="@drawable/ic_not_reviews"
             android:gravity="center"
-            android:text="There are no places added to your city, Yet!" />
+            android:text="No places to suit your interests have been added to your city, Yet!" />
         <TextView
             android:id="@+id/add_event_events"
             android:layout_width="wrap_content"

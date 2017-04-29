@@ -26,6 +26,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -120,6 +122,8 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
     private static int userId;
     String username,userWeb, userPhone, userCountyName, userCityName,userProfilePicUrl, userProfilePicIdTimeStamp;
     private  static  int  userProfilePicId;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+
 
 
     @Nullable
@@ -180,6 +184,7 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
 
     }
 
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -190,7 +195,7 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
     public void onClick(View v) {
 
         if (v == businessProfilePic) {
-
+            v.startAnimation(buttonClick);
 
             alertDialog = new AlertDialog.Builder(getActivity());
             alertDialog.setTitle("Change Profile Picture");
@@ -243,6 +248,7 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
 
 
         if (v == changeProfilePicTxt) {
+            v.startAnimation(buttonClick);
 
             alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
             alertDialog.setTitle("Change Your Details");
@@ -317,22 +323,28 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
 
 
         if (v == businessPlacesCard) {
+            v.startAnimation(buttonClick);
             startActivity(new Intent(getActivity(), BusinessProfilePlaces.class));
         }
         if (v == businessEventsCard) {
+            v.startAnimation(buttonClick);
             startActivity(new Intent(getActivity(), BusinessProfileEvents.class));
         }
         if (v == businessBookmarksCard) {
+            v.startAnimation(buttonClick);
             startActivity(new Intent(getActivity(), ProfileBookmarks.class));
         }
         if (v == businessLikesCard) {
+            v.startAnimation(buttonClick);
             startActivity(new Intent(getActivity(), ProfileLikes.class));
         }
         if (v == businessReviewsCard) {
+            v.startAnimation(buttonClick);
             startActivity(new Intent(getActivity(), ProfileReviews.class));
         }
 
         if (v == businessCategoriesCard) {
+            v.startAnimation(buttonClick);
             startActivity(new Intent(getActivity(), ProfileCategories.class));
 
         }

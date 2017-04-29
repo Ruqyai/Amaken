@@ -21,6 +21,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -96,6 +97,8 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
     private static int userId;
     String username,userWeb, userPhone, userCountyName, userCityName,userProfilePicUrl, userProfilePicIdTimeStamp;
     private  static  int  userProfilePicId;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+
 
 
 
@@ -160,6 +163,7 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
     public void onClick(View v) {
 
         if (v == userProfilePic){
+            v.startAnimation(buttonClick);
 
             alertDialog = new AlertDialog.Builder(getActivity());
             alertDialog.setTitle("Change Profile Picture");
@@ -207,6 +211,8 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
             ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
         }
         if (v == changeProfilePicTxt){
+            v.startAnimation(buttonClick);
+
             alertDialog = new AlertDialog.Builder(v.getRootView().getContext());
             alertDialog.setTitle("Change Your Details");
             final View view1 = getActivity().getLayoutInflater().inflate(R.layout.change_username_dialog2, null);
@@ -271,16 +277,19 @@ public class UserProfileActivity extends Fragment implements View.OnClickListene
         }
 
         if (v == userBookmarksCard){
+            v.startAnimation(buttonClick);
             startActivity(new Intent(getActivity(), ProfileBookmarks.class));
         }
         if (v == userLikesCard){
             startActivity(new Intent(getActivity(), ProfileLikes.class));
         }
         if (v == userReviewsCard){
+            v.startAnimation(buttonClick);
             startActivity(new Intent(getActivity(), ProfileReviews.class));
         }
 
         if (v == userCategoriesCard){
+            v.startAnimation(buttonClick);
             startActivity(new Intent(getActivity(), ProfileCategories.class));
         }
     }

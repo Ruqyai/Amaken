@@ -124,6 +124,8 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
     private ImageView imageViewHomeBusinessPlaceImage,update;
     private ImageButton filpNext, flipPrevious;
 
+    private String reviewMessage;
+
     ////
     private List<ExpandReviewDetailsListItem> listItems;
     private AdapterViewFlipper reviewsFlipper;
@@ -285,10 +287,20 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
             v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation));
             placeStoreBookmark(placeID, userId);
         }
-        if (v == imageViewReveiw  || v == addReview){
+        if (v == imageViewReveiw  || v == addReview) {
             v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation));
-            //// TODO: 3/17/2017 aslo store review on database
-            startActivity(new Intent(this, AddReview.class));
+            //startActivity(new Intent(this, AddReview.class));
+            if (reviewMessage.equals(Constants.STRING_Review_EXSITS))
+                showToast("Sorry You already Have Wrote a Review on This Place!");
+            else
+            {
+             finish();
+             overridePendingTransition(0, 0);
+             Intent myIntent3 = new Intent(this, AddReview.class);
+            myIntent3.putExtra("PLACE_ID", placeID);
+            myIntent3.putExtra("REVIEW_TYPE", "PLACE");
+            startActivity(myIntent3);
+            overridePendingTransition(0, 0);}
 
         }
 
@@ -338,7 +350,10 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
         super.onStop();
     }
 
-
+    private void showToast(String meg){
+        final String message = meg;
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -391,6 +406,8 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
                                 if (obj.getString("like_message").equals(Constants.STRING_LIKE_EXSITS))
                                     imageViewLike.setImageResource(R.drawable.ic_like_fill);
 
+                                reviewMessage = obj.getString("review_message");
+
 
                                 int bookmarksNum = obj.getInt("place_bookmarks_number");
                                 String bookmarksNum1 = Integer.toString(bookmarksNum);
@@ -409,7 +426,8 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
                                 Double rate = obj.getDouble("rate_avrg");
                                 String rate2 = Double.toString(rate);
                                 Float rate3 = Float.parseFloat(rate2);
-                                placeRatingStat.setText(rate2);
+                                String result = String.format("%.1f", rate);
+                                placeRatingStat.setText(result);
                                 placeRating.setRating(rate3);
                                 placeDescription.setText(obj.getString("place_description"));
                                 ownerName.setText(obj.getString("owner_name"));

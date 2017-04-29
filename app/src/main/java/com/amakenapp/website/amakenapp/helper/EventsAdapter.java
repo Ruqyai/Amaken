@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.amakenapp.website.amakenapp.activities.UserDetailsActivity;
 import com.bumptech.glide.Glide;
 import com.amakenapp.website.amakenapp.R;
 import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivityEvent;
@@ -43,6 +44,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         EventsListItem listItem =listItems.get(position);
+        final int  owenr_id = listItem.getOwnerId();
 
         final int eventId = listItem.getEventId();
         String eventid = Integer.toString(eventId);
@@ -57,6 +59,17 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         else
             Picasso.with(context).load(listItem.getEventBusinessProfileImage())
                     .into(holder.eventBusinessProfileImage);
+
+        holder.eventBusinessProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, UserDetailsActivity.class);
+                intent.putExtra("USER_ID", owenr_id);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
 
 
             holder.eventBusinessName.setText(listItem.getEventBusinessName());

@@ -124,7 +124,10 @@ public class LatestEventsActivity extends Fragment{
                                     String rate2 = Double.toString(rate);
                                     Float rate3 = Float.parseFloat(rate2);
                                     listItem.setRatingEvent(rate3);
-                                    listItem.setEventRatingStat(rate2);
+                                    String result = String.format("%.1f", rate);
+                                    listItem.setEventRatingStat(result);
+
+                                    listItem.setOwnerId(eventDetails.getInt("owner_id"));
 
                                     listItems.add(listItem);
                                 }

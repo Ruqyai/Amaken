@@ -124,7 +124,9 @@ public class HomeActivity extends Fragment {
                                     String rate2 = Double.toString(rate);
                                     Float rate3 = Float.parseFloat(rate2);
                                     listItem.setRatingplace(rate3);
-                                    listItem.setPlaceRatingStat(rate2);
+                                    String result = String.format("%.1f", rate);
+
+                                    listItem.setPlaceRatingStat(result);
 
                                     listItems.add(listItem);
                                 }

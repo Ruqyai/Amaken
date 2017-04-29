@@ -59,6 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_height="200dp"
+                android:background="@drawable/ic_action_name"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:layout_below="@+id/imageViewHomeBusinessPlaceAboveBorder"
