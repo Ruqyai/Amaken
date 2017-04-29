@@ -16,7 +16,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
     <LinearLayout
         android:orientation="vertical"
@@ -25,64 +27,131 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-
-
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/business_Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/businessEmail"
-            android:hint="@string/email_address_text"
-            android:selectAllOnFocus="false"
-            android:allowUndo="true"
-            android:textColor="#009688"
-            android:textColorHint="#9B9B9B"
-            android:textColorLink="#9B9B9B"
-            android:layout_marginTop="22dp" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="15dp">
 
-        <EditText
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/businessEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email_address_text"
+                android:inputType="text"
+                android:ems="10"
+                android:textSize="@dimen/FontSize"
+                android:textColor="#15AFD8"
+                android:textColorHint="#15AFD8"
+                android:textColorLink="#15AFD8" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/business_Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/businessPassword"
-            android:hint="@string/password_"
-            android:textColorHint="#9B9B9B"
-            android:layout_marginTop="12dp" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="32dp"
+            app:passwordToggleEnabled="true"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="1dp">
 
-        <EditText
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/businessPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_"
+                android:inputType="textPassword"
+                android:textSize="@dimen/FontSize"
+                android:textColor="#15AFD8"
+                android:ems="10"
+                android:textColorHint="#15AFD8"
+                android:textColorLink="#15AFD8"
+               />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/business_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/businessName"
-            android:hint="@string/business_name_hint"
-            android:textColorHint="#9B9B9B"
-            android:textColor="#9B9B9B"
-            android:paddingStart="15dp"
-            android:paddingLeft="15dp" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="1dp">
 
 
-        <EditText
-            android:layout_width="wrap_content"
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/businessName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/business_name_hint"
+                android:inputType="textPersonName"
+                android:textSize="@dimen/FontSize"
+                android:textColor="#15AFD8"
+                android:ems="10"
+                android:textColorHint="#15AFD8"
+                android:textColorLink="#15AFD8" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/business_WebUrl"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/businessWebUrl"
-            android:hint="@string/business_web_url_optional_hint"
-            android:textSize="18sp"
-            android:layout_marginTop="8dp"
-            android:paddingStart="15dp"
-            android:paddingLeft="15dp" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="1dp">
 
-        <EditText
-            android:layout_width="wrap_content"
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/businessWebUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/business_web_url_optional_hint"
+                android:inputType="textPersonName"
+                android:textSize="@dimen/FontSize"
+                android:textColor="#15AFD8"
+                android:ems="10"
+                android:textColorHint="#15AFD8"
+                android:textColorLink="#15AFD8" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/business_PhoneNumber"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/businessPhoneNumber"
-            android:hint="@string/business_phone_number_hint"
-            android:textSize="18sp"
-            android:layout_marginTop="8dp"
-            android:paddingStart="15dp"
-            android:paddingLeft="15dp" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="1dp">
+
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/businessPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/business_phone_number_hint"
+                android:inputType="textPersonName"
+                android:textSize="@dimen/FontSize"
+                android:textColor="#15AFD8"
+                android:ems="10"
+                android:textColorHint="#15AFD8"
+                android:textColorLink="#15AFD8" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
         <TextView
             android:text="@string/country"
             android:layout_width="match_parent"
@@ -90,17 +159,21 @@
             android:id="@+id/textView5"
             android:textColor="#A47A51"
             android:textSize="@dimen/FontSize"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="8dp"
             android:paddingLeft="10dp" />
         <Spinner
             android:id="@+id/sign_up_business_countries_spinner_dialog"
-            android:layout_width="match_parent"
+            android:layout_width="302dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:spinnerMode="dialog"
             android:background="@android:drawable/btn_dropdown"/>
         <TextView
             android:text="@string/city"
+            android:layout_marginStart="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView6"
@@ -109,28 +182,30 @@
             android:paddingLeft="10dp" />
         <Spinner
             android:id="@+id/sign_up_business_cities_spinner_dialog"
-            android:layout_width="match_parent"
+            android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:spinnerMode="dialog"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
             android:background="@android:drawable/btn_dropdown"/>
 
         <Button
-            android:text="@string/sign_up_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/SignUpBusiness"
-            android:background="#15AFD8"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:layout_centerVertical="true"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="15dp"
-            android:layout_marginStart="15dp" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:background="#15AFD8"
+            android:text="@string/sign_up_button"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
 
     </LinearLayout>
 </ScrollView>

@@ -7,12 +7,30 @@
 
     <color name="bar">#15AFD8</color>
     <color name="barlight">#DBE8F1</color>
+    <color name="cardColor">#FFDBE8F1</color>
     <color name="baa">#a47a51</color>
     <color name="baa1"> #C6B098</color>
     <color name="baa3"> #1D6A87</color>
-    <color name="white">#fafafa</color>
     <color name="gray">#bebebe</color>
+    <color name="gray2">#8e8e8e</color>
+
     <color name="white_pressed">#f1f1f1</color>
+
+
+    <color name="accent_dark">#ff2929</color>
+    <color name="accent">#ff5252</color>
+    <color name="secondary_text">#727272</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_overlay">#F3F3F3</color>
+
+
+        <drawable name="red_color">#ff0000</drawable>
+
+        <drawable name="white_color">#ffffff</drawable>
+
+        <drawable name="orange_color">#ffffbb33</drawable>
+
+
 
 
 </resources>

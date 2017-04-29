@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:custom="http://schemas.android.com/tools"
+        android:layout_margin="1dp"
+        android:visibility="visible"
+        android:id="@+id/child1"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:id="@+id/image1"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:src="@drawable/ic_action_name"
+            custom:auto_cycle="true"
+            custom:indicator_visibility="visible"
+            custom:pager_animation="Accordion"
+            custom:pager_animation_span="1100"
+            android:layout_alignParentTop="true">
+        </ImageView>
+        <TextView
+            android:id="@+id/imageId1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            />
+        <TextView
+            android:gravity="center"
+            android:id="@+id/text1"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#80060606"
+            android:text="1 image description"
+            android:layout_alignBottom="@+id/image1"
+            android:layout_toEndOf="@+id/imageId1" />
+
+
+
+    <FrameLayout
+        android:background="@color/bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/image1"
+        android:layout_toEndOf="@+id/imageId1"
+        android:layout_alignParentStart="true">
+        <Button
+            android:background="?android:attr/selectableItemBackground"
+            android:id="@+id/change1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Change first Image"
+
+
+            />
+    </FrameLayout>
+    </RelativeLayout>
+

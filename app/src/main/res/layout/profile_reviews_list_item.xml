@@ -22,32 +22,45 @@
             android:padding="1dp">
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.makeramen.roundedimageview.RoundedImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/reviews_profile_pic"
-                android:layout_width="73dp"
-                android:layout_height="58dp"
+                android:background="@drawable/ic_action_name"
+                android:layout_width="110dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:layout_height="110dp"
                 android:layout_alignStart="@+id/textView10"
                 android:layout_below="@+id/reviews_menuOptions"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginBottom="8dp"
                 android:padding="1dp"
                 android:src="@drawable/profile"
-                app:civ_border_color="#ffffff"
-                app:civ_border_width="1dp" />
+                app:riv_corner_radius="3dp"
+                app:riv_border_width="1dp"
+                app:riv_border_color="@color/gray"
+                app:riv_mutate_background="true"
+                app:riv_tile_mode="repeat"
+                app:riv_corner_radius_bottom_left="10dp"
+                app:riv_corner_radius_bottom_right="10dp"
+                app:riv_corner_radius_top_left="10dp"
+                app:riv_corner_radius_top_right="10dp"
+
+                />
 
             <TextView
                 android:id="@+id/text_review"
                 android:layout_width="200dp"
                 android:layout_height="43dp"
-                android:layout_alignBottom="@+id/reviews_profile_pic"
-                android:layout_alignEnd="@+id/reviews_menuOptions"
-                android:layout_marginBottom="2dp"
-                android:layout_toEndOf="@+id/textView10"
                 android:ellipsize="end"
                 android:maxLength="175"
                 android:maxLines="2"
-                android:text="Review Text, Review text, Review Text, Review text, Review Text, Review text, Review Text, Review text" />
+                android:text="Review Text, Review text, Review Text, Review text, Review Text, Review text, Review Text, Review text"
+                android:layout_marginStart="13dp"
+                android:layout_below="@+id/review_place_or_event_category"
+                android:layout_toEndOf="@+id/reviews_profile_pic"
+                 />
 
 
             <RatingBar
@@ -58,6 +71,7 @@
                 android:layout_alignStart="@+id/text_review"
                 android:layout_below="@+id/text_review"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="2dp" />
 
             <ImageView
@@ -106,6 +120,43 @@
                 android:text="on TimeStamp"
                 android:textColor="@color/gray"
                 android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/review_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:visibility="gone" />
+            <TextView
+                android:id="@+id/review_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+            <TextView
+            android:id="@+id/review_place_or_event_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+            <TextView
+                android:id="@+id/review_place_or_event_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:text="name"
+                android:textStyle="bold"
+                android:layout_alignTop="@+id/reviews_profile_pic"
+                android:layout_alignStart="@+id/text_review" />
+            <TextView
+                android:id="@+id/review_place_or_event_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:text="category"
+                android:textColor="@color/gray"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_alignStart="@+id/review_place_or_event_name"
+                android:layout_below="@+id/review_place_or_event_name"
+                 />
 
             <TextView
                 android:id="@+id/textView10"

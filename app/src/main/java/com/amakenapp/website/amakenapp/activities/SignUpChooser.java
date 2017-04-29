@@ -7,12 +7,17 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.AnimationUtils;
 
 import com.amakenapp.website.amakenapp.R;
+import com.amakenapp.website.amakenapp.chat.ChatActivity;
 
 public class SignUpChooser extends AppCompatActivity implements View.OnClickListener {
     private CardView signUpBusinessCard;
     private CardView signUpUserCard;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +39,22 @@ public class SignUpChooser extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
 
         if (v == signUpBusinessCard) {
+            v.startAnimation(buttonClick);
             finish();
-          //  startActivity(new Intent(this, SignUpBusiness.class));
+            startActivity(new Intent(this, SignUpBusiness.class));
           //  startActivity(new Intent(this, SettingsActivity.class));
-          // startActivity(new Intent(this, NavDrw.class));//// TODO: 3/8/2017 NavDrw has error
-            startActivity(new Intent(this, ChooseInterest.class));
+
+          //  startActivity(new Intent(this, AddPlace.class));
+          //startActivity(new Intent(this, NavDrw.class));
+          //  startActivity(new Intent(this, ChooseInterest.class));
 
         }
 
         if (v == signUpUserCard) {
+            v.startAnimation(buttonClick);
             finish();
             startActivity(new Intent(this, SignUpUser.class));
+           // startActivity(new Intent(this, ChatActivity.class));
         }
 
     }
@@ -58,6 +68,7 @@ public class SignUpChooser extends AppCompatActivity implements View.OnClickList
         }
         return true;
     }
+
 
 }
 

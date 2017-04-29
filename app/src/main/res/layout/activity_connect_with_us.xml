@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.amakenapp.website.amakenapp.activities.ConnectWithUs">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="52dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@drawable/twitter"
+        android:layout_marginTop="35dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="50dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:srcCompat="@drawable/instagram" />
+
+    <TextView
+        android:id="@+id/Amakeen_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="?attr/selectableItemBackground"
+        android:text="Amakeen_app/Twitter"
+        android:textColor="#a47a51"
+        android:textSize="17sp"
+        app:layout_constraintHorizontal_bias="0.224"
+        app:layout_constraintLeft_toRightOf="@+id/imageView6"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="64dp"
+        app:layout_constraintTop_toBottomOf="@+id/amakeen_app_Gmail" />
+
+    <TextView
+        android:id="@+id/Amaken_i"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="75dp"
+        android:background="?attr/selectableItemBackground"
+        android:text="AmakenApp/Instagram"
+        android:textColor="#a47a51"
+        android:textSize="17sp"
+        app:layout_constraintHorizontal_bias="0.244"
+        app:layout_constraintLeft_toRightOf="@+id/imageView9"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Amakeen_app" />
+    <!--
+        <ImageButton
+            android:id="@+id/cancel"
+            android:layout_width="75dp"
+            android:layout_height="52dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="#00ffffff"
+            android:src="@drawable/ic_cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.542"
+            app:layout_constraintTop_toBottomOf="@+id/Amaken_i"
+            app:layout_constraintVertical_bias="0.86" />
+    -->
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="151dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/facebook_box" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gmail" />
+
+    <TextView
+        android:id="@+id/amakeen_app_Gmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="121dp"
+        android:text="Amakeen_app/Gmail"
+        android:background="?attr/selectableItemBackground"
+        android:textColor="#a47a51"
+        android:textSize="17sp"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintLeft_toRightOf="@+id/imageView11"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Amakeen_app_facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="63dp"
+        android:text="Amakeen_app/facebook"
+        android:background="?attr/selectableItemBackground"
+        android:textColor="#a47a51"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintLeft_toRightOf="@+id/imageView10"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Amaken_i"
+        app:layout_constraintVertical_bias="0.0" />
+
+</android.support.constraint.ConstraintLayout>

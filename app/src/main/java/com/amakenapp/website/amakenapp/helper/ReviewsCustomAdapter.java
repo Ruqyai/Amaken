@@ -159,7 +159,7 @@ public class ReviewsCustomAdapter extends BaseAdapter {
             Glide.with(context).load(listItem.getReviewUserProfilePic())
                 .thumbnail(0.5f)
                 .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(reviewUserProfilePic);
           }
 
@@ -172,7 +172,8 @@ public class ReviewsCustomAdapter extends BaseAdapter {
         Glide.with(context).load(listItem.getReviewFlagImage())
                 .thumbnail(0.5f)
                 .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy( DiskCacheStrategy.NONE )
+                .skipMemoryCache( true )
                 .into(reviewFalgImage);
 
 

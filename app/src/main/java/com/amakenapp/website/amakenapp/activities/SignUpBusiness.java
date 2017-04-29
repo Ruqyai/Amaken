@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,14 +15,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.amakenapp.website.amakenapp.R;
+import com.amakenapp.website.amakenapp.helper.Constants;
+import com.amakenapp.website.amakenapp.helper.MySingleton;
+import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.amakenapp.website.amakenapp.R;
-import com.amakenapp.website.amakenapp.helper.Constants;
-import com.amakenapp.website.amakenapp.helper.MySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +43,8 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     private ProgressDialog progressDialog;
     private ArrayList<String> countries, cities;
     private ArrayList<Integer> countryIds, citiesIds;
+    private  String userEmail;
+    private String password;
 
 
     @Override
@@ -71,10 +75,13 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
         editEmail = (EditText) findViewById(R.id.businessEmail);
         editPassword = (EditText) findViewById(R.id.businessPassword);
         editPersonName = (EditText) findViewById(R.id.businessName);
+
         editwebsiteUrl = (EditText) findViewById(R.id.businessWebUrl);
         editPhoneNumber = (EditText) findViewById(R.id.businessPhoneNumber);
 
         loadCountries();
+
+
     }
 
 
@@ -144,7 +151,7 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-// this is for loading all countries
+    // this is for loading all countries
     private void loadCountries(){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.URL_COUNTRIES, new Response.Listener<String>() {
             @Override
@@ -185,8 +192,8 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     public void singUp() {
         final int userType = Constants.CODE_BUSINESS_USER;
 
-        final String userEmail = editEmail.getText().toString().trim();
-        final String password = editPassword.getText().toString().trim();
+        userEmail = editEmail.getText().toString().trim();
+        password = editPassword.getText().toString().trim();
         final String personName = editPersonName.getText().toString().trim();
         final String  gender = "";
         final String WebsiteUrl = editwebsiteUrl.getText().toString().trim();
@@ -210,8 +217,10 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
 
                                 finish();
-                                   // TODO: 3/5/2017  need fixing causing crash
-                                startActivity(new Intent(getApplicationContext(), ChooseInterest.class));
+                                singIn();
+                                Intent intent=new Intent(getApplicationContext(), ChooseInterest.class);
+                                intent.putExtra("email",userEmail);
+                                startActivity(intent);
 
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
@@ -251,6 +260,73 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
 
             }
 
+        };
+
+        MySingleton.getInstance(this).addToRequestQueue(send);
+
+    }
+
+    public void singIn() {
+
+        StringRequest send = new StringRequest(Request.Method.POST,
+                Constants.URL_LOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                int userId = obj.getInt("id");
+                                String userIdString = Integer.toString(userId);
+                                SharedPrefManager.getInstance(getApplicationContext())
+                                        .userLogin(
+                                                userIdString,
+                                                obj.getString("user_type"),
+                                                obj.getString("user_email"),
+                                                obj.getString("user_password"),
+                                                obj.getString("user_name"),
+                                                TextUtils.isEmpty(obj.getString("gender"))?"":obj.getString("gender"),
+                                                TextUtils.isEmpty(obj.getString("web_url"))?"":obj.getString("web_url"),
+                                                TextUtils.isEmpty(obj.getString("phone_number"))?"":obj.getString("phone_number"),
+                                                obj.getInt("country_id"),
+                                                obj.getString("country_name"),
+                                                obj.getInt("city_id"),
+                                                obj.getString("city_name"),
+                                                obj.getString("profile_pic_id"),
+                                                obj.getString("profile_pic_url"),
+                                                obj.getString("profile_pic_timeStamp")
+                                        );
+
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(
+                        getApplicationContext(),
+                        error.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userEmail", userEmail);
+                params.put("password", password);
+                return params;
+            }
         };
 
         MySingleton.getInstance(this).addToRequestQueue(send);

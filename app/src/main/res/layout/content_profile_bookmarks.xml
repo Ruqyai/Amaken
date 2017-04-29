@@ -10,6 +10,66 @@
     tools:context="com.amakenapp.website.amakenapp.activities.ProfileBookmarks"
     tools:showIn="@layout/activity_profile_bookmarks">
 
+    <RelativeLayout
+        android:id="@+id/linlaHeaderProgress_bookmarks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ProgressBar
+            android:id="@+id/pbHeaderProgress_bookmarks"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+
+            >
+        </ProgressBar>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Loading Bookmarks..."
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_below="@+id/pbHeaderProgress_bookmarks"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/no_bookmarks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="gravity"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:drawableTop="@drawable/ic_not_reviews"
+            android:gravity="center"
+            android:text="You Haven't Bookmarked Any Thing, Yet!" />
+        <TextView
+            android:id="@+id/add_bookmarks"
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:textColor="@color/baa3"
+            android:text="Check Out Home Page, and Start Adding!" />
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewBookmarks"
         android:layout_width="match_parent"

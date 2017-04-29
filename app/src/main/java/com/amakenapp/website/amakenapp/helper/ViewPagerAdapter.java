@@ -66,7 +66,8 @@ public class ViewPagerAdapter extends PagerAdapter {
         Glide.with(context).load(image.getPhoto_url())
                 .thumbnail(0.5f)
                 .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy( DiskCacheStrategy.NONE )
+                .skipMemoryCache( true )
                 .into(galleryView);
         container.addView(itemView);
 

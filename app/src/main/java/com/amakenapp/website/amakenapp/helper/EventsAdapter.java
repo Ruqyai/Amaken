@@ -11,9 +11,12 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.amakenapp.website.amakenapp.activities.UserDetailsActivity;
 import com.bumptech.glide.Glide;
 import com.amakenapp.website.amakenapp.R;
 import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivityEvent;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -41,6 +44,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         EventsListItem listItem =listItems.get(position);
+        final int  owenr_id = listItem.getOwnerId();
 
         final int eventId = listItem.getEventId();
         String eventid = Integer.toString(eventId);
@@ -51,9 +55,21 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         String busiessProfilePic = listItem.getEventBusinessProfileImage();
 
         if (busiessProfilePic.equals(Constants.STRING_USER_PROFILE_PIC))
-            holder.eventBusinessProfileImage.setImageResource(R.drawable.business_home_profile);
+            holder.eventBusinessProfileImage.setImageResource(R.drawable.business1);
         else
-            Glide.with(context).load(listItem.getEventBusinessProfileImage()).into(holder.eventBusinessProfileImage);
+            Picasso.with(context).load(listItem.getEventBusinessProfileImage())
+                    .into(holder.eventBusinessProfileImage);
+
+        holder.eventBusinessProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, UserDetailsActivity.class);
+                intent.putExtra("USER_ID", owenr_id);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
 
 
             holder.eventBusinessName.setText(listItem.getEventBusinessName());
@@ -64,7 +80,10 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
             holder.event_availableOrBusyLogo.setImageResource(R.drawable.ic_event_busy);
 
 
-        Glide.with(context).load(listItem.getEventPicture()).into(holder.eventPicture);
+        Glide.with(context).load(listItem.getEventPicture())
+                .diskCacheStrategy( DiskCacheStrategy.NONE )
+                .skipMemoryCache( true )
+                .into(holder.eventPicture);
 
         holder.eventName.setText(listItem.getEventName());
         holder.getEventCategory.setText(listItem.getEventCategory1());
@@ -108,7 +127,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
         public TextView eventName;
         public TextView getEventCategory;
 
-        public TextView eventCategory;
         public TextView eventDescription;
         public TextView eventDescriptionMultiLineText;
         public TextView eventExpand;

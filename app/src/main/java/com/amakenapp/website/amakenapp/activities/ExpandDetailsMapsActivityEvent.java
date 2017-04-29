@@ -114,7 +114,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
     private ImageView imageViewLike;
     private ImageView imageViewSave;
     private ImageView imageViewReveiw;
-    private TextView eventPhotosNumber,
+    private TextView noReviews, addReview, eventPhotosNumber,
             eventLikesNumber,
             eventBookmarksNumber,
             eventReplysNumber,
@@ -136,6 +136,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
     private ImageButton filpNextEvent, flipPreviousEvent;
     private ImageButton filpNextEventimage, flipPreviousEventimage;
 
+    private String reviewMessage;
 
     ////
     private List<ExpandReviewDetailsListItem> listItems;
@@ -159,8 +160,8 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
 
         ////////////////////////////////////////////////////
 
-        update2 = (ImageView) findViewById(R.id.update2);
-        update2.setOnClickListener(this);
+        //update2 = (ImageView) findViewById(R.id.update2);
+       // update2.setOnClickListener(this);
         mDemoSlider = (SliderLayout) findViewById(R.id.slider_event);
 
         file_maps = new HashMap<String, String>();
@@ -181,6 +182,9 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         viewPagerReviews.setAdapter(reviewsViewPager);*/
 
         ///////find views by id for textViews
+        noReviews = (TextView) findViewById(R.id.no_event_reviews);
+        addReview = (TextView) findViewById(R.id.add_one);
+
         eventPhotosNumber = (TextView) findViewById(R.id.textNumberGalleryImageEvent);
         eventLikesNumber = (TextView) findViewById(R.id.textNumberLikesEvent);
         eventBookmarksNumber = (TextView) findViewById(R.id.textNumberSaveEvent);
@@ -221,6 +225,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         imageViewReveiw = (ImageView) findViewById(R.id.imageButtonReviewEvent);
         imageViewReveiw.setImageResource(R.drawable.ic_reply);
         imageViewReveiw.setOnClickListener(this);
+        addReview.setOnClickListener(this);
 
 
         flipPreviousEvent = (ImageButton) findViewById(R.id.flipp_previous_event);
@@ -276,6 +281,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         mMap.addMarker(new MarkerOptions().position(addressPoint).title("Marker in Saudi Arabia"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(addressPoint));
         UiSettings uiSettings = googleMap.getUiSettings();
+        mMap.getUiSettings().setZoomControlsEnabled(true);
         uiSettings.setAllGesturesEnabled(true);
     }
 
@@ -292,6 +298,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
             {Toast.makeText(getApplicationContext(), "This is Users' Reviews Gallery", Toast.LENGTH_LONG).show();
             Bundle bundle = new Bundle();
             bundle.putInt("EventId", eventID);
+            bundle.putString("GALLERY_TYPE", "EVENT");
 
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             GalleryPager newFragment = GalleryPager.newInstance();
@@ -308,11 +315,20 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
             v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation));
             eventStoreBookmark(eventID, userId);
         }
-        if (v == imageViewReveiw) {
+        if (v == imageViewReveiw || v == addReview) {
             v.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation));
-            //// TODO: 3/17/2017 aslo store review on database
-            startActivity(new Intent(this, AddReview.class));
-
+           // startActivity(new Intent(this, AddReview.class));
+            if (reviewMessage.equals(Constants.STRING_Review_EXSITS))
+                showToast("Sorry You already Have Wrote a Review on This Event!");
+            else
+            {
+                finish();
+                overridePendingTransition(0, 0);
+                Intent myIntent3 = new Intent(this, AddReview.class);
+                myIntent3.putExtra("EVENT_ID", eventID);
+                myIntent3.putExtra("REVIEW_TYPE", "EVENT");
+                startActivity(myIntent3);
+                overridePendingTransition(0, 0);}
         }
 
         if (v == filpNextEvent) {
@@ -366,41 +382,29 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
             int click = 0;
             for (int i = 0; i > 10; i++) {
                 click++;
-                if (click == 1) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.RotateDown);
+                if (click == 1) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.RotateDown);
                 }
-                if (click == 1) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
+                if (click == 1) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
                 }
-                if (click == 2) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.ZoomOut);
+                if (click == 2) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.ZoomOut);
                 }
-                if (click == 3) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.RotateUp);
+                if (click == 3) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.RotateUp);
                 }
-                if (click == 4) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.FlipHorizontal);
+                if (click == 4) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.FlipHorizontal);
                 }
-                if (click == 5) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
+                if (click == 5) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
                 }
-                if (click == 6) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);
+                if (click == 6) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Background2Foreground);
                 }
-                if (click == 7) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.CubeIn);
+                if (click == 7) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.CubeIn);
                 }
-                if (click == 8) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Default);
+                if (click == 8) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Default);
                 }
-                if (click == 9) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Fade);
+                if (click == 9) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Fade);
                 }
-                if (click == 10) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.FlipPage);
+                if (click == 10) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.FlipPage);
                 }
-                if (click == 11) {
-                    mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Tablet);
+                if (click == 11) {mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Tablet);
                 }
             }
         }
@@ -417,11 +421,10 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         super.onStop();
     }
 
-    /*@Override
-    public void onSliderClick(BaseSliderView slider) {
-        Toast.makeText(this, "The Name of This place is : " + slider.getBundle().get("extra"), Toast.LENGTH_SHORT).show();
-
-    }*/
+    private void showToast(String meg){
+        final String message = meg;
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -434,7 +437,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_custom_indicator:
-                mDemoSlider.setCustomIndicator((PagerIndicator) findViewById(R.id.custom_indicator));
+                mDemoSlider.setCustomIndicator((PagerIndicator) findViewById(R.id.custom_indicator_event));
                 break;
             case R.id.action_custom_child_animation:
                 mDemoSlider.setCustomAnimation(new ChildAnimationExample());
@@ -470,6 +473,9 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
                                 String reviewsPhotosNumber2 = Integer.toString(reviewsPhotosNumber);
                                 eventPhotosNumber.setText(reviewsPhotosNumber2);
 
+                                reviewMessage = obj.getString("review_message");
+
+
                                 int likesNum = obj.getInt("event_likes_number");
                                 String likesNum1 = Integer.toString(likesNum);
                                 eventLikesNumber.setText(likesNum1);
@@ -495,7 +501,8 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
                                 Double rate = obj.getDouble("rate_avrg");
                                 String rate2 = Double.toString(rate);
                                 Float rate3 = Float.parseFloat(rate2);
-                                eventRatingStat.setText(rate2);
+                                String result = String.format("%.1f", rate);
+                                eventRatingStat.setText(result);
                                 eventRating.setRating(rate3);
                                 eventDescription.setText(obj.getString("event_description"));
                                 ownerName.setText(obj.getString("owner_name"));
@@ -710,8 +717,16 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
                                 reviewsFlipper.setAdapter(reviewsCustomAdapter);
 
                             } else {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                noReviews.setVisibility(View.VISIBLE);
+                                addReview.setVisibility(View.VISIBLE);
+                                flipPreviousEvent.clearAnimation();
+                                filpNextEvent.clearAnimation();
+                                filpNextEvent.setVisibility(View.GONE);
+                                flipPreviousEvent.setVisibility(View.GONE);
                             }
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();

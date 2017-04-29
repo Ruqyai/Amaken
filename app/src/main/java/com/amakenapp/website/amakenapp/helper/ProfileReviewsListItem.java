@@ -1,40 +1,46 @@
 package com.amakenapp.website.amakenapp.helper;
 
+import com.amakenapp.website.amakenapp.R;
+
 /**
  * Created by Muha on 3/11/2017.
  */
 
 public class ProfileReviewsListItem {
 
-    private String yourReviewText;
-    private String reviewTimeStamp;
+    private int reviewId;
+    private String reviewType;
+    private String yourReviewText = "Your Review";
+    private String reviewTimestamp;
 
 
-    private int profile_pic;
+    private int eventOrPlaceId;
+    private String placeoreventPic;
+    private String placeoreventName;
+    private String placeoreventCategory;
+
     private String reviewText;
-    private int ratingbarLogo;
-    private int likesLogo;
-    private String likesStat;
+    private Float reviewRatingValue;
+    private int reviewLikeImage = R.drawable.ic_thump_up;
+    private String reviewLikesNumber;
 
-    public ProfileReviewsListItem(
-                                  String yourReviewText,
-                                  String reviewTimeStamp,
-                                  int profile_pic,
-                                  String reviewText,
-                                  int ratingbarLogo,
-                                  int likesLogo,
-                                  String likesStat) {
 
-        this.yourReviewText = yourReviewText;
-        this.reviewTimeStamp = reviewTimeStamp;
-        this.profile_pic = profile_pic;
-        this.reviewText = reviewText;
-        this.ratingbarLogo = ratingbarLogo;
-        this.likesLogo = likesLogo;
-        this.likesStat = likesStat;
+    public ProfileReviewsListItem() {
     }
 
-
+    public ProfileReviewsListItem(int reviewId, String reviewType, String reviewTimestamp, int eventOrPlaceId, String placeoreventPic, String placeoreventName, String placeoreventCategory, String reviewText, Float reviewRatingValue, int reviewLikeImage, String reviewLikesNumber) {
+        this.reviewId = reviewId;
+        this.reviewType = reviewType;
+        this.reviewTimestamp = reviewTimestamp;
+        this.eventOrPlaceId = eventOrPlaceId;
+        this.placeoreventPic = placeoreventPic;
+        this.placeoreventName = placeoreventName;
+        this.placeoreventCategory = placeoreventCategory;
+        this.reviewText = reviewText;
+        this.reviewRatingValue = reviewRatingValue;
+        this.reviewLikeImage = reviewLikeImage;
+        this.reviewLikesNumber = reviewLikesNumber;
+    }
 
     public String getYourReviewText() {
         return yourReviewText;
@@ -44,20 +50,60 @@ public class ProfileReviewsListItem {
         this.yourReviewText = yourReviewText;
     }
 
-    public String getReviewTimeStamp() {
-        return reviewTimeStamp;
+    public int getReviewId() {
+        return reviewId;
     }
 
-    public void setReviewTimeStamp(String reviewTimeStamp) {
-        this.reviewTimeStamp = reviewTimeStamp;
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
     }
 
-    public int getProfile_pic() {
-        return profile_pic;
+    public String getReviewType() {
+        return reviewType;
     }
 
-    public void setProfile_pic(int profile_pic) {
-        this.profile_pic = profile_pic;
+    public void setReviewType(String reviewType) {
+        this.reviewType = reviewType;
+    }
+
+    public String getReviewTimestamp() {
+        return reviewTimestamp;
+    }
+
+    public void setReviewTimestamp(String reviewTimestamp) {
+        this.reviewTimestamp = reviewTimestamp;
+    }
+
+    public int getEventOrPlaceId() {
+        return eventOrPlaceId;
+    }
+
+    public void setEventOrPlaceId(int eventOrPlaceId) {
+        this.eventOrPlaceId = eventOrPlaceId;
+    }
+
+    public String getPlaceoreventPic() {
+        return placeoreventPic;
+    }
+
+    public void setPlaceoreventPic(String placeoreventPic) {
+        this.placeoreventPic = placeoreventPic;
+    }
+
+    public String getPlaceoreventName() {
+        return placeoreventName;
+    }
+
+    public void setPlaceoreventName(String placeoreventName) {
+        this.placeoreventName = placeoreventName;
+    }
+
+    public String getPlaceoreventCategory() {
+        return placeoreventCategory;
+    }
+
+    public void setPlaceoreventCategory(String placeoreventCategory) {
+        this.placeoreventCategory = placeoreventCategory;
     }
 
     public String getReviewText() {
@@ -68,27 +114,27 @@ public class ProfileReviewsListItem {
         this.reviewText = reviewText;
     }
 
-    public int getRatingbarLogo() {
-        return ratingbarLogo;
+    public Float getReviewRatingValue() {
+        return reviewRatingValue;
     }
 
-    public void setRatingbarLogo(int ratingbarLogo) {
-        this.ratingbarLogo = ratingbarLogo;
+    public void setReviewRatingValue(Float reviewRatingValue) {
+        this.reviewRatingValue = reviewRatingValue;
     }
 
-    public int getLikesLogo() {
-        return likesLogo;
+    public int getReviewLikeImage() {
+        return reviewLikeImage;
     }
 
-    public void setLikesLogo(int likesLogo) {
-        this.likesLogo = likesLogo;
+    public void setReviewLikeImage(int reviewLikeImage) {
+        this.reviewLikeImage = reviewLikeImage;
     }
 
-    public String getLikesStat() {
-        return likesStat;
+    public String getReviewLikesNumber() {
+        return reviewLikesNumber;
     }
 
-    public void setLikesStat(String likesStat) {
-        this.likesStat = likesStat;
+    public void setReviewLikesNumber(String reviewLikesNumber) {
+        this.reviewLikesNumber = reviewLikesNumber;
     }
 }

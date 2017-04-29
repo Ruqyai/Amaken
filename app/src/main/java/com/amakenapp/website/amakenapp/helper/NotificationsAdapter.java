@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.amakenapp.website.amakenapp.R;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -46,7 +47,10 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
 
         holder.notificationTimeStamp.setText(listItem.getNotificationTimeStamp());
-        Glide.with(context).load(listItem.getNotification_user_profile_pic()).into(holder.notification_user_ProfilePic);
+        Glide.with(context).load(listItem.getNotification_user_profile_pic())
+                .diskCacheStrategy( DiskCacheStrategy.NONE )
+                .skipMemoryCache( true )
+                .into(holder.notification_user_ProfilePic);
         holder.notificationMessage.setText(listItem.getNotification_message());
         holder.notification_id_hidden.setText(listItem.getNotification_id_hidden());
 

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    tools:context="com.amakenapp.website.amakenapp.search.FiltersActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Do you need filters?"
+
+            android:paddingStart="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/baa"
+            android:layout_marginBottom="5dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:background="@color/bar"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal"/>
+        <RadioGroup
+            android:id="@+id/radioFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/placeFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="place"
+                android:layout_weight="1"
+                android:textColor="@color/baa"/>
+            <RadioButton
+                android:id="@+id/eventFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="event"
+                android:layout_weight="1"
+                android:textColor="@color/baa"/>
+            <RadioButton
+                android:id="@+id/userFilter"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="user"
+                android:textColor="@color/baa"/>
+        </RadioGroup>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Country"
+        android:textColor="#A47A51" />
+
+
+    <Spinner
+        android:id="@+id/spinnerCountry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="City"
+
+        android:textColor="#A47A51" />
+
+    <Spinner
+        android:id="@+id/spinnerCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+
+        android:spinnerMode="dropdown" />
+    <TextView
+        android:id="@+id/cate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Category"
+
+        android:textColor="#A47A51" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Spinner
+
+
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@android:drawable/editbox_dropdown_light_frame"
+
+            android:spinnerMode="dropdown" />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_type_group"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:background="@android:drawable/editbox_dropdown_light_frame"
+            >
+            <RadioButton
+                android:id="@+id/owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Owner"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                />
+            <RadioButton
+                android:id="@+id/user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="User"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                />
+        </RadioGroup>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_margin="5dp">
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Done "
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:background="@color/bar"
+
+            android:layout_margin="5dp"
+            android:id="@+id/filterButton"/>
+
+        <Button
+
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ignore"
+
+            android:background="@color/bar"
+            android:layout_margin="5dp"
+
+            android:id="@+id/ignoreFilterButton"/>
+    </LinearLayout>
+
+
+</LinearLayout>

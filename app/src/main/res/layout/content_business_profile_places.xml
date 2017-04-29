@@ -11,6 +11,60 @@
     tools:context="com.amakenapp.website.amakenapp.activities.BusinessProfilePlaces"
     tools:showIn="@layout/activity_business_profile_places">
 
+    <LinearLayout
+        android:id="@+id/linlaHeaderProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <ProgressBar
+            android:id="@+id/pbHeaderProgress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+        </ProgressBar>
+        <TextView
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Loading Places..." />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/no_places"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+            android:layout_height="wrap_content"
+            android:textAlignment="gravity"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:drawableTop="@drawable/ic_not_reviews"
+            android:gravity="center"
+            android:text="You Haven't Added Any Places, Yet!" />
+        <TextView
+            android:id="@+id/add_place"
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:textColor="@color/baa3"
+            android:text="Add One!" />
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -41,7 +41,22 @@
                 android:layout_margin="@dimen/fab_margin"
                 app:srcCompat="@drawable/ic_add_black_24dp" />
 -->
+
+
 </android.support.design.widget.CoordinatorLayout>
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000">
+        <!--  floating action menu with buttons -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/multiple_actions"
         android:layout_width="wrap_content"
@@ -62,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
-            fab:fab_title="Add Event"
+            fab:fab_title="@string/add_event_title_fab"
             fab:fab_icon="@drawable/add_event"
             fab:fab_size="mini"
             fab:fab_colorPressed="@color/bar"/>
@@ -72,10 +87,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
-            fab:fab_title="Add Place "
+            fab:fab_title="@string/add_place_title_fab"
             fab:fab_icon="@drawable/add_place"
             fab:fab_size="mini"
             fab:fab_colorPressed="@color/bar"/>
 
+
+
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
+        </RelativeLayout>
+    </FrameLayout>
+
 </RelativeLayout>

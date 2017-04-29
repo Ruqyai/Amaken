@@ -95,8 +95,11 @@ public class DiscoverActivity extends AppCompatActivity {
                 disName.setText(selectedPlace);
                 disDetails.setText(selectedAdrees);
                 disRate.setText(selectedRate);
-                disPhone.setText(selectedPhen);
-                disWeb.setText(selectedWeb);
+                if(selectedWeb.contains("null")){disWeb.setText("");}
+                else disWeb.setText(selectedWeb);
+                if(selectedPhen.contains("null")){disPhone.setText("");}
+                else disPhone.setText(selectedPhen);
+
                 ratingbar.setRating(place.getRating());
 
             }

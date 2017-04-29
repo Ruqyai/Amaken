@@ -1,5 +1,6 @@
 package com.amakenapp.website.amakenapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
@@ -7,11 +8,26 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
 import com.amakenapp.website.amakenapp.helper.BusinessProfilePlaceOrEventAdapter;
 import com.amakenapp.website.amakenapp.helper.BusinessProfilePlaceOrEventListItem;
+import com.amakenapp.website.amakenapp.helper.Constants;
+import com.amakenapp.website.amakenapp.helper.MySingleton;
+import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +35,15 @@ import java.util.List;
 
 public class BusinessProfileEvents extends AppCompatActivity {
 
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<BusinessProfilePlaceOrEventListItem> listItems;
+    private LinearLayout loading_event, no_events;
+    private TextView addevent;
+
+    SharedPrefManager sharedPrefManager;
+    private static int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +52,21 @@ public class BusinessProfileEvents extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.businessProfileEvents_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        sharedPrefManager = SharedPrefManager.getInstance(getApplicationContext());
+        userId = sharedPrefManager.getUserId();
+
+        loading_event = (LinearLayout) findViewById(R.id.linlaHeaderProgress_event);
+        loading_event.setVisibility(View.VISIBLE);
+
+        no_events = (LinearLayout) findViewById(R.id.no_events_event);
+        addevent =(TextView) findViewById(R.id.add_event_events);
+        addevent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BusinessProfileEvents.this, AddEvent.class));
+            }
+        });
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
@@ -43,28 +80,8 @@ public class BusinessProfileEvents extends AppCompatActivity {
         listItems = new ArrayList<>();
 
 
-        for (int i = 0; i <= 10; i++) {
-            BusinessProfilePlaceOrEventListItem listItem = new BusinessProfilePlaceOrEventListItem(
-                    R.drawable.target,
-                    "Event Name " + i ,
-                    "Event Category",
+        getAllEvents(userId);
 
-                    R.drawable.bookmark,
-                    R.drawable.redheart,
-                    R.attr.ratingBarStyleSmall,
-                    "21",
-                    "21",
-                    "21"
-            );
-
-            listItems.add(listItem);
-
-        }
-
-
-        adapter = new BusinessProfilePlaceOrEventAdapter(listItems, this);
-
-        recyclerView.setAdapter(adapter);
     }
 
 
@@ -77,6 +94,73 @@ public class BusinessProfileEvents extends AppCompatActivity {
             return true;
         }
         return true;
+    }
+
+
+    public void getAllEvents(int userId) {
+        final int userID = userId;
+
+        StringRequest send = new StringRequest(Request.Method.GET,
+                Constants.URL_GET_USER_EVENTS+ userID,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                JSONArray arr = obj.getJSONArray("events");
+                                for (int i = 0; i < arr.length(); i++) {
+                                    JSONObject placeDetails = arr.getJSONObject(i);
+                                    BusinessProfilePlaceOrEventListItem listItem = new BusinessProfilePlaceOrEventListItem();
+
+                                    listItem.setPlaceOrEventId(placeDetails.getInt("event_id"));
+                                    listItem.setType(placeDetails.getString("type"));
+                                    listItem.setPlaceOrEventName(placeDetails.getString("event_name"));
+                                    listItem.setPlaceOrEventCategory(placeDetails.getString("event_category"));
+                                    listItem.setPlaceOrEventPic(placeDetails.getString("event_photo"));
+
+
+                                    int bookmarksNumber = placeDetails.getInt("event_bookmarks_number");
+                                    String bookmarksNumber2 = Integer.toString(bookmarksNumber);
+                                    listItem.setStatBookmark(bookmarksNumber2);
+
+                                    int likesNumber = placeDetails.getInt("event_likes_number");
+                                    String likesNumber2 = Integer.toString(likesNumber);
+                                    listItem.setStatLikes(likesNumber2);
+
+
+                                    Double rate = placeDetails.getDouble("event_rating");
+                                    String rate2 = Double.toString(rate);
+                                    Float rate3 = Float.parseFloat(rate2);
+                                    listItem.setPlaceOrEventRatingbar(rate3);
+
+                                    int reviewsnumber = placeDetails.getInt("event_reviews_number");
+                                    String reviewsnumbe2 = Integer.toString(reviewsnumber);
+                                    listItem.setStatRatings(reviewsnumbe2);
+
+                                    listItems.add(listItem);
+                                }
+                                adapter = new BusinessProfilePlaceOrEventAdapter(listItems, getApplicationContext());
+                                recyclerView.setAdapter(adapter);
+                                loading_event.setVisibility(View.GONE);
+
+                            } else {
+                                loading_event.setVisibility(View.GONE);
+                                no_events.setVisibility(View.VISIBLE);
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) ;
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(send);
     }
 
 

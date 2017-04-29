@@ -87,16 +87,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void singIn() {
         final String userEmail = editEmail.getText().toString().trim();
         final String password = editPassword.getText().toString().trim();
-//        progressDialog.show();
-
-        // Toast.makeText(this, "Sing In Executed", Toast.LENGTH_LONG).show();
         StringRequest send = new StringRequest(Request.Method.POST,
                 Constants.URL_LOGIN,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // progressDialog.dismiss();
-                        // Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
@@ -116,9 +111,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                                 obj.getString("country_name"),
                                                 obj.getInt("city_id"),
                                                 obj.getString("city_name"),
-                                                obj.getInt("profile_pic_id"),
-                                                TextUtils.isEmpty(obj.getString("profile_pic_url"))?"":obj.getString("profile_pic_url")
-                                        );
+                                                obj.getString("profile_pic_id"),
+                                                obj.getString("profile_pic_url"),
+                                                obj.getString("profile_pic_timeStamp")
+                                                );
 
                                 startActivity(new Intent(getApplicationContext(), NavDrw.class));
                                 finish();
@@ -134,9 +130,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                // progressDialog.dismiss();
-
                 Toast.makeText(
                         getApplicationContext(),
                         error.getMessage(),

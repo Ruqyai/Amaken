@@ -25,17 +25,23 @@ import android.view.MenuItem;
 
 import android.content.Intent;
 
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
+import com.amakenapp.website.amakenapp.chat.ChatActivity;
 import com.amakenapp.website.amakenapp.helper.Constants;
 import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
+import com.amakenapp.website.amakenapp.search.*;
 import com.amakenapp.website.amakenapp.store.User;
+import com.android.volley.toolbox.ImageLoader;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.signature.StringSignature;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.squareup.picasso.Picasso;
@@ -46,6 +52,8 @@ import java.net.URL;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class NavDrw extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -53,7 +61,7 @@ public class NavDrw extends AppCompatActivity
     private TextView userName;
     private CircleImageView userProfilePic;
     SharedPrefManager sharedPrefManager;
-    int userType;
+    int userType, userProfilePicId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +72,31 @@ public class NavDrw extends AppCompatActivity
 
 
 
-        FloatingActionsMenu floatButton = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
+
+        final FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
+        frameLayout.getBackground().setAlpha(0);
+        final FloatingActionsMenu floatButton = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
+        floatButton.setOnFloatingActionsMenuUpdateListener(new FloatingActionsMenu.OnFloatingActionsMenuUpdateListener() {
+            @Override
+            public void onMenuExpanded() {
+                frameLayout.getBackground().setAlpha(200);
+                frameLayout.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        floatButton.collapse();
+                        return true;
+                    }
+                });
+            }
+
+            @Override
+            public void onMenuCollapsed() {
+                frameLayout.getBackground().setAlpha(0);
+                frameLayout.setOnTouchListener(null);
+            }
+        });
+
+        //FloatingActionsMenu floatButton = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
 
         FloatingActionButton addPlaceFab = (FloatingActionButton) findViewById(R.id.Adds_place);
         addPlaceFab.setOnClickListener(new View.OnClickListener() {
@@ -100,20 +132,36 @@ public class NavDrw extends AppCompatActivity
         userName = (TextView)header.findViewById(R.id.nav_header_user_name);
         userProfilePic = (CircleImageView) header.findViewById(R.id.nav_header_user_profile_pic);
         sharedPrefManager=SharedPrefManager.getInstance(this);
-        String x=sharedPrefManager.getUsername();
-        String y=sharedPrefManager.getKeyUserProfilePicUrl();
+
+        String x = sharedPrefManager.getUsername();
         userName.setText(x);
-        Picasso.with(getApplicationContext()).load(y).into(userProfilePic);
 
-        try {
-            userType= sharedPrefManager.getUserType();
-            if (userType ==1245){floatButton.setVisibility(View.VISIBLE);}
-            else {floatButton.setVisibility(View.INVISIBLE);}
 
-        }
-        catch (Exception e)
-        {floatButton.setVisibility(View.INVISIBLE);
-        }
+        userType= sharedPrefManager.getUserType();
+        if (userType == Constants.CODE_BUSINESS_USER)
+        {floatButton.setVisibility(View.VISIBLE);}
+        else if(userType == Constants.CODE_NORMAL_USER)
+        {floatButton.setVisibility(View.INVISIBLE);}
+        String userProfilePicUrl=sharedPrefManager.getKeyUserProfilePicUrl();
+        String userProfilePicIdTimeStamp = sharedPrefManager.getKeyUserProfilePicUrlTimeStamp();
+        userProfilePicId = sharedPrefManager.getUserProfilePicId();
+
+        if(userProfilePicId==0 )
+           {if(userType==Constants.CODE_BUSINESS_USER)
+            userProfilePic.setImageResource(R.drawable.business1);
+            else if(userType==Constants.CODE_NORMAL_USER)
+            userProfilePic.setImageResource(R.drawable.ic_person);
+           }
+        else
+            Glide.with(getApplicationContext()).load(userProfilePicUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(userProfilePic);
+
+        //Picasso.with(getApplicationContext()).load(y).into(userProfilePic);
+
+
+
+
     }
 
 
@@ -122,7 +170,7 @@ public class NavDrw extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        Fragment fragment=new HomeActivity();
+        Fragment fragment = new HomeActivity();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_nav_drw, fragment);
         ft.addToBackStack(null);
@@ -145,15 +193,7 @@ public class NavDrw extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.search, menu);
         MenuItem item = menu.findItem(R.id.menuSearch);
-        SearchManager searchManager = (SearchManager)
-                getSystemService(Context.SEARCH_SERVICE);
-
-        SearchView searchView = (SearchView) item.getActionView();
-
-        searchView.setSearchableInfo(searchManager.
-                getSearchableInfo(getComponentName()));
-        searchView.setSubmitButtonEnabled(true);
-        //searchView.setOnQueryTextListener(this);
+        getMenuInflater().inflate(R.menu.filters, menu);
 
         return true;
     }
@@ -165,10 +205,14 @@ public class NavDrw extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-       // no inspection Simplifiable If Statement
         if (id == R.id.menuSearch) {
+            startActivity(new Intent(NavDrw.this, com.amakenapp.website.amakenapp.search.SearchResult.class));
+            return true;
 
+        }
+        if (id == R.id.action_filter) {
+            startActivity(new Intent(NavDrw.this, FiltersActivity.class));
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -214,7 +258,11 @@ public class NavDrw extends AppCompatActivity
 
         } else if (id == R.id.nav_Help) {
 
+            //startActivity(new Intent(NavDrw.this, BusinrssHelp.class));
+           // startActivity(new Intent(NavDrw.this, testimage.class));
             fragment = new HelpActivity();
+
+
 
         } else if (id == R.id.nav_invites) {
 

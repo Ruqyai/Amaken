@@ -2,9 +2,13 @@ package com.amakenapp.website.amakenapp.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,9 +17,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.amakenapp.website.amakenapp.helper.SharedPrefManager;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -45,7 +51,11 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
     private ArrayList<String> countries, cities;
     private ArrayList<Integer> countryIds, citiesIds;
 
-
+    private  String email;
+    private String password;
+    TextInputLayout useLayout;
+    RelativeLayout relativeLayout;
+    TextInputLayout passLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +80,52 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
 
 
         editTextEmail = (EditText) findViewById(R.id.UserEmail);
+        useLayout= (TextInputLayout) findViewById(R.id.user_Email);
         editTextUsername = (EditText) findViewById(R.id.UserName);
         editTextPassword = (EditText) findViewById(R.id.UserPassword);
+        passLayout =(TextInputLayout) findViewById(R.id.User_Password);
+        relativeLayout = (RelativeLayout) findViewById(R.id.content_sign_up_user) ;
+        relativeLayout.setOnClickListener(null);
+        editTextEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+
+                if(editTextEmail.getText().toString().isEmpty()){
+                    useLayout.setErrorEnabled(true);
+                    useLayout.setError("Please enter your Email...!");
+                }else {
+                    useLayout.setErrorEnabled(false);
+                }
+            }
+        });
+        editTextEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if(editTextEmail.getText().toString().isEmpty()){
+                    useLayout.setErrorEnabled(true);
+                    useLayout.setError("Please enter your Email...!");
+                }else {
+                    useLayout.setErrorEnabled(false);
+                }
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
+
+
+        passLayout.setCounterMaxLength(8);
 
         genderRadio = (RadioGroup) findViewById(R.id.gender);
 
@@ -199,8 +253,8 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
     //THIS IS FOR USER REGISTRATION
     private void registerRegularUser() {
         final int user_type = Constants.CODE_NORMAL_USER;
-        final String email = editTextEmail.getText().toString().trim();
-        final String password = editTextPassword.getText().toString().trim();
+        email = editTextEmail.getText().toString().trim();
+        password = editTextPassword.getText().toString().trim();
         final String username = editTextUsername.getText().toString().trim();
         final String gender = ((RadioButton)findViewById(genderRadio.getCheckedRadioButtonId())).getText().toString();
         final String web_url = "";
@@ -226,9 +280,13 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
                             if (!obj.getBoolean("error")) {
 
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
-
                                 finish();
-                                startActivity(new Intent(getApplicationContext(), ChooseInterest.class));
+                                singIn();
+                                Intent intent=new Intent(getApplicationContext(), ChooseInterest.class);
+                                intent.putExtra("email",email);
+                                startActivity(intent);
+
+
 
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
@@ -265,5 +323,71 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
         };
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
+
+
+    public void singIn() {
+        StringRequest send = new StringRequest(Request.Method.POST,
+                Constants.URL_LOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                int userId = obj.getInt("id");
+                                String userIdString = Integer.toString(userId);
+                                SharedPrefManager.getInstance(getApplicationContext())
+                                        .userLogin(
+                                                userIdString,
+                                                obj.getString("user_type"),
+                                                obj.getString("user_email"),
+                                                obj.getString("user_password"),
+                                                obj.getString("user_name"),
+                                                TextUtils.isEmpty(obj.getString("gender"))?"":obj.getString("gender"),
+                                                TextUtils.isEmpty(obj.getString("web_url"))?"":obj.getString("web_url"),
+                                                TextUtils.isEmpty(obj.getString("phone_number"))?"":obj.getString("phone_number"),
+                                                obj.getInt("country_id"),
+                                                obj.getString("country_name"),
+                                                obj.getInt("city_id"),
+                                                obj.getString("city_name"),
+                                                obj.getString("profile_pic_id"),
+                                                obj.getString("profile_pic_url"),
+                                                obj.getString("profile_pic_timeStamp")
+                                                );
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(
+                        getApplicationContext(),
+                        error.getMessage(),
+                        Toast.LENGTH_LONG
+                ).show();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userEmail", email);
+                params.put("password", password);
+                return params;
+            }
+        };
+
+        MySingleton.getInstance(this).addToRequestQueue(send);
+
+    }
+
+
+
 
 }

@@ -5,22 +5,34 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="5sp"
-        android:text="test" />
-
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/cafes"
         android:id="@+id/imageViewGrid"
-        android:layout_below="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        />
+
+        app:srcCompat="@drawable/cafes" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_height="wrap_content"
+        android:background="@color/barlight"
+        android:layout_below="@+id/imageViewGrid"
+        >
+
+
+    <TextView
+
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="5dp"
+        android:textColor="@color/baa3"
+        android:text="test" />
+    </LinearLayout>
 
 </RelativeLayout>

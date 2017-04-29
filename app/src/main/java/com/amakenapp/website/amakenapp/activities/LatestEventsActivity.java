@@ -1,6 +1,7 @@
 package com.amakenapp.website.amakenapp.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
@@ -46,8 +49,9 @@ public class LatestEventsActivity extends Fragment{
     Context context;
 
     SharedPrefManager sharedPrefManager;
-    private static int userId;
-
+    private static int userId, userType;
+    private LinearLayout loading_event, no_events;
+    private TextView addevent;
 
     @Nullable
     @Override
@@ -58,7 +62,19 @@ public class LatestEventsActivity extends Fragment{
 
         sharedPrefManager = SharedPrefManager.getInstance(getActivity().getApplicationContext());
         userId = sharedPrefManager.getUserId();
+        userType = sharedPrefManager.getUserType();
 
+        loading_event = (LinearLayout) myView.findViewById(R.id.linlaHeaderProgress_event);
+        loading_event.setVisibility(View.VISIBLE);
+
+        no_events = (LinearLayout) myView.findViewById(R.id.no_events_event);
+        addevent =(TextView) myView.findViewById(R.id.add_event_events);
+        addevent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AddEvent.class));
+            }
+        });
         recyclerView = (RecyclerView) myView.findViewById(R.id.events_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -67,10 +83,6 @@ public class LatestEventsActivity extends Fragment{
         getAllLatestevents(userId);
 
 
-
-       /* adapter = new EventsAdapter (listItems, getActivity());
-
-        recyclerView.setAdapter(adapter);*/
         return myView;
     }
 
@@ -98,8 +110,6 @@ public class LatestEventsActivity extends Fragment{
                                     JSONObject eventDetails = arr.getJSONObject(i);
 
 
-
-
                                     EventsListItem listItem = new EventsListItem();
                                     listItem.setEventId(eventDetails.getInt("event_id"));
                                     listItem.setEventavaliabilty(eventDetails.getString("avaliable_message"));
@@ -114,14 +124,23 @@ public class LatestEventsActivity extends Fragment{
                                     String rate2 = Double.toString(rate);
                                     Float rate3 = Float.parseFloat(rate2);
                                     listItem.setRatingEvent(rate3);
-                                    listItem.setEventRatingStat(rate2);
+                                    String result = String.format("%.1f", rate);
+                                    listItem.setEventRatingStat(result);
+
+                                    listItem.setOwnerId(eventDetails.getInt("owner_id"));
 
                                     listItems.add(listItem);
                                 }
                                 adapter = new EventsAdapter (listItems, getActivity());
                                 recyclerView.setAdapter(adapter);
+                                loading_event.setVisibility(View.GONE);
+
 
                             } else {
+                                loading_event.setVisibility(View.GONE);
+                                no_events.setVisibility(View.VISIBLE);
+                                if(userType==Constants.CODE_NORMAL_USER)
+                                    addevent.setVisibility(View.GONE);
                                 Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {

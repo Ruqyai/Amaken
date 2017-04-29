@@ -22,6 +22,15 @@ public class EventsListItem {
     private String eventRatingStat;
     private Float ratingEvent;
     private String ratingStat;
+    private int OwnerId;
+
+    public int getOwnerId() {
+        return OwnerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        OwnerId = ownerId;
+    }
 
     public EventsListItem(int eventId, String eventBusinessProfileImage, String eventBusinessName, int event_availableOrBusyLogo, String eventPicture, String eventName, String eventCategory, String eventDescription, String eventDescriptionMultiLineText, String eventExpand, String eventRatingStat, Float ratingEvent, String ratingStat) {
         this.eventId = eventId;

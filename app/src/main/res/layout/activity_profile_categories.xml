@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/activity_profile_categories"
     tools:context="com.amakenapp.website.amakenapp.activities.ProfileCategories">
 
     <android.support.design.widget.AppBarLayout
