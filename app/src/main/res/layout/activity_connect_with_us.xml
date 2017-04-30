@@ -50,7 +50,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="75dp"
         android:background="?attr/selectableItemBackground"
-        android:text="AmakenApp/Instagram"
+        android:text="Amaken_App/Instagram"
         android:textColor="#a47a51"
         android:textSize="17sp"
         app:layout_constraintHorizontal_bias="0.244"
