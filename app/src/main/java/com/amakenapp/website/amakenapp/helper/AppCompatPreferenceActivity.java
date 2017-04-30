@@ -49,51 +49,60 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         getDelegate().setContentView(layoutResID);
+
     }
 
     @Override
     public void setContentView(View view) {
         getDelegate().setContentView(view);
+
     }
 
     @Override
     public void setContentView(View view, ViewGroup.LayoutParams params) {
         getDelegate().setContentView(view, params);
+
     }
 
     @Override
     public void addContentView(View view, ViewGroup.LayoutParams params) {
         getDelegate().addContentView(view, params);
+
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
         getDelegate().onPostResume();
+
     }
 
     @Override
     protected void onTitleChanged(CharSequence title, int color) {
         super.onTitleChanged(title, color);
         getDelegate().setTitle(title);
+
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         getDelegate().onConfigurationChanged(newConfig);
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         getDelegate().onStop();
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         getDelegate().onDestroy();
+
     }
 
     public void invalidateOptionsMenu() {
@@ -103,6 +112,7 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
     private AppCompatDelegate getDelegate() {
         if (mDelegate == null) {
             mDelegate = AppCompatDelegate.create(this, null);
+
         }
         return mDelegate;
     }

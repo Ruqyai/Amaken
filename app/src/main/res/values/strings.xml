@@ -35,9 +35,7 @@
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
     <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
+        <item>English</item>
     </string-array>
     <string-array name="pref_example_list_values">
         <item>1</item>
