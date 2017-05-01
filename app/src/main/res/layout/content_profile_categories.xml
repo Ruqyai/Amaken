@@ -622,6 +622,7 @@ android:layout_below="@+id/row7"
     android:layout_margin="5dp"
     android:layout_below="@+id/row4"
     android:background="@color/bar"
+
     android:text="@string/edit_button"/>
             <Button
                 android:id="@+id/ButtonSave"
@@ -630,6 +631,7 @@ android:layout_below="@+id/row7"
                 android:layout_margin="5dp"
                 android:layout_below="@+id/row4"
                 android:layout_alignParentEnd="true"
+
 
                 android:background="@color/bar"
                 android:text="@string/save_button"/>

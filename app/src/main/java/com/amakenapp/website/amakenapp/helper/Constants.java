@@ -22,6 +22,8 @@ public class Constants {
     public static final String URL_CITIES = ROOT_URL+"getCitiesByCountryId/";
     public static final String URL_PLACECATEGORIES = ROOT_URL+"getAllPlaceCategories";
 
+   // public static final String URL_GET_USER_ID = ROOT_URL+"getUserId";
+
     public static final String URL_GET_USER_ID = ROOT_URL+"getUserId";
 
 

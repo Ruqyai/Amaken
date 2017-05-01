@@ -2,16 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context="com.amakenapp.website.amakenapp.activities.LoginGoogleActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Note:you will continue as a user"
+        android:textStyle="italic"
+        android:textColor="@color/accent"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/note"/>
     <com.google.android.gms.common.SignInButton
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/sign_in_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="25dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/note"
         app:buttonSize="wide"
          />
 

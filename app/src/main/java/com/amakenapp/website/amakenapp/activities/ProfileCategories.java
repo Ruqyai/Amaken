@@ -81,7 +81,7 @@ public class ProfileCategories extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_categories);
-
+// // TODO: 4/29/2017 here is error
         coordinatorLayoutLayout= (CoordinatorLayout) findViewById(R.id.activity_profile_categories);
         Toolbar toolbar = (Toolbar) findViewById(R.id.profilecategories_toolbar);
         setSupportActionBar(toolbar);
