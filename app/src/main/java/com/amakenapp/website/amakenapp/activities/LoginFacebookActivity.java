@@ -29,8 +29,10 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
 import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -58,7 +60,7 @@ public class LoginFacebookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_facebook);
 
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
+       // FacebookSdk.sdkInitialize(getApplicationContext());
         loginButton = (LoginButton) findViewById(R.id.login_button);
 
         callbackManager = CallbackManager.Factory.create();
@@ -70,6 +72,8 @@ public class LoginFacebookActivity extends AppCompatActivity {
                 graphRequest(loginResult.getAccessToken());
 
 
+               // AccessToken.setCurrentAccessToken(null);
+                LoginManager.getInstance().logOut();
 
 
             }
@@ -82,7 +86,7 @@ public class LoginFacebookActivity extends AppCompatActivity {
             @Override
             public void onError(FacebookException error) {
                 Toast.makeText(getApplicationContext(), "Some errors accrue", Toast.LENGTH_LONG).show();
-
+                LoginManager.getInstance().logOut();
             }
         });
 
@@ -103,11 +107,14 @@ public class LoginFacebookActivity extends AppCompatActivity {
                             profile.describeContents();
                             UPassword = profile.getId();
                             UEmail = object.get("email").toString();
+                            picture=profile.getProfilePictureUri(90,90);
+
 
                             Toast.makeText(getApplicationContext(), "welcome  " + profile.getFirstName(), Toast.LENGTH_LONG).show();
-                            singIn();
+
 
                             try {
+                                singIn();
 
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -125,6 +132,7 @@ public class LoginFacebookActivity extends AppCompatActivity {
         b.putString("fields", "id,email,first_name,last_name,picture.type(large)");
         request.setParameters(b);
         request.executeAsync();
+
 
     }
 
@@ -177,7 +185,7 @@ public class LoginFacebookActivity extends AppCompatActivity {
                                                 obj.getInt("city_id"),
                                                 obj.getString("city_name"),
                                                 "8888",
-                                                getUImage().toString(),
+                                                picture.toString(),
                                                 TextUtils.isEmpty(obj.getString("profile_pic_timeStamp")) ? "" : obj.getString("profile_pic_timeStamp")
                                         );
                                 startActivity(new Intent(getApplicationContext(), NavDrw.class));
