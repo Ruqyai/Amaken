@@ -13,7 +13,7 @@
         android:textColor="@color/accent"
         android:layout_marginLeft="5dp"
         android:id="@+id/note"/>
-    <com.facebook.login.widget.LoginButton.
+    <com.facebook.login.widget.LoginButton
         android:layout_below="@+id/note"
         android:id="@+id/login_button"
         android:layout_width="match_parent"
