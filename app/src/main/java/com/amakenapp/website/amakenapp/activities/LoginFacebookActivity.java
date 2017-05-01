@@ -58,7 +58,7 @@ public class LoginFacebookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_facebook);
 
 
-         FacebookSdk.sdkInitialize(getApplicationContext());
+      //   FacebookSdk.sdkInitialize(getApplicationContext());
         loginButton = (LoginButton) findViewById(R.id.login_button);
 
         callbackManager = CallbackManager.Factory.create();
@@ -67,7 +67,10 @@ public class LoginFacebookActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
 
-                graphRequest(loginResult.getAccessToken());
+             //   graphRequest(loginResult.getAccessToken());
+
+
+
 
             }
 

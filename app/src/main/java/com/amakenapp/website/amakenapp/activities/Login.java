@@ -61,7 +61,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
 
         if (v == login_SignIn) {
-            singIn();
+            singInNormal();
         }
         if (v == loginGoogle) {
             startActivity(new Intent(Login.this,LoginGoogleActivity.class));
@@ -84,7 +84,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
 
 
-    public void singIn() {
+    public void singInNormal() {
         final String userEmail = editEmail.getText().toString().trim();
         final String password = editPassword.getText().toString().trim();
         StringRequest send = new StringRequest(Request.Method.POST,
