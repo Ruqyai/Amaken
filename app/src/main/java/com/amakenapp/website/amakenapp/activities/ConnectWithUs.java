@@ -4,33 +4,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.util.DisplayMetrics;
+
 import com.amakenapp.website.amakenapp.R;
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.app.Service;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Binder;
-import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import java.lang.ref.WeakReference;
-
 import com.amakenapp.website.amakenapp.chat.ChatActivity;
-import com.amakenapp.website.amakenapp.chat.ChatHeadService;
 
 import jp.co.recruit_lifestyle.android.floatingview.FloatingViewListener;
 import jp.co.recruit_lifestyle.android.floatingview.FloatingViewManager;
@@ -102,7 +84,7 @@ public class ConnectWithUs extends AppCompatActivity implements View.OnClickList
 
         }if (v== amaken_i){
 
-            String url = "https://www.instagram.com/amakenapp/";
+            String url = "https://www.instagram.com/amaken_app/";
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url)); startActivity(i);
         }if (v== Amakeen_app_facebook){
