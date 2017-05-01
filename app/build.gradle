@@ -31,15 +31,12 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile project(':facebook-android-sdk-4.20.0')
-
+    compile project(':facebook-android-sdk-4.22.0')
     //for view pager
+
     //
     compile files('libs/Ab.jar')
     compile files('libs/PhotoUtil.jar')
-
-
-
     compile 'com.github.recruit-lifestyle:FloatingView:2.2'
     compile 'com.google.android.gms:play-services-maps:10.0.1'
     compile 'com.android.support:appcompat-v7:25.2.0'
@@ -59,9 +56,9 @@ dependencies {
     compile 'com.google.firebase:firebase-auth:10.0.1'
     compile 'com.google.firebase:firebase-core:10.0.1'
     compile 'com.google.firebase:firebase-invites:10.0.1'
+    compile 'com.google.firebase:firebase-messaging:10.0.1'
     compile 'com.cr5315:socialbuttons:0.2.0'
     compile 'com.google.android.gms:play-services-auth:10.0.1'
-    compile 'com.google.firebase:firebase-messaging:10.0.1'
     compile 'com.google.android.gms:play-services-plus:10.0.1'
     compile 'com.google.android.gms:play-services-places:10.0.1'
     compile 'com.google.android.gms:play-services-location:10.0.1'
@@ -73,6 +70,7 @@ dependencies {
     compile 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
     compile 'net.gotev:uploadservice:2.1'
     testCompile 'junit:junit:4.12'
+    compile project(':facebook-android-sdk-4.22.0')
 }
 
 
