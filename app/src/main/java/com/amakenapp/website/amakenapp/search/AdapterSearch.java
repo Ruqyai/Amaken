@@ -24,70 +24,64 @@ public class AdapterSearch extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     private Context context;
     private LayoutInflater inflater;
-     private List<SearchList>searchList;
+    private List<SearchList> searchList;
     private SearchList current;
-      private int currentId;
-private String tmp;
+    private int currentId;
+    private String tmp;
     private String tmpName;
-
     AdapterView.OnItemClickListener mItemClickListener;
 
-
-
-    // create constructor to initialize context andsearchList sent from MainActivity
-    public AdapterSearch(Context context, List<SearchList>searchList){
-        this.context=context;
-        inflater= LayoutInflater.from(context);
-        this.searchList=searchList;
+    public AdapterSearch(Context context, List<SearchList> searchList) {
+        this.context = context;
+        inflater = LayoutInflater.from(context);
+        this.searchList = searchList;
     }
 
-    // Inflate the layout when ViewHolder created
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view=inflater.inflate(R.layout.search_item, parent,false);
-        MyHolder holder=new MyHolder(view);
+        View view = inflater.inflate(R.layout.search_item, parent, false);
+        MyHolder holder = new MyHolder(view);
         return holder;
     }
-
-    // BindsearchList
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         // Get current position of item in RecyclerView to bind data and assign values from list
-        MyHolder myHolder= (MyHolder) holder;
-        current=searchList.get(position);
-        tmp =current.getSerchType();
-        currentId=current.getSearchId();
-        tmpName=current.getSearchName();
+        MyHolder myHolder = (MyHolder) holder;
+        current = searchList.get(position );
+        tmp = current.getSerchType();
+        currentId = current.getSearchId();
+        tmpName = current.getSearchName();
         myHolder.searchName.setText(current.getSearchName());
         myHolder.serchType.setText(current.getSerchType());
         myHolder.serchType.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
+
         myHolder.searchName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if  (tmp.contains("event")){
-                    Toast.makeText(context, "You clicked "+tmp+" "+tmpName, Toast.LENGTH_SHORT).show();
+                if (tmp.contains("event")) {
+                    Toast.makeText(context, "You clicked  " + tmp + "  " + tmpName, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, ExpandDetailsMapsActivityEvent.class);
                     intent.putExtra("EVENT_ID", currentId);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
-                if  (tmp.contains("place")){
+                if (tmp.contains("place")) {
 
                     Intent intent = new Intent(context, ExpandDetailsMapsActivity.class);
                     intent.putExtra("PLACE_ID", currentId);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
-                    Toast.makeText(context, "You clicked "+tmp+" "+tmpName, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "You clicked " + tmp + " " + tmpName, Toast.LENGTH_SHORT).show();
                 }
-                if  (tmp.contains("user")||tmp.contains("owner")){
+                if (tmp.contains("user") || tmp.contains("owner")) {
 
                     Intent intent = new Intent(context, UserDetailsActivity.class);
                     intent.putExtra("USER_ID", currentId);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
-                    Toast.makeText(context, "You clicked "+tmp+" "+tmpName, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "You clicked " + tmp + " " + tmpName, Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -102,50 +96,35 @@ private String tmp;
     }
 
 
-    class MyHolder extends RecyclerView.ViewHolder  {
+    class MyHolder extends RecyclerView.ViewHolder {
 
         TextView searchName;
         TextView serchType;
-
+        private TextView searchDescription, searchRate, searchOwner_id, searchCategory_id, searchLocation_id,
+                searchCountry_id, searchCity_id, searchData, searchUser_type;
+        private int searchId;
         // create constructor to get widget reference
         public MyHolder(View itemView) {
             super(itemView);
             searchName = (TextView) itemView.findViewById(R.id.textSearchName);
             serchType = (TextView) itemView.findViewById(R.id.textSearchType);
-           // itemView.setOnClickListener(this);
+
+            searchDescription = (TextView) itemView.findViewById(R.id.searchDescription);
+            searchRate = (TextView) itemView.findViewById(R.id.searchRate);
+            searchOwner_id = (TextView) itemView.findViewById(R.id.searchOwner_id);
+            searchCategory_id = (TextView) itemView.findViewById(R.id.searchCategory_id);
+            searchLocation_id = (TextView) itemView.findViewById(R.id.searchLocation_id);
+            searchCountry_id = (TextView) itemView.findViewById(R.id.searchCountry_id);
+            searchCity_id = (TextView) itemView.findViewById(R.id.searchCity_id);
+            searchData = (TextView) itemView.findViewById(R.id.searchData);
+            searchUser_type = searchData = (TextView) itemView.findViewById(R.id.searchUser_type);
+            int searchId;
+            // itemView.setOnClickListener(this);
 
         }
 
         // Click event for all items
-        /*
-        @Override
-        public void onClick(View v) {
-          if  (tmp.contains("event")){
-              Toast.makeText(context, "You clicked "+tmp+" "+tmpName, Toast.LENGTH_SHORT).show();
-              Intent intent = new Intent(context, ExpandDetailsMapsActivityEvent.class);
-              intent.putExtra("EVENT_ID", currentId);
-              intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-              context.startActivity(intent);
-          }
-            if  (tmp.contains("place")){
-              //  SearchList selected = new SearchList();
-                Intent intent = new Intent(context, ExpandDetailsMapsActivity.class);
-                intent.putExtra("PLACE_ID", currentId);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-                Toast.makeText(context, "You clicked "+tmp+" "+tmpName, Toast.LENGTH_SHORT).show();
-            }
-            if  (tmp.contains("user")||tmp.contains("owner")){
-              //  SearchList selected = new SearchList();
-                Intent intent = new Intent(context, UserDetailsActivity.class);
-                intent.putExtra("USER_ID", currentId);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-                Toast.makeText(context, "You clicked "+tmp+" "+tmpName, Toast.LENGTH_SHORT).show();
-            }
-            }
-*/
-        }
+    }
 }
 
 

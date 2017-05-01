@@ -83,31 +83,50 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="15dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginStart="15dp" />
+            android:layout_marginStart="15dp"
+            android:typeface="sans"
+            android:textAllCaps="?attr/windowActionBar"/>
 
 
 
-        <com.google.android.gms.common.SignInButton
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/sign_in_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="15dp"
-            app:buttonSize="wide"
 
-            />
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/login_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            <Button
 
-            />
+                android:id="@+id/login_SingInGoogle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="continue with Google "
+
+                android:background="@drawable/common_google_signin_btn_text_light"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+
+                android:typeface="sans"
+                android:textAllCaps="?attr/windowActionBar"/>
+
+            <Button
+
+                android:id="@+id/login_SingInFacebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/com_facebook_button_icon_blue"
+                android:paddingLeft="7dp"
+                android:background="@drawable/com_facebook_button_background"
+                android:text="continue with Facebook "
+                android:textColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+
+                android:typeface="sans"
+                android:textAllCaps="?attr/windowActionBar"/>
+
+
 
 
 

@@ -297,7 +297,7 @@ public class FiltersActivity extends AppCompatActivity implements View.OnClickLi
         intent.putExtra("cateID_Place",catID);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        Toast.makeText(getApplicationContext(),"  " +couID+"  "+ciID+"  "+catID, Toast.LENGTH_LONG).show();
+     //   Toast.makeText(getApplicationContext(),"  " +couID+"  "+ciID+"  "+catID, Toast.LENGTH_LONG).show();
 
     }
 
@@ -309,7 +309,7 @@ public class FiltersActivity extends AppCompatActivity implements View.OnClickLi
         intent.putExtra("counID_Event",couID);
         intent.putExtra("citID_Event",ciID);
         intent.putExtra("cateID_Event",catID);
-        Toast.makeText(getApplicationContext(),"  " +couID+"  "+ciID+"  "+catID, Toast.LENGTH_LONG).show();
+     //   Toast.makeText(getApplicationContext(),"  " +couID+"  "+ciID+"  "+catID, Toast.LENGTH_LONG).show();
        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
@@ -322,7 +322,7 @@ public class FiltersActivity extends AppCompatActivity implements View.OnClickLi
         intent.putExtra("counID_User",couID);
         intent.putExtra("citID_User",ciID);
         intent.putExtra("user_type_User",userType);
-        Toast.makeText(getApplicationContext(),"  " +couID+"  "+ciID+"  "+userType, Toast.LENGTH_LONG).show();
+     //   Toast.makeText(getApplicationContext(),"  " +couID+"  "+ciID+"  "+userType, Toast.LENGTH_LONG).show();
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

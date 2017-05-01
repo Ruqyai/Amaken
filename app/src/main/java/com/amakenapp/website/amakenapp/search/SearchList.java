@@ -2,17 +2,17 @@ package com.amakenapp.website.amakenapp.search;
 
 public class SearchList {
 
-     private  int searchId;
-     private  String searchName;
-     private  String serchType;
-     private  String searchDescription;
-     private  String searchRate;
-     private  String searchOwner_id;
-     private  String searchCategory_id;
-     private  String searchLocation_id;
-     private  String searchCountry_id;
-     private  String searchCity_id;
-     private  String searchData;
+    private int searchId;
+    private String searchName;
+    private String serchType;
+    private String searchDescription;
+    private String searchRate;
+    private String searchOwner_id;
+    private String searchCategory_id;
+    private String searchLocation_id;
+    private String searchCountry_id;
+    private String searchCity_id;
+    private String searchData;
     private String searchUser_type;
 
     public SearchList() {
@@ -131,5 +131,4 @@ public class SearchList {
     }
 
 
-
-    }
+}

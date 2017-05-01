@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_profile_categories"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.amakenapp.website.amakenapp.activities.ComplateActivity"
+    tools:showIn="@layout/activity_complate">
+
+
+
+    <ScrollView
+        android:tag="business_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:fadeScrollbars="true"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:scrollbars="none"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            >
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:id="@+id/con">
+                <!--
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    />
+                    -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+                <TextView
+                    android:text="Welcome "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView15"
+                    android:textColor="@color/bar"
+                    android:textSize="@dimen/FontSize"
+                    android:textStyle="italic|bold"
+                    android:paddingLeft="5dp"
+                     />
+                <TextView
+                    android:text="User"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textUserWeclome"
+                    android:textColor="@color/bar"
+                    android:textSize="@dimen/FontSize"
+                    android:paddingLeft="3dp"
+                    android:textStyle="italic|bold"
+                     />
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    />
+                <TextView
+                    android:text="complate for recommendation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:id="@+id/text"
+                    android:textColor="@color/baa"
+                    android:textSize="@dimen/FontSize"
+                    android:layout_marginTop="8dp"
+
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    />
+                <TextView
+                    android:text="@string/country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView5"
+                    android:textColor="@color/baa3"
+                    android:textSize="@dimen/FontSize"
+                    android:paddingLeft="10dp"
+                    android:layout_marginTop="5dp"/>
+
+                <Spinner
+                    android:id="@+id/sign_up_user_countries_spinner_dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/round_light"
+                    android:popupBackground="@drawable/round_light"
+                    android:spinnerMode="dropdown"
+                    android:drawableRight="@drawable/ic_keyboard_arrow_down_black_24dp"
+                   />
+                <TextView
+                    android:text="@string/city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView6city"
+                    android:textColor="@color/baa3"
+                    android:textSize="@dimen/FontSize"
+                    android:paddingLeft="10dp" />
+                <Spinner
+                    android:id="@+id/sign_up_user_cities_spinner_dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:spinnerMode="dropdown"
+                    android:popupBackground="@drawable/round_light"
+                    android:background="@drawable/round_light"
+                    android:drawableRight="@drawable/ic_keyboard_arrow_down_black_24dp"/>
+                <View
+
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray" />
+                <TextView
+                    android:text="Choose interesting      "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textcChooseInteresting"
+                    android:textStyle="bold"
+                    android:drawableRight="@drawable/ic_keyboard_arrow_down_black_24dp"
+                    android:paddingLeft="2dp"
+                    android:textColor="@color/baa"
+                    android:textSize="@dimen/FontSize"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/layCate"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                <CheckBox
+                    android:id="@+id/checkBoxCafes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cafes"
+                    android:textColor="@color/baa3"
+                    android:onClick="checkBoxInterest"/>
+                    <CheckBox
+                        android:id="@+id/checkBoxEducation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Education"
+                        android:textColor="@color/baa3"
+                        android:onClick="checkBoxInterest"/>
+                    <CheckBox
+                        android:id="@+id/checkBoxEntertainment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Entertainment"
+                        android:textColor="@color/baa3"
+                        android:onClick="checkBoxInterest"/>
+
+                    <CheckBox
+                        android:id="@+id/checkBoxHairstylists"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Hair stylists"
+                        android:textColor="@color/baa3"
+                        android:onClick="checkBoxInterest"/>
+                    <CheckBox
+                        android:id="@+id/checkBoxyHospitals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Hospitals"
+                        android:textColor="@color/baa3"
+                        android:onClick="checkBoxInterest"/>
+
+
+                    <CheckBox
+                        android:id="@+id/checkBoxHotels"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Hotels"
+                        android:textColor="@color/baa3"
+                        android:onClick="checkBoxInterest"/>
+
+                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+                        <CheckBox
+                            android:id="@+id/checkBoxyMalls"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Malls"
+                            android:textColor="@color/baa3"
+                            android:onClick="checkBoxInterest"/>
+                    <CheckBox
+                        android:id="@+id/checkBoxParks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Parks"
+                        android:textColor="@color/baa3"
+                        android:onClick="checkBoxInterest"/>
+                    <CheckBox
+                        android:id="@+id/checkBoxRestaurants"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Restaurants"
+                        android:textColor="@color/baa3"
+                        android:onClick="checkBoxInterest"/>
+
+
+                    <CheckBox
+                        android:id="@+id/checkBoxSpa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Spa"
+                        android:textColor="@color/baa3"
+                        android:onClick="checkBoxInterest"/>
+                    <CheckBox
+                        android:id="@+id/checkBoxSport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Sport"
+                        android:textColor="@color/baa3"
+                        android:onClick="checkBoxInterest"/>
+
+
+                    <CheckBox
+                        android:id="@+id/checkBoxtourism"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="tourism"
+                        android:textColor="@color/baa3"
+                        android:onClick="checkBoxInterest"/>
+
+
+                </LinearLayout>
+            </LinearLayout>
+                <Button
+                    android:id="@+id/ButtonSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_below="@+id/row4"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/round_shape_btn"
+                    android:text="@string/save_button"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

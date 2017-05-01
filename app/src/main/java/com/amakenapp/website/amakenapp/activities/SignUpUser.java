@@ -280,13 +280,9 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
                             if (!obj.getBoolean("error")) {
 
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+
                                 finish();
-                                singIn();
-                                Intent intent=new Intent(getApplicationContext(), ChooseInterest.class);
-                                intent.putExtra("email",email);
-                                startActivity(intent);
-
-
+                                startActivity(new Intent(getApplicationContext(), ChooseInterest.class));
 
                             } else {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
@@ -323,71 +319,5 @@ public class SignUpUser extends AppCompatActivity implements View.OnClickListene
         };
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
-
-
-    public void singIn() {
-        StringRequest send = new StringRequest(Request.Method.POST,
-                Constants.URL_LOGIN,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject obj = new JSONObject(response);
-                            if (!obj.getBoolean("error")) {
-                                int userId = obj.getInt("id");
-                                String userIdString = Integer.toString(userId);
-                                SharedPrefManager.getInstance(getApplicationContext())
-                                        .userLogin(
-                                                userIdString,
-                                                obj.getString("user_type"),
-                                                obj.getString("user_email"),
-                                                obj.getString("user_password"),
-                                                obj.getString("user_name"),
-                                                TextUtils.isEmpty(obj.getString("gender"))?"":obj.getString("gender"),
-                                                TextUtils.isEmpty(obj.getString("web_url"))?"":obj.getString("web_url"),
-                                                TextUtils.isEmpty(obj.getString("phone_number"))?"":obj.getString("phone_number"),
-                                                obj.getInt("country_id"),
-                                                obj.getString("country_name"),
-                                                obj.getInt("city_id"),
-                                                obj.getString("city_name"),
-                                                obj.getString("profile_pic_id"),
-                                                obj.getString("profile_pic_url"),
-                                                obj.getString("profile_pic_timeStamp")
-                                                );
-                            } else {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-
-                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        error.getMessage(),
-                        Toast.LENGTH_LONG
-                ).show();
-
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("userEmail", email);
-                params.put("password", password);
-                return params;
-            }
-        };
-
-        MySingleton.getInstance(this).addToRequestQueue(send);
-
-    }
-
-
-
 
 }

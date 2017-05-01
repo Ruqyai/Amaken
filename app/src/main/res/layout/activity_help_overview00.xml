@@ -29,6 +29,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/appBarLayout2"
+    android:layout_margin="8dp"
+    >
+
 
 
         <TextView
@@ -98,6 +105,7 @@
         android:text="After visitiing the place user can add comment, review and photos to enhance the content as will as helps other users to take previouse decission of visiting the place."
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="230dp" />
+</RelativeLayout>
 
 
 </RelativeLayout>

@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class HelpExpandableListItem extends Activity {
+public class HelpExpandableListItem extends AppCompatActivity{
 
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
@@ -37,11 +37,9 @@ public class HelpExpandableListItem extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help_expandable_list_item);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar00);
-        //setSupportActionBar(toolbar);
-
-
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar00);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
@@ -101,57 +99,84 @@ public class HelpExpandableListItem extends Activity {
                 if (groupPosition == 0 && childPosition == 0) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpOverview00.class));
+                    overridePendingTransition(0,0);
+
                 }else if (groupPosition == 0 && childPosition == 1) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpOverview01.class));
+                    overridePendingTransition(0,0);
+
 
                 }else if (groupPosition == 0 && childPosition == 2) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpOverview02.class));
+                    overridePendingTransition(0,0);
+
 
                 }else if (groupPosition == 1 && childPosition == 0) {
                 //so this code only executes if the 2nd child in the 2nd group is clicked
                 startActivity(new Intent(HelpExpandableListItem.this, HelpSigningUp00.class));
+                    overridePendingTransition(0,0);
 
-            }else if (groupPosition == 1 && childPosition == 1) {
+
+                }else if (groupPosition == 1 && childPosition == 1) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpSigningUp01.class));
+                    overridePendingTransition(0,0);
+
 
                 }else if (groupPosition == 1 && childPosition == 2) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpSigningUp02.class));
+                    overridePendingTransition(0,0);
+
 
                 }else if (groupPosition == 1 && childPosition == 3) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpSigningUp03.class));
+                    overridePendingTransition(0,0);
+
 
                 }else if (groupPosition == 2 && childPosition == 0) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpLegalPrivacy00.class));
+                    overridePendingTransition(0,0);
+
 
                 }else if (groupPosition == 2 && childPosition == 1) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpLegalPrivacy01.class));
+                    overridePendingTransition(0,0);
 
                 }else if (groupPosition == 2 && childPosition == 2) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpLegalPrivacy02.class));
+                    overridePendingTransition(0,0);
+
 
                 }else if (groupPosition == 3 && childPosition == 0) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpUsingAmaken00.class));
+                    overridePendingTransition(0,0);
+
 
                 }else if (groupPosition == 3 && childPosition == 1) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpUsingAmaken01.class));
+                    overridePendingTransition(0,0);
+
 
                 }else if (groupPosition == 3 && childPosition == 2) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpUsingAmaken02.class));
+                    overridePendingTransition(0,0);
+
 
                 }else if (groupPosition == 3 && childPosition == 3) {
                     //so this code only executes if the 2nd child in the 2nd group is clicked
                     startActivity(new Intent(HelpExpandableListItem.this, HelpUsingAmaken03.class));
+                    overridePendingTransition(0,0);
+
 
                 }
 

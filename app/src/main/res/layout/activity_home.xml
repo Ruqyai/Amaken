@@ -52,6 +52,23 @@
             android:drawableTop="@drawable/ic_not_reviews"
             android:gravity="center"
             android:text="No places to suit your interests have been added to your city, Yet!" />
+
+
+
+        <TextView
+            android:id="@+id/add_interest"
+            android:layout_width="wrap_content"
+            android:visibility="visible"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:textColor="@color/baa3"
+            android:text="Adjust Your Interests Here!" />
+
+
         <TextView
             android:id="@+id/add_event_events"
             android:layout_width="wrap_content"
@@ -63,7 +80,7 @@
             android:textAlignment="gravity"
             android:gravity="center"
             android:textColor="@color/baa3"
-            android:text="Add One!" />
+            android:text="Add a new Place Here!" />
     </LinearLayout>
 
 

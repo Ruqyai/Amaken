@@ -11,17 +11,23 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-
         app:srcCompat="@drawable/cafes" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
+
         android:layout_height="wrap_content"
         android:background="@color/barlight"
-        android:layout_below="@+id/imageViewGrid"
-        >
+        android:layout_below="@+id/imageViewGrid">
+        <TextView
 
+            android:id="@+id/t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:textColor="@color/baa3"
+            android:layout_weight="1"
+             />
 
     <TextView
 
@@ -29,10 +35,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="5dp"
+
         android:textColor="@color/baa3"
+        android:layout_weight="1"
         android:text="test" />
+        <TextView
+
+            android:id="@+id/tg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+
+            android:textColor="@color/baa3"
+            />
     </LinearLayout>
 
 </RelativeLayout>

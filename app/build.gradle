@@ -38,9 +38,9 @@ dependencies {
     compile files('libs/Ab.jar')
     compile files('libs/PhotoUtil.jar')
 
+
+
     compile 'com.github.recruit-lifestyle:FloatingView:2.2'
-
-
     compile 'com.google.android.gms:play-services-maps:10.0.1'
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:recyclerview-v7:25.2.0'

@@ -125,8 +125,28 @@ public class NavDrw extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //// TODO: 4/12/2017 conflict afeter marege 
+
+/* 
+String x = sharedPrefManager.getUsername();
+ userName.setText(x);
+String y=sharedPrefManager.getKeyUserProfilePicUrl();
+     Glide.with(this).load(y)
+            .thumbnail(0.5f)
+             .crossFade()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+          .into(userProfilePic);
+    //Picasso.with(getApplicationContext()).load(y).into(userProfilePic);
 
 
+       userType= sharedPrefManager.getUserType();
+       if (userType == Constants.CODE_BUSINESS_USER)
+           {floatButton.setVisibility(View.VISIBLE);}
+       else if(userType == Constants.CODE_NORMAL_USER)
+           {floatButton.setVisibility(View.INVISIBLE);}
+
+
+ */
 
         View header=navigationView.getHeaderView(0);
         userName = (TextView)header.findViewById(R.id.nav_header_user_name);

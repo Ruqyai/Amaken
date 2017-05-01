@@ -18,7 +18,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="525dp"
+            android:layout_height="match_parent"
             android:src="@drawable/page_1"
             />
         <ImageView
@@ -31,7 +31,7 @@
             android:src="@drawable/page_3"/>
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="525dp"
+            android:layout_height="match_parent"
             android:src="@drawable/page_4"
             />
         <ImageView
@@ -44,7 +44,7 @@
             android:src="@drawable/page_6"/>
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="525dp"
+            android:layout_height="match_parent"
             android:src="@drawable/page_7"
             />
         <ImageView
@@ -67,7 +67,7 @@
             android:src="@drawable/page_11"/>
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="525dp"
+            android:layout_height="match_parent"
             android:src="@drawable/page_12"
             />
         <ImageView
@@ -85,11 +85,13 @@
     </ViewFlipper>
 
 
+
     <RelativeLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"
+        android:layout_marginTop="8dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true">
 

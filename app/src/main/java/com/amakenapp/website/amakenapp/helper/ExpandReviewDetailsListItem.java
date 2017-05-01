@@ -4,11 +4,15 @@ import android.widget.RatingBar;
 
 import com.amakenapp.website.amakenapp.R;
 
-/**
- * Created by User on 3/12/2017.
- */
+
 
 public class ExpandReviewDetailsListItem {
+
+    private int userWhoWroteReviewId;
+    private int placeOwnerId;
+    private int eventOwnerId;
+    private String placeName;
+    private String eventName;
 
 
     private int eventId;
@@ -45,6 +49,46 @@ public class ExpandReviewDetailsListItem {
         this.reviewLikeImage = reviewLikeImage;
         this.reviewLikesNumber = reviewLikesNumber;
         this.reviewFlagImage = reviewFlagImage;
+    }
+
+    public int getPlaceOwnerId() {
+        return placeOwnerId;
+    }
+
+    public void setPlaceOwnerId(int placeOwnerId) {
+        this.placeOwnerId = placeOwnerId;
+    }
+
+    public int getEventOwnerId() {
+        return eventOwnerId;
+    }
+
+    public void setEventOwnerId(int eventOwnerId) {
+        this.eventOwnerId = eventOwnerId;
+    }
+
+    public String getPlaceName() {
+        return placeName;
+    }
+
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public int getUserWhoWroteReviewId() {
+        return userWhoWroteReviewId;
+    }
+
+    public void setUserWhoWroteReviewId(int userWhoWroteReviewId) {
+        this.userWhoWroteReviewId = userWhoWroteReviewId;
     }
 
     public String getReview_like_exsits() {

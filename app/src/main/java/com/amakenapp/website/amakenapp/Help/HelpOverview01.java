@@ -28,7 +28,9 @@ public class HelpOverview01 extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            startActivity(new Intent(getApplicationContext(), HelpExpandableListItem.class));
+            finish();
+
+            overridePendingTransition(0,0);
 
             return true;
         }

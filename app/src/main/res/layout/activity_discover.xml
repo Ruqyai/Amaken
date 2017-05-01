@@ -65,6 +65,8 @@
                 android:layout_height="match_parent"
                 android:text="Place Details:"
                 android:textColor="@color/baa"
+                android:layout_marginBottom="5dp"
+
                 android:textStyle="bold" />
         </TableRow>
 
@@ -84,6 +86,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity=""
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:text="Place Name: "
                 android:textAlignment="gravity"
                 android:textStyle="bold" />
@@ -95,6 +99,8 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:gravity=""
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:text="Target Stores"
                 android:textAlignment="gravity"
                 android:textStyle="italic" />
@@ -128,6 +134,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity=""
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
                 android:text="Rating Average: "
                 android:textAlignment="gravity"
                 android:textStyle="bold" />
@@ -146,14 +154,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
-                    android:gravity=""
-                    android:textAlignment="gravity" />
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_gravity="center"
+                    />
 
                 <TextView
                     android:id="@+id/place_rating_stat"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="4,5"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -189,7 +201,7 @@
                 android:id="@+id/Expand_place_contact_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="8dp"
                 android:text="Contact Details:"
                 android:textColor="@color/baa"
                 android:textStyle="bold" />
@@ -211,7 +223,6 @@
                 android:gravity=""
                 android:text="Place Address:"
                 android:textAlignment="gravity"
-                android:drawableStart="@drawable/ic_verified_user"
                 android:textStyle="bold" />
 
 
@@ -221,6 +232,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
+                android:drawableStart="@drawable/ic_location"
                 android:text="Place Address"
                 android:textAlignment="gravity" />
 
@@ -241,7 +253,6 @@
                 android:id="@+id/place_businessWeb_bold_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:drawableStart="@drawable/ic_web"
                 android:gravity=""
                 android:text="Place Web:"
                 android:textStyle="bold" />
@@ -253,7 +264,7 @@
                 android:layout_weight="1"
                 android:autoLink="web"
                 android:gravity="center_vertical"
-
+                android:drawableStart="@drawable/ic_web"
                 android:text="www.seu.edu.sa"
                 android:textAlignment="gravity" />
             <TextView
@@ -273,7 +284,6 @@
                 android:id="@+id/place_businessPhone_bold_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:drawableStart="@drawable/ic_phone"
                 android:gravity=""
                 android:text="Place Phone:"
                 android:textStyle="bold" />
@@ -285,7 +295,7 @@
                 android:layout_weight="1"
                 android:autoLink="phone"
                 android:gravity="center_vertical"
-
+                android:drawableStart="@drawable/ic_phone"
                 android:text="+966565078487"
 
                 android:textAlignment="gravity" />

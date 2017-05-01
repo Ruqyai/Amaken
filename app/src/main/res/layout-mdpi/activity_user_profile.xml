@@ -22,7 +22,7 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="45dp"
-            android:src="@drawable/profile"
+            android:background="@drawable/ic_person"
             app:civ_border_color="#b41b0606"
             app:civ_border_width="1dp"
             android:layout_alignStart="@+id/row1" />
@@ -33,6 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
+            android:drawableEnd="@drawable/ic_edit"
+            android:textAlignment="gravity"
+            android:gravity="bottom"
             android:text="@string/change_your_profile_picture"
             android:textColor="@color/baa"
             android:textSize="@dimen/FontSize"
