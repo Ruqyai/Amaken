@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,4 +22,43 @@
 
     </android.support.design.widget.AppBarLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayout2"
+        android:layout_margin="8dp"
+        >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home Page"
+            android:textColor="#15AFD8"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="5dp"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/appBarLayout2"
+            android:layout_alignStart="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="You can start navigation in the home page of the app as soon as you finish registration. \n\n The home page is customized according to the information that you provided during registration phase. The city and interests that you choose help us to recommend places and events for you. You will be able to see a list of places with a quich description of each on a card, if further information is needed you can press on expand to view the complete card of the place or the event.\n\n In addition, you can press on the profile picture of the business owner to view the full card of the business information "
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="47dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

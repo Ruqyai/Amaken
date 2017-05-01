@@ -94,7 +94,7 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
 
 
     // view flipper arrays
-    private static int reviewsNumber;
+    private static int reviewsNumber, ownerID, insertedLikeID, insertedbookmarkID;
     private static int reviewsPhotosNumber;
 
 
@@ -124,7 +124,7 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
     private ImageView imageViewHomeBusinessPlaceImage,update;
     private ImageButton filpNext, flipPrevious;
 
-    private String reviewMessage;
+    private String reviewMessage, userName;
 
     ////
     private List<ExpandReviewDetailsListItem> listItems;
@@ -146,6 +146,7 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
         //get user id from shared preferences
         sharedPrefManager = SharedPrefManager.getInstance(this);
         userId = sharedPrefManager.getUserId();
+        userName = sharedPrefManager.getUsername();
         placeID = getIntent().getExtras().getInt("PLACE_ID");
 
        ////////////////////////////////////////////////////
@@ -228,7 +229,7 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
         reviewsFlipper = (AdapterViewFlipper) findViewById(R.id.reviews_simple_flipper);
         listItems = new ArrayList<>();
 
-        reviewsFlipper.setFlipInterval(3000);
+        reviewsFlipper.setFlipInterval(5000);
         reviewsFlipper.setAutoStart(true);
 
         placeReviews(placeID, userId);
@@ -296,11 +297,15 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
             {
              finish();
              overridePendingTransition(0, 0);
-             Intent myIntent3 = new Intent(this, AddReview.class);
-            myIntent3.putExtra("PLACE_ID", placeID);
-            myIntent3.putExtra("REVIEW_TYPE", "PLACE");
-            startActivity(myIntent3);
-            overridePendingTransition(0, 0);}
+              Intent myIntent3 = new Intent(this, AddReview.class);
+
+                myIntent3.putExtra("PLACE_ID", placeID);
+                myIntent3.putExtra("REVIEW_TYPE", "PLACE");
+                myIntent3.putExtra("OWNER_ID", ownerID);
+                myIntent3.putExtra("PLACE_NAME", placeName.getText().toString().trim());
+
+                startActivity(myIntent3);
+                overridePendingTransition(0, 0);}
 
         }
 
@@ -430,6 +435,8 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
                                 placeRatingStat.setText(result);
                                 placeRating.setRating(rate3);
                                 placeDescription.setText(obj.getString("place_description"));
+                                ownerID= obj.getInt("owner_id");
+
                                 ownerName.setText(obj.getString("owner_name"));
                                 ownerWebUrl.setText(obj.getString("owner_web"));
                                 ownerPhone.setText(obj.getString("owner_phone"));
@@ -493,10 +500,13 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
                                 imageViewLike.setImageResource(R.drawable.ic_like_fill);
+                                insertedLikeID = obj.getInt("inserted_like_id");
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                                 int likesNum = obj.getInt("place_likes_number");
                                 String likesNum1 = Integer.toString(likesNum);
                                 placeLikesNumber.setText(likesNum1);
+                                addNotification(ownerID, userID, userName+" liked your place "+placeName.getText().toString().trim(), "place like", placeID, 0, 0, 0, insertedLikeID, 0 );
+
                             } else {
                                 imageViewLike.setImageResource(R.drawable.ic_like_border);
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
@@ -548,11 +558,14 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
+                                insertedbookmarkID = obj.getInt("inserted_bookmark_id");
                                 imageViewSave.setImageResource(R.drawable.ic_bookmark_fill);
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                                 int bookmarksNum = obj.getInt("place_bookmarks_number");
                                 String bookmarksNum1 = Integer.toString(bookmarksNum);
                                 placeBookmarksNumber.setText(bookmarksNum1);
+                                addNotification(ownerID, userID, userName+" bookmarked your place "+placeName.getText().toString().trim(), "place bookmark", placeID, 0, 0, 0, 0, insertedbookmarkID );
+
                             } else {
                                 imageViewSave.setImageResource(R.drawable.ic_bookmark_border);
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
@@ -615,6 +628,10 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
 
 
                                     ExpandReviewDetailsListItem listItem = new ExpandReviewDetailsListItem();
+
+                                    listItem.setUserWhoWroteReviewId(reviewDetails.getInt("user_id"));
+                                    listItem.setPlaceName(reviewDetails.getString("place_name"));
+                                    listItem.setPlaceOwnerId(reviewDetails.getInt("place_owner_id"));
 
                                     listItem.setReviewId(reviewDetails.getInt("id"));
                                     listItem.setPlaceId(reviewDetails.getInt("place_id"));
@@ -757,5 +774,104 @@ public class ExpandDetailsMapsActivity extends FragmentActivity implements OnMap
         MySingleton.getInstance(this).addToRequestQueue(send);
     }
 
+
+
+
+   public void addNotification(int targeId, int generatorId, String notificationmessage, String notiType, int placeid, int eventid, int reviewid, int reprtedreviewid, int likeid , int bookmarkid  ) {
+       final int targetUserID= targeId;
+       final int generatorID= generatorId;
+       final String notificationMessage = notificationmessage;
+       final String type = notiType;
+       final int placeID2 = placeid;
+       final int eventID2 = eventid;
+       final int reviewID2 = reviewid;
+       final int reported_reviewID2 = reprtedreviewid;
+       final int likeID2 = likeid;
+       final int bookmark2 = bookmarkid;
+
+
+       StringRequest send = new StringRequest(Request.Method.POST,
+                Constants.URL_ADD_NOTIFICATION,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                            } else {
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("target_user_id", targetUserID+"");
+                params.put("generator_user_id", generatorID+"");
+                params.put("notification_message", notificationMessage);
+                params.put("type", type);
+                params.put("place_id", placeID2+"");
+                params.put("event_id", eventID2+"");
+                params.put("review_id", reviewID2+"");
+                params.put("reported_review_id", reported_reviewID2+"");
+                params.put("like_id", likeID2+"");
+                params.put("bookmark_id", bookmark2+"");
+
+
+
+
+
+                return params;
+            }
+
+        };
+
+        MySingleton.getInstance(this).addToRequestQueue(send);
+
+    }
+
+
+
+    public void deleteNotification(int notificationID) {
+        final int notiID= notificationID;
+        StringRequest send = new StringRequest(Request.Method.DELETE,
+                Constants.URL_DELETE_NOTIFICATION+ notiID,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+        };
+
+        MySingleton.getInstance(this).addToRequestQueue(send);
+
+    }
 
 }

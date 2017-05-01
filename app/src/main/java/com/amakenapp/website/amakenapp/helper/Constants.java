@@ -48,9 +48,13 @@ public class Constants {
     public static final String STRING_LIKE_EXSITS= "Like exist";
     public static final String STRING_REVIEW_LIKE_EXSITS= "review like exsits";
     public static final String STRING_EVENT_STILL_OPEN= "available";
+    public static final String STRING_Review_Type_place= "Place";
+    public static final String STRING_Review_Type_event= "Event";
 
 
-//expand event information and operations
+
+
+    //expand event information and operations
     public static final String URL_GET_ALL_EVENTS = ROOT_URL+"getAllEvents/";
     public static final String URL_EVENT_INFO = ROOT_URL+"getEventById";
     public static final String URL_EVENT_GALLERY = ROOT_URL+"getEventGallery/";
@@ -141,6 +145,15 @@ public class Constants {
     public static final String URL_GET_REVIEW_Gallery= ROOT_URL+"getReviewGallery/";
 
 
+
+//notification operations
+
+    public static final String URL_ADD_NOTIFICATION= ROOT_URL+"storeNotification";
+    public static final String URL_ADD_NOTIFICATION_PLACE_ADD= ROOT_URL+"storeNotificationPlaceAdd";
+    public static final String URL_GET_NOTIFICATIONS= ROOT_URL+"getUserNotifications/";
+
+
+    public static final String URL_DELETE_NOTIFICATION= ROOT_URL+"deleteNotificationById/";
 
 
 

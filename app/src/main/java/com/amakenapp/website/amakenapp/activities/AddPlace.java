@@ -128,6 +128,7 @@ public class AddPlace extends AppCompatActivity implements OnMapReadyCallback,
 
     private static int eventID;
     private static int userId;
+    String userName;
     private ProgressDialog progressDialog;
 
 
@@ -209,6 +210,7 @@ public class AddPlace extends AppCompatActivity implements OnMapReadyCallback,
         //get user id from shared preferences
         sharedPrefManager = SharedPrefManager.getInstance(this);
         userId = sharedPrefManager.getUserId();
+        userName = sharedPrefManager.getUsername();
 
         ////////////////////////////////////////////////////
 
@@ -1156,6 +1158,8 @@ public class AddPlace extends AppCompatActivity implements OnMapReadyCallback,
 
                                 uploadPhoto(insertedPlaceId);
 
+                                addNotification(0, userId, userName+" added a new place "+placeName.getText().toString().trim()+" to your city ", "place add", insertedPlaceId, 0, 0, 0, 0, 0 );
+
 
                                 finish();
                                 overridePendingTransition(0, 0);
@@ -1163,9 +1167,9 @@ public class AddPlace extends AppCompatActivity implements OnMapReadyCallback,
                                 startActivity(myIntent3);
                                 overridePendingTransition(0, 0);
 
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -1227,9 +1231,9 @@ public class AddPlace extends AppCompatActivity implements OnMapReadyCallback,
                                 JSONObject obj = new JSONObject(response);
                                 if (!obj.getBoolean("error")) {
                                     progressDialog.dismiss();
-                                    showToast("Place Created Successfully");
+                                    showToast("Place And "+ obj.getString("message"));
                                 } else {
-                                    showToast("Failed to Created Place");
+                                    showToast("Place And "+ obj.getString("message"));
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -1255,5 +1259,79 @@ public class AddPlace extends AppCompatActivity implements OnMapReadyCallback,
         }
         myCommand.execute();
     }
+
+
+    public void addNotification(int targeId, int generatorId, String notificationmessage, String notiType, int placeid, int eventid, int reviewid, int reprtedreviewid, int likeid , int bookmarkid  ) {
+        final int targetUserID= targeId;
+        final int generatorID= generatorId;
+        final String notificationMessage = notificationmessage;
+        final String type = notiType;
+        final int placeID2 = placeid;
+        final int eventID2 = eventid;
+        final int reviewID2 = reviewid;
+        final int reported_reviewID2 = reprtedreviewid;
+        final int likeID2 = likeid;
+        final int bookmark2 = bookmarkid;
+
+
+        StringRequest send = new StringRequest(Request.Method.POST,
+                Constants.URL_ADD_NOTIFICATION_PLACE_ADD,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                JSONArray arr = obj.getJSONArray("user");
+                                for (int i = 0; i < arr.length(); i++) {
+                                    JSONObject placeDetails = arr.getJSONObject(i);
+
+                                    //showToast(placeDetails.getInt("inserted_notification_id") + "");
+                                    //showToast(placeDetails.getString("message"));
+                                }
+
+                            } else {
+                                //showToast(obj.getString("message"));
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("target_user_id", targetUserID+"");
+                params.put("generator_user_id", generatorID+"");
+                params.put("notification_message", notificationMessage);
+                params.put("type", type);
+                params.put("place_id", placeID2+"");
+                params.put("event_id", eventID2+"");
+                params.put("review_id", reviewID2+"");
+                params.put("reported_review_id", reported_reviewID2+"");
+                params.put("like_id", likeID2+"");
+                params.put("bookmark_id", bookmark2+"");
+
+
+
+
+
+                return params;
+            }
+
+        };
+
+        MySingleton.getInstance(context).addToRequestQueue(send);
+
+    }
+
 
 }

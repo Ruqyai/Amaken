@@ -79,13 +79,13 @@ public class AddReview extends AppCompatActivity implements View.OnClickListener
 
 
 
-    private static int eventID, placeID;
+    private static int eventID, placeID, ownerID;
     private static int userId;
     private ProgressDialog progressDialog;
     CameraPhoto cameraPhoto;
     GalleryPhoto galleryPhoto;
     private Bitmap bitmap;
-    String photoPath, review_type;
+    String photoPath, review_type, userName, placeName, eventName;
 
     LinearLayout container;
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
@@ -102,9 +102,17 @@ public class AddReview extends AppCompatActivity implements View.OnClickListener
 
         review_type = getIntent().getExtras().getString("REVIEW_TYPE");
         if(review_type.equals(Constants.STRING_TYPE_EVENT))
+        {
             eventID = getIntent().getExtras().getInt("EVENT_ID");
+            ownerID = getIntent().getExtras().getInt("OWNER_ID");
+            eventName = getIntent().getExtras().getString("EVENT_NAME");
+        }
         else if (review_type.equals(Constants.STRING_TYPE_PLACE))
+        {
             placeID = getIntent().getExtras().getInt("PLACE_ID");
+            ownerID = getIntent().getExtras().getInt("OWNER_ID");
+            placeName = getIntent().getExtras().getString("PLACE_NAME");
+        }
 
 
 
@@ -123,6 +131,7 @@ public class AddReview extends AppCompatActivity implements View.OnClickListener
         sharedPrefManager = SharedPrefManager.getInstance(this);
         userId = sharedPrefManager.getUserId();
         userType= sharedPrefManager.getUserType();
+        userName = sharedPrefManager.getUsername();
         String userProfilePicUrl=sharedPrefManager.getKeyUserProfilePicUrl();
         String userProfilePicIdTimeStamp = sharedPrefManager.getKeyUserProfilePicUrlTimeStamp();
 
@@ -137,7 +146,7 @@ public class AddReview extends AppCompatActivity implements View.OnClickListener
         }
         else
             Glide.with(getApplicationContext()).load(userProfilePicUrl)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(userProfilePic);
 
 
@@ -266,11 +275,14 @@ public class AddReview extends AppCompatActivity implements View.OnClickListener
                 if(review_type.equals(Constants.STRING_TYPE_EVENT))
                 {
                      addreviewtDetailsEvent();
+
+
                 }
 
                 else if (review_type.equals(Constants.STRING_TYPE_PLACE))
                 {
                     addreviewtDetailsPlace();
+
 
 
                 }
@@ -498,6 +510,8 @@ public class AddReview extends AppCompatActivity implements View.OnClickListener
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
                                 insertedReviewID = obj.getInt("inserted_review_id");
+                                addNotification(ownerID, userId, userName+" posted a review on your place "+placeName, "place review", placeID, 0, insertedReviewID, 0, 0, 0 );
+
                                 if(imagesNum>0)
                                 { uploadPhotoReviewPlace(insertedReviewID, placeID);
                                 finish();
@@ -561,6 +575,8 @@ public class AddReview extends AppCompatActivity implements View.OnClickListener
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
                                 insertedReviewID = obj.getInt("inserted_review_id");
+                                addNotification(ownerID, userId, userName+" posted a review on your event "+eventName, "event review", 0, eventID, insertedReviewID, 0, 0, 0 );
+
                                 if(imagesNum>0){
                                  uploadPhotoReviewEvent(insertedReviewID, eventID);
                                     finish();
@@ -606,6 +622,75 @@ public class AddReview extends AppCompatActivity implements View.OnClickListener
         MySingleton.getInstance(this).addToRequestQueue(send);
 
     }
+
+
+    public void addNotification(int targeId, int generatorId, String notificationmessage, String notiType, int placeid, int eventid, int reviewid, int reprtedreviewid, int likeid , int bookmarkid  ) {
+        final int targetUserID= targeId;
+        final int generatorID= generatorId;
+        final String notificationMessage = notificationmessage;
+        final String type = notiType;
+        final int placeID2 = placeid;
+        final int eventID2 = eventid;
+        final int reviewID2 = reviewid;
+        final int reported_reviewID2 = reprtedreviewid;
+        final int likeID2 = likeid;
+        final int bookmark2 = bookmarkid;
+
+
+        StringRequest send = new StringRequest(Request.Method.POST,
+                Constants.URL_ADD_NOTIFICATION,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                //showToast(obj.getInt("inserted_notification_id")+"");
+                                //showToast(obj.getString("message"));
+
+                            } else {
+                                //showToast(obj.getString("message"));
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("target_user_id", targetUserID+"");
+                params.put("generator_user_id", generatorID+"");
+                params.put("notification_message", notificationMessage);
+                params.put("type", type);
+                params.put("place_id", placeID2+"");
+                params.put("event_id", eventID2+"");
+                params.put("review_id", reviewID2+"");
+                params.put("reported_review_id", reported_reviewID2+"");
+                params.put("like_id", likeID2+"");
+                params.put("bookmark_id", bookmark2+"");
+
+
+
+
+
+                return params;
+            }
+
+        };
+
+        MySingleton.getInstance(this).addToRequestQueue(send);
+
+    }
+
 
 }
 

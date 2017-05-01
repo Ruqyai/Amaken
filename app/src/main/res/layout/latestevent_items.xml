@@ -23,8 +23,8 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
-                android:padding="3dp"
-                android:src="@drawable/ic_person"
+                android:background="@drawable/ic_person"
+                android:padding="2pt"
                 app:civ_border_color="@color/gray"
                 app:civ_border_width="1dp"
                 android:id="@+id/imageViewEventBusinessProfile"
@@ -71,7 +71,7 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:layout_below="@+id/imageViewEventBusinessPlaceAboveBorder"
-                android:background="@drawable/ic_action_name"
+                android:background="@drawable/no_image"
                 />
             <View
                 android:id="@+id/imageViewEvnetBusinessPlaceBottomBorder"

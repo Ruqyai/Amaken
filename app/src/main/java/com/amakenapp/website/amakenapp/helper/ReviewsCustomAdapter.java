@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amakenapp.website.amakenapp.R;
+import com.amakenapp.website.amakenapp.activities.UserDetailsActivity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -41,9 +43,6 @@ import java.util.Map;
 import java.util.Objects;
 
 
-/**
- * Created by Muha on 3/16/2017.
- */
 
 public class ReviewsCustomAdapter extends BaseAdapter {
 
@@ -52,12 +51,13 @@ public class ReviewsCustomAdapter extends BaseAdapter {
     LayoutInflater inflater;
 
     SharedPrefManager sharedPrefManager;
-    private static int userId;
+    private static int userId, insertedLikeId, reviewId1, reportId, userWhoWroteThereviewId, placeOwnerId, eventOwnerId;
+    private String userName, placeName, eventName, reviewType;
 
     private TextView reviewId;
-    private TextView reviewType;
-    private TextView placeId;
-    private TextView eventId;
+   // private TextView reviewType;
+    private int placeId;
+    private int eventId;
 
 
 
@@ -102,13 +102,13 @@ public class ReviewsCustomAdapter extends BaseAdapter {
 
         sharedPrefManager = SharedPrefManager.getInstance(context);
         userId = sharedPrefManager.getUserId();
+        userName = sharedPrefManager.getUsername();
+
 
         reviewId = (TextView) view.findViewById(R.id.review_id);
-        reviewId = (TextView) view.findViewById(R.id.review_like_exsits);
+        reviewlikeExsit = (TextView) view.findViewById(R.id.review_like_exsits);
 
-        reviewType = (TextView) view.findViewById(R.id.review_type);
-        eventId = (TextView) view.findViewById(R.id.event_id);
-        placeId  = (TextView) view.findViewById(R.id.place_id);
+        //reviewType = (TextView) view.findViewById(R.id.review_type);
 
 
 
@@ -127,17 +127,25 @@ public class ReviewsCustomAdapter extends BaseAdapter {
 
         ExpandReviewDetailsListItem listItem = listItems.get(position);
 
-        final int reviewId1= listItem.getReviewId();
+        reviewId1= listItem.getReviewId();
+        userWhoWroteThereviewId= listItem.getUserWhoWroteReviewId();
+        placeOwnerId = listItem.getPlaceOwnerId();
+        eventOwnerId = listItem.getEventOwnerId();
+
+        reviewType = listItem.getReviewType();
+        placeName = listItem.getPlaceName();
+        eventName = listItem.getEventName();
+
         //String reviewId2 = Integer.toString(reviewId1);
         //reviewId.setText(reviewId2);
 
         //reviewType.setText(listItem.getReviewType());
 
-        //int eventId1= listItem.getEventId();
+         eventId= listItem.getEventId();
         //String eventId2 = Integer.toString(eventId1);
         //eventId.setText(eventId2);
 
-        //int placeId1= listItem.getPlaceId();
+         placeId= listItem.getPlaceId();
         //String placeId2 = Integer.toString(placeId1);
         //placeId.setText(placeId2);
 
@@ -163,6 +171,16 @@ public class ReviewsCustomAdapter extends BaseAdapter {
                 .into(reviewUserProfilePic);
           }
 
+        reviewUserProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, UserDetailsActivity.class);
+                intent.putExtra("USER_ID", userWhoWroteThereviewId);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
+
         String reviewlikeexsits = listItem.getReview_like_exsits();
         if (reviewlikeexsits.equals(Constants.STRING_REVIEW_LIKE_EXSITS))
             reviewLikeImage.setImageResource(R.drawable.ic_thump_up_fill);
@@ -175,6 +193,8 @@ public class ReviewsCustomAdapter extends BaseAdapter {
                 .diskCacheStrategy( DiskCacheStrategy.NONE )
                 .skipMemoryCache( true )
                 .into(reviewFalgImage);
+
+
 
 
 
@@ -247,6 +267,12 @@ public class ReviewsCustomAdapter extends BaseAdapter {
     }
 
 
+    private void showToast(String meg){
+        final String message = meg;
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+    }
+
+
     public void reviewStoreLike(int reviewId, int userId) {
         final int reviewID = reviewId;
         final int userID = userId;
@@ -260,9 +286,18 @@ public class ReviewsCustomAdapter extends BaseAdapter {
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
+                                insertedLikeId = obj.getInt("inserted_like_id");
                                 reviewLikeImage.setImageResource(R.drawable.ic_thump_up_fill);
                                 //reviewLikesNumber(reviewID);
                                 Toast.makeText(context, obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+
+                                if (reviewType.equals(Constants.STRING_Review_Type_place))
+                                    addNotification(userWhoWroteThereviewId, userID, userName+" liked your review on "+placeName, "like review on place", placeId, 0, reviewId1, 0, insertedLikeId, 0 );
+                                else if(reviewType.equals(Constants.STRING_Review_Type_event))
+                                    addNotification(userWhoWroteThereviewId, userID, userName+" liked your review on "+eventName, "like review on event", 0, eventId, reviewId1, 0, insertedLikeId, 0 );
+
+
 
                                 int likesNum = obj.getInt("review_likes_number");
                                 String likesNum1 = Integer.toString(likesNum);
@@ -322,7 +357,14 @@ public class ReviewsCustomAdapter extends BaseAdapter {
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
+                                reportId = obj.getInt("inserted_report_id");
                                 Toast.makeText(context, obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                                if (reviewType.equals(Constants.STRING_Review_Type_place))
+                                    addNotification(placeOwnerId, userID, userName+" reported a review on your place "+placeName, "report review", 0, 0, reviewId1, reportId, 0, 0 );
+                                else if(reviewType.equals(Constants.STRING_Review_Type_event))
+                                    addNotification(eventOwnerId, userID, userName+" reported a review on your event "+eventName, "report review", 0, 0, reviewId1, reportId, 0, 0 );
+
                             } else {
                                 Toast.makeText(context, obj.getString("message"), Toast.LENGTH_SHORT).show();
                             }
@@ -354,4 +396,71 @@ public class ReviewsCustomAdapter extends BaseAdapter {
     }
 
 
+    public void addNotification(int targeId, int generatorId, String notificationmessage, String notiType, int placeid, int eventid, int reviewid, int reprtedreviewid, int likeid , int bookmarkid  ) {
+        final int targetUserID= targeId;
+        final int generatorID= generatorId;
+        final String notificationMessage = notificationmessage;
+        final String type = notiType;
+        final int placeID2 = placeid;
+        final int eventID2 = eventid;
+        final int reviewID2 = reviewid;
+        final int reported_reviewID2 = reprtedreviewid;
+        final int likeID2 = likeid;
+        final int bookmark2 = bookmarkid;
+
+
+        StringRequest send = new StringRequest(Request.Method.POST,
+                Constants.URL_ADD_NOTIFICATION,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+                                //showToast(obj.getInt("inserted_notification_id")+"");
+                                //showToast(obj.getString("message"));
+
+                            } else {
+                                //showToast(obj.getString("message"));
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("target_user_id", targetUserID+"");
+                params.put("generator_user_id", generatorID+"");
+                params.put("notification_message", notificationMessage);
+                params.put("type", type);
+                params.put("place_id", placeID2+"");
+                params.put("event_id", eventID2+"");
+                params.put("review_id", reviewID2+"");
+                params.put("reported_review_id", reported_reviewID2+"");
+                params.put("like_id", likeID2+"");
+                params.put("bookmark_id", bookmark2+"");
+
+
+
+
+
+                return params;
+            }
+
+        };
+
+        MySingleton.getInstance(context).addToRequestQueue(send);
+
     }
+
+}

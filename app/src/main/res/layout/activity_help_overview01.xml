@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
-        android:id="@+id/appBarLayout2">
+        android:id="@+id/appBarLayout2"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar011"
@@ -22,38 +25,85 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
     <RelativeLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="2dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayout2"
+        android:layout_margin="8dp"
+        >
+
+
+
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:text="Dose Amaken cover my city?"
             android:textColor="#15AFD8"
-            android:textSize="20sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="3dp"
-            tools:layout_editor_absoluteY="0dp" />
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="5dp"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/appBarLayout2"
+            android:layout_alignStart="@+id/textView8" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:text="Amaken app provides its services acording to the country and the city that you choose at sign up stage, the home page is customized according to the city that choose. "
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="230dp" />
+
+        <TextView
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:text="To know if Amaken covers your city please go to sign up then you can check all countries that Amaken cover"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="47dp"
+            android:layout_below="@+id/textView11"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView2"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView8"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginTop="20dp"
-            android:text="To know if Amaken cover your city please go to sign up then you can check all countries that Amaken cover." />
+            android:text="or you can change your country or city after you become a member in in Amaken app, go to your profile page and click on your name, a pop up dialog will appear that allows you to change your country and city."
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="80dp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView10"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:text="In addition, Ameken app provides you with the best search experience that matches your needs, you can choose a search filter acording to a particular country or city then start browsing the results  "
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="146dp" />
+
+
 
 
     </RelativeLayout>
@@ -61,4 +111,4 @@
 
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

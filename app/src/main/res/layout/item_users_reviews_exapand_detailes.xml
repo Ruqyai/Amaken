@@ -17,6 +17,7 @@
         android:layout_height="75dp"
         android:layout_marginStart="5dp"
         android:src="@drawable/profile"
+        android:background="@drawable/ic_person"
         app:civ_border_color="#8b8989"
         app:civ_border_width="1dp"
         android:layout_alignTop="@+id/textViewUserWhatIsWrite"

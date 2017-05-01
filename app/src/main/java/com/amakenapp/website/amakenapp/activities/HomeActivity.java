@@ -45,7 +45,7 @@ public class HomeActivity extends Fragment {
     private List<HomeListItem> listItems;
     Context context;
     private LinearLayout loading_event, no_events;
-    private TextView addevent;
+    private TextView addevent, addinterest;
 
 
     SharedPrefManager sharedPrefManager;
@@ -76,6 +76,14 @@ public class HomeActivity extends Fragment {
         loading_event.setVisibility(View.VISIBLE);
 
         no_events = (LinearLayout) myView.findViewById(R.id.no_events_event);
+        addinterest =(TextView) myView.findViewById(R.id.add_interest);
+        addinterest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ProfileCategories.class));
+            }
+        });
+
         addevent =(TextView) myView.findViewById(R.id.add_event_events);
         addevent.setOnClickListener(new View.OnClickListener() {
             @Override

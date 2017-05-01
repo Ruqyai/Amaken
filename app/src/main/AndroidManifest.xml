@@ -295,7 +295,7 @@
             android:theme="@style/Theme" />
         <activity
             android:name=".chat.ChatActivity"
-            android:label="May I can hep you"
+            android:label="May I Help You?"
             android:parentActivityName=".activities.NavDrw"
             android:screenOrientation="portrait"
             android:theme="@style/Theme">
@@ -305,7 +305,7 @@
         </activity>
         <activity
             android:name=".Help.HelpExpandableListItem"
-            android:label="Help"
+            android:label="Read an overview"
             android:parentActivityName=".activities.NavDrw"
             android:theme="@style/AppTheme">
             <meta-data

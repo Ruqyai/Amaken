@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="75dp"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
 
@@ -10,8 +12,6 @@
         android:id="@+id/circleImageView2"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="127dp"
         android:src="@android:drawable/ic_menu_help"
         app:civ_border_color="#15AFD8"
         app:civ_border_width="2dp"
@@ -47,7 +47,7 @@
         android:id="@+id/helpSecButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Read an overview of "
+        android:text="Read an overview "
         android:background="?attr/selectableItemBackground"
         android:textColor="#a47a51"
         android:textSize="19sp"

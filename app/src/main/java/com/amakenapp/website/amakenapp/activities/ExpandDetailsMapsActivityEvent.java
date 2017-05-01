@@ -98,7 +98,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
 
 
     // view flipper arrays
-    private static int reviewsNumber;
+    private static int reviewsNumber, ownerID, insertedLikeID, insertedbookmarkID;
     private static int reviewsPhotosNumber;
 
   /*  // view pager constants
@@ -136,7 +136,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
     private ImageButton filpNextEvent, flipPreviousEvent;
     private ImageButton filpNextEventimage, flipPreviousEventimage;
 
-    private String reviewMessage;
+    private String reviewMessage, userName;
 
     ////
     private List<ExpandReviewDetailsListItem> listItems;
@@ -155,6 +155,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         //get user id from shared preferences
         sharedPrefManager = SharedPrefManager.getInstance(this);
         userId = sharedPrefManager.getUserId();
+        userName = sharedPrefManager.getUsername();
         eventID = getIntent().getExtras().getInt("EVENT_ID");
 
 
@@ -327,6 +328,8 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
                 Intent myIntent3 = new Intent(this, AddReview.class);
                 myIntent3.putExtra("EVENT_ID", eventID);
                 myIntent3.putExtra("REVIEW_TYPE", "EVENT");
+                myIntent3.putExtra("OWNER_ID", ownerID);
+                myIntent3.putExtra("EVENT_NAME", eventName.getText().toString().trim());
                 startActivity(myIntent3);
                 overridePendingTransition(0, 0);}
         }
@@ -505,6 +508,7 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
                                 eventRatingStat.setText(result);
                                 eventRating.setRating(rate3);
                                 eventDescription.setText(obj.getString("event_description"));
+                                ownerID= obj.getInt("owner_id");
                                 ownerName.setText(obj.getString("owner_name"));
                                 ownerWebUrl.setText(obj.getString("owner_web"));
                                 ownerPhone.setText(obj.getString("owner_phone"));
@@ -572,11 +576,15 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
+                                insertedLikeID = obj.getInt("inserted_like_id");
+
                                 imageViewLike.setImageResource(R.drawable.ic_like_fill);
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                                 int likesNum = obj.getInt("event_likes_number");
                                 String likesNum1 = Integer.toString(likesNum);
                                 eventLikesNumber.setText(likesNum1);
+                                addNotification(ownerID, userID, userName+" liked your event "+eventName.getText().toString().trim(), "event like", 0, eventID, 0, 0, insertedLikeID, 0 );
+
                             } else {
                                 imageViewLike.setImageResource(R.drawable.ic_like_border);
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
@@ -628,12 +636,15 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (!obj.getBoolean("error")) {
+                                insertedbookmarkID = obj.getInt("inserted_bookmark_id");
                                 imageViewSave.setImageResource(R.drawable.ic_bookmark_fill);
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                                 //eventBookmarksNumber(eventID);
                                 int bookmarksNum = obj.getInt("event_bookmarks_number");
                                 String bookmarksNum1 = Integer.toString(bookmarksNum);
                                 eventBookmarksNumber.setText(bookmarksNum1);
+                                addNotification(ownerID, userID, userName+" bookmarked your event "+eventName.getText().toString().trim(), "event bookmark", 0, eventID, 0, 0, 0, insertedbookmarkID );
+
                             } else {
                                 imageViewSave.setImageResource(R.drawable.ic_bookmark_border);
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
@@ -697,6 +708,10 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
 
 
                                     ExpandReviewDetailsListItem listItem = new ExpandReviewDetailsListItem();
+
+                                    listItem.setUserWhoWroteReviewId(reviewDetails.getInt("user_id"));
+                                    listItem.setEventName(reviewDetails.getString("event_name"));
+                                    listItem.setEventOwnerId(reviewDetails.getInt("event_owner_id"));
 
                                     listItem.setReviewId(reviewDetails.getInt("id"));
                                     listItem.setEventId(reviewDetails.getInt("event_id"));
@@ -840,6 +855,74 @@ public class ExpandDetailsMapsActivityEvent extends FragmentActivity implements 
         };
         MySingleton.getInstance(this).addToRequestQueue(send);
     }
+
+
+
+
+    public void addNotification(int targeId, int generatorId, String notificationmessage, String notiType, int placeid, int eventid, int reviewid, int reprtedreviewid, int likeid , int bookmarkid  ) {
+        final int targetUserID= targeId;
+        final int generatorID= generatorId;
+        final String notificationMessage = notificationmessage;
+        final String type = notiType;
+        final int placeID2 = placeid;
+        final int eventID2 = eventid;
+        final int reviewID2 = reviewid;
+        final int reported_reviewID2 = reprtedreviewid;
+        final int likeID2 = likeid;
+        final int bookmark2 = bookmarkid;
+
+
+        StringRequest send = new StringRequest(Request.Method.POST,
+                Constants.URL_ADD_NOTIFICATION,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (!obj.getBoolean("error")) {
+
+                            } else {
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("target_user_id", targetUserID+"");
+                params.put("generator_user_id", generatorID+"");
+                params.put("notification_message", notificationMessage);
+                params.put("type", type);
+                params.put("place_id", placeID2+"");
+                params.put("event_id", eventID2+"");
+                params.put("review_id", reviewID2+"");
+                params.put("reported_review_id", reported_reviewID2+"");
+                params.put("like_id", likeID2+"");
+                params.put("bookmark_id", bookmark2+"");
+
+
+
+
+
+                return params;
+            }
+
+        };
+
+        MySingleton.getInstance(this).addToRequestQueue(send);
+
+    }
+
 
 
 }

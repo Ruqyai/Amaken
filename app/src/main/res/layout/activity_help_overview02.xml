@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -25,17 +25,44 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayout2"
+        android:layout_margin="8dp"
+        >
+
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Is amaken available international"
-            tools:layout_editor_absoluteX="-2dp"
-            tools:layout_editor_absoluteY="9dp" />
+            android:text="Is Amaken available internationally?"
+            android:textColor="#15AFD8"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="5dp"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/appBarLayout2"
+            android:layout_alignStart="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="Amaken app is available across many countries and cities around the world, at sign up stage you are required to enter your country to customize your experience. \n\n Amaken app is seeking expansion in the next few months that follows its posting on Google play, there will be options that allows users to add cities nd countries acording to where they are in the world.\n\n for now Amaken servers more than 11 countries including most of middle east area, and it covers more that 20 city from these countries. \n \n Amaken is now providing only one language which is English and it is seeking to covers more and more languages in the future "
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="47dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp" />
+
+
 
     </RelativeLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

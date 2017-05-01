@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +8,7 @@
     tools:context="com.amakenapp.website.amakenapp.Help.HelpSigningUp03">
 
     <android.support.design.widget.AppBarLayout
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
         android:id="@+id/appBarLayout2"
@@ -23,4 +24,44 @@
 
     </android.support.design.widget.AppBarLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBarLayout2"
+        android:layout_margin="8dp"
+        >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Business Place or Event"
+            android:textColor="#15AFD8"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="5dp"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/appBarLayout2"
+            android:layout_alignStart="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="Business owner only will be allowed to perform this action within the app. Business owner will have to upload places and events which are owned or controlled by the business\n\n Adding of places involves:\n\n *Adding place name\n *Adding place description\n *Adding place category\n *Adding place city\n *Adding place country\n *Uploading max 5 photos of the place\n *Adding place location \n\n\n Adding of Event involves:\n\n *Adding event name\n *Adding event description\n *Adding event category\n *Adding event city\n *Adding event country\n *Adding Event date details\n *Uploading max 5 photos of the event\n *Adding event location "
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="47dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
