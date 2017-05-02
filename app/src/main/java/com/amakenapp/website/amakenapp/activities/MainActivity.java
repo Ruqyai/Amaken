@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
        // SharedPreferences sharedPreferences = mCtx.getSharedPreferences("mysharedpref12", Context.MODE_PRIVATE);
         SharedPrefManager sharedPrefManager=SharedPrefManager.getInstance(this);
-       String x = sharedPrefManager.getDeviceToken();
-        Toast.makeText(this,x,Toast.LENGTH_LONG).show();
+      // String x = sharedPrefManager.getDeviceToken();
+     //   Toast.makeText(this,x,Toast.LENGTH_LONG).show();
         if (sharedPrefManager.isLoggedIn()){
             startActivity(new Intent(MainActivity.this,NavDrw.class));
 

@@ -50,7 +50,7 @@ public class InvitesActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         if (v == mButton){
         Intent shareIntent = new PlusShare.Builder(this)
-                .setText("Check Out This Amazing App! \n \n https://play.google.com/store/apps/details?id=com.seu")
+                .setText("Hello, this Amazing App! \n \n https://play.google.com/store/apps/details?id=com.seu")
                 .setType("image/png")
                 .setContentDeepLinkId("testID",
                         "Test Title",
@@ -70,7 +70,7 @@ private void onInviteClicked() {
 
         Intent waIntent = new Intent(Intent.ACTION_SEND);
         waIntent.setType("text/plain");
-        String text = "Hello dear this is amazing App \n \n https://play.google.com/store/apps/details?id=com.seu";
+        String text = "Hello, this is amazing App \n \n https://play.google.com/store/apps/details?id=com.seu";
 
         PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
         waIntent.setPackage("com.whatsapp");
