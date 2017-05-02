@@ -153,7 +153,6 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
 
         public TextView notificationTimeStamp;
-
         public ImageView notification_user_ProfilePic;
         public TextView notificationMessage;
         public TextView notification_id_hidden;

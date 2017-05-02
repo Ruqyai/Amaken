@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "391715754684-0k3m92hm507en1f9ti7ci6a9mqttopgv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amakenapp.website.amakenapp",
+            "certificate_hash": "f6ab4f77c110aca470c262a5594e0a162166b976"
+          }
+        },
+        {
+          "client_id": "391715754684-7ufuphck2iph2c9ar3ssp4c5a8u1on9c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amakenapp.website.amakenapp",
+            "certificate_hash": "60932e9ac3c0842715854ce8784c9254ebfee8a1"
+          }
+        },
+        {
           "client_id": "391715754684-51i6rejh7f7bc03enkibvqeno7mnec0i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

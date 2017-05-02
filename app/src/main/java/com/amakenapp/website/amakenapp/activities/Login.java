@@ -3,9 +3,12 @@ package com.amakenapp.website.amakenapp.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -27,11 +30,13 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
     private EditText editEmail, editPassword;
     private Button login_SignIn,loginGoogle,loginFacebook;
     private ProgressDialog progressDialog;
+    TextInputLayout emailLayout, passLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +51,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         login_SignIn = (Button) findViewById(R.id.login_SingIn);
         loginGoogle = (Button) findViewById(R.id.login_SingInGoogle);
         loginFacebook = (Button) findViewById(R.id.login_SingInFacebook);
+
         editEmail = (EditText) findViewById(R.id.login_Email);
+        emailLayout= (TextInputLayout) findViewById(R.id.log_Email);
+
         editPassword = (EditText) findViewById(R.id.login_Password);
+        passLayout =(TextInputLayout) findViewById(R.id.log_Password);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
@@ -55,13 +64,77 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         loginGoogle.setOnClickListener(this);
         loginFacebook.setOnClickListener(this);
 
+
+        editEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                emailLayout.setErrorEnabled(false);}
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(editEmail.getText().toString().isEmpty())
+                {
+                    emailLayout.setErrorEnabled(true);
+                    emailLayout.setError("Please Enter Your Email...!");
+                }
+                else
+                    emailLayout.setErrorEnabled(false);
+            }
+        });
+
+
+
+        editPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                passLayout.setErrorEnabled(false);}
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(editPassword.getText().toString().isEmpty())
+                {
+                    passLayout.setErrorEnabled(true);
+                    passLayout.setError("Please Enter Your Name...!");
+                }
+                else
+                    passLayout.setErrorEnabled(false);
+            }
+        });
+
+
     }
 
     @Override
     public void onClick(View v) {
 
         if (v == login_SignIn) {
-            singInNormal();
+            String useremail = editEmail.getText().toString().trim();
+            String userpass = editPassword.getText().toString().trim();
+
+            if(useremail.isEmpty())
+            {
+                emailLayout.requestFocus();
+                emailLayout.setError("Please Enter Your Email...!");
+            }
+            else if(!isValidEmail(useremail))
+            {
+                emailLayout.requestFocus();
+                emailLayout.setError("Hmm... This dose not look like an Email address...!");
+
+            }
+            else if(userpass.isEmpty())
+            {
+                passLayout.requestFocus();
+                passLayout.setError("Please Enter Your Password...!");
+            }
+             else if (userpass.length()<6)
+            {
+                passLayout.requestFocus();
+                passLayout.setError("Password is incorrect, your password is more than 5 chars...!");
+            }
+            else singInNormal();
         }
         if (v == loginGoogle) {
             startActivity(new Intent(Login.this,LoginGoogleActivity.class));
@@ -72,10 +145,26 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+
+    public final static boolean isValidEmail(CharSequence target) {
+        final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
+                "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                        "\\@" +
+                        "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                        "(" +
+                        "\\." +
+                        "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                        ")+"
+        );
+        return EMAIL_ADDRESS_PATTERN.matcher(target).matches();
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
+            finish();
+            overridePendingTransition(0,0);
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            overridePendingTransition(0,0);
 
             return true;
         }

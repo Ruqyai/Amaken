@@ -191,7 +191,7 @@
     <string name="password_">Password</string>
     <string name="business_name_hint">Business Name</string>
     <string name="business_web_url_optional_hint">Business Web URL (optional)</string>
-    <string name="business_phone_number_hint">Business Phone Number</string>
+    <string name="business_phone_number_hint">Business Phone Number (optional)</string>
     <string name="sign_up_button">SIGN UP</string>
     <!-- String related to sign_up_chooser-->
     <string name="sign_up_as_text">Sign Up as..</string>
@@ -270,4 +270,5 @@
     <string name="save_button">Save</string>
     <string name="add_event_title_fab"> <b>Add Event</b> </string>
     <string name="add_place_title_fab">Add Place</string>
+    <string name="forgot_your_password"><u>Forgot Your Password?</u></string>
 </resources>

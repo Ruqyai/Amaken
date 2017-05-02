@@ -168,7 +168,7 @@ String y=sharedPrefManager.getKeyUserProfilePicUrl();
 
         if(userProfilePicId==0 )
            {if(userType==Constants.CODE_BUSINESS_USER)
-            userProfilePic.setImageResource(R.drawable.business1);
+            userProfilePic.setImageResource(R.drawable.ic_person);
             else if(userType==Constants.CODE_NORMAL_USER)
             userProfilePic.setImageResource(R.drawable.ic_person);
            }

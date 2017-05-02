@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
 
 
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton signUpMain;
     private ImageButton signInMain;
     private static Context mCtx;
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+
 
 
     @Override
@@ -49,10 +52,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if (v == signUpMain) {
+            v.startAnimation(buttonClick);
             finish();
             startActivity(new Intent(this, SignUpChooser.class));
         }
         if (v == signInMain) {
+            v.startAnimation(buttonClick);
             finish();
             startActivity(new Intent(this, Login.class));
         }

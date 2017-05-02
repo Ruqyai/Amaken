@@ -14,6 +14,8 @@
     tools:showIn="@layout/activity_sign_up_user">
 
     <ScrollView
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:layout_width="match_parent"
         android:scrollbars="none"
         android:layout_height="match_parent">
@@ -30,9 +32,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
-                android:layout_marginTop="32dp">
+
+                android:layout_marginTop="8dp">
 
 
                 <android.support.v7.widget.AppCompatEditText
@@ -53,8 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+
                 android:layout_marginTop="23dp">
 
 
@@ -75,8 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+
                 android:layout_marginTop="25dp"
                 >
 
@@ -87,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/user_name"
                     android:textSize="@dimen/FontSize"
-                    android:inputType="text" />
+                    android:inputType="textCapWords" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -96,11 +95,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
-                android:layout_marginTop="8dp"
-                android:paddingLeft="15dp"
-                android:paddingStart="15dp"
+
+                android:layout_marginTop="10dp"
+                android:paddingStart="10dp"
+
                 android:text="@string/gender_text"
                 android:textSize="@dimen/FontSize"
                 android:textColor="#A47A51"/>
@@ -146,13 +144,20 @@
                 android:textColor="#A47A51"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp" />
+            <TableRow
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/barlight"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
             <Spinner
                 android:id="@+id/sign_up_user_countries_spinner_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:spinnerMode="dialog"
-                android:background="@android:drawable/btn_dropdown"/>
+                style="@style/Widget.AppCompat.DropDownItem.Spinner"/>
+           </TableRow>
             <TextView
                 android:text="@string/city"
                 android:layout_width="match_parent"
@@ -160,15 +165,22 @@
                 android:id="@+id/textView6"
                 android:textColor="#A47A51"
                 android:textSize="@dimen/FontSize"
+                android:layout_marginTop="20dp"
                 android:paddingLeft="10dp" />
+            <TableRow
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:background="@color/barlight"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
             <Spinner
                 android:id="@+id/sign_up_user_cities_spinner_dialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:spinnerMode="dialog"
-                android:background="@android:drawable/btn_dropdown"/>
-
+                style="@style/Widget.AppCompat.DropDownItem.Spinner"/>
+</TableRow>
             <Button
                 android:id="@+id/button_Register"
                 android:layout_width="match_parent"
@@ -176,8 +188,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+
                 android:layout_marginTop="20dp"
                 android:background="#15AFD8"
                 android:text="@string/sign_up"

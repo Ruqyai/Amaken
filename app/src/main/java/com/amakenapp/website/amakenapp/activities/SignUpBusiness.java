@@ -3,9 +3,12 @@ package com.amakenapp.website.amakenapp.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,7 +35,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
+import static android.util.Patterns.GOOD_IRI_CHAR;
+import static android.util.Patterns.TOP_LEVEL_DOMAIN_STR_FOR_WEB_URL;
 
 
 public class SignUpBusiness extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener{
@@ -45,6 +51,9 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     private ArrayList<Integer> countryIds, citiesIds;
     private  String userEmail;
     private String password;
+
+    TextInputLayout emailLayout, nameLayout, passLayout, webLayout, phoneLayout;
+
 
 
     @Override
@@ -73,11 +82,106 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
 
         progressDialog = new ProgressDialog(this);
         editEmail = (EditText) findViewById(R.id.businessEmail);
+        emailLayout= (TextInputLayout) findViewById(R.id.business_Email);
+
         editPassword = (EditText) findViewById(R.id.businessPassword);
+        passLayout =(TextInputLayout) findViewById(R.id.business_Password);
+
+
         editPersonName = (EditText) findViewById(R.id.businessName);
+        nameLayout= (TextInputLayout) findViewById(R.id.business_name);
+
 
         editwebsiteUrl = (EditText) findViewById(R.id.businessWebUrl);
+        webLayout =(TextInputLayout) findViewById(R.id.business_WebUrl);
+
         editPhoneNumber = (EditText) findViewById(R.id.businessPhoneNumber);
+        phoneLayout =(TextInputLayout) findViewById(R.id.business_PhoneNumber);
+
+
+        editEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                emailLayout.setErrorEnabled(false);}
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(editEmail.getText().toString().isEmpty())
+                {
+                    emailLayout.setErrorEnabled(true);
+                    emailLayout.setError("Please Enter Your Email...!");
+                }
+                else
+                    emailLayout.setErrorEnabled(false);
+            }
+        });
+
+
+
+        editPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                passLayout.setErrorEnabled(false);}
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(editPassword.getText().toString().isEmpty())
+                {
+                    passLayout.setErrorEnabled(true);
+                    passLayout.setError("Please Enter a Password...!");
+                }
+                else
+                    passLayout.setErrorEnabled(false);
+            }
+        });
+
+
+
+        editPersonName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                nameLayout.setErrorEnabled(false);}
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(editPersonName.getText().toString().isEmpty())
+                {
+                    nameLayout.setErrorEnabled(true);
+                    nameLayout.setError("Please Enter Your Name...!");
+                }
+                else
+                    nameLayout.setErrorEnabled(false);
+            }
+        });
+
+
+
+        editwebsiteUrl.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                webLayout.setErrorEnabled(false);}
+            @Override
+            public void afterTextChanged(Editable editable) {}});
+
+
+
+        editPhoneNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                phoneLayout.setErrorEnabled(false);}
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+
+
+
 
         loadCountries();
 
@@ -88,16 +192,101 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v == signUpBusiness) {
-            singUp();
+
+            String useremail = editEmail.getText().toString().trim();
+            String userpass = editPassword.getText().toString().trim();
+            String username= editPersonName.getText().toString().trim();
+            String userWeb = editwebsiteUrl.getText().toString().trim();
+            String userPhone = editPhoneNumber.getText().toString().trim();
+
+
+            if(useremail.isEmpty())
+            {
+                emailLayout.requestFocus();
+                emailLayout.setError("Please Enter Your Email...!");
+            }
+            else if(!isValidEmail(useremail))
+            {
+                emailLayout.requestFocus();
+                emailLayout.setError("Hmm...This dose not look like an Email address!");
+
+            }
+            else if (userpass.length()<6)
+            {
+                passLayout.requestFocus();
+                passLayout.setError("Password must be at least 6 characters...!");
+            }
+            else if(username.isEmpty())
+            {
+                nameLayout.requestFocus();
+                nameLayout.setError("Please Enter Your Name...!");
+            }
+            else if (!userWeb.isEmpty() && !isValidWeb(userWeb)) {
+                webLayout.requestFocus();
+                webLayout.setError("Hmm...This dose not look like a valid Web address!");
+
+            }
+            else if (!userPhone.isEmpty() && !isValidPhone(userPhone)) {
+                phoneLayout.requestFocus();
+                phoneLayout.setError("Hmm...This dose not look like a valid Phone Number!");
+
+            }else
+                singUp();
 
         }
 
     }
 
+
+    public final static boolean isValidEmail(CharSequence target) {
+        final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
+                "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                        "\\@" +
+                        "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                        "(" +
+                        "\\." +
+                        "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                        ")+"
+        );
+        return EMAIL_ADDRESS_PATTERN.matcher(target).matches();
+    }
+
+    public final static boolean isValidWeb(CharSequence target) {
+        final Pattern WEB_URL = Pattern.compile(
+                "((?:(http|https|Http|Https|rtsp|Rtsp):\\/\\/(?:(?:[a-zA-Z0-9\\$\\-\\_\\.\\+\\!\\*\\'\\(\\)"
+                        + "\\,\\;\\?\\&\\=]|(?:\\%[a-fA-F0-9]{2})){1,64}(?:\\:(?:[a-zA-Z0-9\\$\\-\\_"
+                        + "\\.\\+\\!\\*\\'\\(\\)\\,\\;\\?\\&\\=]|(?:\\%[a-fA-F0-9]{2})){1,25})?\\@)?)?"
+                        + "((?:(?:[" + GOOD_IRI_CHAR + "][" + GOOD_IRI_CHAR + "\\-]{0,64}\\.)+"   // named host
+                        + TOP_LEVEL_DOMAIN_STR_FOR_WEB_URL
+                        + "|(?:(?:25[0-5]|2[0-4]" // or ip address
+                        + "[0-9]|[0-1][0-9]{2}|[1-9][0-9]|[1-9])\\.(?:25[0-5]|2[0-4][0-9]"
+                        + "|[0-1][0-9]{2}|[1-9][0-9]|[1-9]|0)\\.(?:25[0-5]|2[0-4][0-9]|[0-1]"
+                        + "[0-9]{2}|[1-9][0-9]|[1-9]|0)\\.(?:25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}"
+                        + "|[1-9][0-9]|[0-9])))"
+                        + "(?:\\:\\d{1,5})?)" // plus option port number
+                        + "(\\/(?:(?:[" + GOOD_IRI_CHAR + "\\;\\/\\?\\:\\@\\&\\=\\#\\~"  // plus option query params
+                        + "\\-\\.\\+\\!\\*\\'\\(\\)\\,\\_])|(?:\\%[a-fA-F0-9]{2}))*)?"
+                        + "(?:\\b|$)"); // and finally, a word boundary or end of
+        // input.  This is to stop foo.sure from
+
+        return WEB_URL.matcher(target).matches();
+    }
+
+
+
+    public final static boolean isValidPhone(CharSequence target) {
+         final Pattern PHONE = Pattern.compile(                                  // sdd = space, dot, or dash
+                              "(\\+[0-9]+[\\- \\.]*)?"                    // +<digits><sdd>*
+                               + "(\\([0-9]+\\)[\\- \\.]*)?"               // (<digits>)<sdd>*
+                               + "([0-9][0-9\\- \\.][0-9\\- \\.]+[0-9])");
+
+        return PHONE.matcher(target).matches();
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             startActivity(new Intent(getApplicationContext(), SignUpChooser.class));
+            overridePendingTransition(0,0);
 
             return true;
         }

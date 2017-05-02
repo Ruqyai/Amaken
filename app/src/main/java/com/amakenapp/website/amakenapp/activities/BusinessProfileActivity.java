@@ -160,7 +160,7 @@ public class BusinessProfileActivity extends Fragment implements View.OnClickLis
         changeProfilePicTxt.setText(username);
 
         if(userProfilePicId==0)
-            businessProfilePic.setImageResource(R.drawable.business1);
+            businessProfilePic.setImageResource(R.drawable.ic_person);
         else
              Glide.with(getApplicationContext()).load(userProfilePicUrl)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
