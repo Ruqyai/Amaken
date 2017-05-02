@@ -77,7 +77,7 @@ public class ConnectWithUs extends AppCompatActivity implements View.OnClickList
             }*/
         if (v== amakeen_app){
 
-            String url = "https://twitter.com/?request_context=signup";
+            String url = "https://twitter.com/AmakenApp";
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url)); startActivity(i);
 
