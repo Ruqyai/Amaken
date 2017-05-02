@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
-
+import android.widget.Toast;
 
 
 import com.amakenapp.website.amakenapp.R;
@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
        // SharedPreferences sharedPreferences = mCtx.getSharedPreferences("mysharedpref12", Context.MODE_PRIVATE);
         SharedPrefManager sharedPrefManager=SharedPrefManager.getInstance(this);
+       String x = sharedPrefManager.getDeviceToken();
+        Toast.makeText(this,x,Toast.LENGTH_LONG).show();
         if (sharedPrefManager.isLoggedIn()){
             startActivity(new Intent(MainActivity.this,NavDrw.class));
 
