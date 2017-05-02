@@ -55,12 +55,47 @@
                 app:buttonText="Share on Facebook"
                 app:progressType="spinner"
                 app:shareUrl="https://play.google.com/store/apps/details?id=com.seu" />
+<!--
+            <Button
+                android:id="@+id/share_buttonInstagram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text=" Share on Instagram "
+                android:padding="4pt"
+                android:textStyle="italic"
+                android:typeface="sans"
+                android:textAllCaps="?attr/windowActionBar"
+                android:layout_gravity="center"
+                android:layout_margin="3pt"
+                android:background="#68f9c013"
+                android:textColor="#1b1b1b"
+                android:drawableLeft="@drawable/ic_insta"
+                />
+                -->
+            <Button
+                android:id="@+id/share_buttonTwitter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="    Share on Twitter    "
+                android:padding="4pt"
+                android:textStyle="italic"
+                android:typeface="sans"
+                android:textAllCaps="?attr/windowActionBar"
+                android:layout_gravity="center"
+                android:layout_margin="3pt"
+                android:background="#4f13cff9"
+                android:textColor="#1b1b1b"
+                android:drawableLeft="@drawable/twitter"
+                />
+
             <Button
                 android:id="@+id/share_button_Msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#6213f913"
-                android:text=" Share by whatsApp "
+                android:text=" Share by whatsApp  "
                 android:padding="4pt"
                 android:textStyle="italic"
                 android:typeface="sans"
