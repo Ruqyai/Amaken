@@ -13,22 +13,29 @@
     tools:context="com.amakenapp.website.amakenapp.activities.Login"
     tools:showIn="@layout/activity_login">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_alignParentTop="true"
+        android:scrollbars="none"
+        android:layout_alignParentStart="true">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:layout_below="@+id/toolbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
+
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/log_Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
+
             android:layout_marginTop="2dp">
 
 
@@ -50,8 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
+
             android:layout_marginTop="32dp"
            >
 
@@ -66,7 +72,18 @@
 
         </android.support.design.widget.TextInputLayout>
 
-
+        <TextView
+            android:id="@+id/forgot_pass"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="32dp"
+            android:textSize="18sp"
+            android:paddingStart="8dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+           android:textColor="@color/bar"
+            android:text="@string/forgot_your_password"/>
 
         <Button
             android:text="SIGN IN"
@@ -76,14 +93,9 @@
             android:background="#15AFD8"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginBottom="8dp"
+
+            android:layout_marginTop="32dp"
             android:typeface="sans"
             android:textAllCaps="?attr/windowActionBar"/>
 
@@ -95,15 +107,14 @@
                 android:id="@+id/login_SingInGoogle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="continue with Google "
+                android:text="Continue With Google "
 
                 android:background="@drawable/common_google_signin_btn_text_light"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
+                android:layout_marginBottom="8dp"
 
+                android:layout_marginTop="8dp"
+                android:padding="8dp"
+                android:textSize="16sp"
                 android:typeface="sans"
                 android:textAllCaps="?attr/windowActionBar"/>
 
@@ -112,17 +123,16 @@
                 android:id="@+id/login_SingInFacebook"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/com_facebook_button_icon_blue"
-                android:paddingLeft="7dp"
+                android:drawableStart="@drawable/com_facebook_button_icon_blue"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
                 android:background="@drawable/com_facebook_button_background"
-                android:text="continue with Facebook "
+                android:text="Continue With Facebook "
                 android:textColor="#ffffff"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
+                android:layout_marginBottom="8dp"
 
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
                 android:typeface="sans"
                 android:textAllCaps="?attr/windowActionBar"/>
 
@@ -133,5 +143,5 @@
 
     </LinearLayout>
 
-
+</ScrollView>
 </RelativeLayout>

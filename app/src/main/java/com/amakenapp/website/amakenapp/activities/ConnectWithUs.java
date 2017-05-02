@@ -77,7 +77,7 @@ public class ConnectWithUs extends AppCompatActivity implements View.OnClickList
             }*/
         if (v== amakeen_app){
 
-            String url = "https://twitter.com/?request_context=signup";
+            String url = "https://twitter.com/AmakenApp";
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url)); startActivity(i);
 
@@ -89,7 +89,7 @@ public class ConnectWithUs extends AppCompatActivity implements View.OnClickList
             i.setData(Uri.parse(url)); startActivity(i);
         }if (v== Amakeen_app_facebook){
 
-            String url = "https://www.facebook.com/AmakenApp";
+            String url = "https://www.facebook.com/Amaken-1449474672018504/";
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url)); startActivity(i);
         }if (v== amakeen_app_Gmail){

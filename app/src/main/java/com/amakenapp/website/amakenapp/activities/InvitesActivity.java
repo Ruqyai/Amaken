@@ -34,23 +34,27 @@ import bolts.AppLinks;
 public class InvitesActivity extends AppCompatActivity implements View.OnClickListener  {
     private static final int REQUEST_INVITE = 1;
     Button mButton;
-    Button smsButton;
+    Button smsButton, twitterButton,InstagramButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invites);
         mButton = (Button) findViewById(R.id.share_button);
+      //  InstagramButton= (Button) findViewById(R.id.share_buttonInstagram);
+       // InstagramButton.setOnClickListener(this);
         mButton.setOnClickListener(this);
         smsButton = (Button) findViewById(R.id.share_button_Msg);
         smsButton.setOnClickListener(this);
+        twitterButton=(Button) findViewById(R.id.share_buttonTwitter);
+        twitterButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v == mButton){
         Intent shareIntent = new PlusShare.Builder(this)
-                .setText("Check Out This Amazing App! \n \n https://play.google.com/store/apps/details?id=com.seu")
+                .setText("Hello, this Amazing App! \n \n https://play.google.com/store/apps/details?id=com.seu")
                 .setType("image/png")
                 .setContentDeepLinkId("testID",
                         "Test Title",
@@ -61,6 +65,12 @@ public class InvitesActivity extends AppCompatActivity implements View.OnClickLi
         else if (v == smsButton){
             onInviteClicked();
         }
+        else if (v == twitterButton){
+            onInviteTwitterClicked();
+        }
+        else if (v == InstagramButton){
+            onInviteInstagramClicked();
+        }
     }
 
 private void onInviteClicked() {
@@ -70,7 +80,7 @@ private void onInviteClicked() {
 
         Intent waIntent = new Intent(Intent.ACTION_SEND);
         waIntent.setType("text/plain");
-        String text = "Hello dear this is amazing App \n \n https://play.google.com/store/apps/details?id=com.seu";
+        String text = "Hello, this is amazing App \n \n https://play.google.com/store/apps/details?id=com.seu";
 
         PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
         waIntent.setPackage("com.whatsapp");
@@ -84,5 +94,30 @@ private void onInviteClicked() {
     }
 
 }
+
+    private void onInviteInstagramClicked() {
+
+    }
+    private void onInviteTwitterClicked() {
+
+        PackageManager pm=getPackageManager();
+        try {
+
+            Intent waIntent = new Intent(Intent.ACTION_SEND);
+            waIntent.setType("text/plain");
+            String text = "Hello, this is amazing App \n \n https://play.google.com/store/apps/details?id=com.seu";
+
+            PackageInfo info=pm.getPackageInfo("com.twitter.android", PackageManager.GET_META_DATA);
+            waIntent.setPackage("com.twitter.android");
+
+            waIntent.putExtra(Intent.EXTRA_TEXT, text);
+            startActivity(Intent.createChooser(waIntent, "Share with"));
+
+        } catch (PackageManager.NameNotFoundException e) {
+            Toast.makeText(this, "Twitter not Installed", Toast.LENGTH_SHORT)
+                    .show();
+        }
+
+    }
 }
 

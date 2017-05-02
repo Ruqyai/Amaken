@@ -98,7 +98,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                                         Glide.with(UserDetailsActivity.this).load(R.drawable.com_facebook_profile_picture_blank_portrait)
                                                 .thumbnail(0.5f)
                                                 .crossFade()
-                                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                                .diskCacheStrategy(DiskCacheStrategy.NONE)
                                                 .into(ProfilePic);
                                     }
 
@@ -106,11 +106,8 @@ public class UserDetailsActivity extends AppCompatActivity {
                                     Glide.with(UserDetailsActivity.this).load(url_pic)
                                             .thumbnail(0.5f)
                                             .crossFade()
-                                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                            .diskCacheStrategy(DiskCacheStrategy.NONE)
                                             .into(ProfilePic);
-
-
-
 
                                 }
 
