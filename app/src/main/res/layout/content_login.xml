@@ -72,18 +72,40 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/forgot_pass"
+        <LinearLayout
             android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="32dp"
-            android:textSize="18sp"
-            android:paddingStart="8dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-           android:textColor="@color/bar"
-            android:text="@string/forgot_your_password"/>
+            android:gravity="center"
+            android:layout_marginTop="25dp">
+            <TextView
+                android:gravity="center"
+                android:id="@+id/forgot_pass"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:background="?attr/selectableItemBackground"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:textColor="@color/bar"
+                android:text="@string/forgot_your_password"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/signUp"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="@color/bar"
+                android:text="@string/sign_Up"/>
+        </LinearLayout>
+
 
         <Button
             android:text="SIGN IN"
@@ -129,7 +151,7 @@
                 android:background="@drawable/com_facebook_button_background"
                 android:text="Continue With Facebook "
                 android:textColor="#ffffff"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="20dp"
 
                 android:layout_marginTop="8dp"
                 android:textSize="16sp"

@@ -275,8 +275,8 @@ public class SignUpBusiness extends AppCompatActivity implements View.OnClickLis
 
 
     public final static boolean isValidPhone(CharSequence target) {
-         final Pattern PHONE = Pattern.compile(                                  // sdd = space, dot, or dash
-                              "(\\+[0-9]+[\\- \\.]*)?"                    // +<digits><sdd>*
+         final Pattern PHONE = Pattern.compile(                            // sdd = space, dot, or dash
+                              "(\\+[0-9]+[\\- \\.]*)?"                     // +<digits><sdd>*
                                + "(\\([0-9]+\\)[\\- \\.]*)?"               // (<digits>)<sdd>*
                                + "([0-9][0-9\\- \\.][0-9\\- \\.]+[0-9])");
 

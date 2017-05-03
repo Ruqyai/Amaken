@@ -969,13 +969,6 @@ public class AddEvent extends AppCompatActivity implements
 
 
 
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            MenuInflater menuInflater = getMenuInflater();
-            menuInflater.inflate(R.menu.main,menu);
-            return super.onCreateOptionsMenu(menu);
-        }
-
 
 
 
@@ -1307,8 +1300,6 @@ public class AddEvent extends AppCompatActivity implements
             final Double longitude  = currentLongitude;
 
 
-
-
             StringRequest send = new StringRequest(Request.Method.POST,
                     Constants.URL_ADD_EVENT_LOCATION ,
                     new Response.Listener<String>() {
@@ -1319,9 +1310,6 @@ public class AddEvent extends AppCompatActivity implements
                                 JSONObject obj = new JSONObject(response);
                                 if (!obj.getBoolean("error")) {
                                     insertedLocationId = obj.getInt("location_id");
-                                   // Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
-
-
                                 } else {
                                     Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
                                 }
@@ -1508,9 +1496,6 @@ public class AddEvent extends AppCompatActivity implements
                                     JSONArray arr = obj.getJSONArray("user");
                                     for (int i = 0; i < arr.length(); i++) {
                                         JSONObject placeDetails = arr.getJSONObject(i);
-
-                                        //showToast(placeDetails.getInt("inserted_notification_id") + "");
-                                        //showToast(placeDetails.getString("message"));
                                     }
 
                                 } else {
