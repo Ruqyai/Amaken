@@ -48,10 +48,10 @@ public class AdapterSearch extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         // Get current position of item in RecyclerView to bind data and assign values from list
         MyHolder myHolder = (MyHolder) holder;
-        current = searchList.get(position );
-        tmp = current.getSerchType();
-        currentId = current.getSearchId();
-        tmpName = current.getSearchName();
+        final SearchList current = searchList.get(position );
+        final String tmp = current.getSerchType();
+        final int currentId = current.getSearchId();
+        final String tmpName = current.getSearchName();
         myHolder.searchName.setText(current.getSearchName());
         myHolder.serchType.setText(current.getSerchType());
         myHolder.serchType.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));

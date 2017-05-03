@@ -271,4 +271,6 @@
     <string name="add_event_title_fab"> <b>Add Event</b> </string>
     <string name="add_place_title_fab">Add Place</string>
     <string name="forgot_your_password"><u>Forgot Your Password?</u></string>
+    <string name="sign_Up">Don\'t Have an Account? <u>Sign Up Here</u></string>
+
 </resources>

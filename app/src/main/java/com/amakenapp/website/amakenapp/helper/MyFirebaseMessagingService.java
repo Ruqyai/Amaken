@@ -3,6 +3,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.amakenapp.website.amakenapp.activities.ExpandDetailsMapsActivity;
+import com.amakenapp.website.amakenapp.activities.Login;
 import com.amakenapp.website.amakenapp.activities.NavDrw;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -20,9 +21,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+
+
+        //Log.e(TAG, "Exception: " + remoteMessage.getNotification().getBody());
+        notifyUser(remoteMessage.getFrom(), remoteMessage.getNotification().getBody());
         if (remoteMessage.getData().size() > 0) {
             Log.e(TAG, "Data Payload: " + remoteMessage.getData().toString());
             try {
+
                 JSONObject json = new JSONObject(remoteMessage.getData().toString());
                 sendPushNotification(json);
             } catch (Exception e) {
@@ -31,6 +37,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
+
+    private void notifyUser(String from, String notification){
+
+        MyNotificationManager mNotificationManager = new MyNotificationManager(getApplicationContext());
+        mNotificationManager.showNotification(from, notification, new Intent(getApplicationContext(), Login.class));
+
+
+
+    }
     //this method will display the notification
     //We are passing the JSONObject that is received from
     //firebase cloud messaging
@@ -55,7 +70,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             //if there is no image
             if(imageUrl.equals("null")){
                 //displaying small notification
-                mNotificationManager.showSmallNotification(title, message, intent);
+               mNotificationManager.showSmallNotification(title, message, intent);
             }else{
                 //if there is an image
                 //displaying a big notification

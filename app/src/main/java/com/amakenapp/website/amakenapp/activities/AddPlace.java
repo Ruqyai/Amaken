@@ -804,12 +804,6 @@ public class AddPlace extends AppCompatActivity implements OnMapReadyCallback,
 
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
 
 

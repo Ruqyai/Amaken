@@ -31,6 +31,35 @@ public class MyNotificationManager {
         this.mCtx = mCtx;
     }
 
+
+
+    public void showNotification(String from, String notification, Intent intent){
+        PendingIntent resultPendingIntent =
+                PendingIntent.getActivity(
+                        mCtx,
+                        ID_BIG_NOTIFICATION,
+                        intent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mCtx);
+        Notification notification2 = mBuilder.setSmallIcon(R.mipmap.ic_launcher)
+                .setAutoCancel(true)
+                .setContentIntent(resultPendingIntent)
+                .setContentTitle(from)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(BitmapFactory.decodeResource(mCtx.getResources(), R.mipmap.ic_launcher))
+                .setContentText(notification)
+                .build();
+
+        notification2.flags |= Notification.FLAG_AUTO_CANCEL;
+
+        NotificationManager notificationManager = (NotificationManager) mCtx.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(ID_BIG_NOTIFICATION, notification2);
+    }
+
+
     //the method will show a big notification with an image
     //parameters are title for message title, message for message text, url of the big image and an intent that will open
     //when you will tap on the notification
@@ -109,4 +138,5 @@ public class MyNotificationManager {
             return null;
         }
     }
+
 }

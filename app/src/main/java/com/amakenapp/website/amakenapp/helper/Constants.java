@@ -18,6 +18,7 @@ public class Constants {
     public static final String URL_GET_USER_BY_ID = ROOT_URL +"getUserById/";
 
     public static final String URL_LOGIN = ROOT_URL+"UserLogin";
+    public static final String URL_UPDATE_PASS = ROOT_URL+"updatePass";
     public static final String URL_COUNTRIES = ROOT_URL+"getAllCountries";
     public static final String URL_CITIES = ROOT_URL+"getCitiesByCountryId/";
     public static final String URL_PLACECATEGORIES = ROOT_URL+"getAllPlaceCategories";
@@ -53,8 +54,7 @@ public class Constants {
 
 
 
-
-    //expand event information and operations
+ //expand event information and operations
     public static final String URL_GET_ALL_EVENTS = ROOT_URL+"getAllEvents/";
     public static final String URL_EVENT_INFO = ROOT_URL+"getEventById";
     public static final String URL_EVENT_GALLERY = ROOT_URL+"getEventGallery/";
@@ -151,10 +151,15 @@ public class Constants {
     public static final String URL_ADD_NOTIFICATION= ROOT_URL+"storeNotification";
     public static final String URL_ADD_NOTIFICATION_PLACE_ADD= ROOT_URL+"storeNotificationPlaceAdd";
     public static final String URL_GET_NOTIFICATIONS= ROOT_URL+"getUserNotifications/";
+    public static final String URL_Report_Info = ROOT_URL+"getReviewandReport";
+    public static final String URL_DELETE_REVIEW= ROOT_URL+"deleteReviewById/";
+
+
+
 
 
     public static final String URL_DELETE_NOTIFICATION= ROOT_URL+"deleteNotificationById/";
-
+    public static final String URL_REGISTER_DEVICE = ROOT_URL+"StoreDeviceToken";
 
 
 
