@@ -12,6 +12,7 @@ android {
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -70,6 +71,7 @@ dependencies {
     compile 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
     compile 'net.gotev:uploadservice:2.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:multidex:1.0.0'
     compile project(':facebook-android-sdk-4.22.0')
 }
 
